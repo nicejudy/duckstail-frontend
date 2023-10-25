@@ -88,10 +88,10 @@ const CakeDataRow = () => {
   } = useSWR(
     loadData ? ['cakeDataRow'] : null,
     async () => {
-      const totalSupplyCall = { abi: cakeAbi, address: ethereumTokens.nebula.address, name: 'totalSupply' }
+      const totalSupplyCall = { abi: cakeAbi, address: ethereumTokens.usdt.address, name: 'totalSupply' }
       const burnedTokenCall = {
         abi: cakeAbi,
-        address: ethereumTokens.nebula.address,
+        address: ethereumTokens.usdt.address,
         name: 'balanceOf',
         params: ['0x000000000000000000000000000000000000dEaD'],
       }
