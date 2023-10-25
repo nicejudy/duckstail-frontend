@@ -1,0 +1,111 @@
+{
+  "name": "CoinGecko",
+  "logoURI": "https://www.coingecko.com/assets/thumbnail-007177f3eca19695592f0b8b0eabbdae282b54154e1be912285c9034ea6cbaf2.png",
+  "keywords": [
+    "defi"
+  ],
+  "timestamp": "2023-09-16T09:04:22.953+00:00",
+  "tokens": [
+    {
+      "chainId": 148,
+      "name": "CyberGlow Token",
+      "symbol": "CGT",
+      "logoURI": "https://app.cyberglow.es/images/cgt.png",
+      "address": "0xC33FEdB84EE8aD97141eF6647D305c9FFBdC7cd6",
+      "decimals": 18
+    },
+    {
+      "chainId": 148,
+      "name": "Assembly Meme Coin",
+      "symbol": "ASSMB",
+      "logoURI": "https://app.cyberglow.es/images/148/tokens/0x2F69dC2d27051493C775e4d36Be2bEBA5d7093E8.svg",
+      "address": "0x2F69dC2d27051493C775e4d36Be2bEBA5d7093E8",
+      "decimals": 9
+    },
+    {
+      "chainId": 148,
+      "name": "ApeDAO",
+      "symbol": "APEin",
+      "logoURI": "https://app.cyberglow.es/images/148/tokens/0x264F2e6142CE8bEA68e5C646f8C07db98A9E003A.svg",
+      "address": "0x264F2e6142CE8bEA68e5C646f8C07db98A9E003A",
+      "decimals": 18
+    },
+    {
+      "chainId": 148,
+      "name": "BigFish",
+      "symbol": "FISH",
+      "logoURI": "https://app.cyberglow.es/images/148/tokens/0xe051d1af4b1149FfB314C41C87E3501CFb961a73.svg",
+      "address": "0xe051d1af4b1149FfB314C41C87E3501CFb961a73",
+      "decimals": 18
+    },
+    {
+      "chainId": 148,
+      "name": "Shiball Token",
+      "symbol": "HIBAL",
+      "logoURI": "https://app.cyberglow.es/images/148/tokens/0x2880923D21759617366a2DDf09579C90a7B5A4Ad.png",
+      "address": "0x2880923D21759617366a2DDf09579C90a7B5A4Ad",
+      "decimals": 18
+    },
+    {
+      "chainId": 148,
+      "name": "Gold",
+      "symbol": "IHG",
+      "logoURI": "https://app.cyberglow.es/images/148/tokens/0x3bBb9B7848De06778fEE4fE0bC4d9AB271e56648.svg",
+      "address": "0x3bBb9B7848De06778fEE4fE0bC4d9AB271e56648",
+      "decimals": 18
+    },
+    {
+      "chainId": 148,
+      "name": "ShimmerSea Lum",
+      "symbol": "LUM",
+      "logoURI": "https://app.cyberglow.es/images/148/tokens/0x4794Aeafa5Efe2fC1F6f5eb745798aaF39A81D3e.svg",
+      "address": "0x4794Aeafa5Efe2fC1F6f5eb745798aaF39A81D3e",
+      "decimals": 18
+    },
+    {
+      "chainId": 148,
+      "name": "Mexitoken",
+      "symbol": "MXT",
+      "logoURI": "https://app.cyberglow.es/images/148/tokens/0x93f6fA22A010D6f36a2FF4dA812df69520b76Fe8.png",
+      "address": "0x93f6fA22A010D6f36a2FF4dA812df69520b76Fe8",
+      "decimals": 18
+    },
+    {
+      "chainId": 148,
+      "name": "PUNKS",
+      "symbol": "$PUNK",
+      "logoURI": "https://app.cyberglow.es/images/148/tokens/0x8b9f7e5E710Aed102BBc670B771c66F152029399.png",
+      "address": "0x8b9f7e5E710Aed102BBc670B771c66F152029399",
+      "decimals": 18
+    },
+    {
+      "chainId": 148,
+      "name": "Shimmer Doge DAO Token",
+      "symbol": "SDDT",
+      "logoURI": "https://app.cyberglow.es/images/148/tokens/0xE9308Bf2d95d11E324E0C62FF24bBD4bbc5dA546.png",
+      "address": "0xE9308Bf2d95d11E324E0C62FF24bBD4bbc5dA546",
+      "decimals": 6
+    },
+    {
+      "chainId": 148,
+      "name": "Wrap SOON",
+      "symbol": "sSOON",
+      "logoURI": "https://app.cyberglow.es/images/148/tokens/0x3C844FB5AD27A078d945dDDA8076A4084A76E513.png",
+      "address": "0x3C844FB5AD27A078d945dDDA8076A4084A76E513",
+      "decimals": 6
+    },
+    {
+      "chainId": 148,
+      "name": "WEN Token",
+      "symbol": "WEN",
+      "logoURI": "https://app.cyberglow.es/images/148/tokens/0x4259b21AD6D95d747dDA908e9617443a530CD20d.svg",
+      "address": "0x4259b21AD6D95d747dDA908e9617443a530CD20d",
+      "decimals": 0
+    }
+  ],
+  "version": {
+    "major": 304,
+    "minor": 0,
+    "patch": 0
+  }
+}
