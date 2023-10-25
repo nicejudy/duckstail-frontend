@@ -13,7 +13,11 @@ const GlobalStyle = createGlobalStyle`
     // font-family: Poppins, sans-serif;
   }
   body {
-    background: ${({ theme }) => theme.colors.background};
+    background-color: ${({ theme }) => theme.colors.background};
+    background: url('/images/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 
     img {
       height: auto;

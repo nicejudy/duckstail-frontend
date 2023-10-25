@@ -33,7 +33,7 @@ const StyledNav = styled.nav`
   align-items: center;
   width: 100%;
   height: ${MENU_HEIGHT+1}px;
-  background-color: ${({ theme }) => theme.colors.backgroundAlt};
+  // background-color: ${({ theme }) => theme.colors.backgroundAlt};
   border-bottom: 1px solid ${({ theme }) => theme.colors.background};
   transform: translate3d(0, 0, 0);
 
