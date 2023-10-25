@@ -25,6 +25,7 @@ const Wrapper = styled.div`
   display: grid;
   grid-template-rows: auto 1fr;
   min-height: 100vh;
+  background-color: ${({ theme }) => theme.colors.backgroundAltBlur};
 `;
 
 const StyledNav = styled.nav`
