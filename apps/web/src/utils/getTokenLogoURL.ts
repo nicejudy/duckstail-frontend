@@ -6,7 +6,7 @@ const mapping = {
   [ChainId.KRONOBIT]: 'kronobit',
   [ChainId.SHIMMER2]: 'shimmer',
   // [ChainId.ETHEREUM]: 'ethereum',
-  [ChainId.ETHEREUM]: 'polygon',
+  [ChainId.ETHEREUM]: 'ethereum',
 }
 
 const getTokenLogoURL = memoize(

@@ -1,4 +1,4 @@
-import { USDC, shimmerTokens } from '@pancakeswap/tokens'
+import { USDC, USDT, shimmerTokens } from '@pancakeswap/tokens'
 import { useCurrency } from 'hooks/Tokens'
 import { useActiveChainId } from 'hooks/useActiveChainId'
 import useNativeCurrency from 'hooks/useNativeCurrency'
@@ -19,7 +19,7 @@ const RemoveLiquidityPage = () => {
 
   const [currencyIdA, currencyIdB] = router.query.currency || [
     native.symbol,
-    shimmerTokens.cgt.address ?? USDC[chainId]?.address,
+    USDT[chainId]?.address,
   ]
 
   const [currencyA, currencyB] = [useCurrency(currencyIdA) ?? undefined, useCurrency(currencyIdB) ?? undefined]

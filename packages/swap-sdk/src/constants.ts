@@ -2,7 +2,7 @@ import { Percent } from '@pancakeswap/swap-sdk-core'
 import { ERC20Token } from './entities/token'
 
 export enum ChainId {
-  ETHEREUM = 137,
+  ETHEREUM = 1,
   GOERLI = 5,
   BSC = 56,
   BSC_TESTNET = 97,
@@ -40,11 +40,11 @@ export const INIT_CODE_HASH_MAP: Record<number, string> = {
 export const WETH9 = {
   [ChainId.ETHEREUM]: new ERC20Token(
     ChainId.ETHEREUM,
-    '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270',
+    '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
     18,
-    'WMATIC',
-    'Wrapped Matic',
-    'https://polygon.technology'
+    'WETH',
+    'Wrapped Ether',
+    'https://weth.io'
   ),
   [ChainId.KRONOBIT]: new ERC20Token(
     ChainId.KRONOBIT,
@@ -116,7 +116,7 @@ export const NATIVE: Record<
     decimals: number
   }
 > = {
-  [ChainId.ETHEREUM]: { name: 'Polygon', symbol: 'MATIC', decimals: 18 },
+  [ChainId.ETHEREUM]: { name: 'Ether', symbol: 'ETH', decimals: 18 },
   [ChainId.KRONOBIT]: { name: 'Kronobit', symbol: 'KNB', decimals: 18 },
   [ChainId.SHIMMER2]: { name: 'Shimmer', symbol: 'SMR', decimals: 18 },
   [ChainId.GOERLI]: { name: 'Goerli Ether', symbol: 'GOR', decimals: 18 },

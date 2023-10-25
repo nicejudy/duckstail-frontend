@@ -52,7 +52,7 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
-  [ChainId.ETHEREUM]: [WNATIVE[ChainId.ETHEREUM], KNB, NEBULA_ETH, USDC[ChainId.ETHEREUM], USDT[ChainId.ETHEREUM]],
+  [ChainId.ETHEREUM]: [WNATIVE[ChainId.ETHEREUM], USDC[ChainId.ETHEREUM], USDT[ChainId.ETHEREUM], WBTC_ETH, DAI_ETH],
   [ChainId.KRONOBIT]: [WNATIVE[ChainId.KRONOBIT], NEBULA[ChainId.KRONOBIT], MATIC_KNB, USDT[ChainId.KRONOBIT]],
   [ChainId.SHIMMER2]: [shimmerTokens.cgt],
   [ChainId.GOERLI]: [USDC[ChainId.GOERLI], WNATIVE[ChainId.GOERLI], BUSD[ChainId.GOERLI]],

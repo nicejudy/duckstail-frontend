@@ -60,7 +60,7 @@ const shimmer2 : Chain = {
   }
 };
 
-const CHAINS = [shimmer2]
+const CHAINS = [mainnet]
 
 const getNodeRealUrl = (networkName: string) => {
   let host = null

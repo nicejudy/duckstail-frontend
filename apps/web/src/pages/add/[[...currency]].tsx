@@ -1,4 +1,4 @@
-import { CAKE, USDC, shimmerTokens } from '@pancakeswap/tokens'
+import { CAKE, USDC, USDT, shimmerTokens } from '@pancakeswap/tokens'
 import { useCurrency } from 'hooks/Tokens'
 import useNativeCurrency from 'hooks/useNativeCurrency'
 import { GetStaticPaths, GetStaticProps } from 'next'
@@ -21,7 +21,7 @@ const AddLiquidityPage = () => {
 
   const [currencyIdA, currencyIdB] = router.query.currency || [
     native.symbol,
-    shimmerTokens.cgt.address ?? USDC[chainId]?.address,
+    USDT[chainId]?.address,
   ]
 
   const currencyA = useCurrency(currencyIdA)

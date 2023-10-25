@@ -49,7 +49,7 @@ export function UnsupportedNetworkModal({ pageSupportedChains }: { pageSupported
             layout="fixed"
             width={194}
             height={175}
-            src="/images/check-your-network.png"
+            src="/images/chains/1.png"
             alt="check your network"
           />
         </div>
@@ -65,10 +65,10 @@ export function UnsupportedNetworkModal({ pageSupportedChains }: { pageSupported
               // } else {
               //   switchNetworkAsync(ChainId.BSC)
               // }
-              switchNetworkAsync(ChainId.SHIMMER2)
+              switchNetworkAsync(ChainId.ETHEREUM)
             }}
           >
-            {isLoading ? <Dots>{t('Switch to Shimmer EVM')}</Dots> : t('Switch to Shimmer EVM')}
+            {isLoading ? <Dots>{t('Switch to Ethereum')}</Dots> : t('Switch to Ethereum')}
           </Button>
           {/* <Button
           isLoading={isLoading}
@@ -94,7 +94,7 @@ export function UnsupportedNetworkModal({ pageSupportedChains }: { pageSupported
             variant="secondary"
             onClick={() =>
               logout().then(() => {
-                switchNetworkLocal(ChainId.SHIMMER2)
+                switchNetworkLocal(ChainId.ETHEREUM)
               })
             }
           >

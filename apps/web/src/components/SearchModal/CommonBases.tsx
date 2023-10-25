@@ -56,12 +56,13 @@ export default function CommonBases({
   onSelect: (currency: Currency) => void
 }) {
   const native = useNativeCurrency()
+
   const { t } = useTranslation()
   const pinTokenDescText = commonBasesType === CommonBasesType.SWAP_LIMITORDER ? t('Common tokens') : t('Common bases')
 
   // const FIRST_LINE = [SUGGESTED_BASES[chainId][5]]
-  const FIRST_LINE = [SUGGESTED_BASES[chainId][0]]
-  // const SECOND_LINE_ETH = [SUGGESTED_BASES[chainId][2], SUGGESTED_BASES[chainId][3], SUGGESTED_BASES[chainId][4]]
+  const FIRST_LINE = [SUGGESTED_BASES[chainId][0], SUGGESTED_BASES[chainId][1]]
+  const SECOND_LINE_ETH = [SUGGESTED_BASES[chainId][2], SUGGESTED_BASES[chainId][3], SUGGESTED_BASES[chainId][4]]
   // const SECOND_LINE_KNB = [SUGGESTED_BASES[chainId][2], SUGGESTED_BASES[chainId][3]]
 
   return (
@@ -98,8 +99,8 @@ export default function CommonBases({
           )
         })}
       </RowWrapper>
-      {/* <RowWrapper>
-        {(chainId === ChainId.ETHEREUM ? SECOND_LINE_ETH || [] : chainId === ChainId.KRONOBIT ? SECOND_LINE_KNB || [] : []).map((token: Token) => {
+      <RowWrapper>
+        {(chainId === ChainId.ETHEREUM ? SECOND_LINE_ETH || [] : []).map((token: Token) => {
           const selected = selectedCurrency?.equals(token)
           return (
             <ButtonWrapper key={`buttonBase#${token.address}`}>
@@ -110,7 +111,7 @@ export default function CommonBases({
             </ButtonWrapper>
           )
         })}
-      </RowWrapper> */}
+      </RowWrapper>
       {/* <RowWrapper>
         {(chainId ? THIRD_LINE || [] : []).map((token: Token) => {
           const selected = selectedCurrency?.equals(token)

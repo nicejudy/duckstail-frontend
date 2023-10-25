@@ -64,7 +64,7 @@ export const darkColors = {
   background: 'linear-gradient(139.73deg, rgb(40, 104, 87) 0%, rgb(0, 0, 0) 98%)',
   backgroundDisabled: '#384043',
   backgroundAlt: '#071d1d',
-  backgroundAltBlur: '#957b66',
+  backgroundAltBlur: '#957b66cc',
   backgroundAlt2: 'rgba(38, 44, 44, 0.7)',
   cardBorder: '#10231e',
   contrast: '#FFFFFF',
