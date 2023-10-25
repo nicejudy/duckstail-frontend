@@ -8,7 +8,8 @@ declare module 'styled-components' {
 
 const GlobalStyle = createGlobalStyle`
   * {
-    font-family: "Work-Sans", sans-serif;
+    font-family: "Helvetica-Light", sans-serif;
+    letter-spacing: 1px;
     // font-family: Poppins, sans-serif;
   }
   body {
@@ -78,6 +79,27 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
     font-weight: 400;
     src: url("/fonts/worksans/work-sans.woff2") format("woff2"); /* IE9 Compat Modes */
+  }
+
+  @font-face {
+    font-family: "Helvetica-Light";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/helvetica/HelveticaNeue-Light.otf") format("opentype");
+  }
+
+  @font-face {
+    font-family: "Helvetica-LightExt";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/helvetica/HelveticaNeue-LightExt.otf") format("opentype");
+  }
+
+  @font-face {
+    font-family: "Helvetica-Medium";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/helvetica/HelveticaNeue-Medium.otf") format("opentype");
   }
   
 `

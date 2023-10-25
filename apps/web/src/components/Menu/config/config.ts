@@ -63,31 +63,31 @@ const config: (
         },
       ].map((item) => addMenuItemSupported(item, chainId)),
     },
-    {
-      label: t('Game'),
-      icon: TrophyIcon,
-      fillIcon: TrophyFillIcon,
-      href: '/flip',
-      showItemsOnMobile: true,
-      items: [
-        {
-          label: t('Flip'),
-          href: '/flip',
-        },
-        {
-          label: t('Dice'),
-          href: '/dice',
-        },
-      ].map((item) => addMenuItemSupported(item, chainId)),
-    },
-    {
-      label: 'Presale',
-      href: '/presale',
-      icon: IfoIcon,
-      hideSubNav: true,
-      showItemsOnMobile: false,
-      items: []
-    },
+    // {
+    //   label: t('Game'),
+    //   icon: TrophyIcon,
+    //   fillIcon: TrophyFillIcon,
+    //   href: '/flip',
+    //   showItemsOnMobile: true,
+    //   items: [
+    //     {
+    //       label: t('Flip'),
+    //       href: '/flip',
+    //     },
+    //     {
+    //       label: t('Dice'),
+    //       href: '/dice',
+    //     },
+    //   ].map((item) => addMenuItemSupported(item, chainId)),
+    // },
+    // {
+    //   label: 'Presale',
+    //   href: '/presale',
+    //   icon: IfoIcon,
+    //   hideSubNav: true,
+    //   showItemsOnMobile: false,
+    //   items: []
+    // },
     // {
     //   label: t('Liquidity'),
     //   icon: SwapIcon,
