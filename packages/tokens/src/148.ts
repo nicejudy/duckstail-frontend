@@ -16,7 +16,7 @@ export const shimmerTokens = {
     '0xC33FEdB84EE8aD97141eF6647D305c9FFBdC7cd6',
     18,
     'CGT',
-    'CyberGlow Token',
+    'Duckstail Token',
     'https://cyberglow.es/',
   ),
   apein: new ERC20Token(

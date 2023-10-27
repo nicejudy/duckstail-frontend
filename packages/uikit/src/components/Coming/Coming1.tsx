@@ -14,7 +14,7 @@ const StyledComing = styled.div`
   z-index: 1;
 `;
 
-const Coming1 = ({ text = "CyberGlow", mt = 0 }: { text?: string, mt?: number }) => {
+const Coming1 = ({ text = "Duckstail", mt = 0 }: { text?: string, mt?: number }) => {
   const { t } = useTranslation();
 
   return (

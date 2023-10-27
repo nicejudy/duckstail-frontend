@@ -18,7 +18,7 @@ const ButtonWrapper = styled.div`
 `
 
 const BaseWrapper = styled.div<{ disable?: boolean }>`
-  border: 1px solid ${({ theme, disable }) => (disable ? 'transparent' : theme.colors.dropdown)};
+  // border: 1px solid ${({ theme, disable }) => (disable ? 'transparent' : theme.colors.dropdown)};
   border-radius: 10px;
   display: flex;
   padding: 6px;

@@ -36,7 +36,7 @@ const config = [
   },
   {
     title: <Trans>Where does the participation fee go?</Trans>,
-    description: [<Trans>The SMR from the participation fee will go to CyberGlow team wallet.</Trans>],
+    description: [<Trans>The SMR from the participation fee will go to Duckstail team wallet.</Trans>],
   },
   {
     title: <Trans>How can I get an achievement for participating in the presale?</Trans>,

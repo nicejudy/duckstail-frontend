@@ -27,8 +27,8 @@ const ifos: Ifo[] = [
     version: 2,
     twitterUrl: 'https://twitter.com/Cyberglow_cgt',
     description:
-      'CyberGlow is a decentralized exchange that provides cryptocurrency users with a secure, efficient and fully decentralized platform for exchanging digital assets. With a focus on transparency, security, and accessibility, our DEX is designed to give users absolute control over their assets and operations.',
-    vestingTitle: 'Use $CGT to enjoy premium features(exchange, farming, staking, game, etc) on CyberGlow Decentralized Exchange',
+      'Duckstail is a decentralized exchange that provides cryptocurrency users with a secure, efficient and fully decentralized platform for exchanging digital assets. With a focus on transparency, security, and accessibility, our DEX is designed to give users absolute control over their assets and operations.',
+    vestingTitle: 'Use $CGT to enjoy premium features(exchange, farming, staking, game, etc) on Duckstail Decentralized Exchange',
   }
 ]
 

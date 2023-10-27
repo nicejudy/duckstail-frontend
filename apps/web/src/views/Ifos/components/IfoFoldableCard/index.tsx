@@ -235,9 +235,9 @@ const IfoFoldableCard = ({
       <Box as={StyledCard} borderRadius="32px">
         <Box position="relative">
           <Header ifoId={ifo.id}>
-            {/* <Text fontSize="30px">CyberGlow Governance Token Presale</Text> */}
+            {/* <Text fontSize="30px">Duckstail Governance Token Presale</Text> */}
             <Heading id="ifo-how-to" as="h2" scale="xl" color="secondary" mb="24px" textAlign="center">
-              CyberGlow Governance Token Presale
+            Duckstail Governance Token Presale
             </Heading>
             {/* <ExpandableButton expanded={isExpanded} onClick={() => setIsExpanded((prev) => !prev)} /> */}
           </Header>

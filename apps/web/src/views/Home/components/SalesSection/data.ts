@@ -32,7 +32,7 @@ export const swapSectionData = (t: TranslateFunction): SalesSectionProps => ({
 
 export const earnSectionData = (t: TranslateFunction): SalesSectionProps => ({
   headingText: t('Earn passive income with crypto.'),
-  bodyText: t('CyberGlow makes it easy to make your crypto work for you.'),
+  bodyText: t('Duckstail makes it easy to make your crypto work for you.'),
   reverse: true,
   primaryButton: {
     to: '/farms',
@@ -58,7 +58,7 @@ export const earnSectionData = (t: TranslateFunction): SalesSectionProps => ({
 export const cakeSectionData = (t: TranslateFunction): SalesSectionProps => ({
   headingText: t('Nebula makes our world go round.'),
   bodyText: t(
-    'CGT token is at the heart of the CyberGlow ecosystem. Buy it, farm it, spend it, stake it... heck, you can even vote with it!',
+    'CGT token is at the heart of the Duckstail ecosystem. Buy it, farm it, spend it, stake it... heck, you can even vote with it!',
   ),
   reverse: false,
   primaryButton: {
