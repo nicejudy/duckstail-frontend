@@ -113,9 +113,9 @@ const MenuItem: React.FC<React.PropsWithChildren<FooterProps>> = ({
               </Box>
             </Box> */}
           </Flex>
-          <Flex order={[1, null, 2]} justifyContent="center" alignItems="center">
+          {/* <Flex order={[1, null, 2]} justifyContent="center" alignItems="center">
             <StyledSocialLinks order={[2]} />
-          </Flex>
+          </Flex> */}
         </StyledToolsContainer>
       </Flex>
     </StyledFooter>
