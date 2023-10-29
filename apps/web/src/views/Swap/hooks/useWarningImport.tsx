@@ -65,12 +65,12 @@ export default function useWarningImport() {
     }
   }, [])
 
-  useEffect(() => {
-    if (importTokensNotInDefault.length > 0) {
-      onPresentImportTokenWarningModal()
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [importTokensNotInDefault.length])
+  // useEffect(() => {
+  //   if (importTokensNotInDefault.length > 0) {
+  //     onPresentImportTokenWarningModal()
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [importTokensNotInDefault.length])
 
   return swapWarningHandler
 }
