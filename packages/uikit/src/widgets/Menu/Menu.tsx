@@ -172,9 +172,9 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
                   />
                 </Box> */}
                 {/* {leftSide} */}
-                <SkeletonV2 variant="round" width="32px" height="32px" isDataReady={isMounted} ml="8px" >
+                {/* <SkeletonV2 variant="round" width="32px" height="32px" isDataReady={isMounted} ml="8px" >
                   <ThemeSwitcher isDark={isDark} toggleTheme={toggleTheme} />
-                </SkeletonV2>
+                </SkeletonV2> */}
                 {rightSide}
               </Flex>
             </StyledNav>

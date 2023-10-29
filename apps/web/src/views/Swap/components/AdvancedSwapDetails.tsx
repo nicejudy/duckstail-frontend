@@ -87,14 +87,14 @@ function TradeSummary({
             <QuestionHelper
               text={
                 <>
-                  <Text mb="12px">
+                  <Text mb="12px" fontSize="14px">
                     {hasStablePair
                       ? t('For each non-stableswap trade, a %amount% fee is paid', { amount: totalFeePercent })
                       : t('For each trade a %amount% fee is paid', { amount: totalFeePercent })}
                   </Text>
-                  <Text>- {t('%amount% to LP token holders', { amount: lpHoldersFeePercent })}</Text>
-                  <Text>- {t('%amount% to the Treasury', { amount: treasuryFeePercent })}</Text>
-                  <Text>- {t('%amount% towards CGT buyback and burn', { amount: buyBackFeePercent })}</Text>
+                  <Text fontSize="14px">- {t('%amount% to LP token holders', { amount: lpHoldersFeePercent })}</Text>
+                  <Text fontSize="14px">- {t('%amount% to the Treasury', { amount: treasuryFeePercent })}</Text>
+                  <Text fontSize="14px">- {t('%amount% towards DKS buyback and burn', { amount: buyBackFeePercent })}</Text>
                   {hasStablePair && (
                     <>
                       <Text mt="12px">
