@@ -6,6 +6,14 @@
   ],
   "timestamp": "2023-10-25T16:40:23.761+00:00",
   "tokens": [
+    {
+      "name": "Duckstail Token",
+      "symbol": "DKS",
+      "address": "0x05dBe925606d1B0B3fC939FD6273036a89CD71F1",
+      "logoURI": "https://app.cyberglow.es/images/1/tokens/0x05dBe925606d1B0B3fC939FD6273036a89CD71F1.png",
+      "chainId": 1,
+      "decimals": 18
+    }
   ],
   "version": {
       "major": 20,
