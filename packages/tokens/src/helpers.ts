@@ -6,11 +6,8 @@ import { TokenAddressMap } from '@pancakeswap/token-lists'
  */
 export const EMPTY_LIST: TokenAddressMap<ChainId> = {
   [ChainId.ETHEREUM]: {},
-  [ChainId.KRONOBIT]: {},
-  [ChainId.GOERLI]: {},
   [ChainId.BSC]: {},
-  [ChainId.BSC_TESTNET]: {},
-  [ChainId.SHIMMER2]: {},
+  [ChainId.ARBITRUM]: {},
 }
 
 export function serializeTokens(unserializedTokens) {

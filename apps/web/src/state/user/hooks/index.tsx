@@ -428,14 +428,11 @@ export function useGasPrice(chainIdOverride?: number): string {
   )
   const { data } = useFeeData({
     chainId,
-    enabled: chainId !== ChainId.BSC && chainId !== ChainId.BSC_TESTNET,
+    enabled: chainId !== ChainId.BSC,
     watch: true,
   })
   if (chainId === ChainId.BSC) {
     return userGas === GAS_PRICE_GWEI.rpcDefault ? bscProviderGasPrice : userGas
-  }
-  if (chainId === ChainId.BSC_TESTNET) {
-    return GAS_PRICE_GWEI.testnet
   }
   if (chain?.testnet) {
     return data?.formatted?.maxPriorityFeePerGas

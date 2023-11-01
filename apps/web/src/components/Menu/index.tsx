@@ -8,7 +8,6 @@ import useTheme from 'hooks/useTheme'
 import { useCakeBusdPrice } from 'hooks/useBUSDPrice'
 import { usePhishingBannerManager } from 'state/user/hooks'
 import { useActiveChainId } from 'hooks/useActiveChainId'
-import { NEBULA } from '@pancakeswap/tokens'
 import { CHAIN_QUERY_NAME } from 'config/chains'
 import UserMenu from './UserMenu'
 import { useMenuItems } from './hooks/useMenuItems'
@@ -31,7 +30,7 @@ const Menu = (props) => {
   const activeSubMenuItem = getActiveSubMenuItem({ menuItem: activeMenuItem, pathname })
 
   const toggleTheme = useMemo(() => {
-    return () => setTheme(isDark ? 'dark' : 'dark')
+    return () => setTheme(isDark ? 'dark' : 'light')
   }, [setTheme, isDark])
 
   const getFooterLinks = useMemo(() => {
@@ -58,15 +57,12 @@ const Menu = (props) => {
         langs={languageList}
         setLang={setLanguage}
         cakePriceUsd={cakePriceUsd}
-        // cakePriceUsd={0}
         links={menuItems}
         subLinks={activeMenuItem?.hideSubNav || activeSubMenuItem?.hideSubNav ? [] : activeMenuItem?.items}
         footerLinks={getFooterLinks}
         activeItem={activeMenuItem?.href}
         activeSubItem={activeSubMenuItem?.href}
         buyCakeLabel={t('Buy CGT')}
-        // buyCakeLink="https://kronoswap.finance/swap?outputCurrency=0x144F6D1945DC54a8198D4a54D4b346a2170126c6"
-        // buyCakeLink={`/swap?outputCurrency=${NEBULA[chainId].address}&chain=${CHAIN_QUERY_NAME[chainId]}`}
         buyCakeLink={`/swap?chain=${CHAIN_QUERY_NAME[chainId]}`}
         {...props}
       />

@@ -321,7 +321,7 @@
         "type": "address"
       }
     ],
-    "name": "pendingXKR",
+    "name": "pendingDKO",
     "outputs": [
       {
         "internalType": "uint256",

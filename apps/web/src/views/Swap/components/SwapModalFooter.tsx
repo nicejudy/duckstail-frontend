@@ -110,7 +110,7 @@ export default function SwapModalFooter({
                   <Text mb="12px" fontSize="14px">{t('For each trade a %amount% fee is paid', { amount: totalFeePercent })}</Text>
                   <Text fontSize="14px">- {t('%amount% to LP token holders', { amount: lpHoldersFeePercent })}</Text>
                   <Text fontSize="14px">- {t('%amount% to the Treasury', { amount: treasuryFeePercent })}</Text>
-                  <Text fontSize="14px">- {t('%amount% towards DKS buyback and burn', { amount: buyBackFeePercent })}</Text>
+                  <Text fontSize="14px">- {t('%amount% towards DKO buyback and burn', { amount: buyBackFeePercent })}</Text>
                 </>
               }
               ml="4px"

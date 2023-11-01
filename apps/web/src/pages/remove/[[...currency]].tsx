@@ -1,4 +1,4 @@
-import { USDC, USDT, shimmerTokens } from '@pancakeswap/tokens'
+import { USDC, USDT } from '@pancakeswap/tokens'
 import { useCurrency } from 'hooks/Tokens'
 import { useActiveChainId } from 'hooks/useActiveChainId'
 import useNativeCurrency from 'hooks/useNativeCurrency'

@@ -1,15 +1,14 @@
 import BigNumber from 'bignumber.js'
 import { ChainId } from '@pancakeswap/sdk'
 import { BLOCKS_PER_YEAR } from 'config'
-import lpAprs13600 from 'config/constants/lpAprs/13600.json'
-import lpAprs137 from 'config/constants/lpAprs/137.json'
+import lpAprs1 from 'config/constants/lpAprs/1.json'
 
 const getLpApr = (chainId: number) => {
   switch (chainId) {
-    case ChainId.KRONOBIT:
-      return lpAprs13600
+    case ChainId.ARBITRUM:
+      return lpAprs1
     case ChainId.ETHEREUM:
-      return lpAprs137
+      return lpAprs1
     default:
       return {}
   }

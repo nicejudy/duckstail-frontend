@@ -114,7 +114,7 @@ export default function SwapModalFooter({
                   </Text>
                   <Text fontSize="14px">- {t('%amount% to LP token holders', { amount: lpHoldersFeePercent })}</Text>
                   <Text fontSize="14px">- {t('%amount% to the Treasury', { amount: treasuryFeePercent })}</Text>
-                  <Text fontSize="14px">- {t('%amount% towards DKS buyback and burn', { amount: buyBackFeePercent })}</Text>
+                  <Text fontSize="14px">- {t('%amount% towards DKO buyback and burn', { amount: buyBackFeePercent })}</Text>
                   <Text mt="12px">
                     {t('For each stableswap trade, refer to the fee table')}
                     <Link

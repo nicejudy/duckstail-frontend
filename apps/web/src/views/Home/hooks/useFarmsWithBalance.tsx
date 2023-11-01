@@ -11,7 +11,7 @@ import { useFarmsLength } from 'state/farms/hooks'
 import { getFarmConfig } from '@pancakeswap/farms/constants'
 import { getBalanceNumber } from '@pancakeswap/utils/formatBalance'
 import { useBCakeProxyContract, useMasterchef } from 'hooks/useContract'
-import { CAKE } from '@pancakeswap/tokens'
+import { GTOKEN } from '@pancakeswap/tokens'
 import { Masterchef, BCakeProxy } from 'config/abi/types'
 import { verifyBscNetwork } from 'utils/verifyBscNetwork'
 import { useBCakeProxyContractAddress } from '../../Farms/hooks/useBCakeProxyContractAddress'
@@ -37,7 +37,7 @@ const useFarmsWithBalance = () => {
     const masterChefCalls = farms.map((farm) => ({
       abi: masterChefABI,
       address: masterChefContract.address,
-      name: 'pendingXKR',
+      name: 'pendingDKO',
       params: [farm.pid, accountToCheck],
     }))
 
@@ -45,7 +45,7 @@ const useFarmsWithBalance = () => {
       contract.address !== masterChefContract.address && bCakeProxy
         ? {
             abi: cakeAbi,
-            address: CAKE[chainId].address,
+            address: GTOKEN[chainId].address,
             name: 'balanceOf',
             params: [bCakeProxy.address],
           }

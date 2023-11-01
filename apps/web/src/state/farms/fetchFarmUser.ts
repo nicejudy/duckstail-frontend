@@ -99,7 +99,7 @@ export const fetchFarmUserEarnings = async (account: string, farmsToFetch: Seria
     return {
       address: masterChefAddress,
       // name: 'pendingCake',
-      name: 'pendingXKR',
+      name: 'pendingDKO',
       params: [farm.pid, userAddress],
     }
   })

@@ -39,15 +39,11 @@ export const ACCESS_RISK_API = '/api/risk'
 export const CELER_API = 'https://api.celerscan.com/scan'
 
 export const INFO_CLIENT_WITH_CHAIN = {
-  [ChainId.KRONOBIT]: INFO_CLIENT_ETH,
   [ChainId.ETHEREUM]: INFO_CLIENT_ETH,
-  [ChainId.SHIMMER2]: INFO_CLIENT_ETH,
 }
 
 export const BLOCKS_CLIENT_WITH_CHAIN = {
-  [ChainId.KRONOBIT]: BLOCKS_CLIENT_ETH,
   [ChainId.ETHEREUM]: BLOCKS_CLIENT_ETH,
-  [ChainId.SHIMMER2]: BLOCKS_CLIENT_ETH,
 }
 
 export const ASSET_CDN = 'https://assets.pancakeswap.finance'

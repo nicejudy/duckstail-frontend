@@ -142,24 +142,24 @@ const config: (
     //     },
     //   ].map((item) => addMenuItemSupported(item, chainId)),
     // },
-    // {
-    //   label: t('Pools'),
-    //   href: '/pools',
-    //   icon: EarnIcon,
-    //   fillIcon: EarnFillIcon,
-    //   image: '/images/decorations/pe2.png',
-    //   items: [
-    //     // {
-    //     //   label: t('Farms'),
-    //     //   href: '/farms',
-    //     // },
-    //     // {
-    //     //   label: t('Pools'),
-    //     //   href: '/pools',
-    //     //   supportChainIds: SUPPORT_ONLY_BSC,
-    //     // },
-    //   ].map((item) => addMenuItemSupported(item, chainId)),
-    // },
+    {
+      label: t('Earn'),
+      href: '/farms',
+      icon: EarnIcon,
+      fillIcon: EarnFillIcon,
+      image: '/images/logo.png',
+      items: [
+        {
+          label: t('Farms'),
+          href: '/farms',
+        },
+        {
+          label: t('Pools'),
+          href: '/pools',
+          supportChainIds: SUPPORT_ONLY_BSC,
+        },
+      ].map((item) => addMenuItemSupported(item, chainId)),
+    },
     // {
     //   label: t('Win'),
     //   href: '/prediction',

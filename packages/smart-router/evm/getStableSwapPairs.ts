@@ -7,7 +7,7 @@ import { getStableSwapPools } from './constants/stableSwap'
 
 export function getStableSwapPairs(chainId: ChainId): StableSwapPair[] {
   // Stable swap is only supported on BSC chain & BSC testnet
-  if (chainId !== ChainId.BSC && chainId !== ChainId.BSC_TESTNET) {
+  if (chainId !== ChainId.BSC) {
     return []
   }
 

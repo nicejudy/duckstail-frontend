@@ -12,12 +12,12 @@
     ],
     "tokens": [
       {
-        "name": "Nebula Token",
-        "symbol": "NEBULA",
-        "address": "0x144F6D1945DC54a8198D4a54D4b346a2170126c6",
+        "name": "Duckstail Token",
+        "symbol": "DKO",
+        "address": "0x05dBe925606d1B0B3fC939FD6273036a89CD71F1",
         "chainId": 42161,
         "decimals": 18,
-        "logoURI": "/images/1/tokens/nebula.png"
+        "logoURI": "/images/1/tokens/0x05dBe925606d1B0B3fC939FD6273036a89CD71F1.png"
       }
     ]
 }

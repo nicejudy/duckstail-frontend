@@ -214,8 +214,7 @@ function ManageLists({
         if (isValid) {
           return (
             (chainId === ChainId.ETHEREUM && ETH_URLS.includes(listUrl)) ||
-            (chainId === ChainId.KRONOBIT && KNB_URLS.includes(listUrl)) ||
-            (chainId === ChainId.SHIMMER2 && SMR_URLS.includes(listUrl))
+            (chainId === ChainId.ARBITRUM && ETH_URLS.includes(listUrl))
           )
         }
 

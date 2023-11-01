@@ -61,9 +61,9 @@ const getPID = (symbol?: string, chainId?: number) => {
   if (symbol === "MATIC") {
     return chainId === ChainId.ETHEREUM ? {pid: 0, isNative: true} : {pid: 0, isNative: false}
   }
-  if (symbol === "KNB") {
-    return chainId === ChainId.KRONOBIT ? {pid: 1, isNative: true} : {pid: 1, isNative: false}
-  }
+  // if (symbol === "KNB") {
+  //   return chainId === ChainId.KRONOBIT ? {pid: 1, isNative: true} : {pid: 1, isNative: false}
+  // }
   if (symbol === "XKR") {
     return {pid: 2, isNative: false}
   }
@@ -82,8 +82,8 @@ export const BridgeForm: React.FC<Record<string, never>> = () => {
 
   const { account, chainId } = useActiveWeb3React()
 
-  const sourceChain = chainId === ChainId.ETHEREUM ? chainId : ChainId.KRONOBIT
-  const targetChain = sourceChain === ChainId.ETHEREUM ? ChainId.KRONOBIT : ChainId.ETHEREUM
+  const sourceChain = chainId === ChainId.ETHEREUM ? chainId : ChainId.ARBITRUM
+  const targetChain = sourceChain === ChainId.ETHEREUM ? ChainId.ARBITRUM : ChainId.ETHEREUM
 
   const { pendingChainId, canSwitch, switchNetworkAsync } = useSwitchNetwork()
 

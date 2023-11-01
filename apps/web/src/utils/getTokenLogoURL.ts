@@ -3,9 +3,7 @@ import memoize from 'lodash/memoize'
 import { ChainId, Token } from '@pancakeswap/sdk'
 
 const mapping = {
-  [ChainId.KRONOBIT]: 'kronobit',
-  [ChainId.SHIMMER2]: 'shimmer',
-  // [ChainId.ETHEREUM]: 'ethereum',
+  [ChainId.ARBITRUM]: 'arbitrum',
   [ChainId.ETHEREUM]: 'ethereum',
 }
 

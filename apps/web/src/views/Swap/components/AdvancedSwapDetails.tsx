@@ -94,7 +94,7 @@ function TradeSummary({
                   </Text>
                   <Text fontSize="14px">- {t('%amount% to LP token holders', { amount: lpHoldersFeePercent })}</Text>
                   <Text fontSize="14px">- {t('%amount% to the Treasury', { amount: treasuryFeePercent })}</Text>
-                  <Text fontSize="14px">- {t('%amount% towards DKS buyback and burn', { amount: buyBackFeePercent })}</Text>
+                  <Text fontSize="14px">- {t('%amount% towards DKO buyback and burn', { amount: buyBackFeePercent })}</Text>
                   {hasStablePair && (
                     <>
                       <Text mt="12px">

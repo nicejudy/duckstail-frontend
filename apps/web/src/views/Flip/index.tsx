@@ -25,7 +25,7 @@ import GameCommitButton from "views/Flip/components/GameCommitButton"
 import { ApprovalState, useApproveCallback } from "hooks/useApproveCallback"
 import tryParseAmount from "@pancakeswap/utils/tryParseAmount"
 import { useToken } from "hooks/Tokens"
-import { shimmerTokens } from "@pancakeswap/tokens"
+import { GTOKEN } from "@pancakeswap/tokens"
 import { useGameInfo } from "views/Flip/hooks/useGameInfo"
 import { Currency, CurrencyAmount } from "@pancakeswap/sdk";
 import { maxAmountSpend } from "utils/maxAmountSpend";
@@ -91,7 +91,7 @@ const Flip = () => {
     currencyBalance,
     parsedAmount,
     inputError
-  } = useGameInfo(value, shimmerTokens.cgt)
+  } = useGameInfo(value, GTOKEN[chainId])
 
   const [approval, approveCallback] = useApproveCallback(parsedAmount, addresses.flip[148])
 
@@ -233,7 +233,7 @@ const Flip = () => {
                   approveCallback={approveCallback}
                   approvalSubmitted={approvalSubmitted}
                   setApprovalSubmitted={setApprovalSubmitted}
-                  currency={shimmerTokens.cgt}
+                  currency={GTOKEN[chainId]}
                   swapInputError={inputError}
                   parsedAmount={parsedAmount}
                   onStake={(v: string) => {console.log(v);}}

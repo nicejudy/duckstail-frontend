@@ -199,6 +199,7 @@ export function useAllLists(): {
         urls,
         (_, url) =>
           (chainId === ChainId.ETHEREUM && ETH_URLS.includes(url)) ||
+          (chainId === ChainId.ARBITRUM && ETH_URLS.includes(url)) ||
           (chainId === ChainId.BSC && BSC_URLS.includes(url)),
       ),
     [chainId, urls],
@@ -208,11 +209,8 @@ export function useAllLists(): {
 function combineMaps(map1: TokenAddressMap, map2: TokenAddressMap): TokenAddressMap {
   return {
     [ChainId.ETHEREUM]: { ...map1[ChainId.ETHEREUM], ...map2[ChainId.ETHEREUM] },
-    [ChainId.KRONOBIT]: { ...map1[ChainId.KRONOBIT], ...map2[ChainId.KRONOBIT] },
-    [ChainId.SHIMMER2]: { ...map1[ChainId.SHIMMER2], ...map2[ChainId.SHIMMER2] },
-    [ChainId.GOERLI]: { ...map1[ChainId.GOERLI], ...map2[ChainId.GOERLI] },
+    [ChainId.ARBITRUM]: { ...map1[ChainId.ETHEREUM], ...map2[ChainId.ETHEREUM] },
     [ChainId.BSC]: { ...map1[ChainId.BSC], ...map2[ChainId.BSC] },
-    [ChainId.BSC_TESTNET]: { ...map1[ChainId.BSC_TESTNET], ...map2[ChainId.BSC_TESTNET] },
   }
 }
 
@@ -226,6 +224,7 @@ export function useActiveListUrls(): string[] | undefined {
       urls.filter(
         (url) =>
           (chainId === ChainId.ETHEREUM && ETH_URLS.includes(url)) ||
+          (chainId === ChainId.ARBITRUM && ETH_URLS.includes(url)) ||
           (chainId === ChainId.BSC && BSC_URLS.includes(url)),
       ),
     [urls, chainId],
