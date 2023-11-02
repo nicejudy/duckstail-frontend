@@ -103,7 +103,6 @@ export function useAllTransactions(): { [chainId: number]: { [txHash: string]: T
 
 export function useAllSortedRecentTransactions(): { [chainId: number]: { [txHash: string]: TransactionDetails } } {
   const allTransactions = useAllTransactions()
-  console.log(allTransactions)
   return useMemo(() => {
     return omitBy(
       mapValues(allTransactions, (transactions) =>
