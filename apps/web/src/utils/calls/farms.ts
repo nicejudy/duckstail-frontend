@@ -8,12 +8,12 @@ export const stakeFarm = async (masterChefContract: Contract, pid, amount, gasPr
   if (pid !== 0) {
     return masterChefContract.deposit(pid, value, {
       gasLimit: gasLimit || DEFAULT_GAS_LIMIT,
-      gasPrice,
+      // gasPrice,
     })
   }
   return masterChefContract.enterStaking(value, {
     gasLimit: gasLimit || DEFAULT_GAS_LIMIT,
-    gasPrice,
+    // gasPrice,
   })
 }
 
@@ -23,12 +23,12 @@ export const unstakeFarm = async (masterChefContract, pid, amount, gasPrice, gas
   if (pid !== 0) {
     return masterChefContract.withdraw(pid, value, {
       gasLimit: gasLimit || DEFAULT_GAS_LIMIT,
-      gasPrice,
+      // gasPrice,
     })
   }
   return masterChefContract.leaveStaking(value, {
     gasLimit: gasLimit || DEFAULT_GAS_LIMIT,
-    gasPrice,
+    // gasPrice,
   })
 }
 
@@ -36,12 +36,12 @@ export const harvestFarm = async (masterChefContract, pid, gasPrice, gasLimit?: 
   if (pid !== 0) {
     return masterChefContract.deposit(pid, '0', {
       gasLimit: gasLimit || DEFAULT_GAS_LIMIT,
-      gasPrice,
+      // gasPrice,
     })
   }
   return masterChefContract.enterStaking('0', {
     gasLimit: gasLimit || DEFAULT_GAS_LIMIT,
-    gasPrice,
+    // gasPrice,
   })
 }
 

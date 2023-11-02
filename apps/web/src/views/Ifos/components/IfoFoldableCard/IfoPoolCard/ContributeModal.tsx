@@ -275,7 +275,7 @@ const ContributeModal: React.FC<React.PropsWithChildren<Props>> = ({
           {/* {vestingInformation.percentage > 0 && <HasVestingNotice url={articleUrl} />} */}
           <Text color="textSubtle" fontSize="12px" mb="24px">
             {t(
-              'If you don’t commit enough SMR, you may not receive a meaningful amount of CGT tokens, or you may not receive any CGT tokens at all.',
+              'If you don’t commit enough SMR, you may not receive a meaningful amount of DKO tokens, or you may not receive any DKO tokens at all.',
             )}
             {/* <Link
               fontSize="12px"

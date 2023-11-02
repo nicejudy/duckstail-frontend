@@ -41,15 +41,15 @@ const Multiplier: React.FunctionComponent<React.PropsWithChildren<FarmTableMulti
         <>
           <Text small>
             {isTokenOnly ? t(
-              "The Multiplier represents the proportion of CGT rewards each pool receives, as a proportion of the CGT produced each second."
+              "The Multiplier represents the proportion of DKO rewards each pool receives, as a proportion of the DKO produced each second."
             ) : t(
-              "The Multiplier represents the proportion of CGT rewards each farm receives, as a proportion of the CGT produced each second."
+              "The Multiplier represents the proportion of DKO rewards each farm receives, as a proportion of the DKO produced each second."
             )}
           </Text>
           <Text my="24px" small>
             {" "}
-            {isTokenOnly ? t("For example, if a 1x pool received 1 CGT per second, a 40x pool would receive 40 CGT per second.")
-             : t("For example, if a 1x farm received 1 CGT per second, a 40x farm would receive 40 CGT per second.")}
+            {isTokenOnly ? t("For example, if a 1x pool received 1 DKO per second, a 40x pool would receive 40 DKO per second.")
+             : t("For example, if a 1x farm received 1 DKO per second, a 40x farm would receive 40 DKO per second.")}
           </Text>
           <Text small>{isTokenOnly ? t("This amount is already included in all APR calculations for the pool.") : 
           t("This amount is already included in all APR calculations for the farm.")}</Text>
@@ -58,15 +58,15 @@ const Multiplier: React.FunctionComponent<React.PropsWithChildren<FarmTableMulti
         <>
           <Text small>
             {isTokenOnly ? t(
-              "The Multiplier represents the proportion of CGT rewards each pool receives, as a proportion of the CGT produced each block."
+              "The Multiplier represents the proportion of DKO rewards each pool receives, as a proportion of the DKO produced each block."
             ):t(
-              "The Multiplier represents the proportion of CGT rewards each farm receives, as a proportion of the CGT produced each block."
+              "The Multiplier represents the proportion of DKO rewards each farm receives, as a proportion of the DKO produced each block."
             )}
           </Text>
           <Text my="24px" small>
             {" "}
-            {isTokenOnly ? t("For example, if a 1x pool received 1 CGT per block, a 40x pool would receive 40 CGT per block."):
-            t("For example, if a 1x pool received 1 CGT per block, a 40x pool would receive 40 CGT per block.")}
+            {isTokenOnly ? t("For example, if a 1x pool received 1 DKO per block, a 40x pool would receive 40 DKO per block."):
+            t("For example, if a 1x pool received 1 DKO per block, a 40x pool would receive 40 DKO per block.")}
           </Text>
           {/* <Text>
             {t(

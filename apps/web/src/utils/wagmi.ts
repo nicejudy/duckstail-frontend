@@ -12,7 +12,29 @@ import { LedgerConnector } from 'wagmi/connectors/ledger'
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc'
 import { SafeConnector } from './safeConnector'
 
-const CHAINS = [arbitrum]
+const arbitrum1 : Chain = {
+  id: 42161,
+  name: 'Arbitrum One',
+  network: 'arbitrum',
+  nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+  rpcUrls: {
+    alchemy: { http: ['https://arb-mainnet.g.alchemy.com/v2'], webSocket: ['wss://arb-mainnet.g.alchemy.com/v2'] },
+    infura: { http: ['https://arbitrum-mainnet.infura.io/v3'], webSocket: ['wss://arbitrum-mainnet.infura.io/ws/v3'] },
+    default: { http: ['https://arbitrum.llamarpc.com'] }
+  },
+  blockExplorers: {
+    etherscan: { name: 'Arbiscan', url: 'https://arbiscan.io' },
+    default: { name: 'Arbiscan', url: 'https://arbiscan.io' }
+  },
+  contracts: {
+    multicall3: {
+      address: '0xca11bde05977b3631167028862be2a173976ca11',
+      blockCreated: 7654707
+    }
+  }
+}
+
+const CHAINS = [arbitrum1]
 
 const getNodeRealUrl = (networkName: string) => {
   let host = null

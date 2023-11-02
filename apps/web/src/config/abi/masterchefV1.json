@@ -2,8 +2,8 @@
   {
     "inputs": [
       {
-        "internalType": "contract XKRToken",
-        "name": "_xkr",
+        "internalType": "contract DuckstailToken",
+        "name": "_dko",
         "type": "address"
       },
       {
@@ -13,12 +13,12 @@
       },
       {
         "internalType": "uint256",
-        "name": "_xkrPerBlock",
+        "name": "_dkoPerTime",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "_startBlock",
+        "name": "_startTime",
         "type": "uint256"
       }
     ],
@@ -200,6 +200,32 @@
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "dko",
+    "outputs": [
+      {
+        "internalType": "contract DuckstailToken",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "dkoPerTime",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "uint256",
@@ -354,12 +380,12 @@
       },
       {
         "internalType": "uint256",
-        "name": "lastRewardBlock",
+        "name": "lastRewardTime",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "accXKRPerShare",
+        "name": "accDKOPerShare",
         "type": "uint256"
       }
     ],
@@ -424,7 +450,7 @@
   },
   {
     "inputs": [],
-    "name": "startBlock",
+    "name": "startTime",
     "outputs": [
       {
         "internalType": "uint256",
@@ -465,6 +491,19 @@
     "inputs": [
       {
         "internalType": "uint256",
+        "name": "_dkoPerTime",
+        "type": "uint256"
+      }
+    ],
+    "name": "updateDKOPerTime",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
         "name": "multiplierNumber",
         "type": "uint256"
       }
@@ -483,19 +522,6 @@
       }
     ],
     "name": "updatePool",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_xkrPerBlock",
-        "type": "uint256"
-      }
-    ],
-    "name": "updateXKRPerBlock",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -545,32 +571,6 @@
     "name": "withdraw",
     "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "xkr",
-    "outputs": [
-      {
-        "internalType": "contract XKRToken",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "xkrPerBlock",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
     "type": "function"
   }
 ]

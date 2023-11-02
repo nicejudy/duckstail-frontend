@@ -187,7 +187,7 @@ const Flip = () => {
                   onChange={handleChange}
                   max={currencyBalanceNumber.toFixed(18)}
                   maxAmount={currencyBalanceNumber}
-                  symbol="CGT"
+                  symbol="DKO"
                   addLiquidityUrl=""
                   inputTitle={t("Bet")}
                   decimals={18}
@@ -217,11 +217,11 @@ const Flip = () => {
               <Flex flexDirection="column">
                 <Flex justifyContent="space-between" mb="5px">
                   <Text>Total bet</Text>
-                  <Text>{(Number(value) * betPercent).toFixed(2)} CGT</Text>
+                  <Text>{(Number(value) * betPercent).toFixed(2)} DKO</Text>
                 </Flex>
                 <Flex justifyContent="space-between" mb="5px" pt="5px" borderTop={`1px solid ${theme.colors.text99}`}>
                   <Text>Maximum profit</Text>
-                  <Text>{value ? "+" : ""}{(Number(value) * betPercent * 0.98).toFixed(2)} CGT</Text>
+                  <Text>{value ? "+" : ""}{(Number(value) * betPercent * 0.98).toFixed(2)} DKO</Text>
                 </Flex>
                 <Flex justifyContent="space-between" mb="20px" pt="5px" borderTop={`1px solid ${theme.colors.text99}`}>
                   <Text>Win Chance</Text>

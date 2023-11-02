@@ -147,7 +147,7 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowNativeBalance, onDismiss 
           )}
         </Flex>
         {/* <Flex alignItems="center" justifyContent="space-between">
-          <Text color="primary">{t('CGT Balance')}</Text>
+          <Text color="primary">{t('DKO Balance')}</Text>
           {cakeFetchStatus !== FetchStatus.Fetched ? (
             <Skeleton height="22px" width="60px" />
           ) : (

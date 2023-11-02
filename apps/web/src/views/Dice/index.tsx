@@ -215,7 +215,7 @@ const Dice = () => {
                   onChange={handleChange}
                   max={currencyBalanceNumber.toFixed(18)}
                   maxAmount={currencyBalanceNumber}
-                  symbol="CGT"
+                  symbol="DKO"
                   addLiquidityUrl=""
                   inputTitle={t("Bet")}
                   decimals={18}
@@ -247,11 +247,11 @@ const Dice = () => {
               <Flex flexDirection="column">
                 <Flex justifyContent="space-between" mb="5px">
                   <Text>Input bet :</Text>
-                  <Text>{(Number(value)).toFixed(2)} CGT</Text>
+                  <Text>{(Number(value)).toFixed(2)} DKO</Text>
                 </Flex>
                 <Flex justifyContent="space-between" mb="5px" pt="5px" borderTop={`1px solid ${theme.colors.text99}`}>
                   <Text>Maximum profit :</Text>
-                  <Text>{value ? "+" : ""}{(Number(value) * 98/(100 - (pan === 0 ? 100 - prediction : prediction)) - Number(value)).toFixed(2)} CGT</Text>
+                  <Text>{value ? "+" : ""}{(Number(value) * 98/(100 - (pan === 0 ? 100 - prediction : prediction)) - Number(value)).toFixed(2)} DKO</Text>
                 </Flex>
                 <Flex justifyContent="space-between" mb="5px" pt="5px" borderTop={`1px solid ${theme.colors.text99}`}>
                   <Text>Multiplier :</Text>

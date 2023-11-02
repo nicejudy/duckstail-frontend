@@ -233,7 +233,7 @@ const IfoSteps: React.FC<React.PropsWithChildren<TypeProps>> = ({
             </Heading>
             <Text color="textSubtle" small>
               {t(
-                'When the presale is live, you can “commit” your SMR to buy the CGT tokens being sold.',
+                'When the presale is live, you can “commit” your SMR to buy the DKO tokens being sold.',
               )}
             </Text>
           </CardBody>
@@ -242,11 +242,11 @@ const IfoSteps: React.FC<React.PropsWithChildren<TypeProps>> = ({
         return (
           <CardBody>
             <Heading as="h4" color="secondary" mb="16px">
-              {t('Claim CGT')}
+              {t('Claim DKO')}
             </Heading>
             <Text color="textSubtle" small>
               {t(
-                'After the Presale finish, you can claim CGT that you bought, and any unspent SMR will be returned to your wallet.',
+                'After the Presale finish, you can claim DKO that you bought, and any unspent SMR will be returned to your wallet.',
               )}
             </Text>
           </CardBody>

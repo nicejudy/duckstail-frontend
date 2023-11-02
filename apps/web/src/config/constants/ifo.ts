@@ -10,7 +10,7 @@ const ifos: Ifo[] = [
   //   id: 'cyberglow',
   //   address: '0x1c08069C8Cf59c4f39289689BC65156E243a0dF5',
   //   isActive: true,
-  //   name: 'CGT',
+  //   name: 'DKO',
   //   plannedStartTime: 1698678000, // Oct 27 2023 15:00:00 UTC
   //   poolBasic: {
   //     raiseAmount: '20,000,000 SMR',
@@ -28,7 +28,7 @@ const ifos: Ifo[] = [
   //   twitterUrl: 'https://twitter.com/Cyberglow_cgt',
   //   description:
   //     'Duckstail is a decentralized exchange that provides cryptocurrency users with a secure, efficient and fully decentralized platform for exchanging digital assets. With a focus on transparency, security, and accessibility, our DEX is designed to give users absolute control over their assets and operations.',
-  //   vestingTitle: 'Use $CGT to enjoy premium features(exchange, farming, staking, game, etc) on Duckstail Decentralized Exchange',
+  //   vestingTitle: 'Use $DKO to enjoy premium features(exchange, farming, staking, game, etc) on Duckstail Decentralized Exchange',
   // }
 ]
 

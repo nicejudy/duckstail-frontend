@@ -11,7 +11,7 @@ const config = [
     title: <Trans>What’s the difference between a Basic Sale and Unlimited Sale?</Trans>,
     description: [
       <Trans>
-        In both Basic and Unlimited Sale, everyone can commit SMR to earn CGT. But in the Unlimited Sale has a participation fee: see below. 
+        In both Basic and Unlimited Sale, everyone can commit SMR to earn DKO. But in the Unlimited Sale has a participation fee: see below. 
       </Trans>
     ],
   },
@@ -20,7 +20,7 @@ const config = [
     description: [
       <Trans>You can choose one or both at the same time!</Trans>,
       <Trans>
-        You are eligible to participate in the Basic Sale and Unlimited Sale. In the Unlimited Sale, if the amount you commit is too small, you may not receive a meaningful amount of CGT tokens.
+        You are eligible to participate in the Basic Sale and Unlimited Sale. In the Unlimited Sale, if the amount you commit is too small, you may not receive a meaningful amount of DKO tokens.
       </Trans>
     ],
   },

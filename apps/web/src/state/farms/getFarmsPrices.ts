@@ -159,4 +159,9 @@ const nativeStableLpMap = {
     wNative: 'WBNB',
     stable: 'BUSD',
   },
+  [ChainId.ARBITRUM]: {
+    address: '0x74Da711B7b0CF0D295CBF7d495130bA815d706BB',
+    wNative: 'WETH',
+    stable: 'USDT',
+  },
 }

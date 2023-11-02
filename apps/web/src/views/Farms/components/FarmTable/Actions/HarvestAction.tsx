@@ -94,7 +94,7 @@ export const HarvestAction: React.FunctionComponent<React.PropsWithChildren<Harv
       toastSuccess(
         `${t('Harvested')}!`,
         <ToastDescriptionWithTx txHash={receipt.transactionHash}>
-          {t('Your %symbol% earnings have been sent to your wallet!', { symbol: 'CGT' })}
+          {t('Your %symbol% earnings have been sent to your wallet!', { symbol: 'DKO' })}
         </ToastDescriptionWithTx>,
       )
       onDone?.()

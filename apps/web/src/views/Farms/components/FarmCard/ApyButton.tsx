@@ -117,7 +117,7 @@ const ApyButton: React.FC<React.PropsWithChildren<ApyButtonProps>> = ({
         </Text>
       </Text>}
       <Text ml="5px" small>
-        *{t('Base APR (CGT yield only)')}:{' '}
+        *{t('Base APR (DKO yield only)')}:{' '}
         {strikethrough ? (
           <Text style={{ display: 'inline-block' }} color="secondary" small>{`${(apr * boostMultiplier).toFixed(2)}%`}</Text>
         ) : (
@@ -135,7 +135,7 @@ const ApyButton: React.FC<React.PropsWithChildren<ApyButtonProps>> = ({
           </Text>
         </Text>
       )}
-      {strikethrough && <Text color="secondary">{t('Boost only applies to base APR (CGT yield)')}</Text>}
+      {strikethrough && <Text color="secondary">{t('Boost only applies to base APR (DKO yield)')}</Text>}
     </>,
     {
       placement: 'top',

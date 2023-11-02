@@ -45,7 +45,7 @@ const BCakeCalculator: React.FC<React.PropsWithChildren<BCakeCalculatorProps>> =
   targetInputBalance,
   earningTokenPrice,
   initialState,
-  stakingTokenSymbol = 'CGT',
+  stakingTokenSymbol = 'DKO',
   lpTokenStakedAmount,
   setBCakeMultiplier,
 }) => {
@@ -96,7 +96,7 @@ const BCakeCalculator: React.FC<React.PropsWithChildren<BCakeCalculatorProps>> =
     targetRef: myBalanceTargetRef,
     tooltip: myBalanceTooltip,
     tooltipVisible: myBalanceTooltipVisible,
-  } = useTooltip(t('Boost multiplier calculation does not include profit from CGT staking pool'), {
+  } = useTooltip(t('Boost multiplier calculation does not include profit from DKO staking pool'), {
     placement: 'top-end',
     tooltipOffset: [20, 10],
   })

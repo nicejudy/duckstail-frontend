@@ -77,12 +77,12 @@ const RoiCalculatorFooter: React.FC<React.PropsWithChildren<RoiCalculatorFooterP
         <>
           <Text small>
             {t(
-              "The Multiplier represents the proportion of CGT rewards each farm receives, as a proportion of the CGT produced each second."
+              "The Multiplier represents the proportion of DKO rewards each farm receives, as a proportion of the DKO produced each second."
             )}
           </Text>
           <Text my="24px" small>
             {" "}
-            {t("For example, if a 1x farm received 1 CGT per second, a 40x farm would receive 40 CGT per second.")}
+            {t("For example, if a 1x farm received 1 DKO per second, a 40x farm would receive 40 DKO per second.")}
           </Text>
           <Text small>{t("This amount is already included in all APR calculations for the farm.")}</Text>
         </>
@@ -90,7 +90,7 @@ const RoiCalculatorFooter: React.FC<React.PropsWithChildren<RoiCalculatorFooterP
         <>
           <Text small>
             {t(
-              "The Multiplier represents the proportion of CGT rewards each farm receives, as a proportion of the CGT produced each block."
+              "The Multiplier represents the proportion of DKO rewards each farm receives, as a proportion of the DKO produced each block."
             )}
           </Text>
           {/* <Text my="24px">
@@ -154,7 +154,7 @@ const RoiCalculatorFooter: React.FC<React.PropsWithChildren<RoiCalculatorFooterP
                   {displayApr}%
                 </Text>
                 <Text color="textSubtle" small>
-                  *{t("Base APR (CGT yield only)")}
+                  *{t("Base APR (DKO yield only)")}
                 </Text>
                 <Text small textAlign="right">
                   {apr?.toFixed(2)}%

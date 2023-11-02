@@ -13,7 +13,7 @@ export const SEO: DefaultSeoProps = {
   openGraph: {
     title: 'Duckstail - A next evolution DeFi exchange on Ethereum',
     description:
-      'The most popular AMM on ShimmerEVM! Earn CGT through yield farming, then stake it in Pools to earn more tokens!',
+      'The most popular AMM on ShimmerEVM! Earn DKO through yield farming, then stake it in Pools to earn more tokens!',
     images: [{ url: 'https://cyberglow.es/logo.png' }],
   },
 }

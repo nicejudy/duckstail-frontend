@@ -24,7 +24,7 @@ export const swapSectionData = (t: TranslateFunction): SalesSectionProps => ({
     attributes: [
       { src: 'BNB', alt: t('BNB token') },
       { src: 'BTC', alt: t('BTC token') },
-      { src: 'CGT', alt: t('CGT token') },
+      { src: 'DKO', alt: t('DKO token') },
     ],
   },
   background: HeroImg
@@ -58,12 +58,12 @@ export const earnSectionData = (t: TranslateFunction): SalesSectionProps => ({
 export const cakeSectionData = (t: TranslateFunction): SalesSectionProps => ({
   headingText: t('Nebula makes our world go round.'),
   bodyText: t(
-    'CGT token is at the heart of the Duckstail ecosystem. Buy it, farm it, spend it, stake it... heck, you can even vote with it!',
+    'DKO token is at the heart of the Duckstail ecosystem. Buy it, farm it, spend it, stake it... heck, you can even vote with it!',
   ),
   reverse: false,
   primaryButton: {
     to: '/swap?outputCurrency=0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82&chainId=56',
-    text: t('Buy CGT'),
+    text: t('Buy DKO'),
     external: false,
   },
   secondaryButton: {

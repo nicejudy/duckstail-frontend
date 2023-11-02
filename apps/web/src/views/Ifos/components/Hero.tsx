@@ -71,7 +71,7 @@ const Hero = () => {
                 {t('Presale')}
               </StyledHeading>
               <StyledSubTitle bold color="textSubtle">
-                {t('Participate in presale of our governance token - CGT')}
+                {t('Participate in presale of our governance token - DKO')}
                 {isMobile && <StyledButton onClick={handleClick}>{t('How does it work?')}</StyledButton>}
               </StyledSubTitle>
             </Box>
