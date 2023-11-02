@@ -18,7 +18,7 @@ export const footerLinks: FooterLinkType[] = [
     items: [
       {
         label: "Contact",
-        href: "https://docs.cyberglow.es",
+        href: "https://docs.duckstail.com",
       },
       {
         label: "Blog",
@@ -26,11 +26,11 @@ export const footerLinks: FooterLinkType[] = [
       },
       {
         label: "Community",
-        href: "https://docs.cyberglow.es",
+        href: "https://docs.duckstail.com",
       },
       {
         label: "CAKE",
-        href: "https://docs.cyberglow.es/governance/nebula-tokenomics",
+        href: "https://docs.duckstail.com/governance/nebula-tokenomics",
       },
       {
         label: "—",

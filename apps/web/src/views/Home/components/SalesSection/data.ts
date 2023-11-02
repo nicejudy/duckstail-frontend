@@ -15,7 +15,7 @@ export const swapSectionData = (t: TranslateFunction): SalesSectionProps => ({
     external: false,
   },
   secondaryButton: {
-    to: 'https://docs.cyberglow.es',
+    to: 'https://docs.duckstail.com',
     text: t('Learn'),
     external: true,
   },
@@ -40,7 +40,7 @@ export const earnSectionData = (t: TranslateFunction): SalesSectionProps => ({
     external: false,
   },
   secondaryButton: {
-    to: 'https://docs.cyberglow.es/tutorials/yield-farming',
+    to: 'https://docs.duckstail.com/tutorials/yield-farming',
     text: t('Learn'),
     external: true,
   },
@@ -67,7 +67,7 @@ export const cakeSectionData = (t: TranslateFunction): SalesSectionProps => ({
     external: false,
   },
   secondaryButton: {
-    to: 'https://docs.cyberglow.es/governance',
+    to: 'https://docs.duckstail.com/governance',
     text: t('Learn'),
     external: true,
   },

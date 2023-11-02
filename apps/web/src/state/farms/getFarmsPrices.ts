@@ -56,6 +56,10 @@ const getFarmBaseTokenPrice = (
       : BIG_ZERO
   }
 
+  if (farm.pid === 4) {
+    console.log(quoteTokenFarm)
+  }
+
   // Catch in case token does not have immediate or once-removed BUSD/WBNB quoteToken
   return BIG_ZERO
 }

@@ -11,5 +11,5 @@ const docLangCodeMapping: Record<string, string> = {
 
 export const getDocLink = (code: string) =>
   docLangCodeMapping[code]
-    ? `https://docs.cyberglow.es/get-started`
-    : `https://docs.cyberglow.es/get-started`
+    ? `https://docs.duckstail.com/get-started`
+    : `https://docs.duckstail.com/get-started`

@@ -50,7 +50,6 @@ export const getFarmApr = (
   farmAddress: string,
   regularCakePerBlock: number,
 ): { cakeRewardsApr: number; lpRewardsApr: number } => {
-  console.log(regularCakePerBlock)
   const yearlyCakeRewardAllocation = poolWeight
     ? poolWeight.times(BLOCKS_PER_YEAR * regularCakePerBlock)
     : new BigNumber(NaN)

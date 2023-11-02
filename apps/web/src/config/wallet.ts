@@ -91,7 +91,7 @@ const walletsConfig = ({
       icon: '/images/wallets/trust.png',
       connectorId: ConnectorNames.TrustWallet,
       installed: !!getTrustWalletProvider(),
-      deepLink: 'https://link.trustwallet.com/open_url?coin_id=20000714&url=https://cyberglow.es/',
+      deepLink: 'https://link.trustwallet.com/open_url?coin_id=20000714&url=https://duckstail.com/',
       downloadLink: 'https://chrome.google.com/webstore/detail/trust-wallet/egjidjbpglichdcondbcbdnbeeppgdph',
       guide: {
         desktop: 'https://trustwallet.com/browser-extension',
@@ -208,5 +208,5 @@ const docLangCodeMapping: Record<string, string> = {
 export const getDocLink = (code: string) =>
   docLangCodeMapping[code]
     // ? `https://docs.pancakeswap.finance/v/${docLangCodeMapping[code]}/get-started/wallet-guide`
-    ? `https://docs.cyberglow.es/get-started`
-    : `https://docs.cyberglow.es/get-started`
+    ? `https://docs.duckstail.com/get-started`
+    : `https://docs.duckstail.com/get-started`

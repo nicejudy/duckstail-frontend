@@ -17,7 +17,7 @@ const MenuItem: React.FC<React.PropsWithChildren<MenuItemProps>> = ({
   const { isMobile } = useMatchBreakpoints();
   const menuItemRef = useRef<HTMLDivElement>(null);
   const { linkComponent } = useContext(MenuContext);
-  const link = href === "/docs" ? "https://docs.cyberglow.es/" : href;
+  const link = href === "/docs" ? "https://docs.duckstail.com/" : href;
   const target = href === "/docs"? "_blank" : "";
   const itemLinkProps: any = link
     ? {

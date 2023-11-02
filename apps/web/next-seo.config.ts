@@ -14,6 +14,6 @@ export const SEO: DefaultSeoProps = {
     title: 'Duckstail - A next evolution DeFi exchange on Ethereum',
     description:
       'The most popular AMM on ShimmerEVM! Earn DKO through yield farming, then stake it in Pools to earn more tokens!',
-    images: [{ url: 'https://cyberglow.es/logo.png' }],
+    images: [{ url: 'https://duckstail.com/logo.png' }],
   },
 }
