@@ -1,42 +1,42 @@
-// import { useContext } from 'react'
-// import { SUPPORT_FARMS } from 'config/constants/supportChains'
-// import { FarmsPageLayout, FarmsContext } from 'views/Farms'
-// import FarmCard from 'views/Farms/components/FarmCard/FarmCard'
-// import { getDisplayApr } from 'views/Farms/components/getDisplayApr'
-// import { usePriceCakeBusd } from 'state/farms/hooks'
-// import { useAccount } from 'wagmi'
+import { useContext } from 'react'
+import { SUPPORT_FARMS } from 'config/constants/supportChains'
+import { FarmsPageLayout, FarmsContext } from 'views/Farms'
+import FarmCard from 'views/Farms/components/FarmCard/FarmCard'
+import { getDisplayApr } from 'views/Farms/components/getDisplayApr'
+import { usePriceCakeBusd } from 'state/farms/hooks'
+import { useAccount } from 'wagmi'
 
-// const FarmsHistoryPage = () => {
-//   const { address: account } = useAccount()
-//   const { chosenFarmsMemoized } = useContext(FarmsContext)
-//   const tokenFarms = chosenFarmsMemoized.filter((farm) => farm.isTokenOnly)
-//   const cakePrice = usePriceCakeBusd()
+const FarmsHistoryPage = () => {
+  const { address: account } = useAccount()
+  const { chosenFarmsMemoized } = useContext(FarmsContext)
+  const tokenFarms = chosenFarmsMemoized.filter((farm) => farm.isTokenOnly)
+  const cakePrice = usePriceCakeBusd()
 
-//   return (
-//     <>
-//       {tokenFarms.map((farm) => (
-//         <FarmCard
-//           key={farm.pid}
-//           farm={farm}
-//           displayApr={getDisplayApr(farm.apr, farm.lpRewardsApr)}
-//           cakePrice={cakePrice}
-//           account={account}
-//           removed
-//         />
-//       ))}
-//     </>
-//   )
-// }
+  return (
+    <>
+      {tokenFarms.map((farm) => (
+        <FarmCard
+          key={farm.pid}
+          farm={farm}
+          displayApr={getDisplayApr(farm.apr, farm.lpRewardsApr)}
+          cakePrice={cakePrice}
+          account={account}
+          removed
+        />
+      ))}
+    </>
+  )
+}
 
-// FarmsHistoryPage.Layout = FarmsPageLayout
-// FarmsHistoryPage.chains = SUPPORT_FARMS
+FarmsHistoryPage.Layout = FarmsPageLayout
+FarmsHistoryPage.chains = SUPPORT_FARMS
 
-// export default FarmsHistoryPage
+export default FarmsHistoryPage
 
-import { NotFound } from '@pancakeswap/uikit'
+// import { NotFound } from '@pancakeswap/uikit'
 
-const NotFoundPage = () => <NotFound />
+// const NotFoundPage = () => <NotFound />
 
-NotFoundPage.chains = []
+// NotFoundPage.chains = []
 
-export default NotFoundPage
+// export default NotFoundPage
