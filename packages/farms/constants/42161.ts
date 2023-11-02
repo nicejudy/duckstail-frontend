@@ -8,6 +8,7 @@ const farms: SerializedFarmConfig[] = [
     lpAddress: '0x05dBe925606d1B0B3fC939FD6273036a89CD71F1',
     quoteToken: arbitrumTokens.weth,
     token: arbitrumTokens.gtoken,
+    isTokenOnly: true,
   },
   // {
   //   pid: 2,

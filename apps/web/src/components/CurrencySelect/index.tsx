@@ -34,9 +34,9 @@ const DropDownContainer = styled(Button)`
   user-select: none;
   z-index: 20;
 
-  ${({ theme }) => theme.mediaQueries.sm} {
-    min-width: 168px;
-  }
+  // ${({ theme }) => theme.mediaQueries.sm} {
+  //   min-width: 168px;
+  // }
 
   .down-icon {
     position: absolute;

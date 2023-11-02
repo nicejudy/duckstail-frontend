@@ -18,7 +18,7 @@ export const NetworkModal = ({ pageSupportedChains = SUPPORT_ONLY_BSC }: { pageS
   const [dismissWrongNetwork, setDismissWrongNetwork] = useAtom(hideWrongNetworkModalAtom)
 
   const isBNBOnlyPage = useMemo(() => {
-    return pageSupportedChains?.length === 1 && pageSupportedChains[0] === ChainId.ETHEREUM
+    return pageSupportedChains?.length === 1 && pageSupportedChains[0] === ChainId.ARBITRUM
   }, [pageSupportedChains])
 
   const isPageNotSupported = useMemo(
@@ -35,7 +35,6 @@ export const NetworkModal = ({ pageSupportedChains = SUPPORT_ONLY_BSC }: { pageS
   }
 
   if ((chain?.unsupported ?? false) || isPageNotSupported) {
-    // if (chainId !== ChainId.ETHEREUM || isPageNotSupported) {
     return (
       <ModalV2 isOpen closeOnOverlayClick={false}>
         <UnsupportedNetworkModal pageSupportedChains={pageSupportedChains?.length ? pageSupportedChains : CHAIN_IDS} />

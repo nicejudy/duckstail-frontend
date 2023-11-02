@@ -1,7 +1,7 @@
 import { BinanceWalletConnector } from '@pancakeswap/wagmi/connectors/binanceWallet'
 import { BloctoConnector } from '@pancakeswap/wagmi/connectors/blocto'
 import { TrustWalletConnector } from '@pancakeswap/wagmi/connectors/trustWallet'
-import { bsc, bscTestnet, goerli, mainnet, polygon } from 'wagmi/chains'
+import { bsc, mainnet, arbitrum } from 'wagmi/chains'
 import { Chain, configureChains, createClient } from 'wagmi'
 import memoize from 'lodash/memoize'
 import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
@@ -12,55 +12,7 @@ import { LedgerConnector } from 'wagmi/connectors/ledger'
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc'
 import { SafeConnector } from './safeConnector'
 
-const kronobit : Chain = {
-  id: 13600,
-  name: "Kronobit",
-  network: "kronobit",
-  nativeCurrency: {
-    decimals: 18,
-    name: "KNB",
-    symbol: "KNB"
-  },
-  rpcUrls: {
-    default: { http: ["https://mainnet-rpc.qbitscan.com"] }
-  },
-  blockExplorers: {
-    etherscan: { name: "QbitScan", url: "https://explorer.qbitscan.com" },
-    default: { name: "QbitScan", url: "https://explorer.qbitscan.com" }
-  },
-  contracts: {
-    multicall3: {
-      address: "0x8B20ac75318E793d710E915c77970De4288BF82C",
-      blockCreated: 7463533
-    }
-  }
-};
-
-const shimmer2 : Chain = {
-  id: 148,
-  name: "Shimmer EVM",
-  network: "shimmer2",
-  nativeCurrency: {
-    decimals: 18,
-    name: "SMR",
-    symbol: "SMR"
-  },
-  rpcUrls: {
-    default: { http: ["https://json-rpc.evm.shimmer.network"] }
-  },
-  blockExplorers: {
-    etherscan: { name: "Shimmer EVM Explorer", url: "https://explorer.evm.shimmer.network" },
-    default: { name: "Shimmer EVM Explorer", url: "https://explorer.evm.shimmer.network" }
-  },
-  contracts: {
-    multicall3: {
-      address: "0x8B20ac75318E793d710E915c77970De4288BF82C",
-      blockCreated: 7463533
-    }
-  }
-};
-
-const CHAINS = [mainnet]
+const CHAINS = [arbitrum]
 
 const getNodeRealUrl = (networkName: string) => {
   let host = null

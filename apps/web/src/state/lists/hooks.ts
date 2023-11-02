@@ -209,7 +209,7 @@ export function useAllLists(): {
 function combineMaps(map1: TokenAddressMap, map2: TokenAddressMap): TokenAddressMap {
   return {
     [ChainId.ETHEREUM]: { ...map1[ChainId.ETHEREUM], ...map2[ChainId.ETHEREUM] },
-    [ChainId.ARBITRUM]: { ...map1[ChainId.ETHEREUM], ...map2[ChainId.ETHEREUM] },
+    [ChainId.ARBITRUM]: { ...map1[ChainId.ARBITRUM], ...map2[ChainId.ARBITRUM] },
     [ChainId.BSC]: { ...map1[ChainId.BSC], ...map2[ChainId.BSC] },
   }
 }

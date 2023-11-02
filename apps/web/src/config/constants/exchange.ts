@@ -1,6 +1,6 @@
 import { ChainId, JSBI, Percent, Token, WNATIVE } from '@pancakeswap/sdk'
 import { BigNumber } from '@ethersproject/bignumber'
-import { bscTokens, USDC, USDT, BUSD, WBTC_ETH, DAI_ETH, WBTC_ARB, DAI_ARB} from '@pancakeswap/tokens'
+import { bscTokens, USDC, USDT, BUSD, WBTC_ETH, DAI_ETH, WBTC_ARB, DAI_ARB, GTOKEN, arbitrumTokens} from '@pancakeswap/tokens'
 import { ChainMap, ChainTokenList } from './types'
 
 export const ROUTER_ADDRESS: ChainMap<string> = {
@@ -47,7 +47,7 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
   [ChainId.ETHEREUM]: [WNATIVE[ChainId.ETHEREUM], USDC[ChainId.ETHEREUM], USDT[ChainId.ETHEREUM], WBTC_ETH, DAI_ETH],
-  [ChainId.ARBITRUM]: [WNATIVE[ChainId.ARBITRUM], USDC[ChainId.ARBITRUM], USDT[ChainId.ARBITRUM], WBTC_ARB, DAI_ARB],
+  [ChainId.ARBITRUM]: [WNATIVE[ChainId.ARBITRUM], GTOKEN[ChainId.ARBITRUM], arbitrumTokens.arb, USDC[ChainId.ARBITRUM], USDT[ChainId.ARBITRUM], WBTC_ARB, DAI_ARB],
   [ChainId.BSC]: [bscTokens.busd, bscTokens.cake, bscTokens.btcb, bscTokens.busd, bscTokens.cake, bscTokens.btcb],
 }
 

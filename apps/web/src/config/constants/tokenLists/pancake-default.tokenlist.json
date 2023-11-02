@@ -10,8 +10,8 @@
       "name": "Duckstail Token",
       "symbol": "DKO",
       "address": "0x05dBe925606d1B0B3fC939FD6273036a89CD71F1",
-      "logoURI": "https://app.cyberglow.es/images/1/tokens/0x05dBe925606d1B0B3fC939FD6273036a89CD71F1.png",
-      "chainId": 1,
+      "logoURI": "https://duckstail-frontend-web.vercel.app/images/42161/tokens/0x05dBe925606d1B0B3fC939FD6273036a89CD71F1.png",
+      "chainId": 42161,
       "decimals": 18
     }
   ],

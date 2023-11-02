@@ -84,6 +84,8 @@ const AddToWalletButton: React.FC<AddToWalletButtonProps & ButtonProps> = ({
   const { connector, isConnected } = useAccount()
   const isCanRegisterToken = canRegisterToken()
 
+  const symbol = tokenSymbol === "Duckstail-LP" ? "DKO-LP" : tokenSymbol
+
   if (connector && connector.name === 'Binance') return null
   if (!(connector && connector.watchAsset && isConnected)) return null
   if (!isCanRegisterToken) return null
@@ -95,7 +97,7 @@ const AddToWalletButton: React.FC<AddToWalletButtonProps & ButtonProps> = ({
         const image = tokenLogo ? (BAD_SRCS[tokenLogo] ? undefined : tokenLogo) : undefined
         connector.watchAsset?.({
           address: tokenAddress,
-          symbol: tokenSymbol,
+          symbol,
           image,
           // @ts-ignore
           decimals: tokenDecimals,

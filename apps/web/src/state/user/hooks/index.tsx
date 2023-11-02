@@ -437,7 +437,7 @@ export function useGasPrice(chainIdOverride?: number): string {
   if (chain?.testnet) {
     return data?.formatted?.maxPriorityFeePerGas
   }
-  return data?.formatted?.maxFeePerGas
+  return data?.formatted?.gasPrice
 }
 
 export function useGasPriceManager(): [string, (userGasPrice: string) => void] {

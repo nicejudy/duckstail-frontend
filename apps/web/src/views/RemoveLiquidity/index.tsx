@@ -448,7 +448,7 @@ export default function RemoveLiquidity({ currencyA, currencyB, currencyIdA, cur
       setLiquidityState({ attemptingTxn: true, liquidityErrorMessage: undefined, txHash: undefined })
       await routerContract[methodName](...args, {
         gasLimit: safeGasEstimate,
-        gasPrice,
+        // gasPrice,
       })
         .then((response: TransactionResponse) => {
           setLiquidityState({ attemptingTxn: false, liquidityErrorMessage: undefined, txHash: response.hash })

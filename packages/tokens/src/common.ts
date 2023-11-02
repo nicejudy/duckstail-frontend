@@ -2,10 +2,10 @@ import { ChainId, ERC20Token } from '@pancakeswap/sdk'
 
 export const GTOKEN_ARB = new ERC20Token(
   ChainId.ARBITRUM,
-  '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
+  '0x05dBe925606d1B0B3fC939FD6273036a89CD71F1',
   18,
-  'CAKE',
-  'PancakeSwap Token',
+  'DKO',
+  'Duckstail Token',
   'https://pancakeswap.finance/',
 )
 
