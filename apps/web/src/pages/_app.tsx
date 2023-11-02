@@ -73,7 +73,7 @@ function MyApp(props: AppProps<{ initialReduxState: any }>) {
         />
         <meta
           name="description"
-          content="The most popular AMM on ShimmerEVM! Earn DKO through yield farming, then stake it in Pools to earn more tokens!"
+          content="The most popular AMM on Arbitrum One! Earn DKO through yield farming, then stake it in Pools to earn more tokens!"
         />
         <meta name="theme-color" content="#1FC7D4" />
         {(Component as NextPageWithLayout).mp && (
