@@ -44,15 +44,15 @@ export function UnsupportedNetworkModal({ pageSupportedChains }: { pageSupported
           {supportedMainnetChains?.map((c) => c.name).join(', ')}
           {/* {t('BNB Smart Chain')} */}
         </Text>
-        <div style={{ textAlign: 'center' }}>
+        {/* <div style={{ textAlign: 'center' }}>
           <Image
             layout="fixed"
             width={194}
             height={175}
-            src="/images/chains/1.png"
+            src="/images/42161/tokens/0x912CE59144191C1204E64559FE8253a0e49E6548.png"
             alt="check your network"
           />
-        </div>
+        </div> */}
         <Message variant="warning">
           <MessageText>{t('Please switch your network to continue.')}</MessageText>
         </Message>

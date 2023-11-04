@@ -8,7 +8,7 @@ declare module 'styled-components' {
 
 const GlobalStyle = createGlobalStyle`
   * {
-    font-family: "Relative", sans-serif;
+    font-family: 'Relative', sans-serif;
     // letter-spacing: 1px;
     // font-family: Poppins, sans-serif;
   }

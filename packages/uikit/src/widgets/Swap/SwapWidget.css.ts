@@ -9,6 +9,7 @@ export const switchButtonClass = style([
   style({
     backgroundColor: "primary",
     boxShadow: "inset 0px -2px 0px rgba(0, 0, 0, 0.1)",
+    borderRadius: "25px !important",
   }),
 ]);
 

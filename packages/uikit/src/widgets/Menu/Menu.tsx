@@ -34,7 +34,7 @@ const StyledNav = styled.nav`
   align-items: center;
   width: 100%;
   height: ${MENU_HEIGHT+1}px;
-  // background-color: ${({ theme }) => theme.colors.backgroundAlt};
+  background-color: ${({ theme }) => theme.colors.backgroundAlt};
   border-bottom: 1px solid ${({ theme }) => theme.colors.background};
   transform: translate3d(0, 0, 0);
 
@@ -179,32 +179,34 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
               </Flex>
             </StyledNav>
           </FixedContainer>
-          {subLinks ? (
-            <Flex justifyContent="space-around" overflow="hidden">
-              <SubMenuItems
-                items={subLinksWithoutMobile}
-                mt={`${totalTopMenuHeight + 1}px`}
-                activeItem={activeSubItem}
-              />
+          <BodyWrapper mt={!subLinks ? `${totalTopMenuHeight + 1}px` : `0px`}>
+            <Inner>
+              {subLinks ? (
+                <Flex justifyContent="space-around" overflow="hidden">
+                  <SubMenuItems
+                    items={subLinksWithoutMobile}
+                    mt={`${totalTopMenuHeight + 1}px`}
+                    activeItem={activeSubItem}
+                  />
 
-              {subLinksMobileOnly && subLinksMobileOnly?.length > 0 && (
-                <SubMenuItems
-                  items={subLinksMobileOnly}
-                  mt={`${totalTopMenuHeight + 1}px`}
-                  activeItem={activeSubItem}
-                  isMobileOnly
-                />
+                  {subLinksMobileOnly && subLinksMobileOnly?.length > 0 && (
+                    <SubMenuItems
+                      items={subLinksMobileOnly}
+                      mt={`${totalTopMenuHeight + 1}px`}
+                      activeItem={activeSubItem}
+                      isMobileOnly
+                    />
+                  )}
+                </Flex>
+              ) : (
+                <div />
               )}
-            </Flex>
-          ) : (
-            <div />
-          )}
-          <BodyWrapper mt={!subLinks ? `${totalTopMenuHeight + 1}px` : "0"}>
-            <Inner>{children}</Inner>
+              {children}
+            </Inner>
           </BodyWrapper>
         </Wrapper>
       </AtomBox>
-      <Footer
+      {/* <Footer
         items={footerLinks}
         isDark={isDark}
         toggleTheme={toggleTheme}
@@ -214,8 +216,8 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
         cakePriceUsd={cakePriceUsd}
         buyCakeLabel={buyCakeLabel}
         buyCakeLink={buyCakeLink}
-        // mb={[`${MOBILE_MENU_HEIGHT}px`, null, `${MOBILE_MENU_HEIGHT}px`]}
-      />
+        mb={[`${MOBILE_MENU_HEIGHT}px`, null, `${MOBILE_MENU_HEIGHT}px`]}
+      /> */}
       <AtomBox display={{ xs: "block", md: "none" }}>
         <BottomNav items={links} activeItem={activeItem} activeSubItem={activeSubItem} />
       </AtomBox>

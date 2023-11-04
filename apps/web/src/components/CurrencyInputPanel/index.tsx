@@ -6,7 +6,7 @@ import { isAddress } from 'utils'
 import { useTranslation } from '@pancakeswap/localization'
 import { WrappedTokenInfo } from '@pancakeswap/token-lists'
 
-// import { useBUSDCurrencyAmount } from 'hooks/useBUSDPrice'
+import { useBUSDCurrencyAmount } from 'hooks/useBUSDPrice'
 import { formatNumber } from '@pancakeswap/utils/formatBalance'
 import { StablePair } from 'views/AddLiquidity/AddStableLiquidity/hooks/useStableLPDerivedMintInfo'
 
@@ -31,11 +31,17 @@ const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm'
     css`
       padding: 8px;
       // background: ${theme.colors.background};
-      border: 1px solid ${theme.colors.cardBorder};
+      // border: 1px solid ${theme.colors.cardBorder};
       border-radius: ${zapStyle === 'zap' ? '0px' : '8px'} 8px 0px 0px;
       height: auto;
     `};
 `
+
+const Container = styled(Box)`
+  background-color: ${({ theme }) => theme.colors.input};
+  border-radius: 8px;
+`
+
 const LabelRow = styled.div`
   display: flex;
   flex-flow: row nowrap;
@@ -49,14 +55,16 @@ const InputPanel = styled.div`
   display: flex;
   flex-flow: column nowrap;
   position: relative;
-  background-color: ${({ theme }) => theme.colors.backgroundAlt};
+  // background-color: ${({ theme }) => theme.colors.backgroundAlt};
   z-index: 1;
 `
-const Container = styled.div<{ zapStyle?: ZapStyle; error?: boolean }>`
+const InputContainer = styled.div<{ zapStyle?: ZapStyle; error?: boolean }>`
+  width: 200px;
   border-radius: 8px;
-  background-color: ${({ theme }) => theme.colors.input};
+  // background-color: ${({ theme }) => theme.colors.input};
   // box-shadow: ${({ theme, error }) => theme.shadows[error ? 'warning' : 'inset']};
-  border: 1px solid ${({ theme }) => theme.colors.cardBorder};
+  // border: 1px solid ${({ theme }) => theme.colors.cardBorder};
+  padding-bottom: 0.75rem;
   ${({ zapStyle }) =>
     !!zapStyle &&
     css`
@@ -136,10 +144,10 @@ export default function CurrencyInputPanel({
   const token = pair ? pair.liquidityToken : currency?.isToken ? currency : null
   const tokenAddress = token ? isAddress(token.address) : null
 
-  // const amountInDollar = useBUSDCurrencyAmount(
-  //   showBUSD ? currency : undefined,
-  //   Number.isFinite(+value) ? +value : undefined,
-  // )
+  const amountInDollar = useBUSDCurrencyAmount(
+    showBUSD ? currency : undefined,
+    Number.isFinite(+value) ? +value : undefined,
+  )
 
   const [onPresentCurrencyModal] = useModal(
     <CurrencySearchModal
@@ -167,7 +175,7 @@ export default function CurrencyInputPanel({
   const isAtPercentMax = (maxAmount && value === maxAmount.toExact()) || (lpPercent && lpPercent === '100')
 
   return (
-    <Box position="relative" id={id}>
+    <Container position="relative" id={id}>
       <Flex alignItems="center" justifyContent="space-between">
         <Flex>
           {beforeButton}
@@ -204,7 +212,26 @@ export default function CurrencyInputPanel({
               {!disableCurrencySelect && <ChevronDownIcon />}
             </Flex>
           </CurrencySelectButton>
-          {token && tokenAddress ? (
+        </Flex>
+        <InputContainer as="label" zapStyle={zapStyle} error={error}>
+          <LabelRow>
+            <NumericalInput
+              error={error}
+              disabled={disabled}
+              className="token-amount-input"
+              value={value}
+              onBlur={onInputBlur}
+              onUserInput={(val) => {
+                onUserInput(val)
+                setCurrentClickedPercent('')
+              }}
+            />
+          </LabelRow>
+        </InputContainer>
+      </Flex>
+      <InputPanel>
+        {account && <Flex alignItems="center" justifyContent="space-between" p="0 1rem 0.75rem 0.75rem">
+          {/* {token && tokenAddress ? (
             <Flex style={{ gap: '4px' }} ml="4px" alignItems="center">
               <CopyButton
                 width="16px"
@@ -223,9 +250,7 @@ export default function CurrencyInputPanel({
                 tokenLogo={token instanceof WrappedTokenInfo ? token.logoURI : undefined}
               />
             </Flex>
-          ) : null}
-        </Flex>
-        {account && (
+          ) : <div />} */}
           <Text
             onClick={!disabled && onMax}
             color="textSubtle"
@@ -236,33 +261,17 @@ export default function CurrencyInputPanel({
               ? t('Balance: %balance%', { balance: selectedCurrencyBalance?.toSignificant(6) ?? t('Loading') })
               : ' -'}
           </Text>
-        )}
-      </Flex>
-      <InputPanel>
-        <Container as="label" zapStyle={zapStyle} error={error}>
-          <LabelRow>
-            <NumericalInput
-              error={error}
-              disabled={disabled}
-              className="token-amount-input"
-              value={value}
-              onBlur={onInputBlur}
-              onUserInput={(val) => {
-                onUserInput(val)
-                setCurrentClickedPercent('')
-              }}
-            />
-          </LabelRow>
-          {/* {!!currency && showBUSD && Number.isFinite(amountInDollar) && (
-            <Flex justifyContent="flex-end" mr="1rem">
+          {!!currency && showBUSD && Number.isFinite(amountInDollar) && (
+            <Flex justifyContent="flex-end">
               <Flex maxWidth="200px">
                 <Text fontSize="12px" color="textSubtle">
                   ~{formatNumber(amountInDollar)} USD
                 </Text>
               </Flex>
             </Flex>
-          )} */}
-          <InputRow selected={disableCurrencySelect}>
+          )}
+        </Flex>}
+        {/* <InputRow selected={disableCurrencySelect}>
             {account && currency && selectedCurrencyBalance?.greaterThan(0) && !disabled && label !== 'To' && (
               <Flex alignItems="right" justifyContent="right">
                 {maxAmount?.greaterThan(0) &&
@@ -307,10 +316,9 @@ export default function CurrencyInputPanel({
                 )}
               </Flex>
             )}
-          </InputRow>
-        </Container>
+          </InputRow> */}
         {disabled && <Overlay />}
       </InputPanel>
-    </Box>
+    </Container>
   )
 }

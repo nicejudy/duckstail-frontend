@@ -85,7 +85,7 @@ const SubMenuItems: React.FC<React.PropsWithChildren<SubMenuItemsProps>> = ({
 
             return (
               label && (
-                <StyledSubMenuItemWrapper key={label} mr="20px">
+                <StyledSubMenuItemWrapper key={label}>
                   <MenuItem
                     href={href}
                     scrollLayerRef={scrollLayerRef}

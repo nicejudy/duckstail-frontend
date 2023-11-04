@@ -14,7 +14,7 @@
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "format:check": "prettier --check --loglevel error 'src/**/*.{js,jsx,ts,tsx}'",
     "format:write": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "set SET NODE_OPTIONS=--openssl-legacy-provider && start-storybook -p 6006",
     "build:storybook": "build-storybook",
     "test": "vitest --run",
     "prepublishOnly": "yarn build"

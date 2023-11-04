@@ -12,17 +12,20 @@ export const SubMenuItemWrapper = styled(Flex)<{ $isMobileOnly: boolean }>`
 const StyledSubMenuItems = styled(Flex)`
   position: relative;
   z-index: 1;
-  width: 100%;
+  max-width: 300px;
+  border-radius: 10px;
+  margin: auto;
   display: flex;
   justify-content: center;
   white-space: nowrap;
   scroll-behavior: smooth;
+  padding: 3px;
   ${({ theme }) => theme.mediaQueries.md} {
     width: auto;
     display: flex;
   }
   flex-grow: 1;
-  // background-color: ${({ theme }) => `${theme.colors.backgroundAlt}`};
+  background-color: ${({ theme }) => `${theme.colors.backgroundAlt}`};
   box-shadow: inset 0px -2px 0px -8px rgba(133, 133, 133, 0.1);
   overflow-x: scroll;
   scrollbar-width: none;
@@ -73,6 +76,8 @@ export const StyledSubMenuItemWrapper = styled(Box)`
   display: inline-block;
   vertical-align: top;
   scroll-snap-align: start;
+  width: 150px;
+  border-radius: 10px;
 `;
 
 export default StyledSubMenuItems;

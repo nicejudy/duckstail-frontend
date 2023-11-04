@@ -28,16 +28,16 @@ export function WrongNetworkModal({ currentChain, onDismiss }: { currentChain: C
         <Text>
           {t('You are under %network% now, please switch the network to continue.', { network: chain?.name ?? '' })}
         </Text>
-        <div style={{ textAlign: 'center' }}>
+        {/* <div style={{ textAlign: 'center' }}>
           <Image width={184} height={140} src="/logo.png" alt="check your network" />
-        </div>
+        </div> */}
         <Message variant="warning" icon={false} p="8px 12px">
           <MessageText>
             <FlexGap gap="12px">
-              <FlexGap gap="6px">
+              {/* <FlexGap gap="6px">
                 <ChainLogo chainId={chain?.id} /> <ArrowForwardIcon color="#D67E0A" />
                 <ChainLogo chainId={chainId} />
-              </FlexGap>
+              </FlexGap> */}
               <span>{t('Switch network to continue.')}</span>
             </FlexGap>
           </MessageText>

@@ -8,10 +8,13 @@ import { SwapFooter } from "./Footer";
 import { SwapInfo, SwapInfoLabel } from "./SwapInfo";
 import { TradePrice } from "./TradePrice";
 
+// type Variant = "text" | "success" | "danger" | "light" | "secondary" | "tertiary" | "primary" | "spec" | "spec1" | "subtle" | "bubblegum"
+
 const SwapSwitchButton = (props: ButtonProps) => (
-  <IconButton className={switchButtonClass} variant="light" scale="sm" {...props}>
-    <ArrowDownIcon className={iconDownClass} color="primary" />
-    <ArrowUpDownIcon className={iconUpDownClass} color="primary" />
+  <IconButton className={switchButtonClass} variant="text" scale="sm" {...props}>
+    {/* <ArrowDownIcon className={iconDownClass} color="primary" />
+    <ArrowUpDownIcon className={iconUpDownClass} color="primary" /> */}
+    <img src="/images/swap-arrow.png" />
   </IconButton>
 );
 

@@ -41,25 +41,25 @@ export function PageNetworkSupportModal() {
   return (
     <Modal title={title || t('Check your network')} hideCloseButton >
       <Grid style={{ gap: '16px' }} maxWidth="360px">
-        <Text bold>{t('It’s Ethereum only feature')}</Text>
+        <Text bold>{t('It’s Arbitrum One only feature')}</Text>
 
-        {image && (
+        {/* {image && (
           <Box mx="auto" my="8px" position="relative" width="100%" minHeight="250px">
             <Image src={image} alt="feature" fill style={{ objectFit: 'contain' }} unoptimized />
           </Box>
-        )}
+        )} */}
         <Text small>
           {t(
-            'Our all features are currently available only on Ethereum! Come over and join the community in the fun!',
+            'Our all features are currently available only on Arbitrum One! Come over and join the community in the fun!',
           )}
         </Text>
         {canSwitch ? (
           <Button
             variant={foundChain && lastValidPath ? 'secondary' : 'primary'}
             isLoading={isLoading}
-            onClick={() => (isWrongNetwork ? switchNetworkLocal(ChainId.BSC) : switchNetworkAsync(ChainId.BSC))}
+            onClick={() => (isWrongNetwork ? switchNetworkLocal(ChainId.ARBITRUM) : switchNetworkAsync(ChainId.ARBITRUM))}
           >
-            {t('Switch to %chain%', { chain: 'Ethereum' })}
+            {t('Switch to %chain%', { chain: 'Arbitrum One' })}
           </Button>
         ) : (
           <Message variant="danger">
