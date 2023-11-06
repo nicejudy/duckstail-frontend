@@ -87,7 +87,7 @@ const TabContainer = ({ children, docLink, docText }: PropsWithChildren<{ docLin
       <AtomBox
         display="flex"
         position="relative"
-        background="gradientCardHeader"
+        // background="gradientCardHeader"
         borderRadius="card"
         borderBottomRadius={{
           xs: '0',
@@ -128,7 +128,7 @@ function MobileModal<T>({
   })
 
   return (
-    <AtomBox width="full">
+    <AtomBox width="full" py="32px">
       {error ? (
         <AtomBox
           display="flex"
@@ -144,12 +144,11 @@ function MobileModal<T>({
           </div>
         </AtomBox>
       ) : (
-        <Text color="textSubtle" small p="24px">
-          {t(
-            // 'Start by connecting with one of the wallets below. Be sure to store your private keys or seed phrase securely. Never share them with anyone.',
-            '',
-          )}
-        </Text>
+        <AtomBox px="48px">
+          <Heading color="color" as="h4" pb="24px">
+            {t('Connect Wallet')}
+          </Heading>
+        </AtomBox>
       )}
       <AtomBox flex={1} py="16px" style={{ maxHeight: '230px' }} overflow="auto">
         <WalletSelect
