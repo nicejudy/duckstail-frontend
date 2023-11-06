@@ -145,7 +145,7 @@ function MobileModal<T>({
         </AtomBox>
       ) : (
         <AtomBox px="48px">
-          <Heading color="color" as="h4" pb="24px">
+          <Heading color="primary" as="h4" pb="24px">
             {t('Connect Wallet')}
           </Heading>
         </AtomBox>
@@ -321,7 +321,7 @@ function DesktopModal<T>({
         className={desktopWalletSelectionClass}
       >
         <AtomBox px="48px">
-          <Heading color="color" as="h4" pb="24px">
+          <Heading color="primary" as="h4" pb="24px">
             {t('Connect Wallet')}
           </Heading>
           {/* <Text color="textSubtle" small pt="24px" pb="32px">
