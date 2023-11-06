@@ -48,7 +48,7 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowNativeBalance, onDismiss 
   const wBNBToken = WNATIVE[ChainId.BSC]
   const { balance: wNativeBalance, fetchStatus: wNativeFetchStatus } = useTokenBalance(wNativeToken?.address)
   const { balance: wBNBBalance, fetchStatus: wBNBFetchStatus } = useTokenBalance(wBNBToken?.address, true)
-  // const { balance: cakeBalance, fetchStatus: cakeFetchStatus } = useGetCakeBalance()
+  const { balance: cakeBalance, fetchStatus: cakeFetchStatus } = useGetCakeBalance()
   const accountEllipsis = account ? `${account.substring(0, 6)}...${account.substring(account.length - 4)}` : null;
   const { logout } = useAuth()
 
@@ -146,14 +146,14 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowNativeBalance, onDismiss 
             <Text>{formatBigNumber(nativeBalance.data.value, 6)}</Text>
           )}
         </Flex>
-        {/* <Flex alignItems="center" justifyContent="space-between">
+        <Flex alignItems="center" justifyContent="space-between">
           <Text color="primary">{t('DKO Balance')}</Text>
           {cakeFetchStatus !== FetchStatus.Fetched ? (
             <Skeleton height="22px" width="60px" />
           ) : (
             <Text>{formatBigNumber(cakeBalance, 3)}</Text>
           )}
-        </Flex> */}
+        </Flex>
       </Box>}
       <Button variant="secondary" width="100%" minHeight={48} onClick={handleLogout} my="12px">
         {t('Disconnect Wallet')}

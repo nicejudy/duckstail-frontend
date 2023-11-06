@@ -10,7 +10,7 @@ export const ChainLogo = memo(
         <Image
           alt={`chain-${chainId}`}
           style={{ maxHeight: `${height}px` }}
-          src={`/images/chains/${chainId}.png`}
+          src={`/images/chains/${chainId === 42161 ? "42161-1" : chainId}.png`}
           width={width}
           height={height}
           unoptimized
