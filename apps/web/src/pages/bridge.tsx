@@ -95,12 +95,12 @@ function PoweredBy() {
       <Text small color="textSubtle" mr="8px">
         Powered By
       </Text>
-      <a href="https://stargate.finance" target="_blank" rel="noreferrer noopener">
+      <a href="https://layerzero.network/" target="_blank" rel="noreferrer noopener">
         <Image
-          width={78}
-          height={20}
-          src="/images/stargate.png"
-          alt="Powered By Stargate"
+          width={75}
+          height={25}
+          src="/images/layerZero.svg"
+          alt="Powered By LayerZero"
           unoptimized
           style={{
             filter: isDark ? 'invert(1)' : 'unset',
