@@ -73,11 +73,11 @@ function Bridge() {
         height="100%"
       >
         <StargateWidget theme={theme} />
-        {show && (
+        {/* {show && (
           <Box display={['block', null, 'block']}>
             <PoweredBy />
           </Box>
-        )}
+        )} */}
       </Flex>
       {/* {show && (
         <Box display={['none', null, 'block']}>
