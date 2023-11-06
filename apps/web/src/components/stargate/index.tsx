@@ -25,6 +25,7 @@ export const StargateWidget = ({ theme }: { theme: PancakeTheme }) => {
           border-radius: 8px;
         }
         .StgHeader .MuiTypography-subtitle1 {
+          // display: none;
           visibility: hidden;
         }
 

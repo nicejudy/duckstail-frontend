@@ -23,12 +23,13 @@ import { STARGATE_JS } from '../components/stargate/config'
 import { StargateWidget } from '../components/stargate'
 
 const Page = styled.div`
-  height: 100%;
+//   height: 100%;
   display: flex;
   justify-content: center;
   min-height: calc(100% - 56px);
   align-items: center;
   flex-direction: column;
+  margin-bottom: 100px;
 //   background: ${({ theme }) => theme.colors.gradientBubblegum};
 
   ${({ theme }) => theme.mediaQueries.sm} {
@@ -70,7 +71,7 @@ function Bridge() {
         bg="backgroundAlt"
         borderRadius={[8, null, 8]}
         alignItems="center"
-        height="100%"
+        // height="100%"
       >
         <StargateWidget theme={theme} />
         {/* {show && (
