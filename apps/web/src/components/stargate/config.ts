@@ -1,4 +1,4 @@
-import { arbitrum, mainnet, optimism, polygon, avalanche, fantom } from 'wagmi/chains'
+import { arbitrum, polygon } from 'wagmi/chains'
 
 const VERSION = '0.0.25-mainnet.20'
 const SHA384 = 'RDYGBMTG+YS5OF8Kavau0Xdyq6j7e/5bFMF55lYu3Oz3gthIOqQSSJkcz96n6knF'
@@ -11,4 +11,4 @@ export const STARGATE_JS = {
   integrity: `sha384-${SHA384}`,
 }
 
-export const CHAINS_STARGATE = [mainnet, arbitrum]
+export const CHAINS_STARGATE = [arbitrum, polygon]

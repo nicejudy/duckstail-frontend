@@ -34,3 +34,20 @@ export interface NavProps {
   langs: Language[];
   setLang: (lang: Language) => void;
 }
+
+export interface PanelProps {
+  isDark: boolean;
+  toggleTheme: (isDark: boolean) => void;
+  cakePriceUsd?: number;
+  currentLang: string;
+  langs: Language[];
+  setLang: (lang: Language) => void;
+  links: Array<MenuItemsType>;
+  activeItem: string | undefined;
+  activeSubItem: string | undefined;
+}
+
+export interface PushedProps {
+  isPushed: boolean;
+  pushNav: (isPushed: boolean) => void;
+}

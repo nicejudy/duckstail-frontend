@@ -67,7 +67,7 @@ const SubMenuItems: React.FC<React.PropsWithChildren<SubMenuItemsProps>> = ({
         </AtomBox>
         <StyledSubMenuItems
           justifyContent={[isMobileOnly ? "flex-end" : "start", null, "center"]}
-          pl={["12px", null, "0px"]}
+          // pl={["12px", null, "0px"]}
           onScroll={debounce(layerController, 100)}
           ref={scrollLayerRef}
         >
@@ -91,7 +91,7 @@ const SubMenuItems: React.FC<React.PropsWithChildren<SubMenuItemsProps>> = ({
                     scrollLayerRef={scrollLayerRef}
                     isActive={isActive}
                     isDisabled={disabled}
-                    variant="subMenu"
+                    variant="pageMenu"
                     // variant="default"
                     {...itemProps}
                     {...linkProps}

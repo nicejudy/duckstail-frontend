@@ -325,7 +325,7 @@ const Staked: React.FunctionComponent<React.PropsWithChildren<StackedActionProps
       stakedBalance={stakedBalance}
       tokenName={lpSymbol}
       multiplier={multiplier}
-      addLiquidityUrl={addLiquidityUrl}
+      addLiquidityUrl={isTokenOnly ? `/swap?outputCurrency=${token.address}` : `/add/${addLiquidityUrl}`}
       cakePrice={cakePrice}
       showActiveBooster={boosterState === YieldBoosterState.ACTIVE}
       bCakeMultiplier={bCakeMultiplier}

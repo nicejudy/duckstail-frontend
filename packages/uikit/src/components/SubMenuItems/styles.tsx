@@ -12,14 +12,13 @@ export const SubMenuItemWrapper = styled(Flex)<{ $isMobileOnly: boolean }>`
 const StyledSubMenuItems = styled(Flex)`
   position: relative;
   z-index: 1;
-  max-width: 300px;
-  border-radius: 10px;
+  max-width: 212px;
+  border-radius: 12px;
   margin: auto;
   display: flex;
   justify-content: center;
   white-space: nowrap;
   scroll-behavior: smooth;
-  padding: 3px;
   ${({ theme }) => theme.mediaQueries.md} {
     width: auto;
     display: flex;
@@ -76,7 +75,7 @@ export const StyledSubMenuItemWrapper = styled(Box)`
   display: inline-block;
   vertical-align: top;
   scroll-snap-align: start;
-  width: 150px;
+  width: 106px;
   border-radius: 10px;
 `;
 

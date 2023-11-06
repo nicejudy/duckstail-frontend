@@ -90,12 +90,12 @@ export const socials = [
   {
     label: "Twitter",
     icon: TwitterIcon,
-    href: "https://twitter.com/Cyberglow_cgt",
+    href: "https://twitter.com/",
   },
   {
     label: "Telegram",
     icon: TelegramIcon,
-    href: "https://t.me/tangle1000"
+    href: "https://t.me/"
   },
   // {
   //   label: "Github",
@@ -110,12 +110,12 @@ export const socials = [
   {
     label: "Discord",
     icon: DiscordIcon,
-    href: "https://discord.com/invite/q7SD5MFZf",
+    href: "https://discord.com/",
   },
   {
     label: "Medium",
     icon: MediumIcon,
-    href: "https://medium.com/@CyberglowCS",
+    href: "https://medium.com/",
   },
 ];
 

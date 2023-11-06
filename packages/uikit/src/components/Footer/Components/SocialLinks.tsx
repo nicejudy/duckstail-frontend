@@ -6,10 +6,11 @@ import Link from "../../Link/Link";
 import { socials } from "../config";
 
 const SocialLinks: React.FC<React.PropsWithChildren<FlexProps>> = ({ ...props }) => (
-  <Flex {...props} data-theme="dark">
+  <Flex {...props} mt="16px" data-theme="dark">
     {socials.map((social, index) => {
       const iconProps = {
-        width: "20px",
+        width: `${social.label === "Twitter" ? "17px" : "20px"}`,
+        height: `${social.label === "Twitter" ? "17px" : "20px"}`,
         color: "textSubtle",
         style: { cursor: "pointer" },
       };

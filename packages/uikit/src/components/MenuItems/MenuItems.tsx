@@ -5,6 +5,7 @@ import isTouchDevice from "../../util/isTouchDevice";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
 import MenuItem from "../MenuItem/MenuItem";
 import { MenuItemsProps } from "./types";
+import { ChevronDownIcon } from "../Svg";
 
 const MenuItems: React.FC<React.PropsWithChildren<MenuItemsProps>> = ({
   items = [],
@@ -13,7 +14,7 @@ const MenuItems: React.FC<React.PropsWithChildren<MenuItemsProps>> = ({
   ...props
 }) => {
   return (
-    <Flex {...props}>
+    <Flex flexDirection="column" px="10px" {...props}>
       {items.map(({ label, items: menuItems = [], href, icon, disabled }) => {
         const statusColor = menuItems?.find((menuItem) => menuItem.status !== undefined)?.status?.color;
         const isActive = activeItem === href;
@@ -28,7 +29,14 @@ const MenuItems: React.FC<React.PropsWithChildren<MenuItemsProps>> = ({
             isDisabled={disabled}
           >
             <MenuItem {...linkProps} isActive={isActive} statusColor={statusColor} isDisabled={disabled}>
-              {label || (icon && createElement(Icon as any, { color: isActive ? "secondary" : "textSubtle" }))}
+              {/* {label || (icon && createElement(Icon as any, { color: isActive ? "secondary" : "textSubtle" }))} */}
+              <Flex justifyContent="space-between" alignItems="center">
+                <Flex alignItems="center">
+                  {(icon && createElement(Icon as any, { color: isActive ? "primaryBright" : "spec", marginRight: "20px" }))}
+                  {label}
+                </Flex>
+                {menuItems.length > 0 ? <ChevronDownIcon /> : <></>}
+              </Flex>
             </MenuItem>
           </DropdownMenu>
         );

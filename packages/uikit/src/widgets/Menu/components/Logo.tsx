@@ -3,10 +3,14 @@ import React, { useContext } from "react";
 import styled, { keyframes, ThemeConsumer } from "styled-components";
 import { colorStyle, fontFamily } from "styled-system";
 import Flex from "../../../components/Box/Flex";
-import { LogoIcon, LogoWithTextIcon } from "../../../components/Svg";
+import { HamburgerCloseIcon, HamburgerIcon, LogoIcon, LogoWithTextIcon } from "../../../components/Svg";
 import { MenuContext } from "../context";
+import MenuButton from "./MenuButton";
 
 interface Props {
+  isPushed?: boolean;
+  isDark?: boolean;
+  togglePush?: () => void;
   href: string;
 }
 
@@ -51,7 +55,7 @@ const StyledLink = styled("a")`
   }
 `;
 
-const Logo: React.FC<React.PropsWithChildren<Props>> = ({ href }) => {
+const Logo: React.FC<React.PropsWithChildren<Props>> = ({ isPushed = false, togglePush, isDark, href }) => {
   const { linkComponent } = useContext(MenuContext);
   const isAbsoluteUrl = href.startsWith("http");
   const innerLogo = (
@@ -67,6 +71,13 @@ const Logo: React.FC<React.PropsWithChildren<Props>> = ({ href }) => {
 
   return (
     <Flex alignItems="center">
+      <MenuButton aria-label="Toggle menu" onClick={togglePush} mr="24px">
+        {isPushed ? (
+          <HamburgerCloseIcon width="24px" color="textSubtle" />
+        ) : (
+          <HamburgerIcon width="24px" color="textSubtle" />
+        )}
+      </MenuButton>
       {isAbsoluteUrl ? (
         <StyledLink as="a" href={href} aria-label="Pancake home page">
           {innerLogo}

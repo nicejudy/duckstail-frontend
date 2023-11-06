@@ -12,7 +12,7 @@ const DropDownHeader = styled.div`
   justify-content: space-between;
   padding: 0px 16px;
   box-shadow: ${({ theme }) => theme.shadows.inset};
-  border: 1px solid ${({ theme }) => theme.colors.inputSecondary};
+  border: 1px solid ${({ theme }) => theme.colors.input};
   border-radius: 8px;
   background: ${({ theme }) => theme.colors.input};
   transition: border-radius 0.15s;
@@ -55,7 +55,7 @@ const DropDownContainer = styled(Box)<{ isOpen: boolean }>`
     props.isOpen &&
     css`
       ${DropDownHeader} {
-        border-bottom: 1px solid ${({ theme }) => theme.colors.inputSecondary};
+        border-bottom: 1px solid ${({ theme }) => theme.colors.input};
         box-shadow: ${({ theme }) => theme.tooltip.boxShadow};
         border-radius: 16px 16px 0 0;
       }
@@ -64,7 +64,7 @@ const DropDownContainer = styled(Box)<{ isOpen: boolean }>`
         height: auto;
         transform: scaleY(1);
         opacity: 1;
-        border: 1px solid ${({ theme }) => theme.colors.inputSecondary};
+        border: 1px solid ${({ theme }) => theme.colors.input};
         border-top-width: 0;
         border-radius: 0 0 16px 16px;
         box-shadow: ${({ theme }) => theme.tooltip.boxShadow};

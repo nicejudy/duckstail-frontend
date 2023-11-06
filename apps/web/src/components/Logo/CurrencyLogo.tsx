@@ -63,6 +63,10 @@ export default function CurrencyLogo({
     return <StyledLogo badSrcs={BAD_SRCS} size={size} srcs={[`/images/42161/tokens/0x05dBe925606d1B0B3fC939FD6273036a89CD71F1.png`]} alt={`${currency?.symbol ?? 'token'} logo`} style={style} />
   }
 
+  if (currency && currency.wrapped.address === "0x912CE59144191C1204E64559FE8253a0e49E6548" && currency.chainId === 42161) {
+    return <StyledLogo badSrcs={BAD_SRCS} size={size} srcs={[`/images/42161/tokens/0x912CE59144191C1204E64559FE8253a0e49E6548.png`]} alt={`${currency?.symbol ?? 'token'} logo`} style={style} />
+  }
+
   return (
     <StyledLogo badSrcs={BAD_SRCS} size={size} srcs={srcs} alt={`${currency?.symbol ?? 'token'} logo`} style={style} />
   )

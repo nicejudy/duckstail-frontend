@@ -55,16 +55,16 @@ export const FarmTabButtons: React.FC<React.PropsWithChildren<FarmTabButtonsProp
   return (
     <Wrapper>
       <Flex width="max-content" flexDirection="column">
-        <Text textTransform="uppercase" color="textSubtle" fontSize="12px" bold>
+        {/* <Text textTransform="uppercase" color="textSubtle" fontSize="12px" bold>
           {t("Filter by")}
-        </Text>
+        </Text> */}
         <ButtonMenu activeIndex={activeIndex} scale="sm" variant="subtle">
           <ButtonMenuItem as={NextLinkFromReactRouter} to={tokenMode ? "/pools" : "/farms"}>
-            {t("Live")}
+            {t("Active")}
           </ButtonMenuItem>
           <NotificationDot show={hasStakeInFinishedFarms}>
             <ButtonMenuItem as={NextLinkFromReactRouter} to={tokenMode ? "/pools/history" : "/farms/history"} id="finished-farms-button">
-              {t("Finished")}
+              {t("Inactive")}
             </ButtonMenuItem>
           </NotificationDot>
         </ButtonMenu>

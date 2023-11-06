@@ -382,11 +382,11 @@ const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
       <Page>
         <ControlContainer>
           <ViewControls>
-            <Flex mt="20px">
+            <Flex>
               <ToggleView idPrefix="clickFarm" viewMode={viewMode} onToggle={setViewMode} />
             </Flex>
             <FarmUI.FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} tokenMode={tokenMode} />
-            <Flex mt="20px" ml="16px">
+            <Flex ml="16px">
               {/* <FarmTypesFilter
                 boostedOnly={boostedOnly}
                 handleSetBoostedOnly={setBoostedOnly}
@@ -408,9 +408,9 @@ const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
           </ViewControls>
           <FilterContainer>
             <LabelWrapper>
-              <Text textTransform="uppercase" color="textSubtle" fontSize="12px" bold>
+              {/* <Text textTransform="uppercase" color="textSubtle" fontSize="12px" bold>
                 {t('Sort by')}
-              </Text>
+              </Text> */}
               <Select
                 options={[
                   {
@@ -442,9 +442,9 @@ const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
               />
             </LabelWrapper>
             <LabelWrapper style={{ marginLeft: 16 }}>
-              <Text textTransform="uppercase" color="textSubtle" fontSize="12px" bold>
+              {/* <Text textTransform="uppercase" color="textSubtle" fontSize="12px" bold>
                 {t('Search')}
-              </Text>
+              </Text> */}
               <SearchInput initialValue={normalizedUrlSearch} onChange={handleChangeQuery} placeholder="Search Farms" />
             </LabelWrapper>
           </FilterContainer>

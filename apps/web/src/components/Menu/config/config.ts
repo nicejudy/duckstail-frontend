@@ -15,6 +15,9 @@ import {
   InfoIcon,
   IfoIcon,
   ResourcesIcon,
+  TradeIcon,
+  TradeFilledIcon,
+  HomeIcon,
 } from '@pancakeswap/uikit'
 import { ContextApi } from '@pancakeswap/localization'
 import { nftsBaseUrl } from 'views/Nft/market/constants'
@@ -47,15 +50,22 @@ const config: (
 ) => ConfigMenuItemsType[] = (t, isDark, languageCode, chainId) =>
   [
     {
+      label: 'Home',
+      href: '/',
+      icon: HomeIcon,
+      showItemsOnMobile: true,
+      items: []
+    },
+    {
       label: t('Trade'),
       icon: SwapIcon,
       fillIcon: SwapFillIcon,
-      href: '/',
+      href: '/swap',
       showItemsOnMobile: true,
       items: [
         {
           label: t('Swap'),
-          href: '/',
+          href: '/swap',
         },
         {
           label: t('Liquidity'),
@@ -117,16 +127,6 @@ const config: (
     //   ].map((item) => addMenuItemSupported(item, chainId)),
     // },
     // {
-    //   label: t('Bridge'),
-    //   href: '/bridge',
-    //   icon: FarmIcon,
-    //   fillIcon: FarmIcon,
-    //   image: '/images/knb.png',
-    //   showItemsOnMobile: false,
-    //   items: [
-    //   ].map((item) => addMenuItemSupported(item, chainId)),
-    // },
-    // {
     //   label: t('Margin'),
     //   href: '/long',
     //   icon: SwapIcon,
@@ -158,6 +158,16 @@ const config: (
           href: '/pools',
           supportChainIds: SUPPORT_ONLY_BSC,
         },
+      ].map((item) => addMenuItemSupported(item, chainId)),
+    },
+    {
+      label: t('Bridge'),
+      href: '/bridge',
+      icon: TradeIcon,
+      fillIcon: TradeFilledIcon,
+      image: '/images/dko.png',
+      showItemsOnMobile: false,
+      items: [
       ].map((item) => addMenuItemSupported(item, chainId)),
     },
     // {

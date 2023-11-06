@@ -13,11 +13,13 @@ import MenuItems from "../../components/MenuItems/MenuItems";
 import { SubMenuItems } from "../../components/SubMenuItems";
 import { useMatchBreakpoints } from "../../contexts";
 import Logo from "./components/Logo";
-import { MENU_HEIGHT, MOBILE_MENU_HEIGHT, TOP_BANNER_HEIGHT, TOP_BANNER_HEIGHT_MOBILE } from "./config";
+import Panel from "./components/Panel";
+import { MENU_HEIGHT, MOBILE_MENU_HEIGHT, TOP_BANNER_HEIGHT, TOP_BANNER_HEIGHT_MOBILE, SIDEBAR_WIDTH_REDUCED, SIDEBAR_WIDTH_FULL } from "./config";
 import { MenuContext } from "./context";
 import { NavProps } from "./types";
 import { SkeletonV2 } from "../../components/Skeleton";
 import { ThemeSwitcher } from "../../components/ThemeSwitcher";
+import { PageOverlay } from "../../components/PageOverlay";
 
 const Wrapper = styled.div`
   position: relative;
@@ -33,11 +35,12 @@ const StyledNav = styled.nav`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: ${MENU_HEIGHT+1}px;
-  background-color: ${({ theme }) => theme.colors.backgroundAlt};
+  height: ${MENU_HEIGHT+16}px;
+  background-color: ${({ theme }) => theme.colors.backgroundAltBlur};
   border-bottom: 1px solid ${({ theme }) => theme.colors.background};
   transform: translate3d(0, 0, 0);
 
+  // padding-top: 16px;
   padding-left: 16px;
   padding-right: 16px;
 `;
@@ -61,16 +64,27 @@ const TopBannerContainer = styled.div<{ height: number }>`
 
 const BodyWrapper = styled(Box)`
   position: relative;
-  display: flex;
-  // margin-top: 60px;
-  max-width: 100vw;
+  display: flex;;
 `;
 
-const Inner = styled.div`
+const Inner = styled.div<{ isPushed: boolean; showMenu: boolean }>`
   flex-grow: 1;
   transition: margin-top 0.2s, margin-left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translate3d(0, 0, 0);
   max-width: 100%;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    margin-left: ${({ isPushed }) => `${isPushed ? SIDEBAR_WIDTH_FULL + 10 : SIDEBAR_WIDTH_REDUCED}px`};
+    max-width: ${({ isPushed }) => `calc(100% - ${isPushed ? SIDEBAR_WIDTH_FULL + 10 : SIDEBAR_WIDTH_REDUCED}px)`};
+  }
+`;
+
+const MobileOnlyOverlay = styled(PageOverlay)`
+  position: fixed;
+  height: 100%;
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    display: none;
+  }
 `;
 
 const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
@@ -95,6 +109,7 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
 }) => {
   const { isMobile } = useMatchBreakpoints();
   const isMounted = useIsMounted();
+  const [isPushed, setIsPushed] = useState(!isMobile);
   const [showMenu, setShowMenu] = useState(true);
   const refPrevOffset = useRef(typeof window === "undefined" ? 0 : window.pageYOffset);
 
@@ -114,7 +129,8 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
       }
       // Avoid triggering anything at the bottom because of layout shift
       else if (!isBottomOfPage) {
-        if (currentOffset < refPrevOffset.current || currentOffset <= totalTopMenuHeight) {
+        // if (currentOffset < refPrevOffset.current || currentOffset <= totalTopMenuHeight) {
+        if (currentOffset < refPrevOffset.current) {
           // Has scroll up
           setShowMenu(true);
         } else {
@@ -151,16 +167,21 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
           <FixedContainer showMenu={showMenu} height={totalTopMenuHeight}>
             {/* {banner && isMounted && <TopBannerContainer height={topBannerHeight}>{banner}</TopBannerContainer>} */}
             <StyledNav>
-              <Flex>
-                <Logo href={homeLink?.href ?? "/"} />
-                <AtomBox display={{ xs: "none", md: "block" }}>
-                  <MenuItems items={links} activeItem={activeItem} activeSubItem={activeSubItem} ml="24px" />
-                </AtomBox>
-              </Flex>
-              <Flex alignItems="center" height="100%">
+              {/* <Flex width="100%"> */}
+                <Logo
+                  isPushed={isPushed}
+                  togglePush={() => setIsPushed((prevState: boolean) => !prevState)}
+                  isDark={isDark}
+                  href={homeLink?.href ?? "/"}
+                />
+                {/* <AtomBox display={{ xs: "none", md: "block" }}> */}
+                  {/* <MenuItems items={links} activeItem={activeItem} activeSubItem={activeSubItem} /> */}
+                {/* </AtomBox> */}
+              {/* </Flex> */}
+              {/* <Flex alignItems="center" height="100%">
                 <AtomBox mr="12px" display={{ xs: "none", lg: "block" }}>
                   <CakePrice buyCakeLink={buyCakeLink} showSkeleton={false} cakePriceUsd={cakePriceUsd} />
-                </AtomBox>
+                </AtomBox> */}
                 {/* <Box mt="4px">
                   <LangSelector
                     currentLang={currentLang}
@@ -176,11 +197,26 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
                   <ThemeSwitcher isDark={isDark} toggleTheme={toggleTheme} />
                 </SkeletonV2> */}
                 {rightSide}
-              </Flex>
+              {/* </Flex> */}
             </StyledNav>
           </FixedContainer>
-          <BodyWrapper mt={!subLinks ? `${totalTopMenuHeight + 1}px` : `0px`}>
-            <Inner>
+          <BodyWrapper mt={!subLinks ? `${totalTopMenuHeight + 1}px` : `${totalTopMenuHeight + 1}px`}>
+            <Panel
+              isPushed={isPushed}
+              isMobile={isMobile}
+              showMenu={showMenu}
+              isDark={isDark}
+              toggleTheme={toggleTheme}
+              langs={langs}
+              setLang={setLang}
+              currentLang={currentLang}
+              cakePriceUsd={cakePriceUsd}
+              pushNav={setIsPushed}
+              links={links}
+              activeItem={activeItem}
+              activeSubItem={activeSubItem}
+            />
+            <Inner isPushed={isPushed} showMenu={showMenu}>
               {subLinks ? (
                 <Flex justifyContent="space-around" overflow="hidden">
                   <SubMenuItems
@@ -203,6 +239,7 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
               )}
               {children}
             </Inner>
+            <MobileOnlyOverlay show={isPushed} onClick={() => setIsPushed(false)} role="presentation" />
           </BodyWrapper>
         </Wrapper>
       </AtomBox>
@@ -218,9 +255,9 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
         buyCakeLink={buyCakeLink}
         mb={[`${MOBILE_MENU_HEIGHT}px`, null, `${MOBILE_MENU_HEIGHT}px`]}
       /> */}
-      <AtomBox display={{ xs: "block", md: "none" }}>
+      {/* <AtomBox display={{ xs: "block", md: "none" }}>
         <BottomNav items={links} activeItem={activeItem} activeSubItem={activeSubItem} />
-      </AtomBox>
+      </AtomBox> */}
     </MenuContext.Provider>
   );
 };

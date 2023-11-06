@@ -12,7 +12,7 @@ export const baseColors = {
   warning: '#ffcd38',
   warning2D: '#ed4a9c2D',
   warning33: '#ed4a9c33',
-  spec: '#c2940a',
+  spec: '#979797',
 }
 
 export const additionalColors = {
@@ -52,7 +52,7 @@ export const lightColors = {
   gradientBlue: 'linear-gradient(180deg, #A7E8F1 0%, #94E1F2 100%)',
   gradientViolet: 'linear-gradient(180deg, #E2C9FB 0%, #CDB8FA 100%)',
   gradientVioletAlt: 'linear-gradient(180deg, #CBD7EF 0%, #9A9FD0 100%)',
-  gradientGold: 'linear-gradient(180deg, #FFD800 0%, #FDAB32 100%)',
+  gradientGold: 'linear-gradient(90deg, #FFD026 0%, #FFAC26 100%)',
   gradientBold: 'linear-gradient(#53DEE9, #7645D9)',
 }
 
@@ -63,7 +63,7 @@ export const darkColors = {
   secondary80: '#e6ac0080',
   background: 'linear-gradient(139.73deg, rgb(40, 104, 87) 0%, rgb(0, 0, 0) 98%)',
   backgroundDisabled: '#6b5a2e',
-  backgroundAlt: '#694F39',
+  backgroundAlt: '#443D37',
   backgroundAltBlur: '#957b66cc',
   backgroundAlt2: 'rgba(38, 44, 44, 0.7)',
   cardBorder: '#694F39',
@@ -71,7 +71,7 @@ export const darkColors = {
   dropdown: '#423224',
   dropdownDeep: '#362617',
   invertedContrast: '#162d27',
-  input: '#5D4939',
+  input: '#564d43',
   inputSecondary: '#21312d',
   primaryDark: '#0098A1',
   tertiary: '#b8a07a',
@@ -80,12 +80,12 @@ export const darkColors = {
   textDisabled: '#bac2c4',
   textSubtle: '#ffffff',
   disabled: '#4b6363',
-  gradientBubblegum: 'linear-gradient(139.73deg, #325d47 0%, #2b4a55 100%)',
+  gradientBubblegum: 'linear-gradient(90deg, #443D37 0%, #695D39 50%, #443D37 100%)',
   gradientInverseBubblegum: 'linear-gradient(139.73deg, #2b4a55 0%, #325d47 100%)',
   gradientCardHeader: 'linear-gradient(166.77deg, #3b544e 0%, #304045 100%)',
   gradientBlue: 'linear-gradient(180deg, #008000 0%, #188b18 100%)',
   gradientViolet: 'linear-gradient(180deg, #498497 0%, #4d99b3 100%)',
   gradientVioletAlt: 'linear-gradient(180deg, #437568 0%, #57818e 100%)',
-  gradientGold: 'linear-gradient(180deg, #FFD800 0%, #FDAB32 100%)',
+  gradientGold: 'linear-gradient(90deg, #FFD026 0%, #FFAC26 100%)',
   gradientBold: 'linear-gradient(#53e953, #6bdaff)',
 }

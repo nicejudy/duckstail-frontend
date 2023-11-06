@@ -3,15 +3,19 @@ import { StyledMenuItemProps } from "./types";
 
 export const StyledMenuItemContainer = styled.div<StyledMenuItemProps>`
   position: relative;
+  margin: 3px;
 
   ${({ $isActive, $variant, theme }) =>
     $isActive &&
-    $variant === "subMenu" &&
+    $variant === "pageMenu" &&
     `
-
-      background-color: ${theme.colors.primary};
-      width: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: ${theme.colors.gradientGold};
+      width: 100px;
       border-radius: 10px;
+      margin: 3px;
       // &:after{
       //   content: "";
       //   position: absolute;
@@ -22,18 +26,42 @@ export const StyledMenuItemContainer = styled.div<StyledMenuItemProps>`
       //   border-radius: 2px 2px 0 0;
       // }
     `};
+  ${({ theme, $variant }) =>
+    $variant === "subMenu" &&
+    `
+      display: flex;
+      align-items: center;
+      height: 40px;
+      margin: 3px;
+      &:hover {
+        background-color: ${theme.colors.tertiary};
+      }
+    `};
+
+  ${({ $variant }) =>
+    $variant === "default" &&
+    `
+      flex-grow: 1;
+      height: 40px;
+      margin: 0px;
+    `};
 `;
 
 const StyledMenuItem = styled.a<StyledMenuItemProps>`
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  // width: 100%;
+  ${({ $variant }) => 
+    $variant === "pageMenu" &&
+    `
+      align-items: center;
+      display: flex;
+      justify-content: center;
+    `
+  };
 
-  color: ${({ theme, $isActive }) => ($isActive ? theme.colors.primaryBright : theme.colors.spec)};
-  font-size: 16px;
+
+  color: ${({ theme, $isActive }) => ($isActive ? theme.colors.primary : theme.colors.primaryBright)};
   // font-weight: ${({ $isActive }) => ($isActive ? "600" : "400")};
-  font-weight: 600;
   opacity: ${({ $isDisabled }) => ($isDisabled ? 0.5 : 1)};
   pointer-events: ${({ $isDisabled }) => ($isDisabled ? "none" : "inherit")};
 
@@ -50,22 +78,34 @@ const StyledMenuItem = styled.a<StyledMenuItemProps>`
     }
   `}
 
-  ${({ $variant }) =>
-    $variant === "default"
+  ${({ $variant, theme, $isActive }) =>
+    $variant === "subMenu"
       ? `
-    padding: 0 16px;
-    height: 48px;
-  `
-      : `
+      width: 100%;
+      padding: 12px 56px;
+      // height: 38px;
+      font-size: 14px;
+      height: 40px;
+    `
+      : 
+    $variant === "pageMenu" ?
+    `
     padding: 4px 4px 4px 4px;
-    height: 42px;
-  `}
+    height: 32px;
+    font-weight: 600;
+    color: ${($isActive ? theme.colors.primaryBright : theme.colors.spec)};
+    `
+    :
+    `
+    height: 32px;
+    `
+  }
 
   &:hover {
     // background: ${({ theme }) => theme.colors.tertiary};
-    font-weight: 600;
+    // font-weight: 600;
     color: ${({ theme, $isActive }) => ($isActive ? theme.colors.primaryBright : theme.colors.primaryBright)};
-    ${({ $variant }) => $variant === "default" && "border-radius: 8px;"};
+    ${({ $variant }) => $variant === "subMenu" && "border-radius: 8px;"};
   }
 `;
 

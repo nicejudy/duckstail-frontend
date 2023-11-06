@@ -251,7 +251,7 @@ const StakeAction: React.FC<React.PropsWithChildren<FarmCardActionsProps>> = ({
       lpLabel={lpLabel}
       apr={apr}
       displayApr={displayApr}
-      addLiquidityUrl={addLiquidityUrl}
+      addLiquidityUrl={isTokenOnly ? `/swap?outputCurrency=${token.address}` : `/add/${addLiquidityUrl}`}
       cakePrice={cakePrice}
       showActiveBooster={boosterState === YieldBoosterState.ACTIVE}
       bCakeMultiplier={bCakeMultiplier}
