@@ -47,7 +47,7 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
   [ChainId.ETHEREUM]: [WNATIVE[ChainId.ETHEREUM], USDC[ChainId.ETHEREUM], USDT[ChainId.ETHEREUM], WBTC_ETH, DAI_ETH],
-  [ChainId.ARBITRUM]: [WNATIVE[ChainId.ARBITRUM], GTOKEN[ChainId.ARBITRUM], arbitrumTokens.arb, USDC[ChainId.ARBITRUM], USDT[ChainId.ARBITRUM], WBTC_ARB, DAI_ARB],
+  [ChainId.ARBITRUM]: [WNATIVE[ChainId.ARBITRUM], arbitrumTokens.arb, GTOKEN[ChainId.ARBITRUM], arbitrumTokens.dcp, DAI_ARB, USDC[ChainId.ARBITRUM], USDT[ChainId.ARBITRUM], WBTC_ARB],
   [ChainId.BSC]: [bscTokens.busd, bscTokens.cake, bscTokens.btcb, bscTokens.busd, bscTokens.cake, bscTokens.btcb],
 }
 
