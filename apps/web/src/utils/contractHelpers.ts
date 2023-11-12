@@ -45,6 +45,12 @@ import {
   getCrossFarmingReceiverAddress,
   getNftAddress,
   getBridgeAddress,
+  getDcpBondCalculatorAddress,
+  getDcpDistributorAddress,
+  getDcpStakingAddress,
+  getDcpStakingHelperAddress,
+  getDcpTreasuryAddress,
+  getDcpWarmupAddress,
 } from 'utils/addressHelpers'
 
 // ABI
@@ -63,6 +69,15 @@ import lotteryV2Abi from 'config/abi/lotteryV2.json'
 import masterChef from 'config/abi/masterchef.json'
 import masterChefV1 from 'config/abi/masterchefV1.json'
 import bridge from 'config/abi/bridge.json'
+import dcp from 'config/abi/dcp.json'
+import sdcp from 'config/abi/sdcp.json'
+import dcpBond from 'config/abi/dcpBond.json'
+import dcpBondCalculator from 'config/abi/dcpBondCalculator.json'
+import dcpDistributor from 'config/abi/dcpDistributor.json'
+import dcpStaking from 'config/abi/dcpStaking.json'
+import dcpStakingHelper from 'config/abi/dcpStakingHelper.json'
+import dcpStakingWarmup from 'config/abi/dcpStakingWarmup.json'
+import dcpTreasury from 'config/abi/dcpTreasury.json'
 import sousChef from 'config/abi/sousChef.json'
 import sousChefV2 from 'config/abi/sousChefV2.json'
 import sousChefBnb from 'config/abi/sousChefBnb.json'
@@ -153,6 +168,12 @@ import type {
   CrossFarmingReceiver,
   CrossFarmingProxy,
   Nft,
+  DcpBondCalculator,
+  DcpDistributor,
+  DcpStaking,
+  DcpStakingHelper,
+  DcpTreasury,
+  DcpStakingWarmup,
 } from 'config/abi/types'
 import { ChainId } from '@pancakeswap/sdk'
 
@@ -411,4 +432,28 @@ export const getCrossFarmingProxyContract = (
 
 export const getBridgeContract = (signer?: Signer | Provider, chainId?: number) => {
   return getContract({ abi: bridge, address: getBridgeAddress(chainId), signer }) as Bridge
+}
+
+export const getDcpBondCalculatorContract = (signer?: Signer | Provider, chainId?: number) => {
+  return getContract({ abi: dcpBondCalculator, address: getDcpBondCalculatorAddress(chainId), signer }) as DcpBondCalculator
+}
+
+export const getDcpDistributorContract = (signer?: Signer | Provider, chainId?: number) => {
+  return getContract({ abi: dcpDistributor, address: getDcpDistributorAddress(chainId), signer }) as DcpDistributor
+}
+
+export const getDcpStakingContract = (signer?: Signer | Provider, chainId?: number) => {
+  return getContract({ abi: dcpStaking, address: getDcpStakingAddress(chainId), signer }) as DcpStaking
+}
+
+export const getDcpStakingHelperContract = (signer?: Signer | Provider, chainId?: number) => {
+  return getContract({ abi: dcpStakingHelper, address: getDcpStakingHelperAddress(chainId), signer }) as DcpStakingHelper
+}
+
+export const getDcpTreasuryContract = (signer?: Signer | Provider, chainId?: number) => {
+  return getContract({ abi: dcpTreasury, address: getDcpTreasuryAddress(chainId), signer }) as DcpTreasury
+}
+
+export const getDcpWarmupContract = (signer?: Signer | Provider, chainId?: number) => {
+  return getContract({ abi: dcpStakingWarmup, address: getDcpWarmupAddress(chainId), signer }) as DcpStakingWarmup
 }

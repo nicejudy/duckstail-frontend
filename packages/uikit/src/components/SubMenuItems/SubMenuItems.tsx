@@ -68,6 +68,7 @@ const SubMenuItems: React.FC<React.PropsWithChildren<SubMenuItemsProps>> = ({
         <StyledSubMenuItems
           justifyContent={[isMobileOnly ? "flex-end" : "start", null, "center"]}
           // pl={["12px", null, "0px"]}
+          maxWidth={`${items.length * 106}px`}
           onScroll={debounce(layerController, 100)}
           ref={scrollLayerRef}
         >

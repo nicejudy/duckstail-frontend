@@ -12,7 +12,7 @@ export const SubMenuItemWrapper = styled(Flex)<{ $isMobileOnly: boolean }>`
 const StyledSubMenuItems = styled(Flex)`
   position: relative;
   z-index: 1;
-  max-width: 212px;
+  // max-width: 212px;
   border-radius: 12px;
   margin: auto;
   display: flex;

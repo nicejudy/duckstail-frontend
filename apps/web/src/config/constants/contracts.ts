@@ -174,4 +174,22 @@ export default {
   flip: {
     148: '0x7a6c09B4852a7FbD96CA7282B793184f2BCbB1D7'
   },
+  dcpBondCalculator: {
+    42161: '0x9e9533131b1387b4Ae5fAB3e0849368ef6230896'
+  },
+  dcpTreasury: {
+    42161: '0xa3d14CC225E19b6ee2929B721CF161990F2F5870'
+  },
+  dcpStaking: {
+    42161: '0xA6C43695ac26783E118249FE07AAAc7bF83aa93E'
+  },
+  dcpWarmup: {
+    42161: '0x80EBDc636447a15b670b2c2244a327Ab4C0F764B'
+  },
+  dcpDistributor: {
+    42161: '0x137eD2d05B70Ddccf57de257216c4d5E86EcbE32'
+  },
+  dcpStakingHelper: {
+    42161: '0xeD48D415A46364657f3F3EC8e7a9f4c3D93E7AAC'
+  },
 }

@@ -113,6 +113,22 @@ export const WBTC_ARB = new ERC20Token(
   'Wrapped BTC',
 )
 
+export const DCP_ARB = new ERC20Token(
+  ChainId.ARBITRUM,
+  '0xdd5D2Ba8b84AA4E145efC3D055fD0e75bcB9E28c',
+  9,
+  'DCP',
+  'Duckstail Capital',
+)
+
+export const SDCP_ARB = new ERC20Token(
+  ChainId.ARBITRUM,
+  '0xbb93Cae0127d5D8e9501D997b96f780B6B5ce4e1',
+  9,
+  'SDCP',
+  'Staked DCP',
+)
+
 export const GTOKEN = {
   [ChainId.ARBITRUM]: GTOKEN_ARB,
 }
@@ -131,4 +147,12 @@ export const USDT = {
 export const BUSD = {
   [ChainId.ETHEREUM]: BUSD_ETH,
   [ChainId.BSC]: BUSD_BSC,
+}
+
+export const DCP = {
+  [ChainId.ARBITRUM]: DCP_ARB,
+}
+
+export const SDCP = {
+  [ChainId.ARBITRUM]: SDCP_ARB,
 }

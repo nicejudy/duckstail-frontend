@@ -63,7 +63,7 @@ const Accordion: React.FC<Props> = ({
   return (
     <Container>
       <MenuEntry onClick={handleClick} className={className} isActive={isActive}>
-        {(icon && createElement(icon as any, { color: isActive ? "primary" : "primaryBright", marginRight: "20px" }))}
+        {(icon && createElement(icon as any, { color: isActive ? "primary" : "primaryBright", marginRight: "20px", width: href === '/capital' ? "16px" : "20px" }))}
         {hasSubItems ? <LinkLabel isActive={isActive}>{label}</LinkLabel>
          : 
          <MenuItem href={href} variant="default" isActive={isActive} statusColor={statusColor} isDisabled={isDisabled}>

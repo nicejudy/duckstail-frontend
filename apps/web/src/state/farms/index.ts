@@ -37,7 +37,7 @@ import getFarmsAprs from './getFarmsAprs'
 // /**
 //  * @deprecated
 //  */
-const fetchFetchPublicDataOld = async ({ pids, chainId }): Promise<[SerializedFarm[], number, number]> => {
+const fetchFarmPublicDataOld = async ({ pids, chainId }): Promise<[SerializedFarm[], number, number]> => {
   const [poolLength, [cakePerBlockRaw]] = await Promise.all([
     fetchMasterChefFarmPoolLength(chainId),
     // multicall(masterchefABI, [
@@ -141,7 +141,7 @@ export const fetchFarmsPublicDataAsync = createAsyncThunk<
     if (!chain || !farmFetcher.isChainSupported(chain.id)) throw new Error('chain not supported')
     try {
       if (flag === 'pkg') {
-        return fetchFetchPublicDataOld({ pids, chainId })
+        return fetchFarmPublicDataOld({ pids, chainId })
       }
       if (flag === 'api' && !fallback) {
         try {

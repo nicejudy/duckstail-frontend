@@ -139,3 +139,27 @@ export const getCrossFarmingReceiverAddress = (chainId?: number) => {
 export const getBridgeAddress = (chainId?: number) => {
   return getAddress(addresses.bridge, chainId)
 }
+
+export const getDcpBondCalculatorAddress = (chainId?: number) => {
+  return getAddress(addresses.dcpBondCalculator, chainId)
+}
+
+export const getDcpDistributorAddress = (chainId?: number) => {
+  return getAddress(addresses.dcpDistributor, chainId)
+}
+
+export const getDcpStakingAddress = (chainId?: number) => {
+  return getAddress(addresses.dcpStaking, chainId)
+}
+
+export const getDcpStakingHelperAddress = (chainId?: number) => {
+  return getAddress(addresses.dcpStakingHelper, chainId)
+}
+
+export const getDcpTreasuryAddress = (chainId?: number) => {
+  return getAddress(addresses.dcpTreasury, chainId)
+}
+
+export const getDcpWarmupAddress = (chainId?: number) => {
+  return getAddress(addresses.dcpWarmup, chainId)
+}

@@ -18,6 +18,7 @@ import {
   TradeIcon,
   TradeFilledIcon,
   HomeIcon,
+  CapitalIcon,
 } from '@pancakeswap/uikit'
 import { ContextApi } from '@pancakeswap/localization'
 import { nftsBaseUrl } from 'views/Nft/market/constants'
@@ -157,6 +158,27 @@ const config: (
           label: t('Pools'),
           href: '/pools',
           supportChainIds: SUPPORT_ONLY_BSC,
+        },
+      ].map((item) => addMenuItemSupported(item, chainId)),
+    },
+    {
+      label: t('Capital'),
+      icon: CapitalIcon,
+      fillIcon: CapitalIcon,
+      href: '/capital',
+      showItemsOnMobile: true,
+      items: [
+        {
+          label: t('Info'),
+          href: '/capital',
+        },
+        {
+          label: t('Bond'),
+          href: '/capital/bond',
+        },
+        {
+          label: t('Vault'),
+          href: '/capital/vault',
         },
       ].map((item) => addMenuItemSupported(item, chainId)),
     },

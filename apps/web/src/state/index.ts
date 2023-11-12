@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import burn from './burn/reducer'
+import capitalReducer from './capital'
 import farmsReducer from './farms'
 import farmsReducerV1 from './farmsV1'
 import { updateVersion } from './global/actions'
@@ -32,6 +33,7 @@ const persistedReducer = persistReducer(
   persistConfig,
   combineReducers({
     global: globalReducer,
+    capital: capitalReducer,
     farms: farmsReducer,
     farmsV1: farmsReducerV1,
     pools: poolsReducer,

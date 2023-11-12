@@ -1,5 +1,5 @@
 import { ChainId, WETH9, ERC20Token } from '@pancakeswap/sdk'
-import { USDC, USDT, DAI_ARB, WBTC_ARB, GTOKEN } from './common'
+import { USDC, USDT, DAI_ARB, WBTC_ARB, GTOKEN, DCP, SDCP } from './common'
 
 export const arbitrumTokens = { 
   weth: WETH9[ChainId.ARBITRUM],
@@ -15,18 +15,13 @@ export const arbitrumTokens = {
     'ARB',
     'Arbitrum',
   ),
-  dcp: new ERC20Token(
+  frax: new ERC20Token(
     ChainId.ARBITRUM,
-    '0xdd5D2Ba8b84AA4E145efC3D055fD0e75bcB9E28c',
-    9,
-    'DCP',
-    'Duckstail Capital',
+    '0x17FC002b466eEc40DaE837Fc4bE5c67993ddBd6F',
+    18,
+    'FRAX',
+    'Frax',
   ),
-  sdcp: new ERC20Token(
-    ChainId.ARBITRUM,
-    '0xbb93Cae0127d5D8e9501D997b96f780B6B5ce4e1',
-    9,
-    'SDCP',
-    'Staked DCP',
-  ),
+  dcp: DCP[ChainId.ARBITRUM],
+  sdcp: SDCP[ChainId.ARBITRUM],
 }

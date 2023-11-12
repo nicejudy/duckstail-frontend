@@ -1,5 +1,6 @@
 import { BigNumber as EthersBigNumber } from '@ethersproject/bignumber'
 import { parseUnits } from '@ethersproject/units'
+import { SerializedCapitalState } from '@pancakeswap/capital'
 import { SerializedFarmsState } from '@pancakeswap/farms'
 import { Token } from '@pancakeswap/sdk'
 import { SerializedWrappedToken } from '@pancakeswap/token-lists'
@@ -613,6 +614,7 @@ export interface PotteryWithdrawAbleData {
 // Global state
 
 export interface State {
+  capital: SerializedCapitalState
   farms: SerializedFarmsState
   farmsV1: SerializedFarmsState
   pools: PoolsState
