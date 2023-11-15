@@ -222,7 +222,7 @@ const Row: React.FunctionComponent<React.PropsWithChildren<RowPropsWithLoading>>
                   </td>
                 )
               default: 
-                return <td key={key}><div></div></td>
+                return <td key={key}><Skeleton height={24} width={80} /></td>
             }
           })}
         </StyledTr>
