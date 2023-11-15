@@ -13,7 +13,7 @@ export const useMenuItemsStatus = (): Record<string, string> => {
   const currentBlock = useChainCurrentBlock(ChainId.BSC)
   const activeIfo = useActiveIfoWithBlocks()
   // const competitionStatus = useCompetitionStatus()
-  const potteryStatus = usePotteryStatus()
+  // const potteryStatus = usePotteryStatus()
   const votingStatus = useVotingStatus()
   // const isUserLocked = useUserCakeLockStatus()
 
@@ -26,9 +26,9 @@ export const useMenuItemsStatus = (): Record<string, string> => {
     return {
       // '/competition': competitionStatus,
       '/ifo': ifoStatus === 'coming_soon' ? 'soon' : ifoStatus,
-      ...(potteryStatus === PotteryDepositStatus.BEFORE_LOCK && {
-        '/pottery': 'pot_open',
-      }),
+      // ...(potteryStatus === PotteryDepositStatus.BEFORE_LOCK && {
+      //   '/pottery': 'pot_open',
+      // }),
       ...(votingStatus && {
         '/voting': votingStatus,
       }),
@@ -37,5 +37,5 @@ export const useMenuItemsStatus = (): Record<string, string> => {
       // }),
     }
   // }, [competitionStatus, ifoStatus, potteryStatus, votingStatus, isUserLocked])
-  }, [ifoStatus, potteryStatus, votingStatus])
+  }, [ifoStatus, votingStatus])
 }

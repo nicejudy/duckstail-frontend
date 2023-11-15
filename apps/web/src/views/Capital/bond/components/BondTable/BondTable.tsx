@@ -73,7 +73,7 @@ const BondTable: React.FC<React.PropsWithChildren<ITableProps>> = ({ bonds, user
             <TableBody>
               {bonds.map((bond) => {
                 return (
-                  <Row bond={bond} userDataReady={userDataReady} key={`table-row-${bond.id}`} />
+                  <Row bond={bond} userDataReady={userDataReady} key={`table-bond-${bond.id.toString()}`} />
                 )
               })}
             </TableBody>
