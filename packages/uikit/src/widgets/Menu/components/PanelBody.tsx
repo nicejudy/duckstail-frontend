@@ -44,7 +44,7 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links, active
 
         return (
           <Accordion
-              key={label}
+              key={href}
               isPushed={isPushed}
               pushNav={pushNav}
               icon={icon}
@@ -58,7 +58,7 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links, active
             >
               {isPushed &&
                 menuItems.map((item) => (
-                    <MenuItem href={item.href} variant="subMenu" isActive={item.href === activeSubItem} statusColor={statusColor} isDisabled={disabled}>
+                    <MenuItem key={item.href} href={item.href} variant="subMenu" isActive={item.href === activeSubItem} statusColor={statusColor} isDisabled={disabled}>
                       {item.label}
                     </MenuItem>
                 ))}

@@ -1,4 +1,5 @@
 export * from './estimateGas'
 export * from './farms'
+export * from './capital'
 export * from './pools'
 export * from './bridge'

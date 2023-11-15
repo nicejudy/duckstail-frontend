@@ -8,8 +8,9 @@ const StyledNotFound = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 64px);
+  height: calc(100vh - 167px);
   justify-content: center;
+  padding-bottom: 100px;
 `;
 
 const NotFound = ({ statusCode = 404 }: { statusCode?: number }) => {
@@ -24,7 +25,7 @@ const NotFound = ({ statusCode = 404 }: { statusCode?: number }) => {
         <Heading scale="xxl">{statusCode}</Heading>
         <Text mb="16px">{t("Oops, page not found.")}</Text>
         <Link href="/" passHref>
-          <Button as="a" scale="sm">
+          <Button scale="sm">
             {t("Back Home")}
           </Button>
         </Link>

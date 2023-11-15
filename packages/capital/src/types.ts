@@ -1,3 +1,4 @@
+import { ERC20Token, Token } from '@pancakeswap/sdk'
 import { SerializedWrappedToken } from '@pancakeswap/token-lists'
 
 export interface BondConfigBaseProps {
@@ -6,7 +7,9 @@ export interface BondConfigBaseProps {
   displayName: string
   lpBond: boolean
   stableBond: boolean
-  token: SerializedWrappedToken
+  bondToken: SerializedWrappedToken
+  token0: SerializedWrappedToken
+  token1: SerializedWrappedToken
   bondAddress: string
 }
 
@@ -21,6 +24,7 @@ export interface SerializedBondPublicData extends BondConfigBaseProps {
 }
 
 export interface SerializedBondCalcPublicData extends SerializedBondPublicData {
+  lpPrice?: string
   totalLpValue?: string
   totalLpSupply?: string
 }
@@ -43,7 +47,6 @@ export interface SerializedVault {
   marketCap?: string
   circSupply?: string
   fiveDayRate?: string
-  treasuryBalance?: string
   stakingAPY?: string
   stakingTVL?: string
   stakingRebase?: string

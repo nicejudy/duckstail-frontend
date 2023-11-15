@@ -60,6 +60,7 @@ import {
   getCrossFarmingProxyContract,
   getIfoCreditAddressContract,
   getBridgeContract,
+  getBondContract,
 } from 'utils/contractHelpers'
 import { useSigner } from 'wagmi'
 
@@ -390,4 +391,10 @@ export const useBridge = (withSignerIfPossible = true) => {
   const { chainId } = useActiveChainId()
   const providerOrSigner = useProviderOrSigner(withSignerIfPossible)
   return useMemo(() => getBridgeContract(providerOrSigner, chainId), [providerOrSigner, chainId])
+}
+
+export const useBond = (address: string, withSignerIfPossible = true) => {
+  const { chainId } = useActiveChainId()
+  const providerOrSigner = useProviderOrSigner(withSignerIfPossible)
+  return useMemo(() => getBondContract(address, providerOrSigner, chainId), [address, providerOrSigner, chainId])
 }

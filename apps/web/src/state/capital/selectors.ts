@@ -1,4 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit'
+import { BIG_ZERO } from '@pancakeswap/utils/bigNumber'
 import { State } from '../types'
 
 const selectBondByKey = (key: string, value: string | number) => (state: State) =>
@@ -22,6 +23,7 @@ export const capitalSelector = (chainId: number) =>
       return {
         bonds,
         vault,
+        chainId,
         userDataLoaded,
       }
     },

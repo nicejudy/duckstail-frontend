@@ -2,6 +2,7 @@ import { getFarmConfig } from '@pancakeswap/farms/constants'
 import { createFarmFetcher, SerializedFarm, SerializedFarmsState } from '@pancakeswap/farms'
 import { getBondConfig, SerializedBond, SerializedBondUserData, SerializedCapitalState, SerializedVault, supportedChainId } from '@pancakeswap/capital'
 import { ChainId } from '@pancakeswap/sdk'
+import { BIG_TEN } from '@pancakeswap/utils/bigNumber'
 import { createAsyncThunk, createSlice, isAnyOf } from '@reduxjs/toolkit'
 import type {
   UnknownAsyncThunkFulfilledAction,
@@ -10,6 +11,7 @@ import type {
 } from '@reduxjs/toolkit/dist/matchers'
 import BigNumber from 'bignumber.js'
 import erc20 from 'config/abi/erc20.json'
+import pairAbi from 'config/abi/IPancakePair.json'
 import stringify from 'fast-json-stable-stringify'
 import keyBy from 'lodash/keyBy'
 import type { AppState } from 'state'
@@ -36,21 +38,9 @@ const fetchCapitalPublicData = async ({ ids, chainId }): Promise<[SerializedBond
     (bondConfig) => ids.includes(bondConfig.id),
   )
 
-  const [[treasuryBalances]] = await Promise.all([
-    multicallv2({
-      abi: erc20,
-      calls: bondsCanFetch.map((bond) => { return {
-          address: bond.token.address,
-          name: "balanceOf",
-          params: [getDcpTreasuryAddress(chainId)],
-        }}),
-      chainId,
-    })
-  ])
-
   const [[reserves]] = await Promise.all([
     multicallv2({
-      abi: erc20,
+      abi: pairAbi,
       calls: [
         {
           address: "0x168A4C3f7Bc744b05381D8F18588698179849556",
@@ -61,12 +51,12 @@ const fetchCapitalPublicData = async ({ ids, chainId }): Promise<[SerializedBond
     })
   ])
 
-  const marketPrice = new BigNumber(reserves[1]).div(new BigNumber(reserves[0]))
+  const marketPrice = new BigNumber(reserves[1]._hex).div(new BigNumber(reserves[0]._hex)).times(BIG_TEN.pow(3))
 
-  const bonds = await fetchBonds(marketPrice, bondsCanFetch, treasuryBalances, chainId)
+  const bonds = await fetchBonds(marketPrice, bondsCanFetch, chainId)
 
-  const totalTreasuryBalanceBN = treasuryBalances.reduce((tokenBalance0, tokenBalance1) => new BigNumber(tokenBalance0).plus(new BigNumber(tokenBalance1)), 0);
-  const vault = await fetchVault(marketPrice, totalTreasuryBalanceBN, chainId)
+  const vault = await fetchVault(marketPrice, chainId)
+  
   return [bonds, vault]
 }
 
@@ -80,7 +70,7 @@ const initialState: SerializedCapitalState = {
 
 // Async thunks
 export const fetchInitialCapitalData = createAsyncThunk<
-  { bonds: SerializedBond[]; chainId: number },
+  { bonds: SerializedBond[]; vault: SerializedVault, chainId: number },
   { chainId: number },
   {
     state: AppState
@@ -98,6 +88,22 @@ export const fetchInitialCapitalData = createAsyncThunk<
         pendingPayout: '0',
       },
     })),
+    vault: {
+      currentIndex: '0',
+      totalSupply: '0',
+      marketCap: '0',
+      circSupply: '0',
+      fiveDayRate: '0',
+      stakingAPY: '0',
+      stakingTVL: '0',
+      stakingRebase: '0',
+      marketPrice: '0',
+      currentBlock: '0',
+      currentBlockTime: 0,
+      nextRebase: '0',
+      rfv: '0',
+      runway: '0',
+    },
     chainId,
   }
 })
@@ -149,6 +155,7 @@ async function getBondsUserValue(bonds, account, chainId) {
     const bondMaturationBlock = new BigNumber(userBondInfos[index].vesting).plus(new BigNumber(userBondInfos[index].lastTime))
 
     return {
+      id: bonds[index].id,
       allowance: userBondAllowances[index],
       balance: userBondTokenBalances[index],
       interestDue: userBondInfos[index].payout,
@@ -160,8 +167,17 @@ async function getBondsUserValue(bonds, account, chainId) {
   return bondsUserValue
 }
 
+export interface BondUserResponseData {
+  id: number
+  allowance: string
+  balance: string
+  interestDue: string
+  bondMaturationBlock: string
+  pendingPayout: string
+}
+
 export const fetchCapitalUserDataAsync = createAsyncThunk<
-  SerializedBondUserData[],
+BondUserResponseData[],
   { account: string; ids: number[]; chainId: number },
   {
     state: AppState
@@ -250,6 +266,7 @@ export const capitalSlice = createSlice({
 
     // Update capital with user data
     builder.addCase(fetchCapitalUserDataAsync.fulfilled, (state, action) => {
+      console.log(action.payload)
       const userDataMap = keyBy(action.payload, 'id')
       state.bonds = state.bonds.map((bond) => {
         const userDataEl = userDataMap[bond.id]

@@ -1,16 +1,7 @@
 import BigNumber from 'bignumber.js'
-import { ChainId } from '@pancakeswap/sdk'
 import erc20ABI from 'config/abi/erc20.json'
-// import masterchefABI from 'config/abi/masterchef.json'
-import masterchefABI from 'config/abi/masterchefV1.json'
 import bondABI from 'config/abi/dcpBond.json'
-import nonBscVault from 'config/abi/nonBscVault.json'
 import multicall, { multicallv2 } from 'utils/multicall'
-import { getMasterChefAddress, getNonBscVaultAddress } from 'utils/addressHelpers'
-import { SerializedFarmConfig } from 'config/constants/types'
-import { verifyBscNetwork } from 'utils/verifyBscNetwork'
-import { getCrossFarmingReceiverContract } from 'utils/contractHelpers'
-import { farmFetcher } from 'state/farms'
 import { BondConfigBaseProps } from '@pancakeswap/capital'
 
 export const fetchBondUserAllowances = async (
@@ -18,10 +9,8 @@ export const fetchBondUserAllowances = async (
   bondsToFetch: BondConfigBaseProps[],
   chainId: number,
 ) => {
-  const masterChefAddress = getMasterChefAddress(chainId)
-
   const calls = bondsToFetch.map((bond) => {
-    return { address: bond.token.address, name: 'allowance', params: [account, bond.bondAddress] }
+    return { address: bond.bondToken.address, name: 'allowance', params: [account, bond.bondAddress] }
   })
 
   const rawAllowances = await multicall<BigNumber[]>(erc20ABI, calls, chainId)
@@ -39,7 +28,7 @@ export const fetchBondUserTokenBalances = async (
 ) => {
   const calls = bondsToFetch.map((bond) => {
     return {
-      address: bond.token.address,
+      address: bond.bondToken.address,
       name: 'balanceOf',
       params: [account],
     }

@@ -259,6 +259,7 @@ export function useDefaultsFromURLSearch():
 
   useEffect(() => {
     if (!chainId || !native) return
+    if (!GTOKEN[chainId] || !USDT[chainId]) return
     const parsed = queryParametersToSwapState(query, native.symbol, GTOKEN[chainId]?.address ?? USDT[chainId]?.address)
 
     dispatch(

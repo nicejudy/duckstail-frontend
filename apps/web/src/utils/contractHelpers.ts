@@ -174,6 +174,7 @@ import type {
   DcpStakingHelper,
   DcpTreasury,
   DcpStakingWarmup,
+  DcpBond,
 } from 'config/abi/types'
 import { ChainId } from '@pancakeswap/sdk'
 
@@ -456,4 +457,8 @@ export const getDcpTreasuryContract = (signer?: Signer | Provider, chainId?: num
 
 export const getDcpWarmupContract = (signer?: Signer | Provider, chainId?: number) => {
   return getContract({ abi: dcpStakingWarmup, address: getDcpWarmupAddress(chainId), signer }) as DcpStakingWarmup
+}
+
+export const getBondContract = (address: string, signer?: Signer | Provider, chainId?: number) => {
+  return getContract({ abi: dcpBond, address, signer }) as DcpBond
 }

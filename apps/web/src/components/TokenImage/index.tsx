@@ -5,6 +5,7 @@ import {
   ImageProps,
 } from '@pancakeswap/uikit'
 import { Token, ChainId } from '@pancakeswap/sdk'
+import { SerializedWrappedToken } from '@pancakeswap/token-lists'
 
 interface TokenPairImageProps extends Omit<UIKitTokenPairImageProps, 'primarySrc' | 'secondarySrc'> {
   primaryToken: Token
@@ -39,4 +40,41 @@ interface TokenImageProps extends ImageProps {
 
 export const TokenImage: React.FC<React.PropsWithChildren<TokenImageProps>> = ({ token, ...props }) => {
   return <UIKitTokenImage src={getImageUrlFromToken(token)} {...props} />
+}
+
+
+
+interface STokenPairImageProps extends Omit<UIKitTokenPairImageProps, 'primarySrc' | 'secondarySrc'> {
+  primaryToken: SerializedWrappedToken
+  secondaryToken: SerializedWrappedToken
+}
+
+const getImageUrlFromSToken = (token: SerializedWrappedToken) => {
+  const address = token.address
+  if (token.chainId !== ChainId.BSC) {
+    return `/images/${token.chainId}/tokens/${address}.png`
+  }
+  return `/images/tokens/${address}.png`
+}
+
+export const STokenPairImage: React.FC<React.PropsWithChildren<STokenPairImageProps>> = ({
+  primaryToken,
+  secondaryToken,
+  ...props
+}) => {
+  return (
+    <UIKitTokenPairImage
+      primarySrc={getImageUrlFromSToken(primaryToken)}
+      secondarySrc={getImageUrlFromSToken(secondaryToken)}
+      {...props}
+    />
+  )
+}
+
+interface STokenImageProps extends ImageProps {
+  token: SerializedWrappedToken
+}
+
+export const STokenImage: React.FC<React.PropsWithChildren<STokenImageProps>> = ({ token, ...props }) => {
+  return <UIKitTokenImage src={getImageUrlFromSToken(token)} {...props} />
 }

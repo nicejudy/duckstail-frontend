@@ -26,7 +26,7 @@ const Spinner: React.FC<React.PropsWithChildren<SpinnerProps>> = ({ size = 128 }
         src="https://pancakeswap.finance/images/pancake-3d-spinner-v2.gif"
         alt="pancake-3d-spinner"
       /> */}
-      <StyledImage src="/logo.png" alt='spinner' />
+      <StyledImage src="/images/dko.png" alt='spinner' />
     </Box>
   );
 };

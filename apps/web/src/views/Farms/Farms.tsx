@@ -157,6 +157,7 @@ const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { t } = useTranslation()
   const { chainId } = useActiveChainId()
   const { data: farmsLP, userDataLoaded, poolLength, regularCakePerBlock } = useFarms()
+
   const cakePrice = usePriceCakeBusd()
 
   const [_query, setQuery] = useState('')

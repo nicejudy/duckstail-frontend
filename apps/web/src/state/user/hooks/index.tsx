@@ -48,6 +48,7 @@ import {
   setSubgraphHealthIndicatorDisplayed,
   updateUserLimitOrderAcceptedWarning,
   setZapDisabled,
+  updateUserBondsViewMode,
 } from '../actions'
 import { GAS_PRICE_GWEI } from '../../types'
 
@@ -262,6 +263,22 @@ export function useUserFarmsViewMode(): [ViewMode, (viewMode: ViewMode) => void]
   )
 
   return [userFarmsViewMode, setUserFarmsViewMode]
+}
+
+export function useUserBondsViewMode(): [ViewMode, (viewMode: ViewMode) => void] {
+  const dispatch = useAppDispatch()
+  const userBondsViewMode = useSelector<AppState, AppState['user']['userBondsViewMode']>((state) => {
+    return state.user.userBondsViewMode
+  })
+
+  const setUserBondsViewMode = useCallback(
+    (viewMode: ViewMode) => {
+      dispatch(updateUserBondsViewMode({ userBondsViewMode: viewMode }))
+    },
+    [dispatch],
+  )
+
+  return [userBondsViewMode, setUserBondsViewMode]
 }
 
 export function useUserPredictionAcceptedRisk(): [boolean, (acceptedRisk: boolean) => void] {

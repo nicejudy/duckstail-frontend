@@ -19,6 +19,7 @@ import {
   updateUserExpertMode,
   updateUserFarmStakedOnly,
   updateUserFarmsViewMode,
+  updateUserBondsViewMode,
   updateUserPoolStakedOnly,
   updateUserPoolsViewMode,
   updateUserSingleHopOnly,
@@ -77,6 +78,7 @@ export interface UserState {
   userPoolStakedOnly: boolean
   userPoolsViewMode: ViewMode
   userFarmsViewMode: ViewMode
+  userBondsViewMode: ViewMode
   userPredictionAcceptedRisk: boolean
   userLimitOrderAcceptedWarning: boolean
   userPredictionChartDisclaimerShow: boolean
@@ -109,6 +111,7 @@ export const initialState: UserState = {
   userPoolStakedOnly: false,
   userPoolsViewMode: ViewMode.TABLE,
   userFarmsViewMode: ViewMode.TABLE,
+  userBondsViewMode: ViewMode.TABLE,
   userPredictionAcceptedRisk: false,
   userLimitOrderAcceptedWarning: false,
   userPredictionChartDisclaimerShow: true,
@@ -203,6 +206,9 @@ export default createReducer(initialState, (builder) =>
     })
     .addCase(updateUserFarmsViewMode, (state, { payload: { userFarmsViewMode } }) => {
       state.userFarmsViewMode = userFarmsViewMode
+    })
+    .addCase(updateUserBondsViewMode, (state, { payload: { userBondsViewMode } }) => {
+      state.userBondsViewMode = userBondsViewMode
     })
     .addCase(updateUserPredictionAcceptedRisk, (state, { payload: { userAcceptedRisk } }) => {
       state.userPredictionAcceptedRisk = userAcceptedRisk
