@@ -1,11 +1,20 @@
-import FarmsMpPageLayout from 'views/Farms/MpPageLayout'
-import FarmsHistoryPage from 'pages/farms/history'
+// import FarmsMpPageLayout from 'views/Farms/MpPageLayout'
+// import FarmsHistoryPage from 'pages/farms/history'
 
-const MPFarmsHistoryPage = () => {
-  return <FarmsHistoryPage />
-}
+// const MPFarmsHistoryPage = () => {
+//   return <FarmsHistoryPage />
+// }
 
-MPFarmsHistoryPage.Layout = FarmsMpPageLayout
-MPFarmsHistoryPage.mp = true
+// MPFarmsHistoryPage.Layout = FarmsMpPageLayout
+// MPFarmsHistoryPage.mp = true
 
-export default MPFarmsHistoryPage
+// export default MPFarmsHistoryPage
+
+
+import { NotFound } from '@pancakeswap/uikit'
+
+const NotFoundPage = () => <NotFound />
+
+NotFoundPage.chains = []
+
+export default NotFoundPage
