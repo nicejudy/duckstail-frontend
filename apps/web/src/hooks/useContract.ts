@@ -61,6 +61,8 @@ import {
   getIfoCreditAddressContract,
   getBridgeContract,
   getBondContract,
+  getDcpStakingHelperContract,
+  getDcpStakingContract,
 } from 'utils/contractHelpers'
 import { useSigner } from 'wagmi'
 
@@ -397,4 +399,16 @@ export const useBond = (address: string, withSignerIfPossible = true) => {
   const { chainId } = useActiveChainId()
   const providerOrSigner = useProviderOrSigner(withSignerIfPossible)
   return useMemo(() => getBondContract(address, providerOrSigner, chainId), [address, providerOrSigner, chainId])
+}
+
+export const useDcpStaking = (withSignerIfPossible = true) => {
+  const { chainId } = useActiveChainId()
+  const providerOrSigner = useProviderOrSigner(withSignerIfPossible)
+  return useMemo(() => getDcpStakingContract(providerOrSigner, chainId), [providerOrSigner, chainId])
+}
+
+export const useDcpStakingHelper = (withSignerIfPossible = true) => {
+  const { chainId } = useActiveChainId()
+  const providerOrSigner = useProviderOrSigner(withSignerIfPossible)
+  return useMemo(() => getDcpStakingHelperContract(providerOrSigner, chainId), [providerOrSigner, chainId])
 }

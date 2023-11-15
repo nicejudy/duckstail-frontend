@@ -1,6 +1,5 @@
 import { CHAIN_IDS } from 'utils/wagmi'
-import { BondsPageLayout } from 'views/Capital/bond'
-import Bonds from 'views/Capital/bond/Bonds'
+import Bonds from 'views/Capital/bond'
 
 const BondPage = () => {
   return (

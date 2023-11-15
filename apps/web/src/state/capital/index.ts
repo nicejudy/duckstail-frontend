@@ -1,6 +1,6 @@
 import { getFarmConfig } from '@pancakeswap/farms/constants'
 import { createFarmFetcher, SerializedFarm, SerializedFarmsState } from '@pancakeswap/farms'
-import { getBondConfig, SerializedBond, SerializedBondUserData, SerializedCapitalState, SerializedVault, supportedChainId } from '@pancakeswap/capital'
+import { getBondConfig, SerializedBond, SerializedBondUserData, SerializedCapitalState, SerializedVault, SerializedVaultUserData, supportedChainId } from '@pancakeswap/capital'
 import { ChainId } from '@pancakeswap/sdk'
 import { BIG_TEN } from '@pancakeswap/utils/bigNumber'
 import { createAsyncThunk, createSlice, isAnyOf } from '@reduxjs/toolkit'
@@ -30,6 +30,7 @@ import {
   fetchBondUserInfos,
   fetchBondUserTokenBalances,
 } from './fetchBondUser'
+import { fetchVaultUserAllowances, fetchVaultUserTokenBalances } from './fetchVaultUser'
 // import { useDCPUSDTPrice } from './hooks'
 
 const fetchCapitalPublicData = async ({ ids, chainId }): Promise<[SerializedBond[], SerializedVault]> => {
@@ -103,6 +104,16 @@ export const fetchInitialCapitalData = createAsyncThunk<
       nextRebase: '0',
       rfv: '0',
       runway: '0',
+      userData: {
+        dcp: {
+          balance: '0',
+          allowance: '0',
+        },
+        sdcp: {
+          balance: '0',
+          allowance: '0',
+        },
+      },
     },
     chainId,
   }
@@ -167,6 +178,24 @@ async function getBondsUserValue(bonds, account, chainId) {
   return bondsUserValue
 }
 
+async function getVaultUserValue(account, chainId) {
+  const [userVaultAllowances, userVaultTokenBalances] = await Promise.all([
+    fetchVaultUserAllowances(account, chainId),
+    fetchVaultUserTokenBalances(account, chainId),
+  ])
+
+  return {
+      dcp: {
+        balance: userVaultTokenBalances[0],
+        allowance: userVaultAllowances[0],
+      },
+      sdcp: {
+        balance: userVaultTokenBalances[1],
+        allowance: userVaultAllowances[1],
+      },
+  }
+}
+
 export interface BondUserResponseData {
   id: number
   allowance: string
@@ -177,7 +206,7 @@ export interface BondUserResponseData {
 }
 
 export const fetchCapitalUserDataAsync = createAsyncThunk<
-BondUserResponseData[],
+  [BondUserResponseData[], SerializedVaultUserData],
   { account: string; ids: number[]; chainId: number },
   {
     state: AppState
@@ -192,10 +221,18 @@ BondUserResponseData[],
 
     const bondsConfig = await getBondConfig(chainId)
     const bondsCanFetch = bondsConfig.filter(
-      (bondConfig) => ids.includes(bondConfig.id)
+      (bondConfig) => ids.includes(bondConfig.id),
     )
 
-    return getBondsUserValue(bondsCanFetch, account, chainId)
+    try {
+      return [
+        await getBondsUserValue(bondsCanFetch, account, chainId),
+        await getVaultUserValue(account, chainId)
+      ]
+    } catch (error) {
+      console.error(error)
+      throw error
+    }
   },
   {
     condition: (arg, { getState }) => {
@@ -247,8 +284,9 @@ export const capitalSlice = createSlice({
     })
     // Init capital data
     builder.addCase(fetchInitialCapitalData.fulfilled, (state, action) => {
-      const { bonds, chainId } = action.payload
+      const { bonds, vault, chainId } = action.payload
       state.bonds = bonds
+      state.vault = vault
       state.chainId = chainId
     })
 
@@ -261,13 +299,13 @@ export const capitalSlice = createSlice({
         const liveBondData = bondPayloadIdMap[bond.id]
         return { ...bond, ...liveBondData }
       })
-      state.vault = vaultPayload
+      state.vault = { ...state.vault, ...vaultPayload }
     })
 
     // Update capital with user data
     builder.addCase(fetchCapitalUserDataAsync.fulfilled, (state, action) => {
-      console.log(action.payload)
-      const userDataMap = keyBy(action.payload, 'id')
+      const [bondPayload, vaultPayload] = action.payload
+      const userDataMap = keyBy(bondPayload, 'id')
       state.bonds = state.bonds.map((bond) => {
         const userDataEl = userDataMap[bond.id]
         if (userDataEl) {
@@ -275,6 +313,7 @@ export const capitalSlice = createSlice({
         }
         return bond
       })
+      state.vault = {...state.vault, userData: vaultPayload}
       state.userDataLoaded = true
     })
 

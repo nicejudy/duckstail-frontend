@@ -7,7 +7,9 @@ export const supportedChainId = [ChainId.ARBITRUM]
 
 export const getBondConfig = async (chainId: ChainId) => {
   try {
-    return (await import(`/${chainId}.ts`)).default.filter(
+    let chainId_ = chainId;
+    if (!supportedChainId.includes(chainId)) chainId_ = ChainId.ARBITRUM
+    return (await import(`/${chainId_}.ts`)).default.filter(
       (b: BondConfigBaseProps) => b.id !== null,
     ) as BondConfigBaseProps[]
   } catch (error) {

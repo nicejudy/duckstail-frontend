@@ -3,8 +3,6 @@ import { TICKET_LIMIT_PER_REQUEST } from 'config/constants/lottery'
 import { LotteryTicket } from 'config/constants/types'
 import { getLotteryV2Contract } from 'utils/contractHelpers'
 
-const lotteryContract = getLotteryV2Contract()
-
 export const processRawTicketsResponse = (
   ticketsResponse: Awaited<ReturnType<LotteryV2['viewUserInfoForLotteryId']>>,
 ): LotteryTicket[] => {
@@ -28,6 +26,7 @@ export const viewUserInfoForLotteryId = async (
   cursor: number,
   perRequestLimit: number,
 ): Promise<LotteryTicket[]> => {
+  const lotteryContract = getLotteryV2Contract()
   try {
     const data = await lotteryContract.viewUserInfoForLotteryId(account, lotteryId, cursor, perRequestLimit)
     return processRawTicketsResponse(data)

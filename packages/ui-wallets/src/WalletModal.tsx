@@ -318,6 +318,7 @@ function DesktopModal<T>({
         py="32px"
         zIndex="modal"
         borderRadius="card"
+        margin="auto"
         className={desktopWalletSelectionClass}
       >
         <AtomBox px="48px">

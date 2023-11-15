@@ -8,10 +8,9 @@ import profileABI from 'config/abi/pancakeProfile.json'
 import { getPancakeProfileAddress } from 'utils/addressHelpers'
 import fromPairs from 'lodash/fromPairs'
 
-const profileContract = getProfileContract()
-
 export const getTeam = async (teamId: number): Promise<Team> => {
   try {
+    const profileContract = getProfileContract()
     const { 0: teamName, 2: numberUsers, 3: numberPoints, 4: isJoinable } = await profileContract.getTeamProfile(teamId)
     const staticTeamInfo = teamsList.find((staticTeam) => staticTeam.id === teamId)
 
@@ -31,6 +30,7 @@ export const getTeam = async (teamId: number): Promise<Team> => {
  */
 export const getTeams = async (): Promise<TeamsById> => {
   try {
+    const profileContract = getProfileContract()
     const teamsById = fromPairs(teamsList.map((team) => [team.id, team]))
     const nbTeams = await profileContract.numberTeams()
 

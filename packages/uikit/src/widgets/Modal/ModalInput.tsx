@@ -92,7 +92,7 @@ const ModalInput: React.FC<React.PropsWithChildren<ModalInputProps>> = ({
   const isAtPercentMax = maxAmount && value === maxAmount.toString();
 
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative", marginBottom: "20px" }}>
       <StyledTokenInput isWarning={isBalanceZero}>
         <Flex justifyContent="space-between" pl="16px">
           <Text fontSize="14px">{inputTitle}</Text>
@@ -167,14 +167,14 @@ const ModalInput: React.FC<React.PropsWithChildren<ModalInputProps>> = ({
           )}
         </Flex>
       </StyledTokenInput>
-      {isBalanceZero && (
+      {/* {isBalanceZero && (
         <StyledErrorMessage fontSize="14px" color="failure">
-          {t("No tokens to stake")}:{" "}
+          {t("No tokens in your wallet")}:{" "}
           <Link fontSize="14px" bold={false} href={addLiquidityUrl} external color="failure">
             {t("Get %symbol%", { symbol })}
           </Link>
         </StyledErrorMessage>
-      )}
+      )} */}
       {needEnable && (
         <Text color="failure" fontSize="12px" mt="8px">
           {t('Insufficient token allowance. Click "Enable" to approve.')}

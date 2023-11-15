@@ -48,10 +48,10 @@ export const desktopWalletSelectionClass = style(
       maxWidth: '100%',
     },
     sm: {
-      maxWidth: '360px',
+      maxWidth: '100%',
     },
     lg: {
-      maxWidth: '408px',
+      maxWidth: '100%',
     },
   }),
 )

@@ -46,7 +46,7 @@ function GlobalHooks() {
   useAccountEventListener()
   useSentryUser()
   useThemeCookie()
-  useLockedEndNotification()
+  // useLockedEndNotification()
   return null
 }
 

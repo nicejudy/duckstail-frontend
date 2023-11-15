@@ -31,7 +31,7 @@ const StakeComponent: React.FunctionComponent<React.PropsWithChildren<StakeCompo
       <ActionContent>
         <Button width="100%" onClick={onPresentDeposit} variant="secondary">
             {
-              isTokenOnly ? 'Mint ' + lpSymbol + ' Bond' : t('Mint LP Bond')
+              isTokenOnly ? t('Mint %symbol% Bond', {symbol: lpSymbol}) : t('Mint LP Bond')
             }
         </Button>
       </ActionContent>

@@ -8,8 +8,6 @@ import { PotteryDepositStatus } from 'state/types'
 import { multicallv2 } from 'utils/multicall'
 import potteryVaultAbi from 'config/abi/potteryVaultAbi.json'
 
-const potteryDrawContract = getPotteryDrawContract()
-
 export const fetchPotterysAllowance = async (account: string, potteryVaultAddress: string) => {
   try {
     const contract = getBep20Contract(bscTokens.cake.address)
@@ -41,6 +39,7 @@ export const fetchVaultUserData = async (account: string, potteryVaultAddress: s
 
 export const fetchUserDrawData = async (account: string) => {
   try {
+    const potteryDrawContract = getPotteryDrawContract()
     const [reward, winCount] = await potteryDrawContract.userInfos(account)
     return {
       rewards: new BigNumber(reward.toString()).toJSON(),

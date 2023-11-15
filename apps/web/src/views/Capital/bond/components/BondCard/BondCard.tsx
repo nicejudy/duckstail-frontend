@@ -107,7 +107,6 @@ const BondCard: React.FC<React.PropsWithChildren<BondCardProps>> = ({
           <DetailsSection
             bond={bond}
             scanAddressLink={getBlockExploreLink(bond.bondAddress, 'address', chainId)}
-            addLiquidityUrl={liquidityUrlPathParts}
           />
         )}
       </ExpandingWrapper>

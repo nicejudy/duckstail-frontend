@@ -15,3 +15,17 @@ export const mintBond = async (bondContract, account, value, maxPremium, gasPric
     // gasPrice,
   })
 }
+
+export const stakeVault = async (stakingContract, account, value, gasPrice, gasLimit?: number) => {
+  return stakingContract.stake(value, account, {
+    gasLimit: gasLimit || DEFAULT_GAS_LIMIT,
+    // gasPrice,
+  })
+}
+
+export const unstakeVault = async (stakingContract, account, value, gasPrice, gasLimit?: number) => {
+  return stakingContract.stake(value, true, {
+    gasLimit: gasLimit || DEFAULT_GAS_LIMIT,
+    // gasPrice,
+  })
+}

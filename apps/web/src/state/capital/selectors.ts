@@ -18,7 +18,8 @@ export const capitalSelector = (chainId: number) =>
   createSelector(
     (state: State) => state.capital,
     (capital) => {
-      const { bonds, vault, userDataLoaded } = capital
+      const bonds = capital.bonds.filter((bond) => bond.bondToken.chainId === chainId)
+      const { vault, userDataLoaded } = capital
 
       return {
         bonds,

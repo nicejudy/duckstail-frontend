@@ -1,7 +1,12 @@
-import { NotFound } from '@pancakeswap/uikit'
+import { CHAIN_IDS } from 'utils/wagmi'
+import Vault from 'views/Capital/vault'
 
-const NotFoundPage = () => <NotFound />
+const VaultPage = () => {
+  return (
+    <Vault />
+  )
+}
 
-NotFoundPage.chains = []
+VaultPage.chains = CHAIN_IDS
 
-export default NotFoundPage
+export default VaultPage

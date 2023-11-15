@@ -92,15 +92,15 @@ const Home: React.FC<React.PropsWithChildren> = () => {
         index={2}
         hasCurvedDivider={false}
       >
-        {/* {account && chainId === ChainId.ETHEREUM && (
+        {account && chainId === ChainId.ETHEREUM && (
           <UserBannerWrapper>
             <UserBanner />
           </UserBannerWrapper>
-        )} */}
-        {/* <MultipleBanner /> */}
+        )}
+        <MultipleBanner />
         <Hero />
       </StyledHeroSection>
-      {/* <PageSection
+      <PageSection
         innerProps={{ style: { margin: '0', width: '100%' } }}
         containerProps={{
           id: 'home-2',
@@ -110,7 +110,7 @@ const Home: React.FC<React.PropsWithChildren> = () => {
         background={theme.colors.background}
       >
         <MetricsSection />
-      </PageSection> */}
+      </PageSection>
       <PageSection
         innerProps={{ style: HomeSectionContainerStyles }}
         background={theme.colors.background}
@@ -120,11 +120,11 @@ const Home: React.FC<React.PropsWithChildren> = () => {
         index={2}
         hasCurvedDivider={false}
       >
-        {/* <OuterWedgeWrapper>
+        <OuterWedgeWrapper>
           <InnerWedgeWrapper top>
             <WedgeTopLeft />
           </InnerWedgeWrapper>
-        </OuterWedgeWrapper> */}
+        </OuterWedgeWrapper>
         <SalesSection {...swapSectionData(t)} />
       </PageSection>
       <PageSection
@@ -145,7 +145,7 @@ const Home: React.FC<React.PropsWithChildren> = () => {
         {/* TODO: until we are enable fetch multi-chain farms */}
         {chainId === ChainId.BSC && <FarmsPoolsRow />}
       </PageSection>
-      {/* <PageSection
+      <PageSection
         innerProps={{ style: HomeSectionContainerStyles }}
         containerProps={{
           id: 'home-3',
@@ -154,7 +154,7 @@ const Home: React.FC<React.PropsWithChildren> = () => {
         hasCurvedDivider={false}
       >
         <WinSection />
-      </PageSection> */}
+      </PageSection>
       <PageSection
         innerProps={{ style: HomeSectionContainerStyles }}
         background={theme.colors.background}

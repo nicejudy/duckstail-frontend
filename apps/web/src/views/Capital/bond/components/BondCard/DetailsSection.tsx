@@ -7,7 +7,6 @@ import { BASE_ADD_LIQUIDITY_URL } from "config";
 export interface ExpandableSectionProps {
   bond?: SerializedBond
   scanAddressLink?: string
-  addLiquidityUrl?: string
 }
 
 const Wrapper = styled.div`
@@ -21,7 +20,6 @@ const StyledLinkExternal = styled(LinkExternal)`
 export const DetailsSection: React.FC<React.PropsWithChildren<ExpandableSectionProps>> = ({
   bond,
   scanAddressLink,
-  addLiquidityUrl
 }) => {
   const { t } = useTranslation();
 
@@ -33,7 +31,7 @@ export const DetailsSection: React.FC<React.PropsWithChildren<ExpandableSectionP
         <Text>{t("Total Purchased")}:</Text>
         {bond?.purchased ? <Text>{bond?.purchased}</Text> : <Skeleton width={75} height={25} />}
       </Flex>
-      <StyledLinkExternal href={addLiquidityUrl}>{t("Get %symbol%", { symbol: bond?.displayName })}</StyledLinkExternal>
+      <StyledLinkExternal href={`/swap?outputCurrency=${bond.bondToken.address}`}>{t("Get %symbol%", { symbol: bond?.displayName })}</StyledLinkExternal>
       {scanAddressLink && (
         <StyledLinkExternal isBscScan href={scanAddressLink}>
           {t("View Contract")}

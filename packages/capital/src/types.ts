@@ -41,7 +41,7 @@ export interface SerializedBond extends SerializedBondCalcPublicData {
   userData?: SerializedBondUserData
 }
 
-export interface SerializedVault {
+export interface SerializedVaultPublicData {
   currentIndex?: string
   totalSupply?: string
   marketCap?: string
@@ -56,6 +56,21 @@ export interface SerializedVault {
   nextRebase?: string
   rfv?: string
   runway?: string
+}
+
+export interface SerializedVaultUserData {
+  dcp: {
+    balance: string
+    allowance: string
+  }
+  sdcp: {
+    balance: string
+    allowance: string
+  }
+}
+
+export interface SerializedVault extends SerializedVaultPublicData {
+  userData?: SerializedVaultUserData
 }
 
 // export interface SerializedVaultUserData {

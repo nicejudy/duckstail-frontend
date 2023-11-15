@@ -221,6 +221,8 @@ const Row: React.FunctionComponent<React.PropsWithChildren<RowPropsWithLoading>>
                     </CellInner>
                   </td>
                 )
+              default: 
+                return <></>
             }
           })}
         </StyledTr>
