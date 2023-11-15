@@ -77,36 +77,36 @@ const Capital: React.FC<React.PropsWithChildren> = () => {
   const steps1: Step[] = [
     {
       label: t('DCP Price'),
-      title: vault ? `$${Number(vault.marketPrice).toLocaleString()}` : '',
-      subtitle: t('Prices are set when the round starts, equal to 5 USD in CAKE per ticket.'),
+      title: vault ? `${Number(vault.marketPrice).toLocaleString()} USD` : '',
+      subtitle: t(''),
     },
     {
       label: t('MarketCap'),
-      title: vault ? `$${Number(vault.marketCap).toLocaleString()}` : '',
-      subtitle: t('There is one draw every day alternating between 0 AM UTC and 12 PM UTC.'),
+      title: vault ? `${Number(vault.marketCap).toLocaleString()} USD` : '',
+      subtitle: t(''),
     },
     {
       label: t('Circulating Supply'),
       title: vault ? `${(Number(vault.circSupply) / 10**9).toLocaleString()} DCP` : '',
-      subtitle: t('Once the round’s over, come back to the page and check to see if you’ve won!'),
+      subtitle: t(''),
     },
   ]
 
   const steps2: Step[] = [
     {
-      label: t('Backing per PAL'),
-      title: t('$1'),
-      subtitle: t('Once the round’s over, come back to the page and check to see if you’ve won!'),
+      label: t('Backing per DCP'),
+      title: t('1 USD'),
+      subtitle: t(''),
     },
     {
       label: t('Current Index'),
       title: vault ? `${(Number(vault.currentIndex) / 10**9).toLocaleString()} DCP` : '',
-      subtitle: t('Once the round’s over, come back to the page and check to see if you’ve won!'),
+      subtitle: t(''),
     },
     {
       label: t('Treasury Balance'),
-      title: vault ? `$${totalPurchased.toLocaleString()}` : '',
-      subtitle: t('Once the round’s over, come back to the page and check to see if you’ve won!'),
+      title: vault ? `${totalPurchased.toLocaleString()} USD` : '',
+      subtitle: t(''),
     },
   ]
   return (
