@@ -192,4 +192,7 @@ export default {
   dcpStakingHelper: {
     42161: '0xeD48D415A46364657f3F3EC8e7a9f4c3D93E7AAC'
   },
+  multisender: {
+    42161: '0x2A7ED6133a17F86487e9951B61E11E8f8F530810'
+  },
 }

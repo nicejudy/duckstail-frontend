@@ -63,6 +63,7 @@ import {
   getBondContract,
   getDcpStakingHelperContract,
   getDcpStakingContract,
+  getMultisenderContract,
 } from 'utils/contractHelpers'
 import { useSigner } from 'wagmi'
 
@@ -411,4 +412,10 @@ export const useDcpStakingHelper = (withSignerIfPossible = true) => {
   const { chainId } = useActiveChainId()
   const providerOrSigner = useProviderOrSigner(withSignerIfPossible)
   return useMemo(() => getDcpStakingHelperContract(providerOrSigner, chainId), [providerOrSigner, chainId])
+}
+
+export const useMultisender = (withSignerIfPossible = true) => {
+  const { chainId } = useActiveChainId()
+  const providerOrSigner = useProviderOrSigner(withSignerIfPossible)
+  return useMemo(() => getMultisenderContract(providerOrSigner, chainId), [providerOrSigner, chainId])
 }

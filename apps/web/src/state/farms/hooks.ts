@@ -6,6 +6,7 @@ import { useEffect, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'state'
 import useSWRImmutable from 'swr/immutable'
+import { ChainId } from '@pancakeswap/sdk'
 import { BIG_ZERO } from '@pancakeswap/utils/bigNumber'
 import { useBCakeProxyContractAddress } from 'views/Farms/hooks/useBCakeProxyContractAddress'
 import { getMasterchefContract } from 'utils/contractHelpers'
@@ -35,13 +36,15 @@ export function useFarmsLength() {
 
 export const usePollFarmsWithUserData = () => {
   const dispatch = useAppDispatch()
-  const { account, chainId } = useActiveWeb3React()
-  const {
-    proxyAddress,
-    proxyCreated,
-    isLoading: isProxyContractLoading,
-  } = useBCakeProxyContractAddress(account, chainId)
+  const { account, chainId: _chainId } = useActiveWeb3React()
+  // const {
+  //   proxyAddress,
+  //   proxyCreated,
+  //   isLoading: isProxyContractLoading,
+  // } = useBCakeProxyContractAddress(account, chainId)
   const farmFlag = useFeatureFlag(featureFarmApiAtom)
+
+  const chainId = ChainId.ARBITRUM
 
   useSWRImmutable(
     chainId ? ['publicFarmData', chainId] : null,
@@ -55,16 +58,20 @@ export const usePollFarmsWithUserData = () => {
     },
   )
 
-  const name = proxyCreated
-    ? ['farmsWithUserData', account, proxyAddress, chainId]
-    : ['farmsWithUserData', account, chainId]
+  // const name = proxyCreated
+  //   ? ['farmsWithUserData', account, proxyAddress, chainId]
+  //   : ['farmsWithUserData', account, chainId]
+
+    const name = ['farmsWithUserData', account, chainId]
 
   useSWRImmutable(
-    account && chainId && !isProxyContractLoading ? name : null,
+    // account && chainId && !isProxyContractLoading ? name : null,
+    account && chainId && name,
     async () => {
       const farmsConfig = await getFarmConfig(chainId)
       const pids = farmsConfig.map((farmToFetch) => farmToFetch.pid)
-      const params = proxyCreated ? { account, pids, proxyAddress, chainId } : { account, pids, chainId }
+      // const params = proxyCreated ? { account, pids, proxyAddress, chainId } : { account, pids, chainId }
+      const params = { account, pids, chainId }
 
       dispatch(fetchFarmUserDataAsync(params))
     },

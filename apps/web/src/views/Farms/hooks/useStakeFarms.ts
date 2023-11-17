@@ -10,7 +10,7 @@ const useStakeFarms = (pid: number, vaultPid?: number) => {
   const gasPrice = useGasPrice()
   const oraclePrice = useOraclePrice(chainId)
   const masterChefContract = useMasterchef()
-  const nonBscVaultContract = useNonBscVault()
+  // const nonBscVaultContract = useNonBscVault()
 
   const handleStake = useCallback(
     async (amount: string) => {
@@ -19,14 +19,15 @@ const useStakeFarms = (pid: number, vaultPid?: number) => {
     [masterChefContract, pid, gasPrice],
   )
 
-  const handleStakeNonBsc = useCallback(
-    async (amount: string) => {
-      return nonBscStakeFarm(nonBscVaultContract, vaultPid, amount, gasPrice, account, oraclePrice, chainId)
-    },
-    [nonBscVaultContract, vaultPid, gasPrice, account, oraclePrice, chainId],
-  )
+  // const handleStakeNonBsc = useCallback(
+  //   async (amount: string) => {
+  //     return nonBscStakeFarm(nonBscVaultContract, vaultPid, amount, gasPrice, account, oraclePrice, chainId)
+  //   },
+  //   [nonBscVaultContract, vaultPid, gasPrice, account, oraclePrice, chainId],
+  // )
 
-  return { onStake: vaultPid ? handleStakeNonBsc : handleStake }
+  // return { onStake: vaultPid ? handleStakeNonBsc : handleStake }
+  return { onStake: handleStake }
 }
 
 export default useStakeFarms

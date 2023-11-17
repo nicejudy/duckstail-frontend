@@ -194,7 +194,7 @@ const config: (
       ].map((item) => addMenuItemSupported(item, chainId)),
     },
     {
-      label: t('Penta Coin'),
+      label: t('PentaCoin'),
       href: '/pentacoin',
       icon: PentaCoinIcon,
       fillIcon: PentaCoinIcon,

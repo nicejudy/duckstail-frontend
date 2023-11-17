@@ -30,7 +30,7 @@ export function SentryErrorBoundary({ children }) {
                 </Flex>
               )}
               <Button onClick={handleOnClick} mb="8px">{t('Click here to reset!')}</Button>
-              <Text mb="16px">{t('If it does not work still, please try to switch network to Arbitrum One.')}</Text>
+              <Text mb="16px">{t('If it still does not work, please try to switch network to Arbitrum One.')}</Text>
             </Flex>
           </Page>
         )

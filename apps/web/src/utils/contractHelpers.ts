@@ -51,6 +51,7 @@ import {
   getDcpStakingHelperAddress,
   getDcpTreasuryAddress,
   getDcpWarmupAddress,
+  getMultiSenderAddress,
 } from 'utils/addressHelpers'
 
 // ABI
@@ -175,6 +176,7 @@ import type {
   DcpTreasury,
   DcpStakingWarmup,
   DcpBond,
+  Multisender,
 } from 'config/abi/types'
 import { ChainId } from '@pancakeswap/sdk'
 
@@ -461,4 +463,8 @@ export const getDcpWarmupContract = (signer?: Signer | Provider, chainId?: numbe
 
 export const getBondContract = (address: string, signer?: Signer | Provider, chainId?: number) => {
   return getContract({ abi: dcpBond, address, signer }) as DcpBond
+}
+
+export const getMultisenderContract = (signer?: Signer | Provider, chainId?: number) => {
+  return getContract({ abi: dcpBond, address: getMultiSenderAddress(chainId), signer }) as Multisender
 }

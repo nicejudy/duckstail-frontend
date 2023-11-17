@@ -117,7 +117,7 @@ export const getICakeAddress = () => {
 }
 
 export const getBCakeFarmBoosterAddress = () => {
-  return getAddress(addresses.bCakeFarmBooster)
+  return getAddress(addresses.bCakeFarmBooster, ChainId.BSC)
 }
 
 export const getBCakeFarmBoosterProxyFactoryAddress = () => {
@@ -162,4 +162,8 @@ export const getDcpTreasuryAddress = (chainId?: number) => {
 
 export const getDcpWarmupAddress = (chainId?: number) => {
   return getAddress(addresses.dcpWarmup, chainId)
+}
+
+export const getMultiSenderAddress = (chainId?: number) => {
+  return getAddress(addresses.multisender, chainId)
 }
