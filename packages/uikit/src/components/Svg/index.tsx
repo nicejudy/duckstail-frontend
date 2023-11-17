@@ -101,6 +101,7 @@ export { default as OpenNewIcon } from "./Icons/OpenNew";
 export { default as OperaIcon } from "./Icons/Opera";
 export { default as PancakeRoundIcon } from "./Icons/PancakeRound";
 export { default as PencilIcon } from "./Icons/Pencil";
+export { default as PentaCoinIcon } from "./Icons/PentaCoin";
 export { default as PlayCircleOutlineIcon } from "./Icons/PlayCircleOutline";
 export { default as PocketWatchIcon } from "./Icons/PocketWatch";
 export { default as PoolIcon } from "./Icons/Pool";

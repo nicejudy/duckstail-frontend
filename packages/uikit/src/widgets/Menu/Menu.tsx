@@ -217,7 +217,7 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
               activeSubItem={activeSubItem}
             />
             <Inner isPushed={isPushed} showMenu={showMenu}>
-              {subLinks ? (
+              {subLinks && subLinks.length > 1 ? (
                 <Flex justifyContent="space-around" overflow="hidden">
                   <SubMenuItems
                     items={subLinksWithoutMobile}

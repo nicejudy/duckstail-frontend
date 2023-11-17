@@ -16,7 +16,7 @@ export function SentryErrorBoundary({ children }) {
         return (
           <Page>
             <Flex flexDirection="column" justifyContent="center" alignItems="center">
-              <LogoIcon width="64px" mb="8px" />
+              {/* <LogoIcon width="64px" mb="8px" /> */}
               <Text mb="16px">{t('Oops, something wrong.')}</Text>
               {eventId && (
                 <Flex flexDirection="column" style={{ textAlign: 'center' }} mb="8px">
@@ -29,7 +29,8 @@ export function SentryErrorBoundary({ children }) {
                   </Flex>
                 </Flex>
               )}
-              <Button onClick={handleOnClick}>{t('Click here to reset!')}</Button>
+              <Button onClick={handleOnClick} mb="8px">{t('Click here to reset!')}</Button>
+              <Text mb="16px">{t('If it does not work still, please try to switch network to Arbitrum One.')}</Text>
             </Flex>
           </Page>
         )

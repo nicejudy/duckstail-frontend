@@ -19,6 +19,7 @@ import {
   TradeFilledIcon,
   HomeIcon,
   CapitalIcon,
+  PentaCoinIcon,
 } from '@pancakeswap/uikit'
 import { ContextApi } from '@pancakeswap/localization'
 import { nftsBaseUrl } from 'views/Nft/market/constants'
@@ -190,6 +191,20 @@ const config: (
       image: '/images/dko.png',
       showItemsOnMobile: false,
       items: [
+      ].map((item) => addMenuItemSupported(item, chainId)),
+    },
+    {
+      label: t('Penta Coin'),
+      href: '/pentacoin',
+      icon: PentaCoinIcon,
+      fillIcon: PentaCoinIcon,
+      image: '/images/dko.png',
+      showItemsOnMobile: false,
+      items: [
+        {
+          label: t('Airdrop'),
+          href: '/pentacoin',
+        },
       ].map((item) => addMenuItemSupported(item, chainId)),
     },
     // {
