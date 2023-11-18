@@ -73,6 +73,7 @@ import bridge from 'config/abi/bridge.json'
 import dcp from 'config/abi/dcp.json'
 import sdcp from 'config/abi/sdcp.json'
 import dcpBond from 'config/abi/dcpBond.json'
+import multisender from 'config/abi/multisender.json'
 import dcpBondCalculator from 'config/abi/dcpBondCalculator.json'
 import dcpDistributor from 'config/abi/dcpDistributor.json'
 import dcpStaking from 'config/abi/dcpStaking.json'
@@ -466,5 +467,5 @@ export const getBondContract = (address: string, signer?: Signer | Provider, cha
 }
 
 export const getMultisenderContract = (signer?: Signer | Provider, chainId?: number) => {
-  return getContract({ abi: dcpBond, address: getMultiSenderAddress(chainId), signer }) as Multisender
+  return getContract({ abi: multisender, address: getMultiSenderAddress(chainId), signer }) as Multisender
 }

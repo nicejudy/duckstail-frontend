@@ -1,7 +1,19 @@
-import { NotFound } from '@pancakeswap/uikit'
+import { ChainId } from '@pancakeswap/sdk'
+import Airdrop from 'views/Airdrop'
 
-const NotFoundPage = () => <NotFound />
+const AirdropPage = ({ userIp }) => {
+  return <Airdrop />
+}
 
-NotFoundPage.chains = []
+AirdropPage.chains = [ChainId.ARBITRUM]
 
-export default NotFoundPage
+export default AirdropPage
+
+
+// import { NotFound } from '@pancakeswap/uikit'
+
+// const NotFoundPage = () => <NotFound />
+
+// NotFoundPage.chains = []
+
+// export default NotFoundPage
