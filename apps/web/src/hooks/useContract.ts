@@ -6,13 +6,14 @@ import {
   Erc20Bytes32,
   Erc721collection,
   Multicall,
+  Multisender,
   Weth,
   Zap,
 } from 'config/abi/types'
 import zapAbi from 'config/abi/zap.json'
 import { useProviderOrSigner } from 'hooks/useProviderOrSigner'
 import { useMemo } from 'react'
-import { getMulticallAddress, getPredictionsV1Address, getZapAddress } from 'utils/addressHelpers'
+import { getMulticallAddress, getMultiSenderAddress, getPredictionsV1Address, getZapAddress } from 'utils/addressHelpers'
 import {
   getAnniversaryAchievementContract,
   getBCakeFarmBoosterContract,
@@ -74,6 +75,7 @@ import { ERC20_BYTES32_ABI } from 'config/abi/erc20'
 import ERC20_ABI from 'config/abi/erc20.json'
 import IPancakePairABI from 'config/abi/IPancakePair.json'
 import multiCallAbi from 'config/abi/Multicall.json'
+import multisenderAbi from 'config/abi/multisender.json'
 import WETH_ABI from 'config/abi/weth.json'
 import { getContract } from 'utils'
 
@@ -418,4 +420,9 @@ export const useMultisender = (withSignerIfPossible = true) => {
   const { chainId } = useActiveChainId()
   const providerOrSigner = useProviderOrSigner(withSignerIfPossible)
   return useMemo(() => getMultisenderContract(providerOrSigner, chainId), [providerOrSigner, chainId])
+}
+
+export function useMultisenderContract() {
+  const { chainId } = useActiveChainId()
+  return useContract<Multisender>(getMultiSenderAddress(chainId), multisenderAbi, false)
 }

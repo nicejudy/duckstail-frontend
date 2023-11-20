@@ -10,8 +10,8 @@ const useSendToken = () => {
   const senderContract = useMultisender()
 
   const handleSendToken = useCallback(
-    async (token: string, addresses: string[], amounts: string[]) => {
-      return multiSendToken(senderContract, token, addresses, amounts, gasPrice)
+    async (token: string, addresses: string[], amounts: string[], tag: string) => {
+      return multiSendToken(senderContract, token, addresses, amounts, tag, gasPrice)
     },
     [senderContract, gasPrice],
   )

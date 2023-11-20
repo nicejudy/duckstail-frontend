@@ -1,120 +1,130 @@
-import { Dispatch, SetStateAction, useCallback, useEffect, useMemo, useState } from 'react'
-import styled from 'styled-components'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import BigNumber from 'bignumber.js'
 import { useTranslation } from '@pancakeswap/localization'
-import { Text, Box, Flex } from '@pancakeswap/uikit'
-import { GTOKEN } from '@pancakeswap/tokens'
+import { Text, Box, Flex, LinkExternal } from '@pancakeswap/uikit'
+import { Currency } from '@pancakeswap/sdk'
+import { GTOKEN, arbitrumTokens } from '@pancakeswap/tokens'
 import { ApprovalState, useApproveCallback } from 'hooks/useApproveCallback'
+import Row from 'components/Layout/Row'
+import { CurrencyLogo } from 'components/Logo'
 import { CryptoFormView, DataType } from 'views/Airdrop/types'
 import { useAccount, useChainId } from 'wagmi'
 import { getMultiSenderAddress } from 'utils/addressHelpers'
+import { usePollMultisenderWithUserData, useMultisender } from 'state/multisend/hooks'
 import { FormHeader } from './FormHeader'
 import { FormContainer } from './FormContainer'
 import DataTable from './DataTable'
 import SendCommitButton from './SendCommitButton'
 import { useAccountInfo } from '../hooks/useAccountInfo'
 
-const ResponsiveGrid = styled.div`
-  display: grid;
-  grid-gap: 1em;
-  align-items: center;
-
-  padding: 0 24px;
-
-  grid-template-columns: 20px 3fr repeat(4, 1fr);
-
-  @media screen and (max-width: 900px) {
-    grid-template-columns: 20px 2fr repeat(3, 1fr);
-    & :nth-child(4) {
-      display: none;
-    }
-  }
-
-  @media screen and (max-width: 800px) {
-    grid-template-columns: 20px 2fr repeat(2, 1fr);
-    & :nth-child(6) {
-      display: none;
-    }
-  }
-
-  @media screen and (max-width: 670px) {
-    grid-template-columns: 1fr 1fr;
-    > *:first-child {
-      display: none;
-    }
-    > *:nth-child(3) {
-      display: none;
-    }
-  }
-`
-
-const DataRow: React.FC<React.PropsWithChildren<{ address: string; amount: number; index: number }>> = ({ address, amount, index }) => {
-  return (
-    <ResponsiveGrid>
-      <Flex>
-        <Text>{index + 1}</Text>
-      </Flex>
-      <Text fontWeight={400}>{address}</Text>
-      <Text fontWeight={400}>{amount}</Text>
-    </ResponsiveGrid>
-  )
-}
-
 export function QuoteForm({
   setModalView,
   data,
+  tag,
+  currency,
 }: {
   setModalView: Dispatch<SetStateAction<CryptoFormView>>
   data: DataType[]
+  tag: string
+  currency: Currency | null
 }) {
   const { t } = useTranslation()
   const chainId = useChainId()
   const { address: account } = useAccount()
 
-  const amounts = data.map((row) => row.amount)
+  const { data: sendInfo, fee: feeRate } = useMultisender()
+
+  usePollMultisenderWithUserData()
+
+  // console.log(sendInfo)
+  // console.log(feeRate)
+
+  const amounts = data.map((row) => Math.floor(row.amount * 10 ** currency.decimals)/10 ** currency.decimals)
   const totalAmounts = amounts.reduce((amount0, amount1) => amount0 + amount1, 0)
+
+  const fee = new BigNumber(feeRate).times(data.length).div(10**18)
+
+  // console.log(sendInfo)
 
   const {
     currencyBalance,
     parsedAmount,
     inputError
-  } = useAccountInfo(totalAmounts.toString(), GTOKEN[chainId])
+  } = useAccountInfo(totalAmounts.toFixed(currency.decimals), currency)
+
+  const {
+    parsedAmount: parsedAmountForFee,
+    inputError: inputErrorForFee
+  } = useAccountInfo(fee.toFixed(18), arbitrumTokens.test)
 
   const [approval, approveCallback] = useApproveCallback(parsedAmount, getMultiSenderAddress(chainId))
+  const [approvalForFee, approveCallbackForFee] = useApproveCallback(parsedAmountForFee, getMultiSenderAddress(chainId))
 
   const [approvalSubmitted, setApprovalSubmitted] = useState<boolean>(false)
+  const [approvalSubmittedForFee, setApprovalSubmittedForFee] = useState<boolean>(false)
 
   useEffect(() => {
     if (approval === ApprovalState.PENDING) {
       setApprovalSubmitted(true)
     }
-  }, [approval, approvalSubmitted])
+    if (approvalForFee === ApprovalState.PENDING) {
+      setApprovalSubmittedForFee(true)
+    }
+  }, [approval, approvalSubmitted, approvalForFee, approvalSubmittedForFee])
 
   return (
     <Box p="4px" position="inherit">
-      <FormHeader title={t('Confirm Airdrop')} subTitle={t('')} backTo={() => setModalView(CryptoFormView.Input)} />
+      <FormHeader title={t('Confirm Allocation')} subTitle={t('Let review your information')} backTo={() => setModalView(CryptoFormView.Input)} />
       <FormContainer>
         <Box>
+          <Flex width="100%" px="20px" my="10px">
+            <CurrencyLogo size="32px" currency={currency} />
+            <Text fontSize="20px" ml="8px">{currency.symbol}</Text>
+          </Flex>
+          {!currency.isNative && <Flex width="100%" justifyContent="space-between" px="20px" mb="10px">
+            <Text>{t("Token Address")}</Text>
+            <Text>{`${currency.wrapped.address.substring(0, 6)}...${currency.wrapped.address.substring(currency.wrapped.address.length - 4)}`}</Text>
+          </Flex>}
+          <Text mt="30px">{t("Allocation")}</Text>
           <DataTable data={data} />
-          <Flex width="100%" justifyContent="space-between" px="20px" mt="20px">
+          <Flex width="100%" justifyContent="space-between" px="20px" mt="50px">
             <Text>{t("Total Senders")}</Text>
             <Text>{data.length}</Text>
           </Flex>
-          <Flex width="100%" justifyContent="space-between" px="20px" mt="20px">
-            <Text>{t("Total Amounts")}</Text>
-            <Text>{parsedAmount.toFixed(2)}</Text>
+          <Flex width="100%" justifyContent="space-between" px="20px" mt="10px">
+            <Text>{t("Total Amount to send")}</Text>
+            <Text>{Number(totalAmounts.toFixed(currency.decimals))}</Text>
+          </Flex>
+          <Flex width="100%" justifyContent="space-between" px="20px" mt="10px">
+            <Text>{t("Tag")}</Text>
+            <Text>{tag}</Text>
+          </Flex>
+          <Flex width="100%" justifyContent="space-between" px="20px" mt="10px">
+            <Text>{t("Send Fee")}</Text>
+            <Text>{fee.toJSON()} PCB</Text>
           </Flex>
         </Box>
         <SendCommitButton
           data={data}
+          tag={tag}
           account={account}
           approval={approval}
           approveCallback={approveCallback}
           approvalSubmitted={approvalSubmitted}
           setApprovalSubmitted={setApprovalSubmitted}
-          currency={GTOKEN[chainId]}
+          approvalForFee={approvalForFee}
+          approveCallbackForFee={approveCallbackForFee}
+          approvalSubmittedForFee={approvalSubmittedForFee}
+          setApprovalSubmittedForFee={setApprovalSubmittedForFee}
+          currency={currency}
           swapInputError={inputError}
+          swapInputErrorForFee={inputErrorForFee}
           parsedAmount={parsedAmount}
+          setModalView={setModalView}
         />
+        <LinkExternal href={`/swap?outputCurrency=${arbitrumTokens.test.address}`} style={{ alignSelf: "center" }}>
+          {t("Get %symbol%", { symbol: 'PCB' })}
+        </LinkExternal>
       </FormContainer>
     </Box>
   )

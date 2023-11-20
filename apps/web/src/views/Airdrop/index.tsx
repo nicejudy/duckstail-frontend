@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import styled from 'styled-components'
+import { Currency } from '@pancakeswap/sdk'
 import { Card, Text } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
+import useNativeCurrency from 'hooks/useNativeCurrency'
 import { CryptoFormView, DataType } from 'views/Airdrop/types'
 import Page from '../Page'
 import { InputForm } from './components/InputForm'
@@ -18,18 +20,24 @@ const Airdrop: React.FC<React.PropsWithChildren> = () => {
 
   const [ data, setData ] = useState<DataType[]>([])
 
+  const [ tag, setTag ] = useState<string>("")
+  
+  const native = useNativeCurrency()
+
+  const [currency, setCurrency] = useState<Currency | null>(() => native)
+
   const { t } = useTranslation()
 
   return (
     <Page>
-      <Text mb="20px" color="secondary" bold fontSize="28px">
+      {/* <Text mb="20px" color="secondary" bold fontSize="28px">
         {t('PentaCoin Airdrop')}
-      </Text>
+      </Text> */}
       <StyledAppBody mb="24px">
         {modalView === CryptoFormView.Input ? (
-          <InputForm setModalView={setModalView} setData={setData} />
+          <InputForm setModalView={setModalView} setData={setData} tag={tag} setTag={setTag} currency={currency} setCurrency={setCurrency} />
         ) : (
-          <QuoteForm setModalView={setModalView} data={data} />
+          <QuoteForm setModalView={setModalView} data={data} tag={tag} currency={currency} />
         )}
       </StyledAppBody>
     </Page>

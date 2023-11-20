@@ -22,6 +22,13 @@ export const arbitrumTokens = {
     'FRAX',
     'Frax',
   ),
+  test: new ERC20Token(
+    ChainId.ARBITRUM,
+    '0x095Fe4F968A0747c4ee8a569185131DDE086636e',
+    18,
+    'TEST',
+    'TEST',
+  ),
   dcp: DCP[ChainId.ARBITRUM],
   sdcp: SDCP[ChainId.ARBITRUM],
 }

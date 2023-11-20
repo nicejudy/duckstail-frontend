@@ -1,30 +1,35 @@
+import BigNumber from "bignumber.js";
 import { useTranslation } from "@pancakeswap/localization";
 import { ArrowBackIcon, ArrowForwardIcon, Flex, Text } from "@pancakeswap/uikit";
 import { Fragment, useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
+import { SerializedSendInfo } from "state/multisend/types";
+import { CurrencyLogo } from "components/Logo";
+import useNativeCurrency from "hooks/useNativeCurrency";
+import { useCurrency } from "hooks/Tokens";
+import { ZERO_ADDRESS } from "config/constants";
 import { DataType } from "../types";
 
 
 const ResponsiveGrid = styled.div`
   display: grid;
-  grid-gap: 1em;
+  grid-gap: 0.5em;
   align-items: center;
 
   padding: 0 24px;
 
-  grid-template-columns: 40px 4fr repeat(1, 1fr);
-
-  & :nth-child(3) {
-    display: none;
-  }
+  grid-template-columns: 40px 1fr repeat(4, 1fr);
 
   @media screen and (max-width: 670px) {
-    grid-template-columns: 20px 4fr repeat(1, 1fr);
-    & :nth-child(2) {
+    grid-template-columns: 20px 1fr repeat(1, 1fr);
+    & :nth-child(3) {
       display: none;
     }
-    & :nth-child(3) {
-      display: block;
+    & :nth-child(4) {
+      display: none;
+    }
+    & :nth-child(5) {
+      display: none;
     }
   }
 `
@@ -59,25 +64,46 @@ const Arrow = styled.div`
   }
 `
 
-const DataRow: React.FC<React.PropsWithChildren<{ data: {address: string, amount: number}; index: number }>> = ({ data, index }) => {
-  const accountEllipsis = data.address ? `${data.address.substring(0, 6)}...${data.address.substring(data.address.length - 4)}` : null;
+function formatUnixTimestamp(unixTimestamp) {
+  const date = new Date(unixTimestamp * 1000); // Convert seconds to milliseconds
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+  const day = String(date.getDate()).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  const seconds = String(date.getSeconds()).padStart(2, '0');
+
+  const formattedDate = `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
+  return formattedDate;
+}
+
+const DataRow: React.FC<React.PropsWithChildren<{ data: SerializedSendInfo; index: number }>> = ({ data, index }) => {
+  const native = useNativeCurrency()
+  const token = useCurrency(data.token)
+  const currency = data.token === ZERO_ADDRESS ? native : token
+  // const accountEllipsis = data.token ? `${data.token.substring(0, 6)}...${data.token.substring(data.token.length - 4)}` : null;
   return (
     <ResponsiveGrid>
       <Flex>
         <Text>{index + 1}</Text>
       </Flex>
-      <Text fontWeight={400}>{data.address}</Text>
-      <Text fontWeight={400}>{accountEllipsis}</Text>
-      <Text fontWeight={400}>{data.amount}</Text>
+      <Flex alignItems="center">
+        <CurrencyLogo size="20px" currency={currency} />
+        <Text fontSize="16px" ml="8px">{currency.symbol}</Text>
+      </Flex>
+      <Text fontWeight={400}>{data.receivers}</Text>
+      <Text fontWeight={400}>{new BigNumber(data.amount).div(10 ** currency.decimals).toJSON()}</Text>
+      <Text fontWeight={400}>{formatUnixTimestamp(Number(data.timestamp))}</Text>
+      <Text fontWeight={400}>{data.tag}</Text>
     </ResponsiveGrid>
   )
 }
 
 const MAX_ITEMS = 10
 
-const DataTable: React.FC<
+const HistoryTable: React.FC<
   React.PropsWithChildren<{
-    data: DataType[]
+    data: SerializedSendInfo[]
     maxItems?: number
   }>
 > = ({ data, maxItems = MAX_ITEMS }) => {
@@ -109,20 +135,26 @@ const DataTable: React.FC<
           #
         </Text>
         <Text color="secondary" fontSize="12px" bold>
-          {t("Receiver")}
+          {t("Token")}
         </Text>
         <Text color="secondary" fontSize="12px" bold>
-          {t("Receiver")}
+          {t("Receivers")}
         </Text>
         <Text color="secondary" fontSize="12px" bold>
           {t("Amount")}
+        </Text>
+        <Text color="secondary" fontSize="12px" bold>
+          {t("Time")}
+        </Text>
+        <Text color="secondary" fontSize="12px" bold>
+          {t("Tag")}
         </Text>
       </ResponsiveGrid>
 
       {sortedData.map((row, i) => {
         if (row) {
           return (
-            <Fragment key={row.address}>
+            <Fragment key={row.timestamp}>
               <DataRow data={row} index={(page - 1) * MAX_ITEMS + i} />
             </Fragment>
           )
@@ -150,4 +182,4 @@ const DataTable: React.FC<
   )
 }
 
-export default DataTable
+export default HistoryTable

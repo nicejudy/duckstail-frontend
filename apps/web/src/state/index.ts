@@ -5,6 +5,7 @@ import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, R
 import storage from 'redux-persist/lib/storage'
 import burn from './burn/reducer'
 import capitalReducer from './capital'
+import multisenderReducer from './multisend'
 import farmsReducer from './farms'
 import farmsReducerV1 from './farmsV1'
 import { updateVersion } from './global/actions'
@@ -34,6 +35,7 @@ const persistedReducer = persistReducer(
   combineReducers({
     global: globalReducer,
     capital: capitalReducer,
+    multisender: multisenderReducer,
     farms: farmsReducer,
     farmsV1: farmsReducerV1,
     pools: poolsReducer,

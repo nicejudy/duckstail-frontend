@@ -60,7 +60,7 @@ const Accordion: React.FC<Props> = ({
     }
   };
 
-  const iconWidth = href === '/capital' ? "16px" : href === '/pentacoin' ? "16px" : "20px"
+  const iconWidth = href === '/capital' || href === '/multisender' ? "16px" : "20px"
 
   return (
     <Container>

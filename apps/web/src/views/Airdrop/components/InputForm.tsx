@@ -2,11 +2,16 @@ import { Dispatch, SetStateAction, useCallback, useEffect, useMemo, useState } f
 import { isAddress } from '@ethersproject/address'
 import { useTranslation } from '@pancakeswap/localization'
 import { Currency, ChainId } from '@pancakeswap/sdk'
-import { Text, Box, Message, TextArea, Button, Input } from '@pancakeswap/uikit'
+import { Text, Box, Message, TextArea, Button, Input, useModal, ChevronDownIcon, Flex } from '@pancakeswap/uikit'
 import styled, { useTheme } from 'styled-components'
 import { CryptoFormView, DataType } from 'views/Airdrop/types'
 import { useAccount, useChainId } from 'wagmi'
 import ConnectWalletButton from 'components/ConnectWalletButton'
+import Row from 'components/Layout/Row'
+import { CommonBasesType } from 'components/SearchModal/types'
+import { CurrencyLogo } from 'components/Logo'
+import CurrencySearchModal from 'components/SearchModal/CurrencySearchModal'
+import useNativeCurrency from 'hooks/useNativeCurrency'
 import { FormHeader } from './FormHeader'
 import { FormContainer } from './FormContainer'
 
@@ -15,12 +20,37 @@ const StyledTextArea = styled(TextArea)`
   min-width: 100%;
 `
 
+const StyledButton = styled(Button)`
+  background-color: ${({ theme }) => theme.colors.input};
+  color: ${({ theme }) => theme.colors.text};
+  box-shadow: none;
+  border-radius: 8px;
+  margin-bottom: 20px;
+`
+
+const StyledFlex = styled(Flex)`
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    flex-direction: row;
+  }
+`
+
 export function InputForm({
   setModalView,
   setData,
+  tag,
+  setTag,
+  currency,
+  setCurrency,
 }: {
   setModalView: Dispatch<SetStateAction<CryptoFormView>>
   setData: Dispatch<SetStateAction<DataType[]>>
+  tag: string
+  setTag: Dispatch<SetStateAction<string>>
+  currency: Currency | null
+  setCurrency: Dispatch<SetStateAction<Currency | null>>
 }) {
   const { t } = useTranslation()
   const chainId = useChainId()
@@ -113,11 +143,45 @@ Ex:
 0x0000000000000000000000000000000000003000 1
   `;
 
+  const handleCurrencySelect = useCallback(
+    (_currency: Currency) => {
+      setCurrency(_currency)
+    },
+    [],
+  )
+
+  const [onPresentCurrencyModal] = useModal(
+    <CurrencySearchModal
+      onCurrencySelect={handleCurrencySelect}
+      showCommonBases
+      selectedCurrency={currency ?? undefined}
+      commonBasesType={CommonBasesType.LIQUIDITY}
+    />,
+    true,
+    true,
+    'selectCurrencyModal',
+  )
+
   return (
     <Box p="4px" position="inherit">
-      <FormHeader title={t('Edit Airdrop')} subTitle={t('')} />
+      <FormHeader title={t('Add Allocation')} subTitle={t('Enter your token to be send with allocations')} />
       <FormContainer>
         <Box>
+          <StyledButton
+            endIcon={<ChevronDownIcon />}
+            onClick={() => {
+              onPresentCurrencyModal()
+            }}
+          >
+            {currency ? (
+              <Row>
+                <CurrencyLogo currency={currency} />
+                <Text ml="8px">{currency.symbol}</Text>
+              </Row>
+            ) : (
+              <Text ml="8px">{t('Select a Token')}</Text>
+            )}
+          </StyledButton>
           <StyledTextArea
             rows={12}
             placeholder={placeholder}
@@ -144,6 +208,14 @@ Ex:
             {t("Or choose from CSV file")}
           </Button>
         </Box>
+        <StyledFlex>
+          <Text pr="20px">Tag:</Text>
+          <Input
+            type="text"
+            value={tag}
+            onChange={(e) => setTag(e.target.value)}
+          />
+        </StyledFlex>
         {allocationError !== "" && <Text color="failure" fontSize="14px" px="4px">
           {allocationError}
         </Text>}

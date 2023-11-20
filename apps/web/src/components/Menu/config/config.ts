@@ -194,16 +194,20 @@ const config: (
       ].map((item) => addMenuItemSupported(item, chainId)),
     },
     {
-      label: t('PentaCoin'),
-      href: '/pentacoin',
+      label: t('MultiSender'),
+      href: '/multisender',
       icon: PentaCoinIcon,
       fillIcon: PentaCoinIcon,
       image: '/images/dko.png',
       showItemsOnMobile: false,
       items: [
         {
-          label: t('Airdrop'),
-          href: '/pentacoin',
+          label: t('Send'),
+          href: '/multisender',
+        },
+        {
+          label: t('History'),
+          href: '/multisender/history',
         },
       ].map((item) => addMenuItemSupported(item, chainId)),
     },
