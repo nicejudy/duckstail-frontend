@@ -81,7 +81,7 @@ export function HistoryForm() {
               </LabelWrapper>
             </FilterContainer>
           </Flex>
-          {activeData.length > 0 && <HistoryTable data={activeData} />}
+          {account && activeData.length > 0 && <HistoryTable data={activeData} />}
           {activeData.length === 0 && <Flex justifyContent="center">
             <Text>{t("You don't have any history.")}</Text>
           </Flex>}

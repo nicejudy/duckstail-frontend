@@ -175,16 +175,7 @@ export const multisenderSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(resetUserState, (state) => {
-      state.data = state.data.map((row) => {
-        return {
-          token: "",
-          receivers: "",
-          amount: "",
-          timestamp: "",
-          tag: "",
-        }
-      })
-      state.userDataLoaded = false
+      state.data = []
     })
     // Init multisender data
     builder.addCase(fetchInitialMultisenderData.fulfilled, (state, action) => {
