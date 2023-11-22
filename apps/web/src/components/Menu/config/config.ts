@@ -219,10 +219,11 @@ const config: (
       fillIcon: LaunchPadIcon,
       image: '/images/dko.png',
       showItemsOnMobile: false,
+      hideSubNav: true,
       items: [
         {
           label: t('Create launchpad'),
-          href: '/launchpad/default-launch',
+          href: '/launchpad',
         },
         {
           label: t('Create fair launch'),
