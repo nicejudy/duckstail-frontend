@@ -78,13 +78,13 @@ export function PageNetworkSupportModal() {
             {t('Disconnect Wallet')}
           </Button>
         )}
-        {foundChain && lastValidPath && (
+        {/* {foundChain && lastValidPath && (
           <NextLink href={lastValidPath ?? ''} passHref>
             <Button width="100%" as="a">
               {t('Stay on %chain%', { chain: foundChain.name })}
             </Button>
           </NextLink>
-        )}
+        )} */}
       </Grid>
     </Modal>
   )

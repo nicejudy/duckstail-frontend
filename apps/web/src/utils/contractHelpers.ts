@@ -286,6 +286,7 @@ export const getTradingCompetitionContractMoD = (signer?: Signer | Provider) => 
   return getContract({
     abi: tradingCompetitionMoDAbi,
     address: getTradingCompetitionAddressMoD(),
+    chainId: ChainId.BSC,
     signer,
   }) as TradingCompetitionMoD
 }

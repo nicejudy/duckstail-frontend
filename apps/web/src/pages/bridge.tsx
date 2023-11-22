@@ -18,6 +18,7 @@ import Script from 'next/script'
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import styled, { useTheme } from 'styled-components'
+import { ChainId } from '@pancakeswap/sdk'
 import { Flex, Text, Box } from '@pancakeswap/uikit'
 import { STARGATE_JS } from '../components/stargate/config'
 import { StargateWidget } from '../components/stargate'
@@ -111,6 +112,8 @@ function PoweredBy() {
     </Flex>
   )
 }
+
+Bridge.chains = [ChainId.ARBITRUM, ChainId.ETHEREUM]
 
 export default Bridge
 

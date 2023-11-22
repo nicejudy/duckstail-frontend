@@ -56,7 +56,7 @@ const Home: React.FC<React.PropsWithChildren> = () => {
       <style jsx global>
         {`
           #home-1 .page-bg {
-            background: white;
+            // background: white;
           }
           [data-theme='dark'] #home-1 .page-bg {
             // background: radial-gradient(103.12% 50% at 50% 50%, #21193a 0%, #191326 100%);
@@ -92,11 +92,11 @@ const Home: React.FC<React.PropsWithChildren> = () => {
         index={2}
         hasCurvedDivider={false}
       >
-        {account && chainId === ChainId.ETHEREUM && (
+        {/* {account && chainId === ChainId.ETHEREUM && (
           <UserBannerWrapper>
             <UserBanner />
           </UserBannerWrapper>
-        )}
+        )}`` */}
         <MultipleBanner />
         <Hero />
       </StyledHeroSection>

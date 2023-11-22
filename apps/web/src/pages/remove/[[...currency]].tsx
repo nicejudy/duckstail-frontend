@@ -1,3 +1,4 @@
+import { ChainId } from '@pancakeswap/sdk'
 import { USDC, USDT } from '@pancakeswap/tokens'
 import { useCurrency } from 'hooks/Tokens'
 import { useActiveChainId } from 'hooks/useActiveChainId'
@@ -45,7 +46,7 @@ const RemoveLiquidityPage = () => {
   )
 }
 
-RemoveLiquidityPage.chains = CHAIN_IDS
+RemoveLiquidityPage.chains = [ChainId.ARBITRUM]
 
 export default RemoveLiquidityPage
 

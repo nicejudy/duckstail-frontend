@@ -60,7 +60,22 @@ const Accordion: React.FC<Props> = ({
     }
   };
 
-  const iconWidth = href === '/capital' || href === '/multisender' ? "16px" : "20px"
+  let iconWidth = "20px"
+
+  switch (href) {
+    case '/capital':
+      iconWidth = "16px"
+      break
+    case '/multisender':
+      iconWidth = "16px"
+      break
+    case '/launchpad':
+      iconWidth = "16px"
+      break
+    default:
+      iconWidth = "20px"
+      break
+  }
 
   return (
     <Container>

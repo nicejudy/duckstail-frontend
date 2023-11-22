@@ -4,7 +4,7 @@ import CompetitionBanner from '../CompetitionBanner'
 import IFOBanner from '../IFOBanner'
 import PerpetualBanner from '../PerpetualBanner'
 import useIsRenderIfoBanner from './useIsRenderIFOBanner'
-import useIsRenderCompetitionBanner from './useIsRenderCompetitionBanner'
+// import useIsRenderCompetitionBanner from './useIsRenderCompetitionBanner'
 import AptosBanner from '../AptosBanner'
 
 interface IBannerConfig {
@@ -26,7 +26,7 @@ interface IBannerConfig {
  */
 export const useMultipleBannerConfig = () => {
   const isRenderIFOBanner = useIsRenderIfoBanner()
-  const isRenderCompetitionBanner = useIsRenderCompetitionBanner()
+  // const isRenderCompetitionBanner = useIsRenderCompetitionBanner()
 
   return useMemo(() => {
     const NO_SHUFFLE_BANNERS: IBannerConfig[] = [
@@ -39,7 +39,7 @@ export const useMultipleBannerConfig = () => {
 
     const SHUFFLE_BANNERS: IBannerConfig[] = [
       {
-        shouldRender: isRenderCompetitionBanner,
+        shouldRender: true,
         banner: <CompetitionBanner />,
       },
       {
@@ -50,5 +50,5 @@ export const useMultipleBannerConfig = () => {
     return [...NO_SHUFFLE_BANNERS, ...shuffle(SHUFFLE_BANNERS)]
       .filter((bannerConfig: IBannerConfig) => bannerConfig.shouldRender)
       .map((bannerConfig: IBannerConfig) => bannerConfig.banner)
-  }, [isRenderIFOBanner, isRenderCompetitionBanner])
+  }, [isRenderIFOBanner])
 }

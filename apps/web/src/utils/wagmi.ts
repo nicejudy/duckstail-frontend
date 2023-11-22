@@ -34,7 +34,7 @@ const arbitrum1 : Chain = {
   }
 }
 
-const CHAINS = [arbitrum1]
+const CHAINS = [arbitrum1, mainnet]
 
 const getNodeRealUrl = (networkName: string) => {
   let host = null

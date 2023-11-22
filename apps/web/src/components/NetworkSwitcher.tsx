@@ -185,7 +185,7 @@ export const NetworkSwitcher = () => {
         mr="8px"
         placement="bottom"
         variant={isLoading ? 'pending' : isWrongNetwork ? 'danger' : 'default'}
-        avatarSrc={`/images/chains/${chainId}.png`}
+        avatarSrc={`/images/chains/${chainId === 42161 ? "42161-1" : chainId}.png`}
         disabled={cannotChangeNetwork}
         text={
           isLoading ? (
@@ -195,7 +195,7 @@ export const NetworkSwitcher = () => {
           ) : foundChain ? (
             <>
               <Box display={['none', null, null, null, null, 'block']}>{foundChain.name}</Box>
-              <Box display={['block', null, null, null, null, 'none']}>{symbol}</Box>
+              <Box display={['block', null, null, null, null, 'none']}>{chainId === 42161 ? "ARB" : symbol}</Box>
             </>
           ) : (
             t('Select a Network')

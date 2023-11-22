@@ -1,3 +1,4 @@
+import { ChainId } from '@pancakeswap/sdk'
 import { USDC, USDT } from '@pancakeswap/tokens'
 import { useCurrency } from 'hooks/Tokens'
 import useNativeCurrency from 'hooks/useNativeCurrency'
@@ -47,7 +48,7 @@ const AddLiquidityPage = () => {
   )
 }
 
-AddLiquidityPage.chains = CHAIN_IDS
+AddLiquidityPage.chains = [ChainId.ARBITRUM]
 
 export default AddLiquidityPage
 

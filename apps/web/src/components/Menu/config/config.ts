@@ -19,7 +19,8 @@ import {
   TradeFilledIcon,
   HomeIcon,
   CapitalIcon,
-  PentaCoinIcon,
+  MultisenderIcon,
+  LaunchPadIcon,
 } from '@pancakeswap/uikit'
 import { ContextApi } from '@pancakeswap/localization'
 import { nftsBaseUrl } from 'views/Nft/market/constants'
@@ -196,8 +197,8 @@ const config: (
     {
       label: t('MultiSender'),
       href: '/multisender',
-      icon: PentaCoinIcon,
-      fillIcon: PentaCoinIcon,
+      icon: MultisenderIcon,
+      fillIcon: MultisenderIcon,
       image: '/images/dko.png',
       showItemsOnMobile: false,
       items: [
@@ -208,6 +209,36 @@ const config: (
         {
           label: t('History'),
           href: '/multisender/history',
+        },
+      ].map((item) => addMenuItemSupported(item, chainId)),
+    },
+    {
+      label: t('Launchpad'),
+      href: '/launchpad',
+      icon: LaunchPadIcon,
+      fillIcon: LaunchPadIcon,
+      image: '/images/dko.png',
+      showItemsOnMobile: false,
+      items: [
+        {
+          label: t('Create launchpad'),
+          href: '/launchpad/default-launch',
+        },
+        {
+          label: t('Create fair launch'),
+          href: '/launchpad/fair-launch',
+        },
+        {
+          label: t('Create dutch auction'),
+          href: '/launchpad/dutch-auction',
+        },
+        {
+          label: t('Create a token'),
+          href: '/launchpad/create-token',
+        },
+        {
+          label: t('Launchpad list'),
+          href: '/launchpad/launchpad-list',
         },
       ].map((item) => addMenuItemSupported(item, chainId)),
     },

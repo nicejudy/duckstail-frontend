@@ -1,3 +1,4 @@
+import { ChainId } from '@pancakeswap/sdk'
 import { CHAIN_IDS } from 'utils/wagmi'
 import Capital from 'views/Capital'
 
@@ -7,6 +8,6 @@ const CapitalPage = () => {
   )
 }
 
-CapitalPage.chains = CHAIN_IDS
+CapitalPage.chains = [ChainId.ARBITRUM]
 
 export default CapitalPage

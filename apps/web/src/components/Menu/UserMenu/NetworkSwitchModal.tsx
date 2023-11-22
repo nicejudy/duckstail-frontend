@@ -79,7 +79,7 @@ export function NetworkSwitchModal<T = unknown>(props: NetworkSwitchModalProps<T
     <ModalWrapper onDismiss={props.onDismiss} style={{ overflow: 'visible', border: 'none', maxWidth: "360px" }}>
       <AtomBox position="relative">
       <AtomBox py="32px" px="24px">
-          <Heading color="color" as="h4" pb="24px">
+          <Heading color="text" as="h4" pb="24px">
             {t('Switch Network')}
           </Heading>
           {/* <Text color="textSubtle" small pt="24px" pb="32px">
@@ -87,7 +87,7 @@ export function NetworkSwitchModal<T = unknown>(props: NetworkSwitchModalProps<T
               'Start by connecting with one of the wallets below. Be sure to store your private keys or seed phrase securely. Never share them with anyone.',
             )}
           </Text> */}
-          <Flex mt="30px">
+          <Flex>
           {chains
         .filter((chain) => !chain.testnet || chain.id === chainId)
         .map((chain) => (
