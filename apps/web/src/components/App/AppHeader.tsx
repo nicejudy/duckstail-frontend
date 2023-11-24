@@ -43,7 +43,7 @@ const AppHeader: React.FC<React.PropsWithChildren<Props>> = ({ title, subtitle, 
         <Flex flexDirection="column" width="100%">
           <Flex my="8px" alignItems="center" justifyContent="space-between">
             <Flex>
-              <Heading as="h2">{title}</Heading>
+              <Heading as="h1">{title}</Heading>
               {helper && <QuestionHelper text={helper} ml="4px" placement="top-start" />}
             </Flex>
             {!noConfig && (
