@@ -52,6 +52,8 @@ import {
   getDcpTreasuryAddress,
   getDcpWarmupAddress,
   getMultiSenderAddress,
+  getLockerAddress,
+  getLaunchpadAddress,
 } from 'utils/addressHelpers'
 
 // ABI
@@ -74,6 +76,8 @@ import dcp from 'config/abi/dcp.json'
 import sdcp from 'config/abi/sdcp.json'
 import dcpBond from 'config/abi/dcpBond.json'
 import multisender from 'config/abi/multisender.json'
+import locker from 'config/abi/locker.json'
+import launchpadFactory from 'config/abi/launchpadFactory.json'
 import dcpBondCalculator from 'config/abi/dcpBondCalculator.json'
 import dcpDistributor from 'config/abi/dcpDistributor.json'
 import dcpStaking from 'config/abi/dcpStaking.json'
@@ -178,6 +182,8 @@ import type {
   DcpStakingWarmup,
   DcpBond,
   Multisender,
+  Locker,
+  LaunchpadFactory
 } from 'config/abi/types'
 import { ChainId } from '@pancakeswap/sdk'
 
@@ -469,4 +475,12 @@ export const getBondContract = (address: string, signer?: Signer | Provider, cha
 
 export const getMultisenderContract = (signer?: Signer | Provider, chainId?: number) => {
   return getContract({ abi: multisender, address: getMultiSenderAddress(chainId), signer }) as Multisender
+}
+
+export const getLockerContract = (signer?: Signer | Provider, chainId?: number) => {
+  return getContract({ abi: locker, address: getLockerAddress(chainId), signer }) as Locker
+}
+
+export const getLaunchpadContract = (signer?: Signer | Provider, chainId?: number) => {
+  return getContract({ abi: launchpadFactory, address: getLaunchpadAddress(chainId), signer }) as LaunchpadFactory
 }

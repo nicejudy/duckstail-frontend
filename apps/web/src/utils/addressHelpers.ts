@@ -167,3 +167,11 @@ export const getDcpWarmupAddress = (chainId?: number) => {
 export const getMultiSenderAddress = (chainId?: number) => {
   return getAddress(addresses.multisender, chainId)
 }
+
+export const getLockerAddress = (chainId?: number) => {
+  return getAddress(addresses.locker, chainId)
+}
+
+export const getLaunchpadAddress = (chainId?: number) => {
+  return getAddress(addresses.launchpad, chainId)
+}

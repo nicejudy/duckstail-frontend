@@ -195,4 +195,10 @@ export default {
   multisender: {
     42161: '0x59b5AE145dC7Fbf32Ae41e03Fd071311f3a8eFD2'
   },
+  locker: {
+    42161: '0x83696B8968a9D0F075Ac23ca37aF76442B66A30e'
+  },
+  launchpad: {
+    42161: '0xD5a21dB87dD620c5bb70009A5Df4f269902a03aF'
+  }
 }

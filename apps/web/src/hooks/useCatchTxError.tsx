@@ -1,11 +1,49 @@
 import { useCallback, useState } from 'react'
+import { BigNumber, BigNumberish } from "@ethersproject/bignumber";
 import { useTranslation } from '@pancakeswap/localization'
 import { useToast } from '@pancakeswap/uikit'
-import { TransactionReceipt, TransactionResponse } from '@ethersproject/providers'
+import { TransactionResponse } from '@ethersproject/providers'
 import { ToastDescriptionWithTx } from 'components/Toast'
 
 import { logError, isUserRejected } from 'utils/sentry'
 import useActiveWeb3React from './useActiveWeb3React'
+
+interface Log {
+  blockNumber: number;
+  blockHash: string;
+  transactionIndex: number;
+
+  removed: boolean;
+
+  address: string;
+  data: string;
+
+  topics: Array<string>;
+
+  transactionHash: string;
+  logIndex: number;
+}
+
+interface TransactionReceipt {
+  to: string
+  from: string
+  contractAddress: string
+  transactionIndex: number
+  root?: string
+  gasUsed: BigNumber
+  logsBloom: string
+  blockHash: string
+  transactionHash: string
+  logs: Array<Log>
+  blockNumber: number
+  confirmations: number
+  cumulativeGasUsed: BigNumber
+  effectiveGasPrice: BigNumber
+  byzantium: boolean
+  type: number
+  status?: number
+  events?: Array<any>
+}
 
 export type TxResponse = TransactionResponse | null
 
@@ -67,6 +105,7 @@ export default function useCatchTxError(): CatchTxErrorReturn {
          * wait for useSWRMutation finished, so we could apply SWR in case manually trigger tx call
          */
         tx = await callTx()
+        console.log(tx)
 
         toastSuccess(`${t('Transaction Submitted')}!`, <ToastDescriptionWithTx txHash={tx.hash} />)
 

@@ -46,7 +46,7 @@ const Input = styled.input<InputProps>`
   border: 1px solid ${({ theme }) => theme.colors.input};
 
   &::placeholder {
-    color: ${({ theme }) => theme.colors.textSubtle};
+    color: ${({ theme }) => theme.colors.textDisabled};
   }
 
   &:disabled {

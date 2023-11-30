@@ -230,10 +230,6 @@ const config: (
           href: '/launchpad/fair-launch',
         },
         {
-          label: t('Create dutch auction'),
-          href: '/launchpad/dutch-auction',
-        },
-        {
           label: t('Create a token'),
           href: '/launchpad/create-token',
         },

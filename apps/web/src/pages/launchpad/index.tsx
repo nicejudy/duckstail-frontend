@@ -1,19 +1,10 @@
-// import { ChainId } from '@pancakeswap/sdk'
-// import Airdrop from 'views/Airdrop'
+import { ChainId } from '@pancakeswap/sdk'
+import Launchpad from 'views/Launchpad'
 
-// const AirdropPage = ({ userIp }) => {
-//   return <Airdrop />
-// }
+const LaunchpadPage = () => {
+  return <Launchpad />
+}
 
-// AirdropPage.chains = [ChainId.ARBITRUM, ChainId.ETHEREUM]
+LaunchpadPage.chains = [ChainId.ARBITRUM, ChainId.ETHEREUM]
 
-// export default AirdropPage
-
-
-import { NotFound } from '@pancakeswap/uikit'
-
-const NotFoundPage = () => <NotFound />
-
-NotFoundPage.chains = []
-
-export default NotFoundPage
+export default LaunchpadPage

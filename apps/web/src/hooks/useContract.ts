@@ -5,6 +5,7 @@ import {
   Erc20,
   Erc20Bytes32,
   Erc721collection,
+  Locker,
   Multicall,
   Multisender,
   Weth,
@@ -13,7 +14,7 @@ import {
 import zapAbi from 'config/abi/zap.json'
 import { useProviderOrSigner } from 'hooks/useProviderOrSigner'
 import { useMemo } from 'react'
-import { getMulticallAddress, getMultiSenderAddress, getPredictionsV1Address, getZapAddress } from 'utils/addressHelpers'
+import { getLockerAddress, getMulticallAddress, getMultiSenderAddress, getPredictionsV1Address, getZapAddress } from 'utils/addressHelpers'
 import {
   getAnniversaryAchievementContract,
   getBCakeFarmBoosterContract,
@@ -65,6 +66,8 @@ import {
   getDcpStakingHelperContract,
   getDcpStakingContract,
   getMultisenderContract,
+  getLockerContract,
+  getLaunchpadContract,
 } from 'utils/contractHelpers'
 import { useSigner } from 'wagmi'
 
@@ -76,6 +79,8 @@ import ERC20_ABI from 'config/abi/erc20.json'
 import IPancakePairABI from 'config/abi/IPancakePair.json'
 import multiCallAbi from 'config/abi/Multicall.json'
 import multisenderAbi from 'config/abi/multisender.json'
+import lockerAbi from 'config/abi/locker.json'
+import launchpadAbi from 'config/abi/launchpadFactory.json'
 import WETH_ABI from 'config/abi/weth.json'
 import { getContract } from 'utils'
 
@@ -425,4 +430,16 @@ export const useMultisender = (withSignerIfPossible = true) => {
 export function useMultisenderContract() {
   const { chainId } = useActiveChainId()
   return useContract<Multisender>(getMultiSenderAddress(chainId), multisenderAbi, false)
+}
+
+export const useLocker = (withSignerIfPossible = true) => {
+  const { chainId } = useActiveChainId()
+  const providerOrSigner = useProviderOrSigner(withSignerIfPossible)
+  return useMemo(() => getLockerContract(providerOrSigner, chainId), [providerOrSigner, chainId])
+}
+
+export const useLaunchpad = (withSignerIfPossible = true) => {
+  const { chainId } = useActiveChainId()
+  const providerOrSigner = useProviderOrSigner(withSignerIfPossible)
+  return useMemo(() => getLaunchpadContract(providerOrSigner, chainId), [providerOrSigner, chainId])
 }
