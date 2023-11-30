@@ -5,27 +5,27 @@ import _toNumber from "lodash/toNumber";
 import { useTranslation } from "@pancakeswap/localization";
 import { getFullDisplayBalance, formatNumber, getDecimalAmount } from "@pancakeswap/utils/formatBalance";
 import { SerializedBond } from "@pancakeswap/capital";
-import { getInterestBreakdown } from "@pancakeswap/utils/compoundApyHelpers";
+// import { getInterestBreakdown } from "@pancakeswap/utils/compoundApyHelpers";
 import { BIG_TEN, BIG_ZERO } from "@pancakeswap/utils/bigNumber";
 import { trimTrailZero } from "@pancakeswap/utils/trimTrailZero";
 import { 
   Modal, 
-  ModalV2, 
+  // ModalV2, 
   ModalBody, 
   ModalActions, 
   ModalInput,
   Flex,
-  Box,
+  // Box,
   Text,
   Button,
-  IconButton,
-  Skeleton,
-  Message,
-  MessageText,
+  // IconButton,
+  // Skeleton,
+  // Message,
+  // MessageText,
   AutoRenewIcon,
-  ErrorIcon,
-  CalculateIcon,
-  RoiCalculatorModal,
+  // ErrorIcon,
+  // CalculateIcon,
+  // RoiCalculatorModal,
   LinkExternal
 } from "@pancakeswap/uikit";
 

@@ -203,7 +203,7 @@ async function getBoostedFarmsStakeValue(farms, account, chainId, proxyAddress) 
     fetchFarmUserStakedBalances(account, farms, chainId),
     fetchFarmUserEarnings(account, farms, chainId),
     // Proxy call
-    fetchFarmUserAllowances(account, farms, chainId, proxyAddress),
+    fetchFarmUserAllowances(account, farms, chainId),
     fetchFarmUserStakedBalances(proxyAddress, farms, chainId),
     fetchFarmUserEarnings(proxyAddress, farms, chainId),
   ])

@@ -1,5 +1,5 @@
 import { STokenImage, STokenPairImage, TokenImage, TokenPairImage } from 'components/TokenImage'
-import { bscTokens } from '@pancakeswap/tokens'
+// import { bscTokens } from '@pancakeswap/tokens'
 import { SerializedBond } from '@pancakeswap/capital'
 import BondTokenInfo from './BondTokenInfo'
 

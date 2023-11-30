@@ -1,18 +1,17 @@
 import BigNumber from 'bignumber.js'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { SLOW_INTERVAL } from 'config/constants'
-import { usePriceByPairs } from 'hooks/useBUSDPrice'
-import { useEffect, useMemo } from 'react'
+// import { usePriceByPairs } from 'hooks/useBUSDPrice'
+import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'state'
 import useSWRImmutable from 'swr/immutable'
-import { BIG_ZERO } from '@pancakeswap/utils/bigNumber'
-import { DCP, USDT } from '@pancakeswap/tokens'
+// import { BIG_ZERO } from '@pancakeswap/utils/bigNumber'
+// import { DCP, USDT } from '@pancakeswap/tokens'
 import { useActiveChainId } from 'hooks/useActiveChainId'
 import { SerializedHistory } from './types'
 import { multisenderSelector } from './selectors'
 import { fetchMultisenderUserDataAsync, fetchMultisenderPublicDataAsync} from '.'
-import { State } from '../types'
 
 export const usePollMultisenderWithUserData = () => {
   const dispatch = useAppDispatch()

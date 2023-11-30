@@ -1,9 +1,9 @@
 import { useCallback } from 'react'
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
+// import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { burn, burnETH } from 'utils/calls'
-import { useBridge, useMasterchef, useNonBscVault } from 'hooks/useContract'
+import { useBridge } from 'hooks/useContract'
 import { useGasPrice } from 'state/user/hooks'
-import { useOraclePrice } from 'views/Farms/hooks/useFetchOraclePrice'
+// import { useOraclePrice } from 'views/Farms/hooks/useFetchOraclePrice'
 
 const useBurnToken = (pid: number, isNative = false) => {
   const gasPrice = useGasPrice()

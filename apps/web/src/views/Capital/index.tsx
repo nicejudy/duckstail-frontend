@@ -66,7 +66,7 @@ const Capital: React.FC<React.PropsWithChildren> = () => {
 
   usePollBondsWithUserData()
 
-  const userDataReady = !account || (!!account && userDataLoaded)
+  // const userDataReady = !account || (!!account && userDataLoaded)
 
   const treasuryBalances = bonds.map((bond) => bond.purchased)
 

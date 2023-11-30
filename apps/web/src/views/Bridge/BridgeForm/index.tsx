@@ -1,61 +1,35 @@
 import { useTranslation } from '@pancakeswap/localization'
 import { Currency, CurrencyAmount, NATIVE, Percent, ChainId, } from '@pancakeswap/sdk'
 import {
-  ArrowDownIcon,
   Box,
-  Button,
-  Checkbox,
-  Flex,
-  Message,
-  MessageText,
-  Skeleton,
   Swap as SwapUI,
-  Text,
-  useModal,
 } from '@pancakeswap/uikit'
-import BigNumber from 'bignumber.js'
-import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
-import { useIsTransactionUnsupported } from 'hooks/Trades'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import { useBridgeActionHandlers, useSwapActionHandlers } from 'state/swap/useSwapActionHandlers'
-import { useStableSwapByDefault } from 'state/user/smartRouter'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useBridgeActionHandlers } from 'state/swap/useSwapActionHandlers'
 import { maxAmountSpend } from 'utils/maxAmountSpend'
-import AccessRisk from 'views/Swap/components/AccessRisk'
 
 import addresses from 'config/constants/contracts'
 
 import replaceBrowserHistory from '@pancakeswap/utils/replaceBrowserHistory'
-import CurrencyInputPanel from 'components/CurrencyInputPanel'
 import { AutoColumn } from 'components/Layout/Column'
 import { AutoRow } from 'components/Layout/Row'
 import { CommonBasesType } from 'components/SearchModal/types'
 import { useCurrency, useCurrencyBridge } from 'hooks/Tokens'
 import { ApprovalState, useApproveCallback } from 'hooks/useApproveCallback'
-import useWrapCallback, { WrapType } from 'hooks/useWrapCallback'
 import useBridgePool from 'hooks/useBridgePool'
 import { useSwitchNetwork } from 'hooks/useSwitchNetwork'
 import { useAtomValue } from 'jotai'
 import { Field } from 'state/swap/actions'
-import { useDerivedSwapInfo, useSwapState } from 'state/swap/hooks'
-import { CHAIN_QUERY_NAME } from 'config/chains'
-import { useExpertModeManager, useUserSlippageTolerance } from 'state/user/hooks'
-import { currencyId } from 'utils/currencyId'
+import { useSwapState } from 'state/swap/hooks'
 import CurrencyInputPanelForBridge from 'components/CurrencyInputPanel/bridge'
-import AddressInputPanel from 'views/Swap/components/AddressInputPanel'
-import AdvancedSwapDetailsDropdown from 'views/Swap/components/AdvancedSwapDetailsDropdown'
-import { ArrowWrapper, Wrapper } from 'views/Swap/components/styleds'
-import SwapCommitButton from 'views/Swap/components/SwapCommitButton'
+import { Wrapper } from 'views/Swap/components/styleds'
 import useRefreshBlockNumberID from 'views/Swap/hooks/useRefreshBlockNumber'
 import useWarningImport from 'views/Bridge/hooks/useWarningImport'
-import { SwapFeaturesContext } from 'views/Swap/SwapFeaturesContext'
-import { useDerivedSwapInfoWithStableSwap, useIsSmartRouterBetter, useTradeInfo } from 'views/Swap/SmartSwap/hooks'
 import { useDerivedBridgeInfoWithStableSwap } from './hooks/useDerivedSwapInfoWithStableSwap'
 import SmartSwapCommitButton from './components/SmartSwapCommitButton'
 import CurrencyInputHeader from '../components/CurrencyInputHeader'
 import { combinedTokenMapFromOfficialsUrlsAtom } from '../../../state/lists/hooks'
-import SettingsModal from '../../../components/Menu/GlobalSettings/SettingsModal'
-import { SettingsMode } from '../../../components/Menu/GlobalSettings/types'
 
 const getPID = (symbol?: string, chainId?: number) => {
   if (symbol === "MATIC") {
@@ -85,21 +59,13 @@ export const BridgeForm: React.FC<Record<string, never>> = () => {
   const sourceChain = chainId === ChainId.ETHEREUM ? chainId : ChainId.ARBITRUM
   const targetChain = sourceChain === ChainId.ETHEREUM ? ChainId.ARBITRUM : ChainId.ETHEREUM
 
-  const { pendingChainId, canSwitch, switchNetworkAsync } = useSwitchNetwork()
-
-  // for expert mode
-  const [isExpertMode] = useExpertModeManager()
-
-  // get custom setting values for user
-  const [allowedSlippage] = useUserSlippageTolerance()
-  const [allowUseSmartRouter, setAllowUseSmartRouter] = useState(() => false)
+  const { switchNetworkAsync } = useSwitchNetwork()
 
   // swap state & price data
 
   const {
     independentField,
     typedValue,
-    recipient,
     [Field.INPUT]: { currencyId: inputCurrencyId },
     [Field.OUTPUT]: { currencyId: outputCurrencyId },
   } = useSwapState()
@@ -239,8 +205,6 @@ export const BridgeForm: React.FC<Record<string, never>> = () => {
     [maxAmountInput, onUserInput],
   )
 
-  const swapIsUnsupported = useIsTransactionUnsupported(currencies?.INPUT, currencies?.OUTPUT)
-
   const hasAmount = Boolean(parsedAmount)
 
   const onRefreshPrice = useCallback(() => {
@@ -275,8 +239,8 @@ export const BridgeForm: React.FC<Record<string, never>> = () => {
     <>
       <CurrencyInputHeader
         title={t('Bridge')}
-        subtitle={t('Trade tokens in an instant')}
-        hasAmount={hasAmount}
+        // subtitle={t('Trade tokens in an instant')}
+        // hasAmount={hasAmount}
         onRefreshPrice={onRefreshPrice}
       />
       <Wrapper id="swap-page" style={{ minHeight: '412px' }}>
@@ -427,8 +391,8 @@ export const BridgeForm: React.FC<Record<string, never>> = () => {
               setApprovalSubmitted={setApprovalSubmitted}
               currencies={currencies}
               swapInputError={stableSwapInputError}
-              currencyBalances={currencyBalances}
-              onUserInput={onUserInput}
+              // currencyBalances={currencyBalances}
+              // onUserInput={onUserInput}
               pid={pid}
               isNative={isNative}
               parsedAmount={parsedAmount}

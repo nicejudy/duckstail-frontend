@@ -1,16 +1,16 @@
-import { parseUnits } from '@ethersproject/units'
+// import { parseUnits } from '@ethersproject/units'
 import { AtomBox } from '@pancakeswap/ui/components/AtomBox'
 import {
-  ButtonMenu,
-  ButtonMenuItem,
-  CloseIcon,
+  // ButtonMenu,
+  // ButtonMenuItem,
+  // CloseIcon,
   Heading,
-  IconButton,
-  InjectedModalProps,
-  ModalBody,
-  ModalContainer,
+  // IconButton,
+  // InjectedModalProps,
+  // ModalBody,
+  // ModalContainer,
   ModalHeader as UIKitModalHeader,
-  ModalTitle,
+  // ModalTitle,
   ModalV2,
   ModalWrapper,
   UserMenuItem,
@@ -18,16 +18,16 @@ import {
   ModalV2Props,
   Flex,
 } from '@pancakeswap/uikit'
-import { useAccount, useBalance } from 'wagmi'
-import { useState, useCallback } from 'react'
+// import { useAccount, useBalance } from 'wagmi'
+// import { useState, useCallback } from 'react'
 import { useTranslation } from '@pancakeswap/localization'
 import styled from 'styled-components'
 import { chains } from 'utils/wagmi'
 import { ChainLogo } from 'components/Logo/ChainLogo'
 
-const ModalHeader = styled(UIKitModalHeader)`
-  // background: ${({ theme }) => theme.colors.gradientBubblegum};
-`
+// const ModalHeader = styled(UIKitModalHeader)`
+//   // background: ${({ theme }) => theme.colors.gradientBubblegum};
+// `
 
 interface NetworkSwitchModalProps<T = unknown> extends ModalV2Props {
   switchNetwork: (x: number) => void;

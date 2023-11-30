@@ -9,68 +9,11 @@ import {
 } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import Page from 'components/Layout/Page'
-import useTheme from 'hooks/useTheme'
-import { useCapital, useDCPUSDTPrice, usePollBondsWithUserData } from 'state/capital/hooks'
+// import useTheme from 'hooks/useTheme'
+import { useCapital, usePollBondsWithUserData } from 'state/capital/hooks'
 import { useTranslation } from '@pancakeswap/localization'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import StakeComponent from './components/StakeComponent'
-
-const ControlContainer = styled.div`
-  display: flex;
-  width: 100%;
-  align-items: center;
-  position: relative;
-
-  justify-content: space-between;
-  flex-direction: column;
-//   margin-bottom: 32px;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding: 16px 32px;
-    margin-bottom: 0;
-  }
-`
-
-const LabelWrapper = styled.div`
-  > ${Text} {
-    font-size: 12px;
-  }
-`
-
-const FilterContainer = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 8px 0px;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    width: auto;
-    padding: 0;
-  }
-`
-
-const ViewControls = styled.div`
-  flex-wrap: wrap;
-  justify-content: space-between;
-  display: flex;
-  align-items: center;
-  width: 100%;
-
-  > div {
-    padding: 8px 0px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    justify-content: flex-start;
-    width: auto;
-
-    > div {
-      padding: 0;
-    }
-  }
-`
 
 const StepContainer = styled(Flex)`
   gap: 24px;
@@ -152,15 +95,11 @@ const Vault: React.FC<React.PropsWithChildren> = () => {
 
   const { t } = useTranslation()
 
-  const { theme } = useTheme()
-
-  const dcpPrice = useDCPUSDTPrice()
-
   const { address: account } = useAccount()
 
   usePollBondsWithUserData()
 
-  const userDataReady = !account || (!!account && userDataLoaded)
+  // const userDataReady = !account || (!!account && userDataLoaded)
 
   const steps1: Step[] = [
     {

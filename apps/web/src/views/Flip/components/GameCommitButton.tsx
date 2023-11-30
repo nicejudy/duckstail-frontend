@@ -6,23 +6,23 @@ import ConnectWalletButton from 'components/ConnectWalletButton'
 import Column from 'components/Layout/Column'
 import { AutoRow, RowBetween } from 'components/Layout/Row'
 import CircleLoader from 'components/Loader/CircleLoader'
-import SettingsModal, { withCustomOnDismiss } from 'components/Menu/GlobalSettings/SettingsModal'
+// import SettingsModal, { withCustomOnDismiss } from 'components/Menu/GlobalSettings/SettingsModal'
 import { ApprovalState } from 'hooks/useApproveCallback'
-import { Field } from 'state/swap/actions'
+// import { Field } from 'state/swap/actions'
 import ProgressSteps from 'views/Swap/components/ProgressSteps'
 import useCatchTxError from 'hooks/useCatchTxError'
-import { ToastDescriptionWithTx } from 'components/Toast'
-import useBurnToken from 'views/Bridge/hooks/useBurnToken'
+// import { ToastDescriptionWithTx } from 'components/Toast'
+// import useBurnToken from 'views/Bridge/hooks/useBurnToken'
 
 interface GameCommitButtonPropsType {
   account: string
   approval: ApprovalState
   approveCallback: () => Promise<void>
   approvalSubmitted: boolean
-  setApprovalSubmitted: (b: boolean) => void
+  // setApprovalSubmitted: (b: boolean) => void
   currency?: Currency
   swapInputError: string
-  parsedAmount: CurrencyAmount<Currency>
+  // parsedAmount: CurrencyAmount<Currency>
   onStake: (v: string) => void
 }
 
@@ -31,16 +31,16 @@ export default function GameCommitButton({
   approval,
   approveCallback,
   approvalSubmitted,
-  setApprovalSubmitted,
+  // setApprovalSubmitted,
   currency,
   swapInputError,
-  parsedAmount,
+  // parsedAmount,
   onStake
 }: GameCommitButtonPropsType) {
   const { t } = useTranslation()
 
-  const { toastSuccess } = useToast()
-  const { fetchWithCatchTxError, fetchTxResponse, loading: pendingTx } = useCatchTxError()
+  // const { toastSuccess } = useToast()
+  const { loading: pendingTx } = useCatchTxError()
 
   // const { onStake } = useBurnToken(pid, false)
 

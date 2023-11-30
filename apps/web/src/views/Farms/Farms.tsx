@@ -1,25 +1,25 @@
 import { useEffect, useCallback, useState, useMemo, useRef } from 'react'
 import BigNumber from 'bignumber.js'
-import { ChainId } from '@pancakeswap/sdk'
+// import { ChainId } from '@pancakeswap/sdk'
 import { useAccount } from 'wagmi'
 import {
   Image,
   Heading,
   Toggle,
   Text,
-  Button,
-  ArrowForwardIcon,
+  // Button,
+  // ArrowForwardIcon,
   Flex,
   Link,
-  Box,
+  // Box,
   Farm as FarmUI,
   Loading,
   SearchInput,
   Select,
   OptionProps,
   FlexLayout,
-  PageHeader,
-  NextLinkFromReactRouter,
+  // PageHeader,
+  // NextLinkFromReactRouter,
   ToggleView,
 } from '@pancakeswap/uikit'
 import styled from 'styled-components'
@@ -37,8 +37,8 @@ import { ViewMode } from 'state/user/actions'
 import { useRouter } from 'next/router'
 import { useActiveChainId } from 'hooks/useActiveChainId'
 import Table from './components/FarmTable/FarmTable'
-import { BCakeBoosterCard } from './components/BCakeBoosterCard'
-import { FarmTypesFilter } from './components/FarmTypesFilter'
+// import { BCakeBoosterCard } from './components/BCakeBoosterCard'
+// import { FarmTypesFilter } from './components/FarmTypesFilter'
 import { FarmsContext } from './context'
 
 const ControlContainer = styled.div`
@@ -58,28 +58,28 @@ const ControlContainer = styled.div`
     margin-bottom: 0;
   }
 `
-const FarmFlexWrapper = styled(Flex)`
-  flex-wrap: wrap;
-  ${({ theme }) => theme.mediaQueries.md} {
-    flex-wrap: nowrap;
-  }
-`
-const FarmH1 = styled(Heading)`
-  font-size: 32px;
-  margin-bottom: 8px;
-  ${({ theme }) => theme.mediaQueries.sm} {
-    font-size: 64px;
-    margin-bottom: 24px;
-  }
-`
-const FarmH2 = styled(Heading)`
-  font-size: 16px;
-  margin-bottom: 8px;
-  ${({ theme }) => theme.mediaQueries.sm} {
-    font-size: 24px;
-    margin-bottom: 18px;
-  }
-`
+// const FarmFlexWrapper = styled(Flex)`
+//   flex-wrap: wrap;
+//   ${({ theme }) => theme.mediaQueries.md} {
+//     flex-wrap: nowrap;
+//   }
+// `
+// const FarmH1 = styled(Heading)`
+//   font-size: 32px;
+//   margin-bottom: 8px;
+//   ${({ theme }) => theme.mediaQueries.sm} {
+//     font-size: 64px;
+//     margin-bottom: 24px;
+//   }
+// `
+// const FarmH2 = styled(Heading)`
+//   font-size: 16px;
+//   margin-bottom: 8px;
+//   ${({ theme }) => theme.mediaQueries.sm} {
+//     font-size: 24px;
+//     margin-bottom: 18px;
+//   }
+// `
 
 const ToggleWrapper = styled.div`
   display: flex;
@@ -130,25 +130,25 @@ const ViewControls = styled.div`
   }
 `
 
-const StyledImage = styled(Image)`
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 58px;
-`
+// const StyledImage = styled(Image)`
+//   margin-left: auto;
+//   margin-right: auto;
+//   margin-top: 58px;
+// `
 
-const FinishedTextContainer = styled(Flex)`
-  padding-bottom: 32px;
-  flex-direction: column;
-  ${({ theme }) => theme.mediaQueries.md} {
-    flex-direction: row;
-  }
-`
+// const FinishedTextContainer = styled(Flex)`
+//   padding-bottom: 32px;
+//   flex-direction: column;
+//   ${({ theme }) => theme.mediaQueries.md} {
+//     flex-direction: row;
+//   }
+// `
 
-const FinishedTextLink = styled(Link)`
-  font-weight: 400;
-  white-space: nowrap;
-  text-decoration: underline;
-`
+// const FinishedTextLink = styled(Link)`
+//   font-weight: 400;
+//   white-space: nowrap;
+//   text-decoration: underline;
+// `
 
 const NUMBER_OF_FARMS_VISIBLE = 12
 
@@ -186,7 +186,7 @@ const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [stakedOnly, setStakedOnly] = useUserFarmStakedOnly(isActive)
   const [boostedOnly, setBoostedOnly] = useState(false)
   const [stableSwapOnly, setStableSwapOnly] = useState(false)
-  const [farmTypesEnableCount, setFarmTypesEnableCount] = useState(0)
+  // const [farmTypesEnableCount, setFarmTypesEnableCount] = useState(0)
 
   // NOTE: Temporarily inactive aBNBc-BNB LP on FE
   const activeFarms = farmsLP.filter(

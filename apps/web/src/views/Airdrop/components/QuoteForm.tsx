@@ -3,9 +3,9 @@ import BigNumber from 'bignumber.js'
 import { useTranslation } from '@pancakeswap/localization'
 import { Text, Box, Flex, LinkExternal } from '@pancakeswap/uikit'
 import { Currency } from '@pancakeswap/sdk'
-import { GTOKEN, arbitrumTokens } from '@pancakeswap/tokens'
+import { arbitrumTokens } from '@pancakeswap/tokens'
 import { ApprovalState, useApproveCallback } from 'hooks/useApproveCallback'
-import Row from 'components/Layout/Row'
+// import Row from 'components/Layout/Row'
 import { CurrencyLogo } from 'components/Logo'
 import { CryptoFormView, DataType } from 'views/Airdrop/types'
 import { useAccount, useChainId } from 'wagmi'
@@ -32,7 +32,7 @@ export function QuoteForm({
   const chainId = useChainId()
   const { address: account } = useAccount()
 
-  const { data: sendInfo, fee: feeRate } = useMultisender()
+  const { fee: feeRate } = useMultisender()
 
   usePollMultisenderWithUserData()
 
@@ -47,7 +47,6 @@ export function QuoteForm({
   // console.log(sendInfo)
 
   const {
-    currencyBalance,
     parsedAmount,
     inputError
   } = useAccountInfo(totalAmounts.toFixed(currency.decimals), currency)
@@ -119,7 +118,7 @@ export function QuoteForm({
           currency={currency}
           swapInputError={inputError}
           swapInputErrorForFee={inputErrorForFee}
-          parsedAmount={parsedAmount}
+          // parsedAmount={parsedAmount}
           setModalView={setModalView}
         />
         <LinkExternal href={`/swap?outputCurrency=${arbitrumTokens.test.address}`} style={{ alignSelf: "center" }}>

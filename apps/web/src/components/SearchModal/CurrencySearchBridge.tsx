@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 import { Currency, Token } from '@pancakeswap/sdk'
-import { Box, Input, Text, useMatchBreakpoints } from '@pancakeswap/uikit'
-import { KeyboardEvent, RefObject, useCallback, useMemo, useRef, useState, useEffect } from 'react'
+import { Box, Text, useMatchBreakpoints } from '@pancakeswap/uikit'
+import { KeyboardEvent, useCallback, useMemo, useRef, useState, useEffect } from 'react'
 import { useTranslation } from '@pancakeswap/localization'
 import { useDebounce } from '@pancakeswap/hooks'
 import useNativeCurrency from 'hooks/useNativeCurrency'
@@ -13,8 +13,8 @@ import { isAddress } from 'utils'
 import { useActiveChainId } from 'hooks/useActiveChainId'
 import { useAllTokens, useIsUserAddedToken, useToken } from '../../hooks/Tokens'
 import Column, { AutoColumn } from '../Layout/Column'
-import Row from '../Layout/Row'
-import CommonBases from './CommonBases'
+// import Row from '../Layout/Row'
+// import CommonBases from './CommonBases'
 import CurrencyList from './CurrencyList'
 import { createFilterToken, useSortedTokensByQuery } from './filtering'
 import useTokenComparator from './sorting'
@@ -83,8 +83,8 @@ function CurrencySearchBridge({
   onCurrencySelect,
   otherSelectedCurrency,
   showCommonBases,
-  commonBasesType,
-  showSearchInput = true,
+  // commonBasesType,
+  // showSearchInput = true,
   showImportView,
   setImportToken,
   height,
@@ -149,12 +149,12 @@ function CurrencySearchBridge({
     if (!isMobile) inputRef.current?.focus()
   }, [isMobile])
 
-  const handleInput = useCallback((event) => {
-    const input = event.target.value
-    const checksummedInput = isAddress(input)
-    setSearchQuery(checksummedInput || input)
-    fixedList.current?.scrollTo(0)
-  }, [])
+  // const handleInput = useCallback((event) => {
+  //   const input = event.target.value
+  //   const checksummedInput = isAddress(input)
+  //   setSearchQuery(checksummedInput || input)
+  //   fixedList.current?.scrollTo(0)
+  // }, [])
 
   const handleEnter = useCallback(
     (e: KeyboardEvent<HTMLInputElement>) => {

@@ -1,36 +1,36 @@
 import { useTranslation } from '@pancakeswap/localization'
-import { ChainId } from '@pancakeswap/sdk'
+// import { ChainId } from '@pancakeswap/sdk'
 import {
-  Box,
+  // Box,
   Flex,
   InjectedModalProps,
-  Link,
+  // Link,
   Modal,
   ExpertModal,
-  PancakeToggle,
+  // PancakeToggle,
   QuestionHelper,
   Text,
   ThemeSwitcher,
   Toggle,
 } from '@pancakeswap/uikit'
-import { SUPPORT_ZAP } from 'config/constants/supportChains'
-import { useActiveChainId } from 'hooks/useActiveChainId'
+// import { SUPPORT_ZAP } from 'config/constants/supportChains'
+// import { useActiveChainId } from 'hooks/useActiveChainId'
 import useTheme from 'hooks/useTheme'
 import { useCallback, useState } from 'react'
 import { useSwapActionHandlers } from 'state/swap/useSwapActionHandlers'
 import {
-  useAudioModeManager,
+  // useAudioModeManager,
   useExpertModeManager,
   useSubgraphHealthIndicatorManager,
   useUserExpertModeAcknowledgementShow,
-  useUserSingleHopOnly,
+  // useUserSingleHopOnly,
   useUserUsernameVisibility,
-  useZapModeManager,
+  // useZapModeManager,
 } from 'state/user/hooks'
-import { useUserTokenRisk } from 'state/user/hooks/useUserTokenRisk'
-import { useStableSwapByDefault } from 'state/user/smartRouter'
+// import { useUserTokenRisk } from 'state/user/hooks/useUserTokenRisk'
+// import { useStableSwapByDefault } from 'state/user/smartRouter'
 import styled from 'styled-components'
-import GasSettings from './GasSettings'
+// import GasSettings from './GasSettings'
 import TransactionSettings from './TransactionSettings'
 import { SettingsMode } from './types'
 
@@ -71,15 +71,15 @@ const SettingsModal: React.FC<React.PropsWithChildren<InjectedModalProps>> = ({ 
   const [showConfirmExpertModal, setShowConfirmExpertModal] = useState(false)
   const [showExpertModeAcknowledgement, setShowExpertModeAcknowledgement] = useUserExpertModeAcknowledgementShow()
   const [expertMode, toggleExpertMode] = useExpertModeManager()
-  const [singleHopOnly, setSingleHopOnly] = useUserSingleHopOnly()
-  const [audioPlay, toggleSetAudioMode] = useAudioModeManager()
-  const [zapMode, toggleZapMode] = useZapModeManager()
+  // const [singleHopOnly, setSingleHopOnly] = useUserSingleHopOnly()
+  // const [audioPlay, toggleSetAudioMode] = useAudioModeManager()
+  // const [zapMode, toggleZapMode] = useZapModeManager()
   const [subgraphHealth, setSubgraphHealth] = useSubgraphHealthIndicatorManager()
   const [userUsernameVisibility, setUserUsernameVisibility] = useUserUsernameVisibility()
   const { onChangeRecipient } = useSwapActionHandlers()
-  const { chainId } = useActiveChainId()
-  const [isStableSwapByDefault, setIsStableSwapByDefault] = useStableSwapByDefault()
-  const [tokenRisk, setTokenRisk] = useUserTokenRisk()
+  // const { chainId } = useActiveChainId()
+  // const [isStableSwapByDefault, setIsStableSwapByDefault] = useStableSwapByDefault()
+  // const [tokenRisk, setTokenRisk] = useUserTokenRisk()
 
   const { t } = useTranslation()
   const { isDark, setTheme } = useTheme()
@@ -95,14 +95,14 @@ const SettingsModal: React.FC<React.PropsWithChildren<InjectedModalProps>> = ({ 
     )
   }
 
-  const handleExpertModeToggle = () => {
-    if (expertMode || !showExpertModeAcknowledgement) {
-      onChangeRecipient(null)
-      toggleExpertMode()
-    } else {
-      setShowConfirmExpertModal(true)
-    }
-  }
+  // const handleExpertModeToggle = () => {
+  //   if (expertMode || !showExpertModeAcknowledgement) {
+  //     onChangeRecipient(null)
+  //     toggleExpertMode()
+  //   } else {
+  //     setShowConfirmExpertModal(true)
+  //   }
+  // }
 
   return (
     // <Modal title={t('Settings')} headerBackground="gradientCardHeader" onDismiss={onDismiss}>

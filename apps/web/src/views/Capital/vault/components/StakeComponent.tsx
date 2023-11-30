@@ -3,7 +3,7 @@ import { useTranslation } from "@pancakeswap/localization";
 import { ChainId } from "@pancakeswap/sdk";
 import { DCP, SDCP } from "@pancakeswap/tokens";
 import { SerializedVault } from "@pancakeswap/capital";
-import { Text, Button, useToast, useModal, Flex } from "@pancakeswap/uikit";
+import { Button, useToast, useModal, Flex } from "@pancakeswap/uikit";
 import { useAppDispatch } from "state";
 import { fetchCapitalUserDataAsync } from "state/capital";
 import { useERC20 } from "hooks/useContract";
@@ -50,7 +50,7 @@ const StakeComponent: React.FunctionComponent<React.PropsWithChildren<StakeCompo
   const { t } = useTranslation();
 
   const { toastSuccess } = useToast()
-  const { fetchWithCatchTxError, fetchTxResponse, loading: pendingTx } = useCatchTxError()
+  const { fetchWithCatchTxError, loading: pendingTx } = useCatchTxError()
 
   const dcpContract = useERC20(DCP[ChainId.ARBITRUM].address)
   const sdcpContract = useERC20(SDCP[ChainId.ARBITRUM].address)
@@ -117,7 +117,7 @@ const StakeComponent: React.FunctionComponent<React.PropsWithChildren<StakeCompo
   const [onPresentUnstake] = useModal(
     <UnstakeModal
       vault={vault}
-      addLiquidityUrl={`/swap?outputCurrency=${SDCP[ChainId.ARBITRUM].address}`}
+      // addLiquidityUrl={`/swap?outputCurrency=${SDCP[ChainId.ARBITRUM].address}`}
       enablePendingTx={pendingTx}
       onConfirm={handleUnstake}
       handleApprove={handleSDCPApprove}

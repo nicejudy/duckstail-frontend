@@ -5,7 +5,7 @@ import { ChainId } from '@pancakeswap/sdk'
 import BigNumber from 'bignumber.js'
 import { multicallv2 } from 'utils/multicall'
 import { BIG_ZERO } from '@pancakeswap/utils/bigNumber'
-import { farmFetcher } from 'state/farms'
+// import { farmFetcher } from 'state/farms'
 import { SerializedFarm } from '@pancakeswap/farms'
 import { SerializedFarmConfig } from '../../config/constants/types'
 import { getMasterChefAddress } from '../../utils/addressHelpers'
@@ -31,7 +31,7 @@ export const fetchMasterChefFarmPoolLength = async (chainId: number) => {
 }
 
 const masterChefFarmCalls = async (farm: SerializedFarm, chainId: number) => {
-  const { pid, quoteToken } = farm
+  const { pid } = farm
   // const multiCallChainId = farmFetcher.isTestnet(quoteToken.chainId) ? ChainId.BSC_TESTNET : ChainId.BSC
   // const multiCallChainId = ChainId.ETHEREUM
   const masterChefAddress = getMasterChefAddress(chainId)

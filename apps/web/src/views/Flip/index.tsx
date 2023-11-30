@@ -1,11 +1,11 @@
 import BigNumber from "bignumber.js";
 import { useCallback, useEffect, useMemo, useState } from "react"
 import styled from "styled-components"
-import { BIG_TEN, BIG_ZERO } from "@pancakeswap/utils/bigNumber"
+import { BIG_ZERO } from "@pancakeswap/utils/bigNumber"
 import { useTranslation } from "@pancakeswap/localization"
 import { 
   Box,
-  Card,
+  // Card,
   Flex,
   ModalInput,
   Slider,
@@ -18,17 +18,17 @@ import addresses from 'config/constants/contracts'
 import useTheme from 'hooks/useTheme'
 import Page from "views/Page"
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { AppBody } from "components/App"
+// import { AppBody } from "components/App"
 import { GameTabButton } from "views/Flip/components/GameTabButtons"
 import { StyledAppBody } from "views/Flip/StyledAppBody"
 import GameCommitButton from "views/Flip/components/GameCommitButton"
 import { ApprovalState, useApproveCallback } from "hooks/useApproveCallback"
-import tryParseAmount from "@pancakeswap/utils/tryParseAmount"
-import { useToken } from "hooks/Tokens"
+// import tryParseAmount from "@pancakeswap/utils/tryParseAmount"
+// import { useToken } from "hooks/Tokens"
 import { GTOKEN } from "@pancakeswap/tokens"
 import { useGameInfo } from "views/Flip/hooks/useGameInfo"
-import { Currency, CurrencyAmount } from "@pancakeswap/sdk";
-import { maxAmountSpend } from "utils/maxAmountSpend";
+// import { Currency, CurrencyAmount } from "@pancakeswap/sdk";
+// import { maxAmountSpend } from "utils/maxAmountSpend";
 import { trimTrailZero } from "@pancakeswap/utils/trimTrailZero";
 
 const StyledHeadsAnimation = styled(Box)`
@@ -232,10 +232,10 @@ const Flip = () => {
                   approval={approval}
                   approveCallback={approveCallback}
                   approvalSubmitted={approvalSubmitted}
-                  setApprovalSubmitted={setApprovalSubmitted}
+                  // setApprovalSubmitted={setApprovalSubmitted}
                   currency={GTOKEN[chainId]}
                   swapInputError={inputError}
-                  parsedAmount={parsedAmount}
+                  // parsedAmount={parsedAmount}
                   onStake={(v: string) => {console.log(v);}}
                 />
               </Flex>

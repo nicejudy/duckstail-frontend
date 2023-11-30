@@ -12,13 +12,13 @@ import {
   useTooltip,
   IconButton,
   PencilIcon,
-  Coming1,
+  // Coming1,
 } from '@pancakeswap/uikit'
 import { logError } from 'utils/sentry'
 import { useTranslation } from '@pancakeswap/localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { CommitButton } from 'components/CommitButton'
-import StyledDisableFlex from 'components/StyledDisableFlex'
+// import StyledDisableFlex from 'components/StyledDisableFlex'
 import { transactionErrorToUserReadableMessage } from 'utils/transactionErrorToUserReadableMessage'
 import { StableConfigContext } from 'views/Swap/StableSwap/hooks/useStableConfig'
 import { LightCard } from 'components/Card'

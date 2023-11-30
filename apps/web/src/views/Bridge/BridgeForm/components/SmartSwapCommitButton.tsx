@@ -1,39 +1,17 @@
 import { useTranslation } from '@pancakeswap/localization'
-import { Currency, CurrencyAmount, TradeType } from '@pancakeswap/sdk'
-import { Button, Text, useModal, confirmPriceImpactWithoutFee, useToast } from '@pancakeswap/uikit'
-
-import { TradeWithStableSwap } from '@pancakeswap/smart-router/evm'
-import { GreyCard } from 'components/Card'
+import { Currency, CurrencyAmount } from '@pancakeswap/sdk'
+import { useToast } from '@pancakeswap/uikit'
 import { CommitButton } from 'components/CommitButton'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import Column from 'components/Layout/Column'
 import { AutoRow, RowBetween } from 'components/Layout/Row'
 import CircleLoader from 'components/Loader/CircleLoader'
-import SettingsModal, { withCustomOnDismiss } from 'components/Menu/GlobalSettings/SettingsModal'
-import { SettingsMode } from 'components/Menu/GlobalSettings/types'
-import {
-  BIG_INT_ZERO,
-  PRICE_IMPACT_WITHOUT_FEE_CONFIRM_MIN,
-  ALLOWED_PRICE_IMPACT_HIGH,
-} from 'config/constants/exchange'
 import { ApprovalState } from 'hooks/useApproveCallback'
-import { WrapType } from 'hooks/useWrapCallback'
-import { useCallback, useEffect, useState } from 'react'
 import { Field } from 'state/swap/actions'
-import { useUserSingleHopOnly } from 'state/user/hooks'
-import { warningSeverity } from 'utils/exchange'
-import { burn, burnETH } from 'utils/calls'
 import ProgressSteps from 'views/Swap/components/ProgressSteps'
-import { SwapCallbackError } from 'views/Swap/components/styleds'
-import { useSwapCallArguments } from 'views/Swap/SmartSwap/hooks/useSwapCallArguments'
-import { useSwapCallback } from 'views/Swap/SmartSwap/hooks/useSwapCallback'
-import { computeTradePriceBreakdown } from 'views/Swap/SmartSwap/utils/exchange'
-import ConfirmBridgeModal from 'views/Bridge/BridgeForm/components/ConfirmSwapModal'
 import useCatchTxError from 'hooks/useCatchTxError'
 import { ToastDescriptionWithTx } from 'components/Toast'
 import useBurnToken from 'views/Bridge/hooks/useBurnToken'
-
-const SettingsModalWithCustomDismiss = withCustomOnDismiss(SettingsModal)
 
 interface SwapCommitButtonPropsType {
   account: string
@@ -46,12 +24,12 @@ interface SwapCommitButtonPropsType {
     OUTPUT?: Currency
   }
   swapInputError: string
-  currencyBalances: {
+  currencyBalances?: {
     INPUT?: CurrencyAmount<Currency>
     OUTPUT?: CurrencyAmount<Currency>
   }
   parsedAmount: CurrencyAmount<Currency>
-  onUserInput: (field: Field, typedValue: string) => void
+  onUserInput?: (field: Field, typedValue: string) => void
   pid: number
   isNative: boolean
 }
@@ -64,9 +42,9 @@ export default function BridgeCommitButton({
   setApprovalSubmitted,
   currencies,
   swapInputError,
-  currencyBalances,
+  // currencyBalances,
   parsedAmount,
-  onUserInput,
+  // onUserInput,
   pid,
   isNative
 }: SwapCommitButtonPropsType) {
@@ -78,7 +56,7 @@ export default function BridgeCommitButton({
   // const [pendingTx, setPendingTx] = useState(false);
 
   const { toastSuccess } = useToast()
-  const { fetchWithCatchTxError, fetchTxResponse, loading: pendingTx } = useCatchTxError()
+  const { fetchWithCatchTxError, loading: pendingTx } = useCatchTxError()
 
   const { onStake } = useBurnToken(pid, isNative)
 

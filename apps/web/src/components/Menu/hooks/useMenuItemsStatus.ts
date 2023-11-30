@@ -1,12 +1,12 @@
 import { ChainId } from '@pancakeswap/sdk'
 import { useActiveIfoWithBlocks } from 'hooks/useActiveIfoWithBlocks'
-import { useUserCakeLockStatus } from 'hooks/useUserCakeLockStatus'
+// import { useUserCakeLockStatus } from 'hooks/useUserCakeLockStatus'
 import { useMemo } from 'react'
 import { useChainCurrentBlock } from 'state/block/hooks'
-import { PotteryDepositStatus } from 'state/types'
+// import { PotteryDepositStatus } from 'state/types'
 import { getStatus } from 'views/Ifos/hooks/helpers'
-import { useCompetitionStatus } from './useCompetitionStatus'
-import { usePotteryStatus } from './usePotteryStatus'
+// import { useCompetitionStatus } from './useCompetitionStatus'
+// import { usePotteryStatus } from './usePotteryStatus'
 import { useVotingStatus } from './useVotingStatus'
 
 export const useMenuItemsStatus = (): Record<string, string> => {

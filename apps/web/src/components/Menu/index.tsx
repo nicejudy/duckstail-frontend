@@ -11,9 +11,9 @@ import { useActiveChainId } from 'hooks/useActiveChainId'
 import { CHAIN_QUERY_NAME } from 'config/chains'
 import UserMenu from './UserMenu'
 import { useMenuItems } from './hooks/useMenuItems'
-import GlobalSettings from './GlobalSettings'
+// import GlobalSettings from './GlobalSettings'
 import { getActiveMenuItem, getActiveSubMenuItem } from './utils'
-import { SettingsMode } from './GlobalSettings/types'
+// import { SettingsMode } from './GlobalSettings/types'
 
 const Menu = (props) => {
   const { isDark, setTheme } = useTheme()

@@ -8,7 +8,7 @@ import { CurrencyLogo } from "components/Logo";
 import useNativeCurrency from "hooks/useNativeCurrency";
 import { useCurrency } from "hooks/Tokens";
 import { ZERO_ADDRESS } from "config/constants";
-import { DataType } from "../types";
+// import { DataType } from "../types";
 
 
 const ResponsiveGrid = styled.div`

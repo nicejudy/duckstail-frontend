@@ -1,20 +1,12 @@
-import { Dispatch, SetStateAction, useCallback, useEffect, useMemo, useState } from 'react'
-import { isAddress } from '@ethersproject/address'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { useTranslation } from '@pancakeswap/localization'
-import { Currency, ChainId, WNATIVE } from '@pancakeswap/sdk'
+import { ChainId } from '@pancakeswap/sdk'
 import { arbitrumTokens } from '@pancakeswap/tokens'
-import { useDebounce } from '@pancakeswap/hooks'
-import { Text, Box, Message, TextArea, Button, Input, useModal, Checkbox, Flex, ChevronDownIcon, MessageText, FlexGap, Heading } from '@pancakeswap/uikit'
-import styled, { useTheme } from 'styled-components'
+import { Text, Box, Message, Button, Flex, MessageText } from '@pancakeswap/uikit'
+import styled from 'styled-components'
 import { useAccount, useChainId } from 'wagmi'
 import ConnectWalletButton from 'components/ConnectWalletButton'
-import Row from 'components/Layout/Row'
-import { CommonBasesType } from 'components/SearchModal/types'
-import { CurrencyLogo } from 'components/Logo'
-import CurrencySearchModal from 'components/SearchModal/CurrencySearchModal'
-import CurrencySearch from 'components/SearchModal/CurrencySearch'
 import { useToken } from 'hooks/Tokens'
-import useNativeCurrency from 'hooks/useNativeCurrency'
 import { ApprovalState, useApproveCallback } from 'hooks/useApproveCallback'
 import { getLaunchpadAddress } from 'utils/addressHelpers'
 import ProgressSteps from 'views/Launchpad/components/ProgressSteps'
@@ -23,15 +15,6 @@ import { DeFi, FinishData, LaunchpadFormView, Socials, TokenData } from '../type
 import { FormHeader } from './FormHeader'
 import { FormContainer } from './FormContainer'
 import SendCommitButton from './SendCommitButton'
-
-const StyledButton = styled(Button)`
-  background-color: ${({ theme }) => theme.colors.input};
-  color: ${({ theme }) => theme.colors.text};
-  box-shadow: none;
-  border-radius: 8px;
-  margin-bottom: 5px;
-  height: 40px;
-`
 
 export function ReviewForm({
   setModalView,

@@ -1,9 +1,9 @@
-import { Dispatch, SetStateAction, useCallback, useEffect, useMemo, useState } from 'react'
+import { Dispatch, SetStateAction, useCallback, useState } from 'react'
 import { isAddress } from '@ethersproject/address'
 import { useTranslation } from '@pancakeswap/localization'
 import { Currency, ChainId } from '@pancakeswap/sdk'
-import { Text, Box, Message, TextArea, Button, Input, useModal, ChevronDownIcon, Flex } from '@pancakeswap/uikit'
-import styled, { useTheme } from 'styled-components'
+import { Text, Box, TextArea, Button, Input, useModal, ChevronDownIcon, Flex } from '@pancakeswap/uikit'
+import styled from 'styled-components'
 import { CryptoFormView, DataType } from 'views/Airdrop/types'
 import { useAccount, useChainId } from 'wagmi'
 import ConnectWalletButton from 'components/ConnectWalletButton'
@@ -11,7 +11,7 @@ import Row from 'components/Layout/Row'
 import { CommonBasesType } from 'components/SearchModal/types'
 import { CurrencyLogo } from 'components/Logo'
 import CurrencySearchModal from 'components/SearchModal/CurrencySearchModal'
-import useNativeCurrency from 'hooks/useNativeCurrency'
+// import useNativeCurrency from 'hooks/useNativeCurrency'
 import { FormHeader } from './FormHeader'
 import { FormContainer } from './FormContainer'
 
@@ -62,7 +62,7 @@ export function InputForm({
 
   const [allocationError, setAllocationError] = useState("Input Allocation");
 
-  const [files, setFiles] = useState("");
+  // const [files, setFiles] = useState("");
 
   const handleAllocation = (e: any) => {
     const alloc = e.target.value;
@@ -147,7 +147,7 @@ Ex:
     (_currency: Currency) => {
       setCurrency(_currency)
     },
-    [],
+    [setCurrency],
   )
 
   const [onPresentCurrencyModal] = useModal(
@@ -199,7 +199,7 @@ Ex:
             style={{
               display: "none"
             }}
-            value={files}
+            value=""
             onInput={handleFileInput}
           />
           <Button

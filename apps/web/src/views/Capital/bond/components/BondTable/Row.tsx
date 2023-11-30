@@ -1,31 +1,25 @@
-import { useEffect, useState, createElement, useRef } from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
-import { FarmWithStakedValue } from '@pancakeswap/farms'
 import {
-  Box,
   Flex,
   useMatchBreakpoints,
   Skeleton,
   Farm as FarmUI,
-  FarmTableEarnedProps,
-  FarmTableLiquidityProps,
-  FarmTableMultiplierProps,
-  FarmTableFarmTokenInfoProps,
   Text,
 } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
-import { useFarmUser } from 'state/farms/hooks'
+// import { useFarmUser } from 'state/farms/hooks'
 import { useDelayedUnmount } from '@pancakeswap/hooks'
 import { SerializedBond } from '@pancakeswap/capital'
 
 import Bond from './Bond'
 import ActionPanel from './Actions/ActionPanel'
 import Details from './Details'
-import Earned from './Earned'
+// import Earned from './Earned'
 
-const { FarmAuctionTag, CoreTag } = FarmUI.Tags
-const { CellLayout, Multiplier, Liquidity } = FarmUI.FarmTable
+// const { FarmAuctionTag, CoreTag } = FarmUI.Tags
+const { CellLayout } = FarmUI.FarmTable
 
 export interface RowProps {
   bond: SerializedBond
@@ -56,11 +50,6 @@ const StyledTr = styled.tr`
 
 const EarnedMobileCell = styled.td`
   padding: 16px 0 24px 16px;
-`
-
-const AprMobileCell = styled.td`
-  padding-top: 16px;
-  padding-bottom: 24px;
 `
 
 const FarmMobileCell = styled.td`
@@ -128,7 +117,7 @@ const Row: React.FunctionComponent<React.PropsWithChildren<RowPropsWithLoading>>
     setActionPanelExpanded(!actionPanelExpanded)
   }
 
-  const { isDesktop, isMobile } = useMatchBreakpoints()
+  const { isMobile } = useMatchBreakpoints()
 
   const handleRenderRow = () => {
     if (!isMobile) {

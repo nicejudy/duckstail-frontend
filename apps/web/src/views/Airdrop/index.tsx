@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 import { Currency } from '@pancakeswap/sdk'
-import { Card, Text } from '@pancakeswap/uikit'
+import { Card } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import useNativeCurrency from 'hooks/useNativeCurrency'
 import { CryptoFormView, DataType } from 'views/Airdrop/types'
@@ -26,7 +26,7 @@ const Airdrop: React.FC<React.PropsWithChildren> = () => {
 
   const [currency, setCurrency] = useState<Currency | null>(() => native)
 
-  const { t } = useTranslation()
+  // const { t } = useTranslation()
 
   return (
     <Page>

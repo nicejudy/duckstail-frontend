@@ -4,7 +4,7 @@ import {
   Flex,
   InjectedModalProps,
   LinkExternal,
-  Message,
+  // Message,
   Skeleton,
   Text,
   CopyAddress,
@@ -17,14 +17,14 @@ import useAuth from 'hooks/useAuth'
 import useNativeCurrency from 'hooks/useNativeCurrency'
 import useTokenBalance, { useGetCakeBalance } from 'hooks/useTokenBalance'
 import { ChainLogo } from 'components/Logo/ChainLogo'
-import NextLink from 'next/link'
+// import NextLink from 'next/link'
 
 // import { useProfile } from 'state/profile/hooks'
 
 import { getBlockExploreLink, getBlockExploreName } from 'utils'
-import { formatBigNumber, getFullDisplayBalance } from '@pancakeswap/utils/formatBalance'
+import { formatBigNumber } from '@pancakeswap/utils/formatBalance'
 import { useBalance } from 'wagmi'
-import CakeBenefitsCard from './CakeBenefitsCard'
+// import CakeBenefitsCard from './CakeBenefitsCard'
 
 // const COLORS = {
 //   ETH: '#627EEA',

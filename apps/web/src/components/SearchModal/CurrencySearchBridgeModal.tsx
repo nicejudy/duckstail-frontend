@@ -9,10 +9,10 @@ import {
   ModalBody,
   InjectedModalProps,
   Heading,
-  Button,
+  // Button,
   useMatchBreakpoints,
   MODAL_SWIPE_TO_CLOSE_VELOCITY,
-  ImportList,
+  // ImportList,
 } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import { useListState } from 'state/lists/lists'
@@ -22,16 +22,16 @@ import { TokenList } from '@pancakeswap/token-lists'
 import { useTranslation } from '@pancakeswap/localization'
 import { enableList, removeList, useFetchListCallback } from '@pancakeswap/token-lists/react'
 import CurrencySearchBridge from './CurrencySearchBridge'
-import ImportToken from './ImportToken'
-import Manage from './Manage'
+// import ImportToken from './ImportToken'
+// import Manage from './Manage'
 import { CurrencyModalView } from './types'
-import { BAD_SRCS } from '../Logo/constants'
+// import { BAD_SRCS } from '../Logo/constants'
 
-const Footer = styled.div`
-  width: 100%;
-  background-color: ${({ theme }) => theme.colors.backgroundAlt};
-  text-align: center;
-`
+// const Footer = styled.div`
+//   width: 100%;
+//   background-color: ${({ theme }) => theme.colors.backgroundAlt};
+//   text-align: center;
+// `
 const StyledModalContainer = styled(ModalContainer)`
   width: 100%;
   min-width: 320px;
@@ -86,7 +86,7 @@ export default function CurrencySearchBridgeModal({
   const prevView = usePreviousValue(modalView)
 
   // used for import token flow
-  const [importToken, setImportToken] = useState<Token | undefined>()
+  const [, setImportToken] = useState<Token | undefined>()
 
   // used for import list
   const [importList, setImportList] = useState<TokenList | undefined>()

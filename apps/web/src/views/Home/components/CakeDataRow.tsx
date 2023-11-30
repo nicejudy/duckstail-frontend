@@ -1,6 +1,6 @@
 import { Flex, Heading, Skeleton, Text, Balance } from '@pancakeswap/uikit'
 import cakeAbi from 'config/abi/cake.json'
-import { bscTokens, ethereumTokens } from '@pancakeswap/tokens'
+import { ethereumTokens } from '@pancakeswap/tokens'
 import { useTranslation } from '@pancakeswap/localization'
 import { useIntersectionObserver } from '@pancakeswap/hooks'
 import { useEffect, useState } from 'react'

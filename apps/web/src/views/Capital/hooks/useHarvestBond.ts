@@ -9,7 +9,7 @@ const useHarvestBond = (bondAddress: string, account: string, stake: boolean) =>
 
   const handleHarvest = useCallback(async () => {
     return harvestBond(bondContract, account, stake, gasPrice)
-  }, [bondContract, gasPrice])
+  }, [account, stake, bondContract, gasPrice])
 
   return { onReward: handleHarvest }
 }

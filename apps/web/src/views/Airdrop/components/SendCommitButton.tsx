@@ -7,11 +7,11 @@ import { Flex, useToast } from '@pancakeswap/uikit'
 import { BIG_TEN } from '@pancakeswap/utils/bigNumber'
 import { CommitButton } from 'components/CommitButton'
 import ConnectWalletButton from 'components/ConnectWalletButton'
-import Column from 'components/Layout/Column'
+// import Column from 'components/Layout/Column'
 import { AutoRow, RowBetween } from 'components/Layout/Row'
 import CircleLoader from 'components/Loader/CircleLoader'
 import { ApprovalState } from 'hooks/useApproveCallback'
-import ProgressSteps from 'views/Swap/components/ProgressSteps'
+// import ProgressSteps from 'views/Swap/components/ProgressSteps'
 import useCatchTxError from 'hooks/useCatchTxError'
 import { ToastDescriptionWithTx } from 'components/Toast'
 import { CryptoFormView, DataType } from 'views/Airdrop/types'
@@ -42,7 +42,7 @@ interface SendCommitButtonPropsType {
   currency?: Currency
   swapInputError: string
   swapInputErrorForFee: string
-  parsedAmount: CurrencyAmount<Currency>
+  parsedAmount?: CurrencyAmount<Currency>
   setModalView: Dispatch<SetStateAction<CryptoFormView>>
 }
 
@@ -61,13 +61,13 @@ export default function SendCommitButton({
   currency,
   swapInputError,
   swapInputErrorForFee,
-  parsedAmount,
+  // parsedAmount,
   setModalView
 }: SendCommitButtonPropsType) {
   const { t } = useTranslation()
 
   const { toastSuccess } = useToast()
-  const { fetchWithCatchTxError, fetchTxResponse, loading: pendingTx } = useCatchTxError()
+  const { fetchWithCatchTxError, loading: pendingTx } = useCatchTxError()
 
   const { onSendToken } = useSendToken()
   const { onSendEther } = useSendEther()

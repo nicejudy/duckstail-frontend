@@ -1,24 +1,21 @@
-import { Dispatch, SetStateAction, useCallback, useEffect, useMemo, useState } from 'react'
+import { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react'
 import { isAddress } from '@ethersproject/address'
 import { useTranslation } from '@pancakeswap/localization'
 import { Currency, ChainId, WNATIVE } from '@pancakeswap/sdk'
 import { useDebounce } from '@pancakeswap/hooks'
-import { Text, Box, Message, TextArea, Button, Input, useModal, Checkbox, Flex, ChevronDownIcon, MessageText, FlexGap, Heading } from '@pancakeswap/uikit'
-import styled, { useTheme } from 'styled-components'
+import { Text, Box, Message, Button, Input, useModal, Checkbox, Flex, ChevronDownIcon, MessageText } from '@pancakeswap/uikit'
+import styled from 'styled-components'
 import { useAccount, useChainId } from 'wagmi'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import Row from 'components/Layout/Row'
 import { CommonBasesType } from 'components/SearchModal/types'
 import { CurrencyLogo } from 'components/Logo'
 import CurrencySearchModal from 'components/SearchModal/CurrencySearchModal'
-import CurrencySearch from 'components/SearchModal/CurrencySearch'
 import ProgressSteps from 'views/Launchpad/components/ProgressSteps'
 import { useToken } from 'hooks/Tokens'
-import useNativeCurrency from 'hooks/useNativeCurrency'
 import { LaunchpadFormView, TokenData } from '../types'
 import { FormHeader } from './FormHeader'
 import { FormContainer } from './FormContainer'
-import TokenTypeSelector from './TokenTypeSelector'
 
 const StyledButton = styled(Button)`
   background-color: ${({ theme }) => theme.colors.input};
@@ -79,7 +76,7 @@ export function VerifyTokenForm({
     <CurrencySearchModal
       onCurrencySelect={handleCurrencySelect}
       showCommonBases
-      selectedCurrency={tokenData.currency ?? undefined}
+      selectedCurrency={currency ?? undefined}
       commonBasesType={CommonBasesType.LIQUIDITY}
     />,
     true,

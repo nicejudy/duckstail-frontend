@@ -4,7 +4,7 @@ import { Button, ChevronDownIcon, Text, useModal, Flex, Box, NumericalInput, Cop
 import styled, { css } from 'styled-components'
 import { isAddress } from 'utils'
 import { useTranslation } from '@pancakeswap/localization'
-import { WrappedTokenInfo } from '@pancakeswap/token-lists'
+// import { WrappedTokenInfo } from '@pancakeswap/token-lists'
 
 import { useBUSDCurrencyAmount } from 'hooks/useBUSDPrice'
 import { formatNumber } from '@pancakeswap/utils/formatBalance'
@@ -15,15 +15,15 @@ import { useCurrencyBalance } from '../../state/wallet/hooks'
 import CurrencySearchModal from '../SearchModal/CurrencySearchModal'
 import { CurrencyLogo, DoubleCurrencyLogo } from '../Logo'
 
-import AddToWalletButton from '../AddToWallet/AddToWalletButton'
+// import AddToWalletButton from '../AddToWallet/AddToWalletButton'
 
-const InputRow = styled.div<{ selected: boolean }>`
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: flex-end;
-  padding: ${({ selected }) => (selected ? '0.75rem 0.5rem 0.75rem 1rem' : '0.75rem 0.75rem 0.75rem 1rem')};
-`
+// const InputRow = styled.div<{ selected: boolean }>`
+//   display: flex;
+//   flex-flow: row nowrap;
+//   align-items: center;
+//   justify-content: flex-end;
+//   padding: ${({ selected }) => (selected ? '0.75rem 0.5rem 0.75rem 1rem' : '0.75rem 0.75rem 0.75rem 1rem')};
+// `
 const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm' })<{ zapStyle?: ZapStyle }>`
   padding: 0 0.5rem;
   ${({ zapStyle, theme }) =>
@@ -113,13 +113,13 @@ export default function CurrencyInputPanel({
   value,
   onUserInput,
   onInputBlur,
-  onPercentInput,
+  // onPercentInput,
   onMax,
-  showQuickInputButton = false,
-  showMaxButton,
+  // showQuickInputButton = false,
+  // showMaxButton,
   maxAmount,
   lpPercent,
-  label,
+  // label,
   onCurrencySelect,
   currency,
   disableCurrencySelect = false,
@@ -142,7 +142,7 @@ export default function CurrencyInputPanel({
   const { t } = useTranslation()
 
   const token = pair ? pair.liquidityToken : currency?.isToken ? currency : null
-  const tokenAddress = token ? isAddress(token.address) : null
+  // const tokenAddress = token ? isAddress(token.address) : null
 
   const amountInDollar = useBUSDCurrencyAmount(
     showBUSD ? currency : undefined,
@@ -161,18 +161,18 @@ export default function CurrencyInputPanel({
     />,
   )
 
-  const percentAmount = useMemo(
-    () => ({
-      25: maxAmount ? maxAmount.multiply(new Percent(25, 100)).toExact() : undefined,
-      50: maxAmount ? maxAmount.multiply(new Percent(50, 100)).toExact() : undefined,
-      75: maxAmount ? maxAmount.multiply(new Percent(75, 100)).toExact() : undefined,
-    }),
-    [maxAmount],
-  )
+  // const percentAmount = useMemo(
+  //   () => ({
+  //     25: maxAmount ? maxAmount.multiply(new Percent(25, 100)).toExact() : undefined,
+  //     50: maxAmount ? maxAmount.multiply(new Percent(50, 100)).toExact() : undefined,
+  //     75: maxAmount ? maxAmount.multiply(new Percent(75, 100)).toExact() : undefined,
+  //   }),
+  //   [maxAmount],
+  // )
 
-  const [currentClickedPercent, setCurrentClickedPercent] = useState('')
+  const [, setCurrentClickedPercent] = useState('')
 
-  const isAtPercentMax = (maxAmount && value === maxAmount.toExact()) || (lpPercent && lpPercent === '100')
+  // const isAtPercentMax = (maxAmount && value === maxAmount.toExact()) || (lpPercent && lpPercent === '100')
 
   return (
     <Container position="relative" id={id}>

@@ -1,36 +1,36 @@
 import { useAccount } from 'wagmi'
 import { TransactionResponse } from '@ethersproject/providers'
 import { useTranslation } from '@pancakeswap/localization'
-import { useModal, useToast, Farm as FarmUI } from '@pancakeswap/uikit'
+import { useModal, useToast } from '@pancakeswap/uikit'
 import { SerializedBond } from '@pancakeswap/capital'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { ToastDescriptionWithTx } from 'components/Toast'
-import { BASE_ADD_LIQUIDITY_URL, DEFAULT_TOKEN_DECIMAL } from 'config'
+import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useCatchTxError from 'hooks/useCatchTxError'
 import { useERC20 } from 'hooks/useContract'
-import { useRouter } from 'next/router'
-import { useCallback, useContext, useState, useMemo } from 'react'
+// import { useRouter } from 'next/router'
+import { useCallback } from 'react'
 import { useAppDispatch } from 'state'
 import { fetchCapitalUserDataAsync } from 'state/capital'
-import { useTransactionAdder, useNonBscFarmPendingTransaction } from 'state/transactions/hooks'
-import { FarmTransactionStatus, NonBscFarmStepType } from 'state/transactions/actions'
-import { pickFarmTransactionTx } from 'state/global/actions'
-import { usePriceCakeBusd, useFarmFromPid } from 'state/farms/hooks'
-import BCakeCalculator from 'views/Farms/components/YieldBooster/components/BCakeCalculator'
+// import { useTransactionAdder, useNonBscFarmPendingTransaction } from 'state/transactions/hooks'
+// import { FarmTransactionStatus, NonBscFarmStepType } from 'state/transactions/actions'
+// import { pickFarmTransactionTx } from 'state/global/actions'
+// import { usePriceCakeBusd, useFarmFromPid } from 'state/farms/hooks'
+// import BCakeCalculator from 'views/Farms/components/YieldBooster/components/BCakeCalculator'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import BigNumber from 'bignumber.js'
-import useNativeCurrency from 'hooks/useNativeCurrency'
-import { formatLpBalance } from '@pancakeswap/utils/formatBalance'
-import { ChainId, WNATIVE, NATIVE } from '@pancakeswap/sdk'
-import WalletModal, { WalletView } from 'components/Menu/UserMenu/WalletModal'
+// import useNativeCurrency from 'hooks/useNativeCurrency'
+// import { formatLpBalance } from '@pancakeswap/utils/formatBalance'
+// import { ChainId, WNATIVE, NATIVE } from '@pancakeswap/sdk'
+// import WalletModal, { WalletView } from 'components/Menu/UserMenu/WalletModal'
 import useApproveBond from 'views/Capital/hooks/useApproveBond'
 import useMintBond from 'views/Capital/hooks/useMintBond'
 import AccountNotConnect from './AccountNotConnect'
 import EnableStakeAction from './EnableStakeAction'
-import StakeActionDataNotReady from './StakeActionDataNotReady'
-import StakedActionComponent from './StakedActionComponent'
-import StakedLP from '../../StakedLP'
+// import StakeActionDataNotReady from './StakeActionDataNotReady'
+// import StakedActionComponent from './StakedActionComponent'
+// import StakedLP from '../../StakedLP'
 import StakeComponent from './StakeComponent'
 import DepositModal from '../../DepositModal'
 
@@ -89,10 +89,10 @@ const Staked: React.FunctionComponent<React.PropsWithChildren<StackedActionProps
   onApprove,
   isApproved
 }) => {
-  const dispatch = useAppDispatch()
+  // const dispatch = useAppDispatch()
   const { t } = useTranslation()
   const { toastSuccess } = useToast()
-  const { fetchWithCatchTxError, fetchTxResponse, loading: pendingTx } = useCatchTxError()
+  const { fetchWithCatchTxError, loading: pendingTx } = useCatchTxError()
   const { account, chainId } = useActiveWeb3React()
 
   const liquidityUrlPathParts = getLiquidityUrlPathParts({

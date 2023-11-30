@@ -1,7 +1,7 @@
 import { ChainId } from '@pancakeswap/sdk'
 import CreateToken from 'views/CreateToken'
 
-const CreateTokenPage = ({ userIp }) => {
+const CreateTokenPage = () => {
   return <CreateToken />
 }
 

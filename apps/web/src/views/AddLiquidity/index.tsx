@@ -14,7 +14,7 @@ import {
   MessageText,
   IconButton,
   PencilIcon,
-  Coming1,
+  // Coming1,
 } from '@pancakeswap/uikit'
 import { logError } from 'utils/sentry'
 import { useIsTransactionUnsupported, useIsTransactionWarning } from 'hooks/Trades'
@@ -24,7 +24,7 @@ import { useZapContract } from 'hooks/useContract'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { getZapAddress } from 'utils/addressHelpers'
 import { CommitButton } from 'components/CommitButton'
-import StyledDisableFlex from 'components/StyledDisableFlex'
+// import StyledDisableFlex from 'components/StyledDisableFlex'
 import { getLPSymbol } from 'utils/getLpSymbol'
 import { useRouter } from 'next/router'
 import { callWithEstimateGas } from 'utils/calls'

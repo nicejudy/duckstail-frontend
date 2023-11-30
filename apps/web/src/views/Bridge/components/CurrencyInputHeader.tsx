@@ -1,70 +1,38 @@
 import { useTranslation } from '@pancakeswap/localization'
 import {
-  ChartDisableIcon,
-  ChartIcon,
   Flex,
-  HistoryIcon,
-  HotDisableIcon,
-  HotIcon,
-  IconButton,
-  NotificationDot,
+  // IconButton,
   Swap,
-  Text,
-  TooltipText,
-  useModal,
-  useTooltip,
+  // Text,
+  // useModal,
+  // useTooltip,
 } from '@pancakeswap/uikit'
-import TransactionsModal from 'components/App/Transactions/TransactionsModal'
-import GlobalSettings from 'components/Menu/GlobalSettings'
-import RefreshIcon from 'components/Svg/RefreshIcon'
-import { useSwapHotTokenDisplay } from 'hooks/useSwapHotTokenDisplay'
+// import TransactionsModal from 'components/App/Transactions/TransactionsModal'
+// import { useSwapHotTokenDisplay } from 'hooks/useSwapHotTokenDisplay'
 import { useAtom } from 'jotai'
-import { ReactElement, useCallback, useContext, useEffect, useState } from 'react'
+import { ReactElement, useCallback, useEffect, useState } from 'react'
 import { isMobile } from 'react-device-detect'
-import { useExpertModeManager } from 'state/user/hooks'
-import styled from 'styled-components'
+// import { useExpertModeManager } from 'state/user/hooks'
+// import styled from 'styled-components'
 import atomWithStorageWithErrorCatch from 'utils/atomWithStorageWithErrorCatch'
-import { SettingsMode } from '../../../components/Menu/GlobalSettings/types'
-// import { SwapFeaturesContext } from '../SwapFeaturesContext'
 
 interface Props {
   title: string | ReactElement
-  subtitle: string
   noConfig?: boolean
   setIsChartDisplayed?: React.Dispatch<React.SetStateAction<boolean>>
   isChartDisplayed?: boolean
-  hasAmount: boolean
   onRefreshPrice: () => void
 }
-
-const ColoredIconButton = styled(IconButton)`
-  color: ${({ theme }) => theme.colors.textSubtle};
-`
 
 const mobileShowOnceTokenHighlightAtom = atomWithStorageWithErrorCatch('pcs::mobileShowOnceTokenHighlight', false)
 
 const CurrencyInputHeader: React.FC<React.PropsWithChildren<Props>> = ({
-  subtitle,
-  hasAmount,
   onRefreshPrice,
   title,
 }) => {
   const { t } = useTranslation()
   const [mobileTooltipShowOnce, setMobileTooltipShowOnce] = useAtom(mobileShowOnceTokenHighlightAtom)
-  const [mobileTooltipShow, setMobileTooltipShow] = useState(false)
-  const { tooltip, tooltipVisible, targetRef } = useTooltip(<Text>{t('Check out the top traded tokens')}</Text>, {
-    placement: isMobile ? 'top' : 'bottom',
-    trigger: isMobile ? 'focus' : 'hover',
-    ...(isMobile && { manualVisible: mobileTooltipShow }),
-  })
-  // const { isChartSupported, isChartDisplayed, setIsChartDisplayed } = useContext(SwapFeaturesContext)
-  const [expertMode] = useExpertModeManager()
-  // const toggleChartDisplayed = () => {
-  //   setIsChartDisplayed((currentIsChartDisplayed) => !currentIsChartDisplayed)
-  // }
-  const [onPresentTransactionsModal] = useModal(<TransactionsModal />)
-  const handleOnClick = useCallback(() => onRefreshPrice?.(), [onRefreshPrice])
-  const [isSwapHotTokenDisplay, setIsSwapHotTokenDisplay] = useSwapHotTokenDisplay()
+  const [, setMobileTooltipShow] = useState(false)
 
   const mobileTooltipClickOutside = useCallback(() => {
     setMobileTooltipShow(false)

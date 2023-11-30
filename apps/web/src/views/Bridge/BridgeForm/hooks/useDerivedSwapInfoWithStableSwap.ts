@@ -1,12 +1,9 @@
-import { Currency, CurrencyAmount, Pair, TradeType } from '@pancakeswap/sdk'
-import { StableSwapPair, TradeWithStableSwap } from '@pancakeswap/smart-router/evm'
+import { Currency, CurrencyAmount } from '@pancakeswap/sdk'
 import { Field } from 'state/swap/actions'
 import { useCurrencyBalances } from 'state/wallet/hooks'
 import { useTranslation } from '@pancakeswap/localization'
 import tryParseAmount from '@pancakeswap/utils/tryParseAmount'
 import { useWeb3React } from '@pancakeswap/wagmi'
-import { useUserSingleHopOnly, useUserSlippageTolerance } from 'state/user/hooks'
-import { isAddress } from 'utils'
 
 export function useDerivedBridgeInfoWithStableSwap(
   independentField: Field,
