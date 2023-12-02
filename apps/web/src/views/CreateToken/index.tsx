@@ -5,9 +5,10 @@ import { Card, Text } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import useNativeCurrency from 'hooks/useNativeCurrency'
 import { CryptoFormView, DataType } from 'views/Airdrop/types'
-import { TokenData, TokenFormView } from './types'
+import { FinishData, TokenData, TokenFormView } from './types'
 import Page from '../Page'
 import { VerifyTokenForm } from './components/VerifyTokenForm'
+import { FinishForm } from './components/FinishForm'
 // import { QuoteForm } from './components/QuoteForm'
 
 export const StyledAppBody = styled(Card)`
@@ -30,7 +31,11 @@ const Launchpad: React.FC<React.PropsWithChildren> = () => {
     buyBackBaby: undefined
   })
 
-  const [address, setAddress] = useState<string>("")
+  const [finishData, setFinishData] = useState<FinishData>({
+    address: "",
+    hash: "",
+    chainId: 42161
+  })
 
   return (
     <Page>
@@ -41,8 +46,17 @@ const Launchpad: React.FC<React.PropsWithChildren> = () => {
             setModalView={setModalView}
             tokenData={tokenData}
             setTokenData={setTokenData}
-            address={address}
-            setAddress={setAddress}
+            setFinishData={setFinishData}
+          />
+        }
+        {
+          modalView === TokenFormView.Finish && 
+          <FinishForm
+            setModalView={setModalView}
+            tokenData={tokenData}
+            finishData={finishData}
+            setTokenData={setTokenData}
+            setFinishData={setFinishData}
           />
         }
       </StyledAppBody>

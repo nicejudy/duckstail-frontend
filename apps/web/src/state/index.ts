@@ -6,6 +6,7 @@ import storage from 'redux-persist/lib/storage'
 import burn from './burn/reducer'
 import capitalReducer from './capital'
 import multisenderReducer from './multisend'
+import launchpadReducer from './launchpad'
 import farmsReducer from './farms'
 import farmsReducerV1 from './farmsV1'
 import { updateVersion } from './global/actions'
@@ -36,6 +37,7 @@ const persistedReducer = persistReducer(
     global: globalReducer,
     capital: capitalReducer,
     multisender: multisenderReducer,
+    launchpad: launchpadReducer,
     farms: farmsReducer,
     farmsV1: farmsReducerV1,
     pools: poolsReducer,

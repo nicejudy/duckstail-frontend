@@ -1,17 +1,24 @@
 import { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react'
+import BigNumber from 'bignumber.js'
+import { ethers, ContractFactory } from "ethers"
 import { isAddress } from '@ethersproject/address'
 import { useTranslation } from '@pancakeswap/localization'
 import { Currency, ChainId, WNATIVE, Token } from '@pancakeswap/sdk'
 // import { useDebounce } from '@pancakeswap/hooks'
-import { Text, Box, Button, Input, useModal, Checkbox, Flex, ChevronDownIcon } from '@pancakeswap/uikit'
+import { Text, Box, Button, Input, useModal, Checkbox, Flex, ChevronDownIcon, useToast } from '@pancakeswap/uikit'
 import styled from 'styled-components'
-import { useAccount, useChainId } from 'wagmi'
+import { useAccount, useChainId, useSigner } from 'wagmi'
+import { ROUTER_ADDRESS } from 'config/constants/exchange'
 import ConnectWalletButton from 'components/ConnectWalletButton'
-import Row from 'components/Layout/Row'
+import Row, { AutoRow } from 'components/Layout/Row'
 import { CommonBasesType } from 'components/SearchModal/types'
 import { CurrencyLogo } from 'components/Logo'
 import CurrencySearchModal from 'components/SearchModal/CurrencySearchModal'
-import { TokenFormView, TokenData } from '../types'
+import { ToastDescriptionWithTx } from 'components/Toast'
+import CircleLoader from 'components/Loader/CircleLoader'
+import useCatchTxError from 'hooks/useCatchTxError'
+import { TokenFormView, TokenData, FinishData } from '../types'
+import { tokenABI, byteCodes, feeAddress, fee, dividendTrackerAddresses, feeReceivers } from '../constants'
 import { FormHeader } from './FormHeader'
 import { FormContainer } from './FormContainer'
 
@@ -28,18 +35,20 @@ export function VerifyTokenForm({
   setModalView,
   tokenData,
   setTokenData,
-  address,
-  setAddress
+  setFinishData
 }: {
   setModalView: Dispatch<SetStateAction<TokenFormView>>
   tokenData: TokenData
   setTokenData: Dispatch<SetStateAction<TokenData>>
-  address: string
-  setAddress: Dispatch<SetStateAction<string>>
+  setFinishData: Dispatch<SetStateAction<FinishData>>
 }) {
   const { t } = useTranslation()
   const chainId = useChainId()
   const { address: account } = useAccount()
+  const { data: signer } = useSigner()
+
+  const { toastSuccess } = useToast()
+  const { fetchWithCatchTxErrorForDeploy, loading: pendingTx } = useCatchTxError()
 
   const [name, setName] = useState(tokenData.name)
   const [symbol, setSymbol] = useState(tokenData.symbol)
@@ -62,6 +71,8 @@ export function VerifyTokenForm({
   const [charityAddr1Error, setCharityAddr1Error] = useState("")
   const [charityFee1Error, setCharityFee1Error] = useState("")
 
+  const [totalFee1Error, setTotalFee1Error] = useState("")
+
   // const [rewardToken, setRewardToken] = useState(tokenData.baby.rewardToken2 ?? tokenData.buyBackBaby.rewardToken3 ?? "")
   const [currency, setCurrency] = useState<Token | null>(() => tokenData.baby?.rewardToken2 ?? tokenData.buyBackBaby?.rewardToken3 ?? WNATIVE[chainId] ?? null)
   const [minBalance2, setMinBalance2] = useState(tokenData.baby?.minBalance2 ?? "")
@@ -70,12 +81,15 @@ export function VerifyTokenForm({
   const [charityAddr2, setCharityAddr2] = useState(tokenData.baby?.charityAddr2 ?? "")
   const [charityFee2, setCharityFee2] = useState(tokenData.baby?.charityFee2 ?? "")
 
-  const [rewardToken2Error, setRewardToken2Error] = useState("")
+  // const [rewardToken2Error, setRewardToken2Error] = useState("")
   const [minBalance2Error, setMinBalance2Error] = useState("")
   const [rewardFee2Error, setRewardFee2Error] = useState("")
   const [liquidity2Error, setLiquidity2Error] = useState("")
   const [charityAddr2Error, setCharityAddr2Error] = useState("")
   const [charityFee2Error, setCharityFee2Error] = useState("")
+
+  const [totalFee2Error, setTotalFee2Error] = useState("")
+
   
   // const [rewardToken3, setRewardToken3] = useState(tokenData.buyBackBaby.rewardToken3 ?? "")
   const [liquidityFee3, setLiquidityFee3] = useState(tokenData.buyBackBaby?.liquidityFee3 ?? "")
@@ -83,11 +97,13 @@ export function VerifyTokenForm({
   const [reflectionFee3, setReflectionFee3] = useState(tokenData.buyBackBaby?.reflectionFee3 ?? "")
   const [charityFee3, setCharityFee3] = useState(tokenData.buyBackBaby?.charityFee3 ?? "")
 
-  const [rewardToken3Error, setRewardToken3Error] = useState("")
+  // const [rewardToken3Error, setRewardToken3Error] = useState("")
   const [liquidityFee3Error, setLiquidityFee3Error] = useState("")
   const [buyBackFee3Error, setBuyBackFee3Error] = useState("")
   const [reflectionFee3Error, setReflectionFee3Error] = useState("")
   const [charityFee3Error, setCharityFee3Error] = useState("")
+
+  const [totalFee3Error, setTotalFee3Error] = useState("")
 
 
 
@@ -114,6 +130,7 @@ export function VerifyTokenForm({
     setLiquidityFee1Error("")
     setCharityAddr1Error("")
     setCharityFee1Error("")
+    setTotalFee1Error("")
 
     if (type === "liquidityGen") {
       if (Number(taxFee1) > 25) setTaxFee1Error("taxFeeBps must be less than or equal to 25")
@@ -124,12 +141,14 @@ export function VerifyTokenForm({
       if (Number(liquidityFee1) < 0.01) setLiquidityFee1Error("liquidityFeeBps must be greater than or equal to 0.01")
       if (liquidityFee1 === "") setLiquidityFee1Error("liquidityFeeBps is a required field")
 
-      if (isAddress(charityAddr1)) setCharityAddr1Error("Address is invalid")
+      if (!isAddress(charityAddr1)) setCharityAddr1Error("Address is invalid")
       if (charityAddr1 === "") setCharityAddr1Error("Address cannot be blank")
 
       if (Number(charityFee1) > 25) setCharityFee1Error("charityBps must be less than or equal to 25")
       if (Number(charityFee1) < 0.01) setCharityFee1Error("charityBps must be greater than or equal to 0.01")
       if (charityFee1 === "") setCharityFee1Error("charityBps is a required field")
+
+      if (Number(taxFee1) + Number(liquidityFee1) + Number(charityFee1) > 25) setTotalFee1Error("Total Fee must be less than or equal to 25")
     }
   }, [taxFee1, liquidityFee1, charityAddr1, charityFee1, type])
 
@@ -139,6 +158,7 @@ export function VerifyTokenForm({
     setLiquidity2Error("")
     setCharityFee2Error("")
     setCharityAddr2Error("")
+    setTotalFee2Error("")
 
     if (type === "baby") {
       if (Number(minBalance2) > Number(totalSupply) / 1000) setMinBalance2Error("Minimum token balance for dividends must be less than or equal 0.1% total supply")
@@ -157,8 +177,10 @@ export function VerifyTokenForm({
       if (Number(charityFee2) < 0.01) setCharityFee2Error("marketingFee must be greater than or equal to 0.01")
       if (charityFee2 === "") setCharityFee2Error("Marketing fee is a required field")
 
-      if (isAddress(charityAddr2)) setCharityAddr2Error("Address is invalid")
+      if (!isAddress(charityAddr2)) setCharityAddr2Error("Address is invalid")
       if (charityAddr2 === "") setCharityAddr2Error("Address cannot be blank")
+
+      if (Number(liquidity2) + Number(charityFee2) + Number(rewardFee2) > 25) setTotalFee2Error("Liquidity Fee + Marketing Fee + Reward Fee must be less than or equal to 25")
     }
   }, [minBalance2, rewardFee2, liquidity2, charityAddr2, charityFee2, totalSupply, type])
 
@@ -167,6 +189,7 @@ export function VerifyTokenForm({
     setBuyBackFee3Error("")
     setReflectionFee3Error("")
     setCharityFee3Error("")
+    setTotalFee3Error("")
 
     if (type === "buyBackBaby") {
       if (Number(liquidityFee3) > 100) setLiquidityFee3Error("liquidityFee must be less than or equal to 100")
@@ -184,6 +207,8 @@ export function VerifyTokenForm({
       if (Number(charityFee3) > 100) setCharityFee3Error("marketingFee must be less than or equal to 100")
       if (Number(charityFee3) < 0.01) setCharityFee3Error("marketingFee must be greater than or equal to 0.01")
       if (charityFee3 === "") setCharityFee3Error("marketingFee is a required field")
+
+      if (Number(buyBackFee3) + Number(charityFee3) + Number(reflectionFee3) + Number(liquidityFee3) > 25) setTotalFee3Error("Liquidity Fee + Buyback Fee + Reflection Fee + Marketing Fee must be less than 25%")
     }
   }, [liquidityFee3, buyBackFee3, reflectionFee3, charityFee3, type])
 
@@ -200,6 +225,17 @@ export function VerifyTokenForm({
   //   })
   //   setModalView(LaunchpadFormView.DeFiInfo)
   // }
+
+  const deployContract = async (contract, args, msg) => {
+    return contract.deploy(...args, msg)
+  }
+
+  const handleDeploy = useCallback(
+    async(contract, args, msg) => {
+      return deployContract(contract, args, msg)
+    },
+    []
+  )
 
   const handleConfirm = async () => {
     setTokenData({
@@ -230,6 +266,85 @@ export function VerifyTokenForm({
         charityFee3,
       }
     })
+
+    const factory = new ContractFactory(tokenABI[type], byteCodes[type], signer)
+
+    // console.log(ethers.utils.parseUnits(minBalance2, decimals))
+
+    const args = {
+      "standard": [
+        name,
+        symbol,
+        decimals,
+        ethers.utils.parseUnits(totalSupply, Number(decimals).toString()),
+        feeReceivers[chainId],
+        ethers.utils.parseEther(fee)
+      ],
+      "liquidityGen": [
+        name,
+        symbol,
+        ethers.utils.parseUnits(totalSupply, 18),
+        ROUTER_ADDRESS[chainId],
+        charityAddr1,
+        new BigNumber(taxFee1).times(100).toJSON(),
+        new BigNumber(liquidityFee1).times(100).toJSON(),
+        new BigNumber(charityFee1).times(100).toJSON(),
+        feeReceivers[chainId],
+        ethers.utils.parseEther(fee),
+      ],
+      "baby": [
+        name,
+        symbol,
+        ethers.utils.parseUnits(totalSupply, 18),
+        [
+          currency.address,
+          ROUTER_ADDRESS[chainId],
+          charityAddr2,
+          dividendTrackerAddresses[chainId]
+        ],
+        [
+          rewardFee2,
+          liquidity2,
+          charityFee2
+        ],
+        ethers.utils.parseUnits(Number(minBalance2).toString(), 18),
+        feeReceivers[chainId],
+        ethers.utils.parseEther(fee),
+      ],
+      "buyBackBaby": [
+        name,
+        symbol,
+        ethers.utils.parseUnits(totalSupply, 18),
+        currency.address,
+        ROUTER_ADDRESS[chainId],
+        [
+          liquidityFee3, 
+          buyBackFee3, 
+          reflectionFee3, 
+          charityFee3,
+          "100"
+        ],
+        feeReceivers[chainId],
+        ethers.utils.parseEther(fee),
+      ],
+    }
+
+    const receipt = await fetchWithCatchTxErrorForDeploy(() => handleDeploy(factory, args[type], {value: ethers.utils.parseEther(fee)}))
+    if (receipt) {
+      console.log(receipt)
+      toastSuccess(
+        `${t('Token Created')}!`,
+        <ToastDescriptionWithTx txHash={receipt.deployTransaction.hash}>
+          {t('You\'ve just created %name%', { name })}
+        </ToastDescriptionWithTx>,
+      )
+      setFinishData({
+        address: receipt.address,
+        hash: receipt.deployTransaction.hash,
+        chainId
+      })
+      setModalView(TokenFormView.Finish)
+    }
   }
 
   const enabled = 
@@ -253,7 +368,8 @@ export function VerifyTokenForm({
         rewardFee2Error === "" &&
         liquidity2Error === "" &&
         charityAddr2Error === "" &&
-        charityFee2Error === ""
+        charityFee2Error === "" &&
+        totalFee2Error === ""
       ) : true
     ) &&
     (
@@ -261,7 +377,8 @@ export function VerifyTokenForm({
         buyBackFee3Error === "" &&
         liquidityFee3Error === "" &&
         reflectionFee3Error === "" &&
-        charityFee3Error === ""
+        charityFee3Error === "" &&
+        totalFee3Error === ""
       ) : true
     )
 
@@ -286,7 +403,7 @@ export function VerifyTokenForm({
 
   return (
     <Box p="4px" position="inherit">
-      <FormHeader title={t('Create Token')} subTitle={t('Enter the token address and verify')} />
+      <FormHeader title={t('Create Token')} subTitle={t('Enter the token information')} />
       <FormContainer>
         <Box>
           <Box mb="20px">
@@ -467,6 +584,11 @@ export function VerifyTokenForm({
                 {charityFee1Error}
               </Text>}
             </Box>
+            <Box mb="20px">
+              {totalFee1Error !== "" && <Text color="failure" fontSize="14px" px="4px">
+                {totalFee1Error}
+              </Text>}
+            </Box>
           </>}
           {type === "baby" && <>
             <Box mb="20px">
@@ -525,12 +647,17 @@ export function VerifyTokenForm({
             <Box mb="20px">
               <Text fontSize="12px" color="primary">{t("Marketing wallet*")}</Text>
               <Input
-                type="number"
+                type="string"
                 value={charityAddr2}
                 onChange={(e) => setCharityAddr2(e.target.value)}
               />
               {charityAddr2Error !== "" && <Text color="failure" fontSize="14px" px="4px">
                 {charityAddr2Error}
+              </Text>}
+            </Box>
+            <Box mb="20px">
+              {totalFee2Error !== "" && <Text color="failure" fontSize="14px" px="4px">
+                {totalFee2Error}
               </Text>}
             </Box>
           </>}
@@ -589,10 +716,21 @@ export function VerifyTokenForm({
             </Box>
           </>}
         </Box>
-        {chainId !== ChainId.ARBITRUM || !account ? <ConnectWalletButton /> : <Button
-          onClick={handleConfirm}
-          disabled={!enabled}
-        >{t("Next")}</Button>}
+        {chainId !== ChainId.ARBITRUM || !account ? <ConnectWalletButton /> : (
+          <Button
+            onClick={handleConfirm}
+            disabled={!enabled || pendingTx}
+          >
+            {
+              pendingTx ? 
+                <AutoRow gap="6px" justify="center">
+                  {t('Creating')} <CircleLoader stroke="white" />
+                </AutoRow> 
+              : 
+                t('Create Token')
+              }
+          </Button>
+        )}
       </FormContainer>
     </Box>
   )

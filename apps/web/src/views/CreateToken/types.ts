@@ -39,3 +39,9 @@ export interface BuyBackBaby {
   reflectionFee3: string
   charityFee3: string
 }
+
+export interface FinishData {
+  address: string
+  hash: string
+  chainId: number
+}

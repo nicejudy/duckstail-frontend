@@ -9,6 +9,7 @@ import BigNumber from 'bignumber.js'
 import { CampaignType, FetchStatus, LotteryStatus, LotteryTicket, Team, TranslatableText } from 'config/constants/types'
 import { NftToken } from './nftMarket/types'
 import { SerializedHistory } from './multisend/types'
+import { SerializedLaunchpadState } from './launchpad/types'
 
 export enum GAS_PRICE {
   default = '5',
@@ -617,6 +618,8 @@ export interface PotteryWithdrawAbleData {
 export interface State {
   capital: SerializedCapitalState
   multisender: SerializedHistory
+  launchpad: SerializedLaunchpadState
+  // launchpadList: SerializedLaunchpadList
   farms: SerializedFarmsState
   farmsV1: SerializedFarmsState
   pools: PoolsState
