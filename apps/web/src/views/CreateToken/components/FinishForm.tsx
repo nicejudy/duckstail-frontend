@@ -131,7 +131,7 @@ export function FinishForm({
             </NextLinkFromReactRouter>
           </Box>
           <Box width="100%">
-            <NextLinkFromReactRouter to="/launchpad/fair-launch">
+            <NextLinkFromReactRouter to="/fair-launch">
               <Button
                 width="100%"
               ><Text color="invertedContrast" bold fontSize="14px">{t("Create FairLaunch")}</Text></Button>

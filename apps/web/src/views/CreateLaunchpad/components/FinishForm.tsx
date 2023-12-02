@@ -10,7 +10,7 @@ import { useAccount, useChainId } from 'wagmi'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { BAD_SRCS } from 'components/Logo/constants'
 import useNativeCurrency from 'hooks/useNativeCurrency'
-import { ProgressCirclesFullCompleted } from 'views/Launchpad/components/ProgressSteps'
+import { ProgressCirclesFullCompleted } from './ProgressSteps'
 import { DeFi, FinishData, LaunchpadFormView, Socials, TokenData } from '../types'
 import { FormHeader } from './FormHeader'
 import { FormContainer } from './FormContainer'
@@ -235,7 +235,7 @@ export function FinishForm({
             ><Text color="invertedContrast" bold fontSize="14px">{t("Create Other")}</Text></Button>
           </Box>
           <Box width="100%">
-            <NextLinkFromReactRouter to="/launchpad/launchpad-list">
+            <NextLinkFromReactRouter to="/launchpad-list">
               <Button
                 width="100%"
               ><Text color="invertedContrast" bold fontSize="14px">{t("View List")}</Text></Button>

@@ -1,5 +1,5 @@
 import { ChainId } from '@pancakeswap/sdk'
-import Launchpad from 'views/Launchpad'
+import Launchpad from 'views/CreateLaunchpad'
 
 const LaunchpadPage = () => {
   return <Launchpad />

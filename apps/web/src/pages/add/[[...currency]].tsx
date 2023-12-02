@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { useAppDispatch } from 'state'
 import { resetMintState } from 'state/mint/actions'
-import { CHAIN_IDS } from 'utils/wagmi'
+// import { CHAIN_IDS } from 'utils/wagmi'
 import AddLiquidity from 'views/AddLiquidity'
 import AddStableLiquidity from 'views/AddLiquidity/AddStableLiquidity/index'
 import useStableConfig, { StableConfigContext } from 'views/Swap/StableSwap/hooks/useStableConfig'
@@ -19,6 +19,8 @@ const AddLiquidityPage = () => {
   const dispatch = useAppDispatch()
 
   const native = useNativeCurrency()
+
+  console.log(router.query.currency)
 
   const [currencyIdA, currencyIdB] = router.query.currency || [
     native.symbol,

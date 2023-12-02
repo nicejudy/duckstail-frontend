@@ -5,7 +5,7 @@ import { Card, Text } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import useNativeCurrency from 'hooks/useNativeCurrency'
 import { CryptoFormView, DataType } from 'views/Airdrop/types'
-import { FinishData, LaunchpadFormView, TokenData, Socials, DeFi } from 'views/Launchpad/types'
+import { FinishData, LaunchpadFormView, TokenData, Socials, DeFi } from './types'
 import Page from '../Page'
 import { VerifyTokenForm } from './components/VerifyTokenForm'
 import { InformationForm } from './components/InformationForm'
@@ -20,7 +20,7 @@ export const StyledAppBody = styled(Card)`
   width: 100%;
   z-index: 1;
 `
-const Launchpad: React.FC<React.PropsWithChildren> = () => {
+const CreateLaunchpad: React.FC<React.PropsWithChildren> = () => {
   const [modalView, setModalView] = useState<LaunchpadFormView>(LaunchpadFormView.VerifyToken)
   const native = useNativeCurrency()
 
@@ -133,4 +133,4 @@ const Launchpad: React.FC<React.PropsWithChildren> = () => {
   )
 }
 
-export default Launchpad
+export default CreateLaunchpad

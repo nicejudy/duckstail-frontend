@@ -223,19 +223,19 @@ const config: (
       items: [
         {
           label: t('Create launchpad'),
-          href: '/launchpad',
+          href: '/create-launchpad',
         },
         {
           label: t('Create fair launch'),
-          href: '/launchpad/fair-launch',
+          href: '/create-fairlaunch',
         },
         {
           label: t('Create a token'),
-          href: '/launchpad/create-token',
+          href: '/create-token',
         },
         {
           label: t('Launchpad list'),
-          href: '/launchpad/launchpad-list',
+          href: '/launchpad-list',
         },
       ].map((item) => addMenuItemSupported(item, chainId)),
     },

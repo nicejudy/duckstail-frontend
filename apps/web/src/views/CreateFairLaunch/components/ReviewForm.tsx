@@ -2,15 +2,14 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { useTranslation } from '@pancakeswap/localization'
 import { ChainId } from '@pancakeswap/sdk'
 import { arbitrumTokens } from '@pancakeswap/tokens'
-import { Text, Box, Message, Button, Flex, MessageText } from '@pancakeswap/uikit'
-import styled from 'styled-components'
+import { Text, Box, Message, Flex, MessageText } from '@pancakeswap/uikit'
 import { useAccount, useChainId } from 'wagmi'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { useToken } from 'hooks/Tokens'
 import { ApprovalState, useApproveCallback } from 'hooks/useApproveCallback'
 import { getLaunchpadAddress } from 'utils/addressHelpers'
-import ProgressSteps from 'views/Launchpad/components/ProgressSteps'
-import { useAccountInfo } from 'views/Launchpad/hooks/useAccountInfo'
+import ProgressSteps from 'views/CreateLaunchpad/components/ProgressSteps'
+import { useAccountInfo } from 'views/CreateLaunchpad/hooks/useAccountInfo'
 import { DeFi, FinishData, LaunchpadFormView, Socials, TokenData } from '../types'
 import { FormHeader } from './FormHeader'
 import { FormContainer } from './FormContainer'
@@ -85,12 +84,8 @@ export function ReviewForm({
             <Text>{tokenData.tokenDecimals}</Text>
           </Flex>
           <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
-            <Text color="primary">{t("Presale Rate")}</Text>
-            <Text>{deFiData.presaleRate} {tokenData.tokenSymbol}</Text>
-          </Flex>
-          <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
-            <Text color="primary">{t("Listing Rate")}</Text>
-            <Text>{deFiData.listingRate} {tokenData.tokenSymbol}</Text>
+            <Text color="primary">{t("Total Selling Amount")}</Text>
+            <Text>{deFiData.total} {tokenData.tokenSymbol}</Text>
           </Flex>
           <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
             <Text color="primary">{t("Sale Method")}</Text>
@@ -100,26 +95,14 @@ export function ReviewForm({
             <Text color="primary">{t("Soft Cap")}</Text>
             <Text>{deFiData.softCap} {tokenData.currency.symbol}</Text>
           </Flex>
-          <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
-            <Text color="primary">{t("Hard Cap")}</Text>
-            <Text>{deFiData.hardCap} {tokenData.currency.symbol}</Text>
-          </Flex>
-          <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
-            <Text color="primary">{t("Unsold tokens")}</Text>
-            <Text>{deFiData.refundType ? "Refund" : "Burn"}</Text>
-          </Flex>
-          <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
-            <Text color="primary">{t("Minimum Buy")}</Text>
-            <Text>{deFiData.minimumBuy} {tokenData.currency.symbol}</Text>
-          </Flex>
-          <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
+          {deFiData.isMax && <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
             <Text color="primary">{t("Maximum Buy")}</Text>
             <Text>{deFiData.maximumBuy} {tokenData.currency.symbol}</Text>
-          </Flex>
-          {tokenData.listingOption && <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
+          </Flex>}
+          <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
             <Text color="primary">{t("Liquidity")}</Text>
             <Text>{deFiData.liquidity} %</Text>
-          </Flex>}
+          </Flex>
           <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
             <Text color="primary">{t("Start Time")}</Text>
             <Text>{deFiData.startTime} (UTC)</Text>
@@ -128,10 +111,10 @@ export function ReviewForm({
             <Text color="primary">{t("End Time")}</Text>
             <Text>{deFiData.endTime} (UTC)</Text>
           </Flex>
-          {tokenData.listingOption && <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
+          <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
             <Text color="primary">{t("Liquidity Lockup Time")}</Text>
             <Text>{deFiData.lockTime} days</Text>
-          </Flex>}
+          </Flex>
           {socials.whitelist !== "" && <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
             <Text color="primary">{t("Whitelist Approbation Link")}</Text>
             <Text>{socials.whitelist}</Text>

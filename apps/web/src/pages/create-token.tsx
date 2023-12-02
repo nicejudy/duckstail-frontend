@@ -8,12 +8,3 @@ const CreateTokenPage = () => {
 CreateTokenPage.chains = [ChainId.ARBITRUM, ChainId.ETHEREUM]
 
 export default CreateTokenPage
-
-
-// import { NotFound } from '@pancakeswap/uikit'
-
-// const NotFoundPage = () => <NotFound />
-
-// NotFoundPage.chains = []
-
-// export default NotFoundPage
