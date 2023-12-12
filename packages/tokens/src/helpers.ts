@@ -8,6 +8,7 @@ export const EMPTY_LIST: TokenAddressMap<ChainId> = {
   [ChainId.ETHEREUM]: {},
   [ChainId.BSC]: {},
   [ChainId.ARBITRUM]: {},
+  [ChainId.POLYGON]: {},
 }
 
 export function serializeTokens(unserializedTokens) {

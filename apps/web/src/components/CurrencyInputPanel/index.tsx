@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react'
-import { Currency, Pair, Token, Percent, CurrencyAmount } from '@pancakeswap/sdk'
-import { Button, ChevronDownIcon, Text, useModal, Flex, Box, NumericalInput, CopyButton } from '@pancakeswap/uikit'
+import { Currency, Pair, Token, CurrencyAmount } from '@pancakeswap/sdk'
+import { Button, ChevronDownIcon, Text, useModal, Flex, Box, NumericalInput } from '@pancakeswap/uikit'
 import styled, { css } from 'styled-components'
-import { isAddress } from 'utils'
+// import { isAddress } from 'utils'
 import { useTranslation } from '@pancakeswap/localization'
 // import { WrappedTokenInfo } from '@pancakeswap/token-lists'
 
@@ -117,8 +117,8 @@ export default function CurrencyInputPanel({
   onMax,
   // showQuickInputButton = false,
   // showMaxButton,
-  maxAmount,
-  lpPercent,
+  // maxAmount,
+  // lpPercent,
   // label,
   onCurrencySelect,
   currency,
@@ -141,7 +141,7 @@ export default function CurrencyInputPanel({
   const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined)
   const { t } = useTranslation()
 
-  const token = pair ? pair.liquidityToken : currency?.isToken ? currency : null
+  // const token = pair ? pair.liquidityToken : currency?.isToken ? currency : null
   // const tokenAddress = token ? isAddress(token.address) : null
 
   const amountInDollar = useBUSDCurrencyAmount(

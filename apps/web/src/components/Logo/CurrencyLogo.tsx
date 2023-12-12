@@ -55,6 +55,10 @@ export default function CurrencyLogo({
     )
   }
 
+  if (currency && currency.wrapped.address === "0x1F8AA9047Ecb2284e04FBC82803e1448f64DE27a") {
+    return <StyledLogo badSrcs={BAD_SRCS} size={size} srcs={[`/images/dko.png`]} alt={`${currency?.symbol ?? 'token'} logo`} style={style} />
+  }
+
   if (currency && currency.wrapped.address === "0x2f2a2543B76A4166549F7aaB2e75Bef0aefC5B0f" && currency.chainId === 42161) {
     return <StyledLogo badSrcs={BAD_SRCS} size={size} srcs={[`/images/42161/tokens/0x2f2a2543B76A4166549F7aaB2e75Bef0aefC5B0f.png`]} alt={`${currency?.symbol ?? 'token'} logo`} style={style} />
   }

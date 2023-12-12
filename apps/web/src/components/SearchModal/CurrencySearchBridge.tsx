@@ -12,7 +12,7 @@ import { useAudioModeManager } from 'state/user/hooks'
 import { isAddress } from 'utils'
 import { useActiveChainId } from 'hooks/useActiveChainId'
 import { useAllTokens, useIsUserAddedToken, useToken } from '../../hooks/Tokens'
-import Column, { AutoColumn } from '../Layout/Column'
+import Column from '../Layout/Column'
 // import Row from '../Layout/Row'
 // import CommonBases from './CommonBases'
 import CurrencyList from './CurrencyList'
@@ -91,7 +91,7 @@ function CurrencySearchBridge({
   tokensToShow,
 }: CurrencySearchProps) {
   const { t } = useTranslation()
-  const { chainId } = useActiveChainId()
+  // const { chainId } = useActiveChainId()
 
   // refs for fixed size lists
   const fixedList = useRef<FixedSizeList>()

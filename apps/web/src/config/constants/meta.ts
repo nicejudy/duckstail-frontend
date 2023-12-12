@@ -64,8 +64,9 @@ const getPathList = (t: ContextApi['t']): PathList => {
       '/capital/vault': { basePath: true, title: t('Capital - Vault'), image: `${ASSET_CDN}/web/og/pottery.jpg` },
       '/multisender': { basePath: true, title: t('Multisender'), image: `${ASSET_CDN}/web/og/pottery.jpg` },
       '/create-launchpad': { basePath: true, title: t('Launchpad'), image: `${ASSET_CDN}/web/og/pottery.jpg` },
-      '/create-fairlaunch': { basePath: true, title: t('Launchpad'), image: `${ASSET_CDN}/web/og/pottery.jpg` },
+      '/create-fairlaunch': { basePath: true, title: t('FairLaunch'), image: `${ASSET_CDN}/web/og/pottery.jpg` },
       '/create-token': { basePath: true, title: t('Create Token'), image: `${ASSET_CDN}/web/og/pottery.jpg` },
+      '/launchpads': { basePath: true, title: t('Launchpad List'), image: `${ASSET_CDN}/web/og/pottery.jpg` },
     },
     defaultTitleSuffix: t('Duckstail'),
   }

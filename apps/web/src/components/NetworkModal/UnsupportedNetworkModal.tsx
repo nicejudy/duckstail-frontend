@@ -1,4 +1,4 @@
-import { Button, Grid, Message, MessageText, Modal, Text } from '@pancakeswap/uikit'
+import { Box, Button, Flex, Grid, Message, MessageText, Modal, Text } from '@pancakeswap/uikit'
 import { useLocalNetworkChain } from 'hooks/useActiveChainId'
 import { useTranslation } from '@pancakeswap/localization'
 import { useSwitchNetwork, useSwitchNetworkLocal } from 'hooks/useSwitchNetwork'
@@ -7,7 +7,8 @@ import useAuth from 'hooks/useAuth'
 import { useMenuItems } from 'components/Menu/hooks/useMenuItems'
 import { useRouter } from 'next/router'
 import { getActiveMenuItem, getActiveSubMenuItem } from 'components/Menu/utils'
-import { useAccount, useNetwork } from 'wagmi'
+import { useAccount } from 'wagmi'
+import { chains } from 'utils/wagmi'
 import { useMemo } from 'react'
 import { ChainId } from '@pancakeswap/sdk'
 import Dots from '../Loader/Dots'
@@ -16,8 +17,8 @@ import Dots from '../Loader/Dots'
 export function UnsupportedNetworkModal({ pageSupportedChains }: { pageSupportedChains: number[] }) {
   const { switchNetworkAsync, isLoading, canSwitch } = useSwitchNetwork()
   const switchNetworkLocal = useSwitchNetworkLocal()
-  const { chains } = useNetwork()
-  const chainId = useLocalNetworkChain() || ChainId.ARBITRUM
+  // const { chains } = useNetwork()
+  // const chainId = useLocalNetworkChain() || ChainId.ARBITRUM
   const { isConnected } = useAccount()
   const { logout } = useAuth()
   const { t } = useTranslation()
@@ -33,7 +34,7 @@ export function UnsupportedNetworkModal({ pageSupportedChains }: { pageSupported
 
   const supportedMainnetChains = useMemo(
     () => chains.filter((chain) => !chain.testnet && pageSupportedChains?.includes(chain.id)),
-    [chains, pageSupportedChains],
+    [pageSupportedChains],
   )
 
   return (
@@ -42,47 +43,37 @@ export function UnsupportedNetworkModal({ pageSupportedChains }: { pageSupported
         <Text>
           {t('Currently %feature% only supported in', { feature: typeof title === 'string' ? title : 'this page' })}{' '}
           {supportedMainnetChains?.map((c) => c.name).join(', ')}
-          {/* {t('BNB Smart Chain')} */}
         </Text>
-        {/* <div style={{ textAlign: 'center' }}>
-          <Image
-            layout="fixed"
-            width={194}
-            height={175}
-            src="/images/42161/tokens/0x912CE59144191C1204E64559FE8253a0e49E6548.png"
-            alt="check your network"
-          />
-        </div> */}
+        <Flex justifyContent="center">
+          {supportedMainnetChains?.map((chain) => {
+            const chainId_ = chain.id === ChainId.ARBITRUM ? "42161-1" : chain.id
+            return <Box p="20px" key={chain.name}>
+              <Image
+                layout="fixed"
+                width={194/supportedMainnetChains.length}
+                height={194/supportedMainnetChains.length}
+                src={`/images/chains/${chainId_}.png`}
+                alt="check your network"
+              />
+            </Box>
+          })}          
+        </Flex>
         <Message variant="warning">
           <MessageText>{t('Please switch your network to continue.')}</MessageText>
         </Message>
         {canSwitch ? (
-          <><Button
-            isLoading={isLoading}
-            onClick={() => {
-              // if (supportedMainnetChains.map((c) => c.id).includes(chainId)) {
-              //   switchNetworkAsync(chainId)
-              // } else {
-              //   switchNetworkAsync(ChainId.BSC)
-              // }
-              switchNetworkAsync(ChainId.ARBITRUM)
-            }}
-          >
-            {isLoading ? <Dots>{t('Switch to Arbitrum')}</Dots> : t('Switch to Arbitrum')}
-          </Button>
-          {/* <Button
-          isLoading={isLoading}
-          onClick={() => {
-            // if (supportedMainnetChains.map((c) => c.id).includes(chainId)) {
-            //   switchNetworkAsync(chainId)
-            // } else {
-            //   switchNetworkAsync(ChainId.BSC)
-            // }
-            switchNetworkAsync(ChainId.ETHEREUM)
-          }}
-        >
-          {isLoading ? <Dots>{t('Switch to Polygon')}</Dots> : t('Switch to Polygon')}
-        </Button> */}
+          <>
+          {supportedMainnetChains.map((chain) => {
+            return <Button
+              key={chain.name}
+              isLoading={isLoading}
+              onClick={() => {
+                switchNetworkAsync(chain.id)
+              }}
+            >
+              {isLoading ? <Dots>{t(`Switch to ${chain.name}`)}</Dots> : t(`Switch to ${chain.name}`)}
+            </Button>
+          })}
         </>
         ) : (
           <Message variant="danger">

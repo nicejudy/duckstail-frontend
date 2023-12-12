@@ -103,15 +103,16 @@ const SetPositionCard: React.FC<React.PropsWithChildren<SetPositionCardProps>> =
     return TOKEN_BALANCE_CONFIG[token.symbol]
   }, [token.symbol])
 
-  const { isVaultApproved, setLastUpdated } = useCakeApprovalStatus(token.symbol === 'CAKE' ? predictionsAddress : null)
-  const { handleApprove, pendingTx } = useCakeApprove(
-    setLastUpdated,
-    predictionsAddress,
-    t('You can now start prediction'),
-  )
+  // const { isVaultApproved, setLastUpdated } = useCakeApprovalStatus(token.symbol === 'CAKE' ? predictionsAddress : null)
+  // const { handleApprove, pendingTx } = useCakeApprove(
+  //   setLastUpdated,
+  //   predictionsAddress,
+  //   t('You can now start prediction'),
+  // )
 
   // BNB prediction doesn't need approval
-  const doesCakeApprovePrediction = token.symbol === 'BNB' || isVaultApproved
+  // const doesCakeApprovePrediction = token.symbol === 'BNB' || isVaultApproved
+  const doesCakeApprovePrediction = token.symbol === 'BNB'
 
   const { balance: bnbBalance } = useTokenBalance()
 
@@ -303,14 +304,24 @@ const SetPositionCard: React.FC<React.PropsWithChildren<SetPositionCardProps>> =
                 {t(key, { symbol: token.symbol })}
               </Button>
             ) : (
+              // <Button
+              //   width="100%"
+              //   className="swiper-no-swiping"
+              //   onClick={handleApprove}
+              //   isLoading={pendingTx}
+              //   endIcon={pendingTx ? <AutoRenewIcon color="currentColor" spin /> : null}
+              // >
+              //   {t('Enable')}
+              // </Button>
               <Button
                 width="100%"
-                className="swiper-no-swiping"
-                onClick={handleApprove}
-                isLoading={pendingTx}
-                endIcon={pendingTx ? <AutoRenewIcon color="currentColor" spin /> : null}
+                disabled={disabled}
+                className={disabled ? '' : 'swiper-no-swiping'}
+                onClick={handleEnterPosition}
+                isLoading={isTxPending}
+                endIcon={isTxPending ? <AutoRenewIcon color="currentColor" spin /> : null}
               >
-                {t('Enable')}
+                {t(key, { symbol: token.symbol })}
               </Button>
             )
           ) : (

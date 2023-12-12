@@ -1,5 +1,6 @@
 // import { parseUnits } from '@ethersproject/units'
 import { AtomBox } from '@pancakeswap/ui/components/AtomBox'
+import { UserMenuItemProps } from '@pancakeswap/uikit/src/widgets/Menu/components/UserMenu/types'
 import {
   // ButtonMenu,
   // ButtonMenuItem,
@@ -9,14 +10,14 @@ import {
   // InjectedModalProps,
   // ModalBody,
   // ModalContainer,
-  ModalHeader as UIKitModalHeader,
+  // ModalHeader as UIKitModalHeader,
   // ModalTitle,
   ModalV2,
   ModalWrapper,
-  UserMenuItem,
   Text,
   ModalV2Props,
   Flex,
+  // Box,
 } from '@pancakeswap/uikit'
 // import { useAccount, useBalance } from 'wagmi'
 // import { useState, useCallback } from 'react'
@@ -28,6 +29,35 @@ import { ChainLogo } from 'components/Logo/ChainLogo'
 // const ModalHeader = styled(UIKitModalHeader)`
 //   // background: ${({ theme }) => theme.colors.gradientBubblegum};
 // `
+
+export const UserMenuItem = styled.button<UserMenuItemProps>`
+  align-items: center;
+  border: 0;
+  background: transparent;
+  color: ${({ theme, disabled }) => theme.colors[disabled ? "textDisabled" : "textSubtle"]};
+  cursor: pointer;
+  display: flex;
+  font-size: 16px;
+  // height: 72px;
+  justify-content: space-between;
+  outline: 0;
+  padding: 16px 0;
+  width: 100%;
+  border-radius: 8px;
+
+  &:is(button) {
+    cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+  }
+
+  &:hover:not(:disabled) {
+    background-color: ${({ theme }) => theme.colors.tertiary};
+  }
+
+  &:active:not(:disabled) {
+    opacity: 0.85;
+    transform: translateY(1px);
+  }
+`;
 
 interface NetworkSwitchModalProps<T = unknown> extends ModalV2Props {
   switchNetwork: (x: number) => void;
@@ -79,7 +109,7 @@ export function NetworkSwitchModal<T = unknown>(props: NetworkSwitchModalProps<T
     <ModalWrapper onDismiss={props.onDismiss} style={{ overflow: 'visible', border: 'none', maxWidth: "360px" }}>
       <AtomBox position="relative">
       <AtomBox py="32px" px="24px">
-          <Heading color="text" as="h4" pb="24px">
+          <Heading color="text" as="h4" pb="36px">
             {t('Switch Network')}
           </Heading>
           {/* <Text color="textSubtle" small pt="24px" pb="32px">

@@ -3,12 +3,13 @@ import BigNumber from 'bignumber.js'
 import { useTranslation } from '@pancakeswap/localization'
 import { Text, Box, Flex, LinkExternal } from '@pancakeswap/uikit'
 import { Currency } from '@pancakeswap/sdk'
-import { arbitrumTokens } from '@pancakeswap/tokens'
+import { PCB, arbitrumTokens } from '@pancakeswap/tokens'
 import { ApprovalState, useApproveCallback } from 'hooks/useApproveCallback'
 // import Row from 'components/Layout/Row'
 import { CurrencyLogo } from 'components/Logo'
 import { CryptoFormView, DataType } from 'views/Airdrop/types'
 import { useAccount, useChainId } from 'wagmi'
+import { useActiveChainId } from 'hooks/useActiveChainId'
 import { getMultiSenderAddress } from 'utils/addressHelpers'
 import { usePollMultisenderWithUserData, useMultisender } from 'state/multisend/hooks'
 import { FormHeader } from './FormHeader'
@@ -29,22 +30,17 @@ export function QuoteForm({
   currency: Currency | null
 }) {
   const { t } = useTranslation()
-  const chainId = useChainId()
+  const {chainId} = useActiveChainId()
   const { address: account } = useAccount()
 
   const { fee: feeRate } = useMultisender()
 
   usePollMultisenderWithUserData()
 
-  // console.log(sendInfo)
-  // console.log(feeRate)
-
   const amounts = data.map((row) => Math.floor(row.amount * 10 ** currency.decimals)/10 ** currency.decimals)
   const totalAmounts = amounts.reduce((amount0, amount1) => amount0 + amount1, 0)
 
   const fee = new BigNumber(feeRate).times(data.length).div(10**18)
-
-  // console.log(sendInfo)
 
   const {
     parsedAmount,
@@ -54,7 +50,7 @@ export function QuoteForm({
   const {
     parsedAmount: parsedAmountForFee,
     inputError: inputErrorForFee
-  } = useAccountInfo(fee.toFixed(18), arbitrumTokens.test)
+  } = useAccountInfo(fee.toFixed(18), PCB[chainId])
 
   const [approval, approveCallback] = useApproveCallback(parsedAmount, getMultiSenderAddress(chainId))
   const [approvalForFee, approveCallbackForFee] = useApproveCallback(parsedAmountForFee, getMultiSenderAddress(chainId))
@@ -121,7 +117,7 @@ export function QuoteForm({
           // parsedAmount={parsedAmount}
           setModalView={setModalView}
         />
-        <LinkExternal href={`/swap?outputCurrency=${arbitrumTokens.test.address}`} style={{ alignSelf: "center" }}>
+        <LinkExternal href={`/swap?outputCurrency=${PCB[chainId].address}`} style={{ alignSelf: "center" }}>
           {t("Get %symbol%", { symbol: 'PCB' })}
         </LinkExternal>
       </FormContainer>

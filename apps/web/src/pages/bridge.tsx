@@ -113,7 +113,7 @@ function PoweredBy() {
   )
 }
 
-Bridge.chains = [ChainId.ARBITRUM, ChainId.ETHEREUM]
+Bridge.chains = [ChainId.ARBITRUM, ChainId.ETHEREUM, ChainId.BSC, ChainId.POLYGON]
 
 export default Bridge
 

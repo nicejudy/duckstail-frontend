@@ -99,7 +99,7 @@ export default function CommonBases({
         })}
       </RowWrapper>
       <RowWrapper>
-        {(chainId === ChainId.ARBITRUM ? SECOND_LINE_ETH || [] : []).map((token: Token) => {
+        {(chainId ? SECOND_LINE_ETH || [] : []).map((token: Token) => {
           const selected = selectedCurrency?.equals(token)
           return (
             <ButtonWrapper key={`buttonBase#${token.address}`}>
@@ -112,7 +112,7 @@ export default function CommonBases({
         })}
       </RowWrapper>
       <RowWrapper>
-        {(chainId === ChainId.ARBITRUM ? THIRD_LINE_ETH || [] : []).map((token: Token) => {
+        {(chainId === ChainId.ARBITRUM || chainId === ChainId.BSC ? THIRD_LINE_ETH || [] : []).map((token: Token) => {
           const selected = selectedCurrency?.equals(token)
           return (
             <ButtonWrapper key={`buttonBase#${token.address}`}>

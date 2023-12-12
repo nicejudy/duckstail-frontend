@@ -50,11 +50,10 @@ interface STokenPairImageProps extends Omit<UIKitTokenPairImageProps, 'primarySr
 }
 
 const getImageUrlFromSToken = (token: SerializedWrappedToken) => {
-  const address = token.address
   if (token.chainId !== ChainId.BSC) {
-    return `/images/${token.chainId}/tokens/${address}.png`
+    return `/images/${token.chainId}/tokens/${token.address}.png`
   }
-  return `/images/tokens/${address}.png`
+  return `/images/tokens/${token.address}.png`
 }
 
 export const STokenPairImage: React.FC<React.PropsWithChildren<STokenPairImageProps>> = ({

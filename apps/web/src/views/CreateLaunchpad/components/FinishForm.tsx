@@ -9,6 +9,7 @@ import styled, { useTheme } from 'styled-components'
 import { useAccount, useChainId } from 'wagmi'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { BAD_SRCS } from 'components/Logo/constants'
+import Divider from 'components/Divider'
 import useNativeCurrency from 'hooks/useNativeCurrency'
 import { ProgressCirclesFullCompleted } from './ProgressSteps'
 import { DeFi, FinishData, LaunchpadFormView, Socials, TokenData } from '../types'
@@ -100,7 +101,7 @@ export function FinishForm({
   const { address: account } = useAccount()
   const native = useNativeCurrency()
 
-  const { secondsRemaining } = useCountdown(Math.floor(Date.parse(deFiData.startTime) / 1000))
+  const { secondsRemaining } = useCountdown(Math.floor(Date.parse(`${deFiData.startTime.replace("T", " ")} GMT`) / 1000))
   // const { secondsRemaining } = useCountdown(Math.floor(Date.now() / 1000 - 5))
   const countdown = formatRoundTime(secondsRemaining)
 
@@ -167,13 +168,12 @@ export function FinishForm({
           <Text fontSize="16px" bold color="primary">{t("Congratulation!")}</Text>
           <Text fontSize="12px">{t("You've just created launchpad")}</Text>
         </Box>
-        <Flex width="100%" justifyContent="center" mb={["0", "50px"]}>
+        {/* <Flex width="100%" justifyContent="center" mb={["0", "50px"]}>
           <StyledBox>
-            <Flex justifyContent="space-between" mb="20px">
-              <ImageBox>
-                {/* <img src={socials.logoUrl} width="56px" /> */}
+            <Flex justifyContent="space-between" mb="14px">
+              <Box>
                 <StyledLogo badSrcs={BAD_SRCS} size="56px" srcs={[socials.logoUrl]} alt={`${tokenData.tokenSymbol} logo`} />
-              </ImageBox>
+              </Box>
               <Flex flexDirection="column" alignItems="center" mr="20px">
                 <Badge variant="upcoming">
                   <CircleBox variant="upcoming" />
@@ -182,30 +182,31 @@ export function FinishForm({
               </Flex>
             </Flex>
             <Box mb="1rem">
-              <Text color="primary" bold fontSize="24px">{tokenData.tokenName}</Text>
-              <Text bold>{t("1 %symbol1% = %amount% %symbol2%", {symbol1: tokenData.currency.symbol, symbol2: tokenData.tokenSymbol, amount: deFiData.presaleRate})}</Text>
+              <Text bold fontSize="26px">{tokenData.tokenName}</Text>
+              <Text>{t("1 %symbol1% = %amount% %symbol2%", {symbol1: tokenData.currency.symbol, symbol2: tokenData.tokenSymbol, amount: deFiData.presaleRate})}</Text>
+            </Box>
+            <Box mb="1rem">
+              <Text color="primary" bold fontSize="12px">{t("Soft/Hard")}</Text>
+              <Text color="failure" bold fontSize="20px">{t("%amount1% %symbol% - %amount2% %symbol%", {symbol: tokenData.currency.symbol, amount1: Number(deFiData.softCap).toLocaleString(), amount2: Number(deFiData.hardCap).toLocaleString()})}</Text>
             </Box>
             <Box mb="0.5rem">
-              <Text color="primary" bold fontSize="16px">{t("Soft/Hard")}</Text>
-              <Text color="failure" bold>{t("%amount1% %symbol% - %amount2% %symbol%", {symbol: tokenData.currency.symbol, amount1: Number(deFiData.softCap).toLocaleString(), amount2: Number(deFiData.hardCap).toLocaleString()})}</Text>
-            </Box>
-            <Box mb="0.5rem">
-              <Text color="primary" bold fontSize="16px">{t("Progress (0.00%)")}</Text>
+              <Text color="primary" bold fontSize="12px">{t("Progress (0.00%)")}</Text>
               <ProgressBar />
               <Flex justifyContent="space-between">
-                <Text color="textDisabled" fontSize="14px" bold>{t("0 %symbol%", {symbol: tokenData.currency.symbol})}</Text>
-                <Text color="textDisabled" fontSize="14px" bold>{t("%amount% %symbol%", {symbol: tokenData.currency.symbol, amount: Number(deFiData.hardCap).toLocaleString()})}</Text>
+                <Text color="textDisabled" fontSize="16px" bold>{t("0 %symbol%", {symbol: tokenData.currency.symbol})}</Text>
+                <Text color="textDisabled" fontSize="16px" bold>{t("%amount% %symbol%", {symbol: tokenData.currency.symbol, amount: Number(deFiData.hardCap).toLocaleString()})}</Text>
               </Flex>
             </Box>
             <Flex justifyContent="space-between">
               <Text color="primary" bold fontSize="16px">{t("Liquidity (%)")}</Text>
               <Text bold fontSize="16px">{t("%amount%%", {amount: tokenData.listingOption ? deFiData.liquidity : "Manual listing"})}</Text>
             </Flex>
-            <Flex mb="0.5rem" justifyContent="space-between">
+            <Flex mb="1rem" justifyContent="space-between">
               <Text color="primary" bold fontSize="16px">{t("Lockup Time")}</Text>
-              <Text bold fontSize="16px">{t("%amount%%symbol%", {amount: tokenData.listingOption ? `${deFiData.lockTime} days`  : "Unlocked"})}</Text>
+              <Text bold fontSize="16px">{t("%amount%", {amount: tokenData.listingOption ? `${deFiData.lockTime} days`  : "Unlocked"})}</Text>
             </Flex>
-            <Flex mb="0.5rem" justifyContent="space-between">
+            <Divider />
+            <Flex mb="1rem" justifyContent="space-between">
               <Box>
                 <Text color="primary" bold fontSize="14px">{t("Sale starts in:")}</Text>
                 <Text bold fontSize="12px">{countdown}</Text>
@@ -226,8 +227,25 @@ export function FinishForm({
               </Flex>
             </Flex>
           </StyledBox>
+        </Flex> */}
+        <Flex width="100%" alignItems="center" flexDirection={["column", "row"]}>
+          {/* {socials.whitelist !== "" && <Link external href={socials.whitelist} width="100% !important">
+            <Button
+              width="100%"
+              mr="10px"
+              variant="secondary"
+            >{t("WL")}</Button>
+          </Link>} */}
+          <Box width="100%">
+            <NextLinkFromReactRouter to={`/launchpad/${address}`}>
+              <Button
+                width="100%"
+                variant="secondary"
+              >{t("View Launchpad")}</Button>
+            </NextLinkFromReactRouter>
+          </Box>
         </Flex>
-        {chainId !== ChainId.ARBITRUM || !account ? <ConnectWalletButton /> : <Flex width="100%" alignItems="center" flexDirection={["column", "row"]}>
+        <Flex width="100%" alignItems="center" flexDirection={["column", "row"]}>
           <Box mr={["0", "15px"]} mb={["10px", "0"]} width="100%">
             <Button
               width="100%"
@@ -235,13 +253,13 @@ export function FinishForm({
             ><Text color="invertedContrast" bold fontSize="14px">{t("Create Other")}</Text></Button>
           </Box>
           <Box width="100%">
-            <NextLinkFromReactRouter to="/launchpad-list">
+            <NextLinkFromReactRouter to="/launchpads">
               <Button
                 width="100%"
               ><Text color="invertedContrast" bold fontSize="14px">{t("View List")}</Text></Button>
             </NextLinkFromReactRouter>
           </Box>
-        </Flex>}
+        </Flex>
       </FormContainer>
     </Box>
   )

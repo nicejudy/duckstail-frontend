@@ -67,7 +67,9 @@ import {
   getDcpStakingContract,
   getMultisenderContract,
   getLockerContract,
-  getLaunchpadContract,
+  getLaunchpadFactoryContract,
+  getLaunchpadETHContract,
+  getLaunchpadTokenContract,
 } from 'utils/contractHelpers'
 import { useSigner } from 'wagmi'
 
@@ -438,8 +440,20 @@ export const useLocker = (withSignerIfPossible = true) => {
   return useMemo(() => getLockerContract(providerOrSigner, chainId), [providerOrSigner, chainId])
 }
 
-export const useLaunchpad = (withSignerIfPossible = true) => {
+export const useLaunchpadFactory = (withSignerIfPossible = true) => {
   const { chainId } = useActiveChainId()
   const providerOrSigner = useProviderOrSigner(withSignerIfPossible)
-  return useMemo(() => getLaunchpadContract(providerOrSigner, chainId), [providerOrSigner, chainId])
+  return useMemo(() => getLaunchpadFactoryContract(providerOrSigner, chainId), [providerOrSigner, chainId])
+}
+
+export const useLaunchpadETH = (address: string, withSignerIfPossible = true) => {
+  // const { chainId } = useActiveChainId()
+  const providerOrSigner = useProviderOrSigner(withSignerIfPossible)
+  return useMemo(() => getLaunchpadETHContract(address, providerOrSigner), [address, providerOrSigner])
+}
+
+export const useLaunchpadToken = (address: string, withSignerIfPossible = true) => {
+  // const { chainId } = useActiveChainId()
+  const providerOrSigner = useProviderOrSigner(withSignerIfPossible)
+  return useMemo(() => getLaunchpadTokenContract(address, providerOrSigner), [address, providerOrSigner])
 }

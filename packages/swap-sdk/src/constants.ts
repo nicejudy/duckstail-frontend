@@ -5,28 +5,31 @@ export enum ChainId {
   ETHEREUM = 1,
   ARBITRUM = 42161,
   BSC = 56,
+  POLYGON = 137,
 }
 
 export const ZERO_PERCENT = new Percent('0')
 export const ONE_HUNDRED_PERCENT = new Percent('1')
 
-export const FACTORY_ADDRESS = '0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73'
+export const FACTORY_ADDRESS = '0x8c24F1aA3AC1A585e66b97013758840B4Ea65daD'
 
-const FACTORY_ADDRESS_ETH = '0x8C75117ea9a1341530640E27c0B4C484e54Ad2e3'
+const FACTORY_ADDRESS_ETH = '0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f'
 
 export const FACTORY_ADDRESS_MAP: Record<number, string> = {
   [ChainId.ETHEREUM]: FACTORY_ADDRESS_ETH,
-  [ChainId.ARBITRUM]: FACTORY_ADDRESS_ETH,
+  [ChainId.ARBITRUM]: FACTORY_ADDRESS,
   [ChainId.BSC]: FACTORY_ADDRESS,
+  [ChainId.POLYGON]: FACTORY_ADDRESS,
 }
-export const INIT_CODE_HASH = '0x00fb7f630766e6a796048ea87d01acd3068e8ff67d078148a3fa3f4a84f69bd5'
+export const INIT_CODE_HASH = '0x76db8fd7ebd7c6952d7d207315f6051b92a55813677c85393a56b470a27be429'
 
-const INIT_CODE_HASH_ETH = '0x73df8b85b3eaf67f8842f80bf28c93ea8a95e30a92c32f602cdf87c68a44baf7'
+const INIT_CODE_HASH_ETH = '0x96e8ac4277198ff8b6f785478aa9a39f403cb768dd02cbee326c3e7da348845f'
 
 export const INIT_CODE_HASH_MAP: Record<number, string> = {
   [ChainId.ETHEREUM]: INIT_CODE_HASH_ETH,
-  [ChainId.ARBITRUM]: INIT_CODE_HASH_ETH,
+  [ChainId.ARBITRUM]: INIT_CODE_HASH,
   [ChainId.BSC]: INIT_CODE_HASH,
+  [ChainId.POLYGON]: INIT_CODE_HASH,
 }
 
 export const WETH9 = {
@@ -45,6 +48,14 @@ export const WETH9 = {
     'WETH',
     'Wrapped Ether',
     'https://weth.io'
+  ),
+  [ChainId.POLYGON]: new ERC20Token(
+    ChainId.POLYGON,
+    '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270',
+    18,
+    'WMATIC',
+    'Wrapped Matic',
+    'https://polygon.technology/'
   ),
 }
 
@@ -71,6 +82,7 @@ export const WNATIVE: Record<number, ERC20Token> = {
   [ChainId.ETHEREUM]: WETH9[ChainId.ETHEREUM],
   [ChainId.ARBITRUM]: WETH9[ChainId.ARBITRUM],
   [ChainId.BSC]: WBNB[ChainId.BSC],
+  [ChainId.POLYGON]: WETH9[ChainId.POLYGON],
 }
 
 export const NATIVE: Record<
@@ -83,6 +95,7 @@ export const NATIVE: Record<
 > = {
   [ChainId.ETHEREUM]: { name: 'Ether', symbol: 'ETH', decimals: 18 },
   [ChainId.ARBITRUM]: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+  [ChainId.POLYGON]: { name: 'Matic', symbol: 'MATIC', decimals: 18 },
   [ChainId.BSC]: {
     name: 'Binance Chain Native Token',
     symbol: 'BNB',

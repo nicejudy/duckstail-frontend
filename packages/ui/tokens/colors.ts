@@ -3,6 +3,7 @@ export const baseColors = {
   failure: '#ed4a9c',
   failure33: '#ed4a9c33',
   primary: '#FFAC26',
+  primary66: '#FFAC2666',
   primary0f: '#4353ff0f',
   primary3D: '#4353ff3D',
   primaryBright: '#ffffff',
@@ -11,7 +12,7 @@ export const baseColors = {
   success19: '#2fd08019',
   warning: '#ffcd38',
   warning2D: '#ed4a9c2D',
-  warning33: '#ed4a9c33',
+  warning33: '#ffcd3833',
   spec: '#979797',
 }
 
@@ -42,6 +43,7 @@ export const lightColors = {
   inputSecondary: '#d7caec',
   tertiary: '#EFF4F5',
   text: '#0d5e36',
+  text33: '#0d5e3633',
   text99: '#0d5e3699',
   textDisabled: '#BDC2C4',
   textSubtle: '#339980',
@@ -76,6 +78,7 @@ export const darkColors = {
   primaryDark: '#0098A1',
   tertiary: '#b8a07a',
   text: '#fff0ff',
+  text33: '#fff0ff33',
   text99: '#fff0ff99',
   textDisabled: '#bac2c4',
   textSubtle: '#ffffff',

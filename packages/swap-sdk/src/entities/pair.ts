@@ -17,7 +17,7 @@ import { keccak256, pack } from '@ethersproject/solidity'
 import JSBI from 'jsbi'
 import invariant from 'tiny-invariant'
 
-import { FACTORY_ADDRESS_MAP, INIT_CODE_HASH_MAP } from '../constants'
+import { ChainId, FACTORY_ADDRESS_MAP, INIT_CODE_HASH_MAP } from '../constants'
 import { ERC20Token } from './token'
 
 let PAIR_ADDRESS_CACHE: { [key: string]: string } = {}
@@ -67,8 +67,8 @@ export class Pair {
       tokenAmounts[0].currency.chainId,
       Pair.getAddress(tokenAmounts[0].currency, tokenAmounts[1].currency),
       18,
-      'Duckstail-LP',
-      'Duckstail LPs'
+      tokenAmounts[0].currency.chainId === ChainId.ETHEREUM ? 'UNI-V2' : 'DKO-LP',
+      tokenAmounts[0].currency.chainId === ChainId.ETHEREUM ? 'Uniswap V2' : 'Duckstail LPs'
     )
     this.tokenAmounts = tokenAmounts as [CurrencyAmount<ERC20Token>, CurrencyAmount<ERC20Token>]
   }

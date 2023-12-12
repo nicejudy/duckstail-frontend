@@ -3,10 +3,8 @@ export const COINGECKO = 'https://tokens.pancakeswap.finance/coingecko.json'
 export const UNISWAP = 'https://cloudflare-ipfs.com/ipns/tokens.uniswap.org'
 export const CMC = 'https://tokens.pancakeswap.finance/cmc.json'
 
-export const ETH_URLS = [UNISWAP]
+export const ETH_URLS = []
 export const BSC_URLS = []
-export const KNB_URLS = []
-export const SMR_URLS = []
 
 // List of official tokens list
 export const OFFICIAL_LISTS = []
@@ -23,4 +21,4 @@ export const DEFAULT_LIST_OF_LISTS: string[] = [
 ]
 
 // default lists to be 'active' aka searched across
-export const DEFAULT_ACTIVE_LIST_URLS: string[] = [UNISWAP]
+export const DEFAULT_ACTIVE_LIST_URLS: string[] = []

@@ -74,16 +74,16 @@ export default function SendCommitButton({
   const handleCommit = async () => {
     const receipt = await fetchWithCatchTxError(() => onCreateLaunchpad(
       [
-        new BigNumber(Date.parse(deFiData.startTime)).div(100).toFixed(),
-        new BigNumber(Date.parse(deFiData.endTime)).div(100).toFixed(),
+        new BigNumber(Date.parse(`${deFiData.startTime.replace("T", " ")} GMT`)).div(1000).toFixed(),
+        new BigNumber(Date.parse(`${deFiData.endTime.replace("T", " ")} GMT`)).div(1000).toFixed(),
         new BigNumber(deFiData.softCap).times(10**tokenData.currency.decimals).toFixed(),
         new BigNumber(deFiData.hardCap).times(10**tokenData.currency.decimals).toFixed(),
         new BigNumber(deFiData.minimumBuy).times(10**tokenData.currency.decimals).toFixed(),
         new BigNumber(deFiData.maximumBuy).times(10**tokenData.currency.decimals).toFixed(),
         new BigNumber(deFiData.presaleRate).times(10**tokenData.tokenDecimals).toFixed(),
-        new BigNumber(deFiData.listingRate).times(10**tokenData.tokenDecimals).toFixed(),
-        new BigNumber(deFiData.liquidity).times(10).toFixed(),
-        new BigNumber(deFiData.lockTime).times(24*3600).toFixed(),
+        new BigNumber(Number(deFiData.listingRate)).times(10**tokenData.tokenDecimals).toFixed(),
+        new BigNumber(Number(deFiData.liquidity)).times(10).toFixed(),
+        new BigNumber(Number(deFiData.lockTime)).times(24*3600).toFixed(),
         new BigNumber(tokenData.mainFee).toFixed(),
         new BigNumber(tokenData.tokenFee).toFixed(),
         new BigNumber(deFiData.vestingData.vestingFirst).times(100).toFixed(),
@@ -250,7 +250,7 @@ export default function SendCommitButton({
         marginX="10px"
         disabled={!isValid || !approved || pendingTx || !isValidForFee || !approvedForFee}
       >
-        {swapInputError ||
+        {swapInputError || swapInputErrorForFee ||
           (pendingTx ? 
             <AutoRow gap="6px" justify="center">
               {t('Confirming')} <CircleLoader stroke="white" />

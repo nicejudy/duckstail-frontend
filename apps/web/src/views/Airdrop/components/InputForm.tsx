@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useCallback, useState } from 'react'
+import { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react'
 import { isAddress } from '@ethersproject/address'
 import { useTranslation } from '@pancakeswap/localization'
 import { Currency, ChainId } from '@pancakeswap/sdk'
@@ -6,6 +6,8 @@ import { Text, Box, TextArea, Button, Input, useModal, ChevronDownIcon, Flex } f
 import styled from 'styled-components'
 import { CryptoFormView, DataType } from 'views/Airdrop/types'
 import { useAccount, useChainId } from 'wagmi'
+import { useActiveChainId } from 'hooks/useActiveChainId'
+import useNativeCurrency from 'hooks/useNativeCurrency'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import Row from 'components/Layout/Row'
 import { CommonBasesType } from 'components/SearchModal/types'
@@ -18,6 +20,9 @@ import { FormContainer } from './FormContainer'
 const StyledTextArea = styled(TextArea)`
   max-width: 100%;
   min-width: 100%;
+  ::placeholder {
+    color: ${({ theme }) => theme.colors.textDisabled};
+  }
 `
 
 const StyledButton = styled(Button)`
@@ -31,9 +36,9 @@ const StyledButton = styled(Button)`
 const StyledFlex = styled(Flex)`
   width: 100%;
   flex-direction: column;
-  align-items: center;
+  // align-items: center;
   ${({ theme }) => theme.mediaQueries.sm} {
-    flex-direction: row;
+    flex-direction: column;
   }
 `
 
@@ -53,7 +58,8 @@ export function InputForm({
   setCurrency: Dispatch<SetStateAction<Currency | null>>
 }) {
   const { t } = useTranslation()
-  const chainId = useChainId()
+  const chainId = useActiveChainId()
+  const native = useNativeCurrency()
   const { address: account } = useAccount()
 
   const [allocation, setAllocation] = useState("");
@@ -162,11 +168,16 @@ Ex:
     'selectCurrencyModal',
   )
 
+  useEffect(() => {
+    setCurrency(native)
+  }, [chainId])
+
   return (
     <Box p="4px" position="inherit">
       <FormHeader title={t('Add Allocation')} subTitle={t('Enter your token to be send with allocations')} />
       <FormContainer>
         <Box>
+          <Text fontSize="12px" color="primary">{t("Currency*")}</Text>
           <StyledButton
             endIcon={<ChevronDownIcon />}
             onClick={() => {
@@ -182,13 +193,14 @@ Ex:
               <Text ml="8px">{t('Select a Token')}</Text>
             )}
           </StyledButton>
+          <Text fontSize="12px" color="primary">{t("Allocation*")}</Text>
           <StyledTextArea
             rows={12}
             placeholder={placeholder}
             value={allocation}
             onChange={handleAllocation}
           />
-          {allocationText !== "" && <Text color="warning" fontSize="14px" px="4px">
+          {allocationText !== "" && <Text color="failure" fontSize="14px" px="4px">
             {allocationText}
           </Text>}
         </Box>
@@ -209,9 +221,11 @@ Ex:
           </Button>
         </Box>
         <StyledFlex>
-          <Text pr="20px">Tag:</Text>
+          {/* <Text pr="20px">Tag:</Text> */}
+          <Text fontSize="12px" color="primary">{t("Tag*")}</Text>
           <Input
             type="text"
+            placeholder="Input tag"
             value={tag}
             onChange={(e) => setTag(e.target.value)}
           />
@@ -219,7 +233,7 @@ Ex:
         {allocationError !== "" && <Text color="failure" fontSize="14px" px="4px">
           {allocationError}
         </Text>}
-        {chainId !== ChainId.ARBITRUM || !account ? <ConnectWalletButton /> : <Button
+        {!account ? <ConnectWalletButton /> : <Button
           onClick={handleConfirm}
           disabled={allocationError !== "" || allocationText !== ""}
         >{t("Next")}</Button>}

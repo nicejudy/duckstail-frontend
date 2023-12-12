@@ -9,6 +9,7 @@ import { useAppDispatch } from 'state'
 import { resetMintState } from 'state/mint/actions'
 // import { CHAIN_IDS } from 'utils/wagmi'
 import AddLiquidity from 'views/AddLiquidity'
+import { CHAIN_IDS } from 'utils/wagmi'
 import AddStableLiquidity from 'views/AddLiquidity/AddStableLiquidity/index'
 import useStableConfig, { StableConfigContext } from 'views/Swap/StableSwap/hooks/useStableConfig'
 import { useActiveChainId } from 'hooks/useActiveChainId'
@@ -19,8 +20,6 @@ const AddLiquidityPage = () => {
   const dispatch = useAppDispatch()
 
   const native = useNativeCurrency()
-
-  console.log(router.query.currency)
 
   const [currencyIdA, currencyIdB] = router.query.currency || [
     native.symbol,
@@ -50,7 +49,7 @@ const AddLiquidityPage = () => {
   )
 }
 
-AddLiquidityPage.chains = [ChainId.ARBITRUM]
+AddLiquidityPage.chains = CHAIN_IDS
 
 export default AddLiquidityPage
 

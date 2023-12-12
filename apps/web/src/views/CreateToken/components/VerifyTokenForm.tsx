@@ -331,7 +331,6 @@ export function VerifyTokenForm({
 
     const receipt = await fetchWithCatchTxErrorForDeploy(() => handleDeploy(factory, args[type], {value: ethers.utils.parseEther(fee)}))
     if (receipt) {
-      console.log(receipt)
       toastSuccess(
         `${t('Token Created')}!`,
         <ToastDescriptionWithTx txHash={receipt.deployTransaction.hash}>

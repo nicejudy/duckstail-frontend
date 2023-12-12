@@ -11,8 +11,8 @@ import Row from 'components/Layout/Row'
 import { CommonBasesType } from 'components/SearchModal/types'
 import { CurrencyLogo } from 'components/Logo'
 import CurrencySearchModal from 'components/SearchModal/CurrencySearchModal'
-import ProgressSteps from './ProgressSteps'
 import { useToken } from 'hooks/Tokens'
+import ProgressSteps from './ProgressSteps'
 import { LaunchpadFormView, TokenData } from '../types'
 import { FormHeader } from './FormHeader'
 import { FormContainer } from './FormContainer'
@@ -226,7 +226,7 @@ export function VerifyTokenForm({
             <span>{t('Do not use this currency for auto liquidity tokens, or tokens that depend on WETH pair. It will lead to error when finalizing the pool or transfering the tokens (for example Liquidity Generator Token, BabyToken, Buyback Baby Token).')}</span>
           </MessageText>
         </Message>}
-        {chainId !== ChainId.ARBITRUM || !account ? <ConnectWalletButton /> : <Button
+        {!account ? <ConnectWalletButton /> : <Button
           onClick={handleNext}
           disabled={tokenError !== "" || searchQuery === ""}
         >{t("Next")}</Button>}

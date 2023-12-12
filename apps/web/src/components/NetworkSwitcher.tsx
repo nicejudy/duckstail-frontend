@@ -11,7 +11,6 @@ import {
   UserMenu,
   UserMenuDivider,
   UserMenuItem,
-  useModal,
   useTooltip,
 } from '@pancakeswap/uikit'
 import { useAccount, useNetwork } from 'wagmi'
@@ -24,18 +23,12 @@ import { useActiveHandle } from 'hooks/useEagerConnect.bmp'
 import { useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
 import { chains } from 'utils/wagmi'
-import Image from 'next/image'
 
 import { ChainLogo } from './Logo/ChainLogo'
 import { NetworkSwitchModal } from './Menu/UserMenu/NetworkSwitchModal'
 
-const AptosChain = {
-  id: 1,
-  name: 'Aptos',
-}
-
 const NetworkSelect = ({ switchNetwork, chainId }) => {
-  const { t } = useTranslation()
+  // const { t } = useTranslation()
   return (
     <>
       {/* <Box px="16px" py="8px">

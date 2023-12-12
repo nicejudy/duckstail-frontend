@@ -7,6 +7,7 @@ export const fee = "0.01"
 export const dividendTrackerAddresses: ChainMap<string> = {
 	[ChainId.ETHEREUM]: '0x106A5477f843fD0376582e45892537edDC6AD374',
 	[ChainId.ARBITRUM]: '0x106A5477f843fD0376582e45892537edDC6AD374',
+	[ChainId.POLYGON]: '0x106A5477f843fD0376582e45892537edDC6AD374',
 	[ChainId.BSC]: '0x8e268141DaF54aA1fcdB5574A72feB0eC2fC3970',
 }
 
@@ -14,6 +15,7 @@ export const dividendTrackerAddresses: ChainMap<string> = {
 export const feeReceivers: ChainMap<string> = {
 	[ChainId.ETHEREUM]: '0xD52c5455dFa0382C643eDb3D41c00799289A8a7f',
 	[ChainId.ARBITRUM]: '0xD52c5455dFa0382C643eDb3D41c00799289A8a7f',
+	[ChainId.POLYGON]: '0xD52c5455dFa0382C643eDb3D41c00799289A8a7f',
 	[ChainId.BSC]: '0xD52c5455dFa0382C643eDb3D41c00799289A8a7f',
 }
 

@@ -46,7 +46,7 @@ const RemoveLiquidityPage = () => {
   )
 }
 
-RemoveLiquidityPage.chains = [ChainId.ARBITRUM]
+RemoveLiquidityPage.chains = CHAIN_IDS
 
 export default RemoveLiquidityPage
 

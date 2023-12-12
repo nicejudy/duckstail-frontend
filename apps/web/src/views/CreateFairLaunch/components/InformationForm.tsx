@@ -137,8 +137,8 @@ export function InformationForm({
   useEffect(() => {
     setStartTimeError("")
     setEndTimeError("")
-    const startTimeInTimestamp = Date.parse(startTime);
-    const endTimeInTimestamp = Date.parse(endTime);
+    const startTimeInTimestamp = Date.parse(`${startTime.replace("T", " ")} GMT`);
+    const endTimeInTimestamp = Date.parse(`${endTime.replace("T", " ")} GMT`);
     if (Number.isNaN(startTimeInTimestamp)) {setStartTimeError("Start time cannot be blank"); return}
     if (Number.isNaN(endTimeInTimestamp)) {setEndTimeError("End time cannot be blank"); return}
     if (startTimeInTimestamp + 24 * 7 * 3600 * 1000 < endTimeInTimestamp) setStartTimeError("The duration between Start time and End time must be less than 7 days")
@@ -150,7 +150,7 @@ export function InformationForm({
   useEffect(() => {
     const _totalAmount1 = Number(total)
     const _feeCurrency = tokenData.mainFee === "50" ? Number(softCap) / 20 : Number(softCap) / 50
-    const _totalAmount2 = (Number(liquidity) / 100 * (Number(softCap) - _feeCurrency))
+    const _totalAmount2 = (Number(liquidity) / 100 * (Number(softCap) - _feeCurrency) / Number(softCap) * _totalAmount1)
     const _feeToken = tokenData.mainFee === "50" ? 0 : _totalAmount1 / 50
 
     const _totalAmount = _totalAmount1 + _totalAmount2 + _feeToken
@@ -211,7 +211,7 @@ export function InformationForm({
               {totalError}
             </Text>}
           </Box>
-          {/* <Box mb="20px">
+          <Box mb="20px">
             <Text fontSize="12px" color="primary">{t("Whitelist")}</Text>
             <Flex>
               <Flex alignItems="center" onClick={() => setWhitelist(false)}>
@@ -232,7 +232,7 @@ export function InformationForm({
               </Flex>
             </Flex>
             <Text color="text" fontSize="14px">{t("You can enable/disable whitelist anytime.")}</Text>
-          </Box> */}
+          </Box>
           <Box mb="20px">
             <Text fontSize="12px" color="primary">{t("Softcap (%symbol%)*", {symbol: tokenData.currency.symbol})}</Text>
             <Input
@@ -393,7 +393,7 @@ export function InformationForm({
             <Text fontSize="16px" color="text">{t("Need %amount% %symbol% to create launchpad.", {amount: totalAmount.toLocaleString(), symbol: tokenData.tokenSymbol})}</Text>
           </Flex>
         </Box>
-        {chainId !== ChainId.ARBITRUM || !account ? <ConnectWalletButton /> : <Flex width="100%">
+        {!account ? <ConnectWalletButton /> : <Flex width="100%">
           <Button
             width="100%"
             mr="15px"

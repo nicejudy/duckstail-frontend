@@ -53,18 +53,18 @@ interface TabsComponentProps {
   handleClick: (newIndex: number) => void
 }
 
-const TabsComponent: React.FC<React.PropsWithChildren<TabsComponentProps>> = ({ view, handleClick }) => {
-  const { t } = useTranslation()
+// const TabsComponent: React.FC<React.PropsWithChildren<TabsComponentProps>> = ({ view, handleClick }) => {
+//   const { t } = useTranslation()
 
-  return (
-    <Tabs>
-      <ButtonMenu scale="sm" variant="subtle" onItemClick={handleClick} activeIndex={view} fullWidth>
-        <ButtonMenuItem>{t('Wallet')}</ButtonMenuItem>
-        <ButtonMenuItem>{t('Transactions')}</ButtonMenuItem>
-      </ButtonMenu>
-    </Tabs>
-  )
-}
+//   return (
+//     <Tabs>
+//       <ButtonMenu scale="sm" variant="subtle" onItemClick={handleClick} activeIndex={view} fullWidth>
+//         <ButtonMenuItem>{t('Wallet')}</ButtonMenuItem>
+//         <ButtonMenuItem>{t('Transactions')}</ButtonMenuItem>
+//       </ButtonMenu>
+//     </Tabs>
+//   )
+// }
 
 const WalletModal: React.FC<React.PropsWithChildren<WalletModalProps>> = ({
   initialView = WalletView.WALLET_INFO,

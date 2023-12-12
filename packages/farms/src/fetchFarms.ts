@@ -12,18 +12,23 @@ import { getFullDecimalMultiplier } from './getFullDecimalMultiplier'
 const evmNativeStableLpMap = {
   [ChainId.ETHEREUM]: {
     // address: '0x2E8135bE71230c6B1B4045696d41C09Db0414226',
-    address: '0x0C17f6885D61556764f2AD692B2A440317F2aDE3',
+    address: '0x0d4a11d5EEaaC28EC3F61d100daF4d40471f1852',
     wNative: 'WETH',
     stable: 'USDT',
   },
   [ChainId.BSC]: {
-    address: '0x58F876857a02D6762E0101bb5C46A8c1ED44Dc16',
+    address: '0x8E3084D1F7246BD63f8df09eCa075B738C757696',
     wNative: 'WBNB',
-    stable: 'BUSD',
+    stable: 'USDT',
   },
   [ChainId.ARBITRUM]: {
-    address: '0x74Da711B7b0CF0D295CBF7d495130bA815d706BB',
+    address: '0x5822a1DDD394172c201876938c5Fed459288554D',
     wNative: 'WETH',
+    stable: 'USDT',
+  },
+  [ChainId.POLYGON]: {
+    address: '0x6D65adF782C202788b1814E39cad2221547C1900',
+    wNative: 'WMATIC',
     stable: 'USDT',
   },
 }

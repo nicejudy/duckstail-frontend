@@ -7,8 +7,9 @@ export const FIXED_TWO = FixedNumber.from(2)
 export const FARM_AUCTION_HOSTING_IN_SECONDS = 691200
 
 export const masterChefAddresses = {
-  56: '0xa5f8C5Dbd5F286960b9d90548680aE5ebFf07652',
-  42161: '0xC720C2CeDC6495102f7920d86AE405Ac77b9c3c9',
+  56: '0x0Ac09AbdC688fd67863bf0f62DD0e243dbdf6894',
+  42161: '0x0Ac09AbdC688fd67863bf0f62DD0e243dbdf6894',
+  137: '0x0Ac09AbdC688fd67863bf0f62DD0e243dbdf6894',
 }
 
 export const nonBSCVaultAddresses = {

@@ -15,7 +15,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useTranslation } from '@pancakeswap/localization'
 import useAuth from 'hooks/useAuth'
 import useNativeCurrency from 'hooks/useNativeCurrency'
-import useTokenBalance, { useGetCakeBalance } from 'hooks/useTokenBalance'
+import { useGetCakeBalance } from 'hooks/useTokenBalance'
 import { ChainLogo } from 'components/Logo/ChainLogo'
 // import NextLink from 'next/link'
 
@@ -32,22 +32,22 @@ import { useBalance } from 'wagmi'
 // }
 
 interface WalletInfoProps {
-  hasLowNativeBalance: boolean
+  hasLowNativeBalance?: boolean
   switchView: (newIndex: number) => void
   onDismiss: InjectedModalProps['onDismiss']
 }
 
-const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowNativeBalance, onDismiss }) => {
+const WalletInfo: React.FC<WalletInfoProps> = ({ onDismiss }) => {
   const { t } = useTranslation()
   const { account, chainId, chain } = useActiveWeb3React()
   const isBSC = chainId === ChainId.BSC
-  const bnbBalance = useBalance({ address: account, chainId: ChainId.BSC })
+  // const bnbBalance = useBalance({ address: account, chainId: ChainId.BSC })
   const nativeBalance = useBalance({ address: account, enabled: !isBSC })
   const native = useNativeCurrency()
-  const wNativeToken = !isBSC ? WNATIVE[chainId] : null
-  const wBNBToken = WNATIVE[ChainId.BSC]
-  const { balance: wNativeBalance, fetchStatus: wNativeFetchStatus } = useTokenBalance(wNativeToken?.address)
-  const { balance: wBNBBalance, fetchStatus: wBNBFetchStatus } = useTokenBalance(wBNBToken?.address, true)
+  // const wNativeToken = !isBSC ? WNATIVE[chainId] : null
+  // const wBNBToken = WNATIVE[ChainId.BSC]
+  // const { balance: wNativeBalance, fetchStatus: wNativeFetchStatus } = useTokenBalance(wNativeToken?.address)
+  // const { balance: wBNBBalance, fetchStatus: wBNBFetchStatus } = useTokenBalance(wBNBToken?.address, true)
   const { balance: cakeBalance, fetchStatus: cakeFetchStatus } = useGetCakeBalance()
   const accountEllipsis = account ? `${account.substring(0, 6)}...${account.substring(account.length - 4)}` : null;
   const { logout } = useAuth()
@@ -146,14 +146,14 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowNativeBalance, onDismiss 
             <Text>{formatBigNumber(nativeBalance.data.value, 6)}</Text>
           )}
         </Flex>
-        <Flex alignItems="center" justifyContent="space-between">
+        {chainId !== ChainId.ETHEREUM && <Flex alignItems="center" justifyContent="space-between">
           <Text color="primary">{t('DKO Balance')}</Text>
           {cakeFetchStatus !== FetchStatus.Fetched ? (
             <Skeleton height="22px" width="60px" />
           ) : (
             <Text>{formatBigNumber(cakeBalance, 3)}</Text>
           )}
-        </Flex>
+        </Flex>}
       </Box>}
       <Button variant="secondary" width="100%" minHeight={48} onClick={handleLogout} my="12px">
         {t('Disconnect Wallet')}

@@ -5,6 +5,6 @@ const LaunchpadPage = () => {
   return <Launchpad />
 }
 
-LaunchpadPage.chains = [ChainId.ARBITRUM, ChainId.ETHEREUM]
+LaunchpadPage.chains = [ChainId.ARBITRUM, ChainId.BSC, ChainId.POLYGON]
 
 export default LaunchpadPage

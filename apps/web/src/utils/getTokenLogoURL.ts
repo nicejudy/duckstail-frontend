@@ -5,6 +5,8 @@ import { ChainId, Token } from '@pancakeswap/sdk'
 const mapping = {
   [ChainId.ARBITRUM]: 'arbitrum',
   [ChainId.ETHEREUM]: 'ethereum',
+  [ChainId.BSC]: 'smartchain',
+  [ChainId.POLYGON]: 'polygon',
 }
 
 const getTokenLogoURL = memoize(

@@ -99,7 +99,7 @@ export const fetchMultisenderPublicDataAsync = createAsyncThunk<
     }
 
     const chain = chains.find((c) => c.id === chainId)
-    if (!chain || chainId !== ChainId.ARBITRUM) throw new Error('chain not supported')
+    if (!chain) throw new Error('chain not supported')
     
     try {
       return await getFee(chainId)

@@ -5,6 +5,6 @@ const LaunchpadPage = () => {
   return <FairLaunch />
 }
 
-LaunchpadPage.chains = [ChainId.ARBITRUM, ChainId.ETHEREUM]
+LaunchpadPage.chains = [ChainId.ARBITRUM, ChainId.BSC, ChainId.POLYGON]
 
 export default LaunchpadPage

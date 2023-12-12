@@ -1,13 +1,15 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { useTranslation } from '@pancakeswap/localization'
 import { ChainId } from '@pancakeswap/sdk'
-import { arbitrumTokens } from '@pancakeswap/tokens'
+import { PCB } from '@pancakeswap/tokens'
 import { Text, Box, Message, Flex, MessageText } from '@pancakeswap/uikit'
 import { useAccount, useChainId } from 'wagmi'
+import addresses from 'config/constants/contracts'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { useToken } from 'hooks/Tokens'
 import { ApprovalState, useApproveCallback } from 'hooks/useApproveCallback'
-import { getLaunchpadAddress } from 'utils/addressHelpers'
+import useLaunchpadFee from 'hooks/useLaunchpadFee'
+import { getLaunchpadFactoryAddress } from 'utils/addressHelpers'
 import ProgressSteps from 'views/CreateLaunchpad/components/ProgressSteps'
 import { useAccountInfo } from 'views/CreateLaunchpad/hooks/useAccountInfo'
 import { DeFi, FinishData, LaunchpadFormView, Socials, TokenData } from '../types'
@@ -37,13 +39,15 @@ export function ReviewForm({
     inputError
   } = useAccountInfo(deFiData.totalAmount, useToken(tokenData.tokenAddress))
 
+  const serviceFee = useLaunchpadFee()
+
   const {
     parsedAmount: parsedAmountForFee,
     inputError: inputErrorForFee
-  } = useAccountInfo("1", arbitrumTokens.test)
+  } = useAccountInfo((Number(serviceFee) / 10**PCB[chainId].decimals).toString(), PCB[chainId])
 
-  const [approval, approveCallback] = useApproveCallback(parsedAmount, getLaunchpadAddress(chainId))
-  const [approvalForFee, approveCallbackForFee] = useApproveCallback(parsedAmountForFee, getLaunchpadAddress(chainId))
+  const [approval, approveCallback] = useApproveCallback(parsedAmount, getLaunchpadFactoryAddress(chainId))
+  const [approvalForFee, approveCallbackForFee] = useApproveCallback(parsedAmountForFee, getLaunchpadFactoryAddress(chainId))
 
   const [approvalSubmitted, setApprovalSubmitted] = useState<boolean>(false)
   const [approvalSubmittedForFee, setApprovalSubmittedForFee] = useState<boolean>(false)
@@ -162,7 +166,7 @@ export function ReviewForm({
         </Box>
         <Message variant="warning" icon={false} p="8px 12px">
           <MessageText color="text">
-            <span>{t('Please exclude address 0x95f4bAC7D8cD160A54befcd7477971b1D9f8500a from fees, rewards, max tx amount to start creating pools.')}</span>
+          <span>{t('Please exclude address %address% from fees, rewards, max tx amount to start creating pools.', {address: addresses.launchpadFactory[chainId]})}</span>
           </MessageText>
         </Message>
         <Message variant="warning" icon={false} p="8px 12px">
@@ -170,7 +174,7 @@ export function ReviewForm({
             <span>{t('For tokens with burns, rebase or other special transfers please ensure that you have a way to whitelist multiple addresses or turn off the special transfer events (By setting fees to 0 for example for the duration of the presale)')}</span>
           </MessageText>
         </Message>
-        {chainId !== ChainId.ARBITRUM || !account ? <ConnectWalletButton /> : <SendCommitButton
+        {!account ? <ConnectWalletButton /> : <SendCommitButton
           tokenData={tokenData}
           deFiData={deFiData}
           socials={socials}

@@ -14,7 +14,7 @@ function validURL(str) {
   const pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
     '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+    '(\\:\\d+)?(\\/[-a-z\\d%_.@~+]*)*'+ // port and path
     '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
     '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
   return !!pattern.test(str);
@@ -23,6 +23,9 @@ function validURL(str) {
 const StyledTextArea = styled(TextArea)`
   max-width: 100%;
   min-width: 100%;
+  ::placeholder {
+    color: ${({ theme }) => theme.colors.textDisabled};
+  }
 `
 
 export function SocialsForm({
@@ -39,10 +42,7 @@ export function SocialsForm({
   setSocials: Dispatch<SetStateAction<Socials>>
 }) {
   const { t } = useTranslation()
-  const chainId = useChainId()
   const { address: account } = useAccount()
-
-  const [presaleRateError, setPresaleRateError] = useState("");
 
   const [logoUrl, setLogoUrl] = useState<string>(socials.logoUrl)
   const [website, setWebsite] = useState<string>(socials.website)
@@ -409,7 +409,7 @@ export function SocialsForm({
             </Text>}
           </Box>
         </Box>
-        {chainId !== ChainId.ARBITRUM || !account ? <ConnectWalletButton /> : <Flex width="100%">
+        {!account ? <ConnectWalletButton /> : <Flex width="100%">
           <Button
             width="100%"
             mr="15px"

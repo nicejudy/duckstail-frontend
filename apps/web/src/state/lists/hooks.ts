@@ -200,7 +200,8 @@ export function useAllLists(): {
         (_, url) =>
           (chainId === ChainId.ETHEREUM && ETH_URLS.includes(url)) ||
           (chainId === ChainId.ARBITRUM && ETH_URLS.includes(url)) ||
-          (chainId === ChainId.BSC && BSC_URLS.includes(url)),
+          (chainId === ChainId.BSC && ETH_URLS.includes(url)) ||
+          (chainId === ChainId.POLYGON && ETH_URLS.includes(url)),
       ),
     [chainId, urls],
   )
@@ -211,6 +212,7 @@ function combineMaps(map1: TokenAddressMap, map2: TokenAddressMap): TokenAddress
     [ChainId.ETHEREUM]: { ...map1[ChainId.ETHEREUM], ...map2[ChainId.ETHEREUM] },
     [ChainId.ARBITRUM]: { ...map1[ChainId.ARBITRUM], ...map2[ChainId.ARBITRUM] },
     [ChainId.BSC]: { ...map1[ChainId.BSC], ...map2[ChainId.BSC] },
+    [ChainId.POLYGON]: { ...map1[ChainId.POLYGON], ...map2[ChainId.POLYGON] },
   }
 }
 
@@ -225,7 +227,8 @@ export function useActiveListUrls(): string[] | undefined {
         (url) =>
           (chainId === ChainId.ETHEREUM && ETH_URLS.includes(url)) ||
           (chainId === ChainId.ARBITRUM && ETH_URLS.includes(url)) ||
-          (chainId === ChainId.BSC && BSC_URLS.includes(url)),
+          (chainId === ChainId.BSC && ETH_URLS.includes(url)) ||
+          (chainId === ChainId.POLYGON && ETH_URLS.includes(url)),
       ),
     [urls, chainId],
   )

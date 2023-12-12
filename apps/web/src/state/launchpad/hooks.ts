@@ -38,7 +38,7 @@ export const usePollLaunchpadWithUserData = (address: string) => {
   )
 }
 
-export const useLaunchpad = (address: string): SerializedLaunchpadState => {
+export const useLaunchpad = (pool: string): SerializedLaunchpadState => {
   const { chainId } = useActiveChainId()
-  return useSelector(useMemo(() => launchpadSelector(chainId, address), [chainId, address]))
+  return useSelector(useMemo(() => launchpadSelector(chainId, pool), [chainId, pool]))
 }

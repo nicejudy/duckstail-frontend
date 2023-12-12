@@ -23,8 +23,8 @@ import {
   LaunchPadIcon,
 } from '@pancakeswap/uikit'
 import { ContextApi } from '@pancakeswap/localization'
-import { nftsBaseUrl } from 'views/Nft/market/constants'
-import { getPerpetualUrl } from 'utils/getPerpetualUrl'
+// import { nftsBaseUrl } from 'views/Nft/market/constants'
+// import { getPerpetualUrl } from 'utils/getPerpetualUrl'
 import { SUPPORT_ONLY_BSC } from 'config/constants/supportChains'
 
 export type ConfigMenuDropDownItemsType = DropdownMenuItems & { hideSubNav?: boolean }
@@ -235,25 +235,19 @@ const config: (
         },
         {
           label: t('Launchpad list'),
-          href: '/launchpad-list',
+          href: '/launchpads',
         },
       ].map((item) => addMenuItemSupported(item, chainId)),
     },
     // {
-    //   label: t('Win'),
+    //   label: t('Games'),
     //   href: '/prediction',
     //   icon: TrophyIcon,
     //   fillIcon: TrophyFillIcon,
-    //   supportChainIds: SUPPORT_ONLY_BSC,
+    //   // supportChainIds: SUPPORT_ONLY_BSC,
     //   items: [
     //     {
-    //       label: t('Trading Competition'),
-    //       href: '/competition',
-    //       image: '/images/decorations/tc.png',
-    //       hideSubNav: true,
-    //     },
-    //     {
-    //       label: t('Prediction (BETA)'),
+    //       label: t('Prediction'),
     //       href: '/prediction',
     //       image: '/images/decorations/prediction.png',
     //     },
@@ -263,7 +257,7 @@ const config: (
     //       image: '/images/decorations/lottery.png',
     //     },
     //     {
-    //       label: t('Pottery (BETA)'),
+    //       label: t('Pottery'),
     //       href: '/pottery',
     //       image: '/images/decorations/lottery.png',
     //     },

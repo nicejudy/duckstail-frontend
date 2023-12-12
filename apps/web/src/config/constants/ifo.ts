@@ -1,5 +1,5 @@
-import { ERC20Token, ChainId, NATIVE, Native } from '@pancakeswap/sdk'
-import { bscTokens, ethereumTokens } from '@pancakeswap/tokens'
+import { ERC20Token, ChainId } from '@pancakeswap/sdk'
+// import { bscTokens, ethereumTokens } from '@pancakeswap/tokens'
 import { CAKE_BNB_LP_MAINNET } from './lp'
 import { Ifo } from './types'
 

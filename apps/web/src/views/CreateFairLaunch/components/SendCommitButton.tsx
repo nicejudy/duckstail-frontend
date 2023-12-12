@@ -74,8 +74,8 @@ export default function SendCommitButton({
   const handleCommit = async () => {
     const receipt = await fetchWithCatchTxError(() => onCreateFairLaunchpad(
       [
-        new BigNumber(Date.parse(deFiData.startTime)).div(100).toFixed(),
-        new BigNumber(Date.parse(deFiData.endTime)).div(100).toFixed(),
+        new BigNumber(Date.parse(`${deFiData.startTime.replace("T", " ")} GMT`)).div(1000).toFixed(),
+        new BigNumber(Date.parse(`${deFiData.endTime.replace("T", " ")} GMT`)).div(1000).toFixed(),
         new BigNumber(deFiData.softCap).times(10**tokenData.currency.decimals).toFixed(),
         new BigNumber(deFiData.total).times(10**tokenData.tokenDecimals).toFixed(),
         new BigNumber(deFiData.liquidity).times(10).toFixed(),
@@ -109,6 +109,7 @@ export default function SendCommitButton({
         tokenData.mainFee === "50",
         // deFiData.whitelist,
         deFiData.isVesting,
+        deFiData.whitelist
       ]
     ))
 
@@ -245,7 +246,7 @@ export default function SendCommitButton({
         marginX="10px"
         disabled={!isValid || !approved || pendingTx || !isValidForFee || !approvedForFee}
       >
-        {swapInputError ||
+        {swapInputError || swapInputErrorForFee || 
           (pendingTx ? 
             <AutoRow gap="6px" justify="center">
               {t('Confirming')} <CircleLoader stroke="white" />

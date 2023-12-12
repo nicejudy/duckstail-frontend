@@ -5,7 +5,7 @@ const HistoryPage = ({ userIp }) => {
   return <History />
 }
 
-HistoryPage.chains = [ChainId.ARBITRUM, ChainId.ETHEREUM]
+HistoryPage.chains = [ChainId.ARBITRUM, ChainId.POLYGON, ChainId.BSC]
 
 export default HistoryPage
 

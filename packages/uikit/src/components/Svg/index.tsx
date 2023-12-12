@@ -69,6 +69,7 @@ export { default as IfoIcon } from "./Icons/Ifo";
 export { default as InfoIcon } from "./Icons/Info";
 export { default as InfoFilledIcon } from "./Icons/InfoFilled";
 export { default as InstagramIcon } from "./Icons/Instagram";
+export { default as KeyIcon } from "./Icons/Key";
 export { default as LanguageCurrencyIcon } from "./Icons/LanguageCurrency";
 export { default as LanguageIcon } from "./Icons/Language";
 export { default as LaurelLeftIcon } from "./Icons/LaurelLeft";

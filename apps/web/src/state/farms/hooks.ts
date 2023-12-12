@@ -36,7 +36,7 @@ export function useFarmsLength() {
 
 export const usePollFarmsWithUserData = () => {
   const dispatch = useAppDispatch()
-  const { account, chainId: _chainId } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
   // const {
   //   proxyAddress,
   //   proxyCreated,
@@ -44,7 +44,7 @@ export const usePollFarmsWithUserData = () => {
   // } = useBCakeProxyContractAddress(account, chainId)
   const farmFlag = useFeatureFlag(featureFarmApiAtom)
 
-  const chainId = ChainId.ARBITRUM
+  // const chainId = ChainId.ARBITRUM
 
   useSWRImmutable(
     chainId ? ['publicFarmData', chainId] : null,

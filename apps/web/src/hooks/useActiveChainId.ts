@@ -47,7 +47,7 @@ export const useActiveChainId = () => {
   const localChainId = useLocalNetworkChain()
   const queryChainId = useAtomValue(queryChainIdAtom)
 
-  const { chain, chains } = useNetwork()
+  const { chain } = useNetwork()
 
   const chainId = localChainId ?? chain?.id ?? (queryChainId >= 0 ? ChainId.ARBITRUM : undefined)
 

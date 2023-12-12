@@ -1,70 +1,72 @@
 import { ChainId } from "@pancakeswap/sdk"
 
 export interface SerializedLaunchpadPublicData {
-    chainId: number
-    presaleType: string
-    token: string
-    buyToken: string
-    presaleStartTimestamp: string
-    presaleEndTimestamp: string
-    softCap: string
-    hardCap?: string
-    minBuy?: string
-    maxBuy: string
-    total?: string
-    rate?: string
-    listingRate: string
-    lockPeriod: string
-    isAutoListing?: boolean
-    vestingFirst: string
-    vestingPeriod: string
-    vestingEach: string
-    mainFee: string
-    tokenFee: string
-    liquidity: string
-    router: string
-    locker: string
-    feeAddress: string
-    tokenBackAddress?: string
-    whiteListEnableTime?: string
-    totalDepositedBalance: string
-    totalClaimedAmount: string
-    investors: string
-    refundable: boolean
-    claimable: boolean
-    initialized: boolean
-    info: string
-    logoUrl: string
-    website: string
-    twitter: string
-    facebook: string
-    github: string
-    telegram: string
-    instagram: string
-    discord: string
-    reddit: string
-    banner: string
-    whitelist: string
-  }
+  chainId: number
+  presaleType: string
+  token: string
+  buyToken: string
+  presaleStartTimestamp: number
+  presaleEndTimestamp: number
+  softCap: number
+  hardCap?: number
+  minBuy?: number
+  maxBuy: number
+  total?: number
+  rate?: number
+  listingRate: number
+  lockPeriod: number
+  isAutoListing?: boolean
+  vestingFirst: number
+  vestingPeriod: number
+  vestingEach: number
+  mainFee: number
+  tokenFee: number
+  liquidity: number
+  router: string
+  locker: string
+  feeAddress: string
+  tokenBackAddress?: string
+  whiteListEnableTime?: number
+  totalDepositedBalance: number
+  totalClaimedAmount: number
+  investors: number
+  refundable: boolean
+  claimable: boolean
+  initialized: boolean
+  info: string
+  logoUrl: string
+  website: string
+  twitter: string
+  facebook: string
+  github: string
+  telegram: string
+  instagram: string
+  discord: string
+  reddit: string
+  youtube: string
+  whitelist: string
+  whitelistLength: number
+}
   
-  export interface SerializedLaunchpadUserData {
-    allowance: string
-    balance: string
-    deposit: string
-    claimed: string
-    whitelisted: boolean
-  }
+export interface SerializedLaunchpadUserData {
+  allowance: number
+  balance: number
+  deposit: number
+  claimed: number
+  owner: boolean
+  whitelisted: boolean
+}
 
-  export interface SerializedLaunchpad extends SerializedLaunchpadPublicData {
-    userData?: SerializedLaunchpadUserData
-  }
+export interface SerializedLaunchpad extends SerializedLaunchpadPublicData {
+  userData?: SerializedLaunchpadUserData
+}
 
-  export interface SerializedLaunchpadState {
-    address: string
-    data: SerializedLaunchpad
-    chainId: number
-    userDataLoaded: boolean
-    loadingKeys?: Record<string, boolean>
-  }
+export interface SerializedLaunchpadState {
+  address: string
+  data: SerializedLaunchpad
+  chainId: number
+  userDataLoaded: boolean
+  loadingKeys?: Record<string, boolean>
+}
 
-  export const supportedChainId = [ChainId.ARBITRUM]
+export const supportedChainId = [ChainId.ARBITRUM, ChainId.POLYGON, ChainId.BSC]

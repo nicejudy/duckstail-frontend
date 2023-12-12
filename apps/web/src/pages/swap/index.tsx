@@ -11,6 +11,6 @@ const SwapPage = () => {
   )
 }
 
-SwapPage.chains = [ChainId.ARBITRUM]
+SwapPage.chains = CHAIN_IDS
 
 export default SwapPage

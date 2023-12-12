@@ -36,31 +36,31 @@ export const fetchInitialLaunchpadData = createAsyncThunk<
       presaleType: "standard",
       token: "",
       buyToken: "",
-      presaleStartTimestamp: "",
-      presaleEndTimestamp: "",
-      softCap: "",
-      hardCap: "",
-      minBuy: "",
-      maxBuy: "",
-      total: "",
-      rate: "",
-      listingRate: "",
-      lockPeriod: "",
+      presaleStartTimestamp: 0,
+      presaleEndTimestamp: 0,
+      softCap: 0,
+      hardCap: 0,
+      minBuy: 0,
+      maxBuy: 0,
+      total: 0,
+      rate: 0,
+      listingRate: 0,
+      lockPeriod: 0,
       isAutoListing: false,
-      vestingFirst: "",
-      vestingPeriod: "",
-      vestingEach: "",
-      mainFee: "",
-      tokenFee: "",
-      liquidity: "",
+      vestingFirst: 0,
+      vestingPeriod: 0,
+      vestingEach: 0,
+      mainFee: 0,
+      tokenFee: 0,
+      liquidity: 0,
       router: "",
       locker: "",
       feeAddress: "",
       tokenBackAddress: "",
-      whiteListEnableTime: "",
-      totalDepositedBalance: "",
-      totalClaimedAmount: "",
-      investors: "",
+      whiteListEnableTime: 0,
+      totalDepositedBalance: 0,
+      totalClaimedAmount: 0,
+      investors: 0,
       refundable: false,
       claimable: false,
       initialized: false,
@@ -74,13 +74,15 @@ export const fetchInitialLaunchpadData = createAsyncThunk<
       instagram: "",
       discord: "",
       reddit: "",
-      banner: "",
+      youtube: "",
       whitelist: "",
+      whitelistLength: 0,
       userData: {
-        allowance: "0",
-        balance: "0",
-        deposit: "0",
-        claimed: "0",
+        allowance: 0,
+        balance: 0,
+        deposit: 0,
+        claimed: 0,
+        owner: false,
         whitelisted: false,
       }
     },
@@ -103,6 +105,7 @@ export const fetchLaunchpadPublicDataAsync = createAsyncThunk<
     }
     const chain = chains.find((c) => c.id === chainId)
     if (!chain || !supportedChainId.includes(chainId)) throw new Error('chain not supported')
+    if (!address) throw new Error('address not supported')
     try {
       return await fetchLaunchpad(address, chainId)
     } catch (error) {
@@ -122,15 +125,6 @@ export const fetchLaunchpadPublicDataAsync = createAsyncThunk<
   },
 )
 
-export interface BondUserResponseData {
-  id: number
-  allowance: string
-  balance: string
-  interestDue: string
-  bondMaturationBlock: string
-  pendingPayout: string
-}
-
 export const fetchLaunchpadUserDataAsync = createAsyncThunk<
   SerializedLaunchpadUserData,
   { account: string; address: string; chainId: number },
@@ -144,6 +138,8 @@ export const fetchLaunchpadUserDataAsync = createAsyncThunk<
     if (state.launchpad.chainId !== chainId) {
       await dispatch(fetchInitialLaunchpadData({ address, chainId }))
     }
+
+    if (!address) throw new Error('address not supported')
 
     try {
       return fetchLaunchpadUserData(address, account, chainId)
@@ -189,10 +185,11 @@ export const launchpadSlice = createSlice({
       state.data = {
         ...state.data,
         userData: {
-          allowance: "0",
-          balance: "0",
-          deposit: "0",
-          claimed: "0",
+          allowance: 0,
+          balance: 0,
+          deposit: 0,
+          claimed: 0,
+          owner: false,
           whitelisted: false
         }
       }
@@ -218,17 +215,17 @@ export const launchpadSlice = createSlice({
       state.userDataLoaded = true
     })
 
-    builder.addMatcher(isAnyOf(fetchLaunchpadPublicDataAsync.pending, fetchLaunchpadPublicDataAsync.pending), (state, action) => {
+    builder.addMatcher(isAnyOf(fetchLaunchpadPublicDataAsync.pending, fetchLaunchpadUserDataAsync.pending), (state, action) => {
       state.loadingKeys[serializeLoadingKey(action, 'pending')] = true
     })
     builder.addMatcher(
-      isAnyOf(fetchLaunchpadUserDataAsync.fulfilled, fetchLaunchpadUserDataAsync.fulfilled),
+      isAnyOf(fetchLaunchpadPublicDataAsync.fulfilled, fetchLaunchpadUserDataAsync.fulfilled),
       (state, action) => {
         state.loadingKeys[serializeLoadingKey(action, 'fulfilled')] = false
       },
     )
     builder.addMatcher(
-      isAnyOf(fetchLaunchpadPublicDataAsync.rejected, fetchLaunchpadPublicDataAsync.rejected),
+      isAnyOf(fetchLaunchpadPublicDataAsync.rejected, fetchLaunchpadUserDataAsync.rejected),
       (state, action) => {
         state.loadingKeys[serializeLoadingKey(action, 'rejected')] = false
       },

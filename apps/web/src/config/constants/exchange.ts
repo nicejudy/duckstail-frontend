@@ -1,18 +1,20 @@
 import { ChainId, JSBI, Percent, Token, WNATIVE } from '@pancakeswap/sdk'
 import { BigNumber } from '@ethersproject/bignumber'
-import { bscTokens, USDC, USDT, BUSD, WBTC_ETH, DAI_ETH, WBTC_ARB, DAI_ARB, GTOKEN, arbitrumTokens} from '@pancakeswap/tokens'
+import { bscTokens, USDC, USDT, WBTC_ETH, DAI_ETH, WBTC_ARB, DAI_ARB, GTOKEN, arbitrumTokens, WBTC_POLYGON, DAI_POLYGON} from '@pancakeswap/tokens'
 import { ChainMap, ChainTokenList } from './types'
 
 export const ROUTER_ADDRESS: ChainMap<string> = {
-  [ChainId.ETHEREUM]: '0x5458e86c416413c44E957751242D3b0B05AE3422',
-  [ChainId.ARBITRUM]: '0x5458e86c416413c44E957751242D3b0B05AE3422',
-  [ChainId.BSC]: '0x10ED43C718714eb63d5aA57B78B54704E256024E',
+  [ChainId.ETHEREUM]: '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D',
+  [ChainId.ARBITRUM]: '0x1050b026A1F1d38F64eBd73eE5cAb2235DDEA227',
+  [ChainId.BSC]: '0x1050b026A1F1d38F64eBd73eE5cAb2235DDEA227',
+  [ChainId.POLYGON]: '0x1050b026A1F1d38F64eBd73eE5cAb2235DDEA227',
 }
 
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.ETHEREUM]: [WNATIVE[ChainId.ETHEREUM], USDC[ChainId.ETHEREUM], USDT[ChainId.ETHEREUM], WBTC_ETH],
   [ChainId.ARBITRUM]: [WNATIVE[ChainId.ARBITRUM], USDC[ChainId.ARBITRUM], USDT[ChainId.ARBITRUM], WBTC_ARB],
+  [ChainId.POLYGON]: [WNATIVE[ChainId.POLYGON], USDC[ChainId.POLYGON], USDT[ChainId.POLYGON], WBTC_POLYGON],
   [ChainId.BSC]: [
     bscTokens.wbnb,
     bscTokens.cake,
@@ -47,13 +49,15 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
   [ChainId.ETHEREUM]: [WNATIVE[ChainId.ETHEREUM], USDC[ChainId.ETHEREUM], USDT[ChainId.ETHEREUM], WBTC_ETH, DAI_ETH],
+  [ChainId.POLYGON]: [WNATIVE[ChainId.POLYGON], USDC[ChainId.POLYGON], USDT[ChainId.POLYGON], WBTC_POLYGON, DAI_POLYGON],
   [ChainId.ARBITRUM]: [WNATIVE[ChainId.ARBITRUM], arbitrumTokens.arb, GTOKEN[ChainId.ARBITRUM], arbitrumTokens.dcp, DAI_ARB, USDC[ChainId.ARBITRUM], USDT[ChainId.ARBITRUM], WBTC_ARB],
-  [ChainId.BSC]: [bscTokens.busd, bscTokens.cake, bscTokens.btcb, bscTokens.busd, bscTokens.cake, bscTokens.btcb],
+  [ChainId.BSC]: [WNATIVE[ChainId.BSC], GTOKEN[ChainId.BSC], bscTokens.usdt, bscTokens.usdc, bscTokens.dai, bscTokens.eth, bscTokens.btcb, bscTokens.cake],
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   [ChainId.ETHEREUM]: [USDC[ChainId.ETHEREUM], WNATIVE[ChainId.ETHEREUM], USDT[ChainId.ETHEREUM], WBTC_ETH],
+  [ChainId.POLYGON]: [USDC[ChainId.POLYGON], WNATIVE[ChainId.POLYGON], USDT[ChainId.POLYGON], WBTC_POLYGON],
   [ChainId.ARBITRUM]: [USDC[ChainId.ARBITRUM], WNATIVE[ChainId.ARBITRUM], USDT[ChainId.ARBITRUM], WBTC_ARB],
   [ChainId.BSC]: [bscTokens.wbnb, bscTokens.dai, bscTokens.busd, bscTokens.usdt, bscTokens.cake],
 }
@@ -63,6 +67,11 @@ export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } 
     [WNATIVE[ChainId.ETHEREUM], USDC[ChainId.ETHEREUM]],
     [WBTC_ETH, WNATIVE[ChainId.ETHEREUM]],
     [WNATIVE[ChainId.ETHEREUM], USDT[ChainId.ETHEREUM]],
+  ],
+  [ChainId.POLYGON]: [
+    [WNATIVE[ChainId.POLYGON], USDC[ChainId.POLYGON]],
+    [WBTC_POLYGON, WNATIVE[ChainId.POLYGON]],
+    [WNATIVE[ChainId.POLYGON], USDT[ChainId.POLYGON]],
   ],
   [ChainId.ARBITRUM]: [
     [WNATIVE[ChainId.ARBITRUM], USDC[ChainId.ARBITRUM]],

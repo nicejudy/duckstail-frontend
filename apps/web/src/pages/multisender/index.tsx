@@ -5,7 +5,7 @@ const AirdropPage = ({ userIp }) => {
   return <Airdrop />
 }
 
-AirdropPage.chains = [ChainId.ARBITRUM, ChainId.ETHEREUM]
+AirdropPage.chains = [ChainId.ARBITRUM, ChainId.POLYGON, ChainId.BSC]
 
 export default AirdropPage
 

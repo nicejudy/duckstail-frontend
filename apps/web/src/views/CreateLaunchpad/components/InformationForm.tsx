@@ -142,7 +142,7 @@ export function InformationForm({
     setSoftCapError("")
     setHardCapError("")
     if (4 * Number(softCap) < Number(hardCap) ) setSoftCapError("Softcap must be greater than or equal 25% of Hardcap")
-    if (Number(softCap) > Number(hardCap)) setSoftCapError("Softcap must be less than or equal Hardcap")
+    if (Number(softCap) >= Number(hardCap)) setSoftCapError("Softcap must be less than Hardcap")
     if (Number(softCap) <= 0) setSoftCapError("Softcap must be positive number")
     if (Number(hardCap) <= 0) setHardCapError("Hardcap must be positive number")
     if (softCap === "") setSoftCapError("Softcap cannot be blank")
@@ -162,8 +162,8 @@ export function InformationForm({
   useEffect(() => {
     setStartTimeError("")
     setEndTimeError("")
-    const startTimeInTimestamp = Date.parse(startTime);
-    const endTimeInTimestamp = Date.parse(endTime);
+    const startTimeInTimestamp = Date.parse(`${startTime.replace("T", " ")} GMT`);
+    const endTimeInTimestamp = Date.parse(`${endTime.replace("T", " ")} GMT`);
     if (Number.isNaN(startTimeInTimestamp)) {setStartTimeError("Start time cannot be blank"); return}
     if (Number.isNaN(endTimeInTimestamp)) {setEndTimeError("End time cannot be blank"); return}
     if (startTimeInTimestamp >= endTimeInTimestamp) setStartTimeError("Start time needs to be before End time")
@@ -489,7 +489,7 @@ export function InformationForm({
             <Text fontSize="16px" color="text">{t("Need %amount% %symbol% to create launchpad.", {amount: totalAmount.toLocaleString(), symbol: tokenData.tokenSymbol})}</Text>
           </Flex>
         </Box>
-        {chainId !== ChainId.ARBITRUM || !account ? <ConnectWalletButton /> : <Flex width="100%">
+        {!account ? <ConnectWalletButton /> : <Flex width="100%">
           <Button
             width="100%"
             mr="15px"

@@ -53,7 +53,7 @@ import {
   getDcpWarmupAddress,
   getMultiSenderAddress,
   getLockerAddress,
-  getLaunchpadAddress,
+  getLaunchpadFactoryAddress,
 } from 'utils/addressHelpers'
 
 // ABI
@@ -78,6 +78,8 @@ import dcpBond from 'config/abi/dcpBond.json'
 import multisender from 'config/abi/multisender.json'
 import locker from 'config/abi/locker.json'
 import launchpadFactory from 'config/abi/launchpadFactory.json'
+import launchpadETH from 'config/abi/launchpadForETH.json'
+import launchpadToken from 'config/abi/launchpadForToken.json'
 import dcpBondCalculator from 'config/abi/dcpBondCalculator.json'
 import dcpDistributor from 'config/abi/dcpDistributor.json'
 import dcpStaking from 'config/abi/dcpStaking.json'
@@ -183,7 +185,9 @@ import type {
   DcpBond,
   Multisender,
   Locker,
-  LaunchpadFactory
+  LaunchpadFactory,
+  LaunchpadForETH,
+  LaunchpadForToken
 } from 'config/abi/types'
 import { ChainId } from '@pancakeswap/sdk'
 
@@ -481,6 +485,14 @@ export const getLockerContract = (signer?: Signer | Provider, chainId?: number) 
   return getContract({ abi: locker, address: getLockerAddress(chainId), signer }) as Locker
 }
 
-export const getLaunchpadContract = (signer?: Signer | Provider, chainId?: number) => {
-  return getContract({ abi: launchpadFactory, address: getLaunchpadAddress(chainId), signer }) as LaunchpadFactory
+export const getLaunchpadFactoryContract = (signer?: Signer | Provider, chainId?: number) => {
+  return getContract({ abi: launchpadFactory, address: getLaunchpadFactoryAddress(chainId), signer }) as LaunchpadFactory
+}
+
+export const getLaunchpadETHContract = (address: string, signer?: Signer | Provider, chainId?: number) => {
+  return getContract({ abi: launchpadETH, address, signer }) as LaunchpadForETH
+}
+
+export const getLaunchpadTokenContract = (address: string, signer?: Signer | Provider, chainId?: number) => {
+  return getContract({ abi: launchpadToken, address, signer }) as LaunchpadForToken
 }

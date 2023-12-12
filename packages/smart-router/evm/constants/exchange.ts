@@ -6,12 +6,14 @@ import { ChainMap, ChainTokenList } from '../types'
 export const ROUTER_ADDRESS: ChainMap<string> = {
   [ChainId.ETHEREUM]: '0x3BC722f252C7bAE2f55647e49aDcB9d33Ff6eBcC',
   [ChainId.ARBITRUM]: '0x3BC722f252C7bAE2f55647e49aDcB9d33Ff6eBcC',
+  [ChainId.POLYGON]: '0x3BC722f252C7bAE2f55647e49aDcB9d33Ff6eBcC',
   [ChainId.BSC]: '0x10ED43C718714eb63d5aA57B78B54704E256024E',
 }
 
 export const STABLE_SWAP_INFO_ADDRESS: ChainMap<string> = {
   [ChainId.ETHEREUM]: '',
   [ChainId.ARBITRUM]: '',
+  [ChainId.POLYGON]: '',
   [ChainId.BSC]: '0xa680d27f63Fa5E213C502d1B3Ca1EB6a3C1b31D6',
 }
 
@@ -23,6 +25,11 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     USDT[ChainId.ETHEREUM],
     BUSD[ChainId.ETHEREUM],
     WBNB[ChainId.ETHEREUM],
+  ],
+  [ChainId.POLYGON]: [
+    WNATIVE[ChainId.POLYGON],
+    USDC[ChainId.POLYGON],
+    USDT[ChainId.POLYGON],
   ],
   [ChainId.ARBITRUM]: [
     WNATIVE[ChainId.ARBITRUM],
@@ -68,6 +75,7 @@ export const CUSTOM_BASES: {
 export const SUGGESTED_BASES: ChainTokenList = {
   [ChainId.ETHEREUM]: [USDC[ChainId.ETHEREUM], WBNB[ChainId.ETHEREUM], BUSD[ChainId.ETHEREUM], USDT[ChainId.ETHEREUM]],
   [ChainId.ARBITRUM]: [USDC[ChainId.ARBITRUM], USDT[ChainId.ARBITRUM]],
+  [ChainId.POLYGON]: [USDC[ChainId.POLYGON], USDT[ChainId.POLYGON]],
   [ChainId.BSC]: [bscTokens.busd, bscTokens.cake, bscTokens.btcb],
 }
 
@@ -84,6 +92,11 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
     USDC[ChainId.ARBITRUM],
     WNATIVE[ChainId.ARBITRUM],
     USDT[ChainId.ARBITRUM],
+  ],
+  [ChainId.POLYGON]: [
+    USDC[ChainId.POLYGON],
+    WNATIVE[ChainId.POLYGON],
+    USDT[ChainId.POLYGON],
   ],
   [ChainId.BSC]: [bscTokens.wbnb, bscTokens.dai, bscTokens.busd, bscTokens.usdt, bscTokens.cake],
 }

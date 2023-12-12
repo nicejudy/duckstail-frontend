@@ -51,7 +51,10 @@ export const useGetBnbBalance = () => {
 
 export const useGetCakeBalance = () => {
   const { chainId } = useWeb3React()
-  const { balance, fetchStatus } = useTokenBalance(chainId ? GTOKEN[chainId].address : GTOKEN[ChainId.ARBITRUM].address)
+  // if (chainId === ChainId.ETHEREUM)
+  //   return { balance: undefined, fetchStatus: undefined}
+  // const tokenAddress = chainId ? GTOKEN[chainId].address : GTOKEN[ChainId.ARBITRUM].address
+  const { balance, fetchStatus } = useTokenBalance(GTOKEN[chainId].address)
 
   // TODO: Remove ethers conversion once useTokenBalance is converted to ethers.BigNumber
   return { balance: EthersBigNumber.from(balance.toString()), fetchStatus }

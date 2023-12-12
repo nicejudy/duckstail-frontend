@@ -12,6 +12,7 @@ import { ChainMap } from 'config/constants/types'
 
 export const SMART_ROUTER_ADDRESS: ChainMap<string> = {
   [ChainId.ETHEREUM]: '',
+  [ChainId.POLYGON]: '',
   [ChainId.ARBITRUM]: '',
   [ChainId.BSC]: '0xC6665d98Efd81f47B03801187eB46cbC63F328B0',
 }

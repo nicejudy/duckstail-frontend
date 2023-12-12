@@ -10,6 +10,7 @@ import { CampaignType, FetchStatus, LotteryStatus, LotteryTicket, Team, Translat
 import { NftToken } from './nftMarket/types'
 import { SerializedHistory } from './multisend/types'
 import { SerializedLaunchpadState } from './launchpad/types'
+import { SerializedLaunchpadsState } from './launchpads/types'
 
 export enum GAS_PRICE {
   default = '5',
@@ -619,7 +620,7 @@ export interface State {
   capital: SerializedCapitalState
   multisender: SerializedHistory
   launchpad: SerializedLaunchpadState
-  // launchpadList: SerializedLaunchpadList
+  launchpads: SerializedLaunchpadsState
   farms: SerializedFarmsState
   farmsV1: SerializedFarmsState
   pools: PoolsState

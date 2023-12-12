@@ -162,11 +162,10 @@ export function FinishForm({
           <Text fontSize="16px" bold color="primary">{t("Congratulation!")}</Text>
           <Text fontSize="12px">{t("You've just created launchpad")}</Text>
         </Box>
-        <Flex width="100%" justifyContent="center" mb={["0", "50px"]}>
+        {/* <Flex width="100%" justifyContent="center" mb={["0", "50px"]}>
           <StyledBox>
             <Flex justifyContent="space-between" mb="20px">
               <ImageBox>
-                {/* <img src={socials.logoUrl} width="56px" /> */}
                 <StyledLogo badSrcs={BAD_SRCS} size="56px" srcs={[socials.logoUrl]} alt={`${tokenData.tokenSymbol} logo`} />
               </ImageBox>
               <Flex flexDirection="column" alignItems="center" mr="20px">
@@ -221,8 +220,25 @@ export function FinishForm({
               </Flex>
             </Flex>
           </StyledBox>
+        </Flex> */}
+        <Flex width="100%" alignItems="center" flexDirection={["column", "row"]}>
+          {/* {socials.whitelist !== "" && <Link external href={socials.whitelist} width="100% !important">
+            <Button
+              width="100%"
+              mr="10px"
+              variant="secondary"
+            >{t("WL")}</Button>
+          </Link>} */}
+          <Box width="100%">
+            <NextLinkFromReactRouter to={`/launchpad/${address}`}>
+              <Button
+                width="100%"
+                variant="secondary"
+              >{t("View FairLaunch")}</Button>
+            </NextLinkFromReactRouter>
+          </Box>
         </Flex>
-        {chainId !== ChainId.ARBITRUM || !account ? <ConnectWalletButton /> : <Flex width="100%" alignItems="center" flexDirection={["column", "row"]}>
+        <Flex width="100%" alignItems="center" flexDirection={["column", "row"]}>
           <Box mr={["0", "15px"]} mb={["10px", "0"]} width="100%">
             <Button
               width="100%"
@@ -230,13 +246,13 @@ export function FinishForm({
             ><Text color="invertedContrast" bold fontSize="14px">{t("Create Other")}</Text></Button>
           </Box>
           <Box width="100%">
-            <NextLinkFromReactRouter to="/launchpad-list">
+            <NextLinkFromReactRouter to="/launchpads">
               <Button
                 width="100%"
-              ><Text color="invertedContrast" bold fontSize="14px">{t("View List")}</Text></Button>
+              ><Text color="invertedContrast" bold fontSize="14px">{t("Go to List")}</Text></Button>
             </NextLinkFromReactRouter>
           </Box>
-        </Flex>}
+        </Flex>
       </FormContainer>
     </Box>
   )

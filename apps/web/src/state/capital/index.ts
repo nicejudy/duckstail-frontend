@@ -317,17 +317,17 @@ export const capitalSlice = createSlice({
       state.userDataLoaded = true
     })
 
-    builder.addMatcher(isAnyOf(fetchCapitalPublicDataAsync.pending, fetchCapitalPublicDataAsync.pending), (state, action) => {
+    builder.addMatcher(isAnyOf(fetchCapitalPublicDataAsync.pending, fetchCapitalUserDataAsync.pending), (state, action) => {
       state.loadingKeys[serializeLoadingKey(action, 'pending')] = true
     })
     builder.addMatcher(
-      isAnyOf(fetchCapitalUserDataAsync.fulfilled, fetchCapitalUserDataAsync.fulfilled),
+      isAnyOf(fetchCapitalPublicDataAsync.fulfilled, fetchCapitalUserDataAsync.fulfilled),
       (state, action) => {
         state.loadingKeys[serializeLoadingKey(action, 'fulfilled')] = false
       },
     )
     builder.addMatcher(
-      isAnyOf(fetchCapitalPublicDataAsync.rejected, fetchCapitalPublicDataAsync.rejected),
+      isAnyOf(fetchCapitalPublicDataAsync.rejected, fetchCapitalUserDataAsync.rejected),
       (state, action) => {
         state.loadingKeys[serializeLoadingKey(action, 'rejected')] = false
       },

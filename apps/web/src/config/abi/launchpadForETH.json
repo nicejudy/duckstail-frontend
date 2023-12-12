@@ -97,19 +97,6 @@
 	},
 	{
 		"inputs": [],
-		"name": "banner",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
 		"name": "buyToken",
 		"outputs": [
 			{
@@ -457,6 +444,11 @@
 	{
 		"inputs": [
 			{
+				"internalType": "string",
+				"name": "_presaleType",
+				"type": "string"
+			},
+			{
 				"internalType": "address",
 				"name": "_token",
 				"type": "address"
@@ -745,6 +737,19 @@
 	},
 	{
 		"inputs": [],
+		"name": "presaleType",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "rate",
 		"outputs": [
 			{
@@ -870,6 +875,19 @@
 	{
 		"inputs": [],
 		"name": "tokenFee",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "total",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -1066,6 +1084,19 @@
 		"name": "withdrawContribute",
 		"outputs": [],
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "youtube",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{

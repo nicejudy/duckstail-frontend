@@ -172,6 +172,6 @@ export const getLockerAddress = (chainId?: number) => {
   return getAddress(addresses.locker, chainId)
 }
 
-export const getLaunchpadAddress = (chainId?: number) => {
-  return getAddress(addresses.launchpad, chainId)
+export const getLaunchpadFactoryAddress = (chainId?: number) => {
+  return getAddress(addresses.launchpadFactory, chainId)
 }

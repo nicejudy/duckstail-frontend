@@ -1,3 +1,4 @@
+// import { ChainId } from '@pancakeswap/sdk'
 // import PredictionConfigProviders from '../../views/Predictions/context/PredictionConfigProviders'
 // import Predictions from '../../views/Predictions'
 
@@ -6,6 +7,7 @@
 // }
 
 // Prediction.Layout = PredictionConfigProviders
+// Prediction.chains = [ChainId.BSC, ChainId.ARBITRUM]
 
 import { NotFound } from '@pancakeswap/uikit'
 

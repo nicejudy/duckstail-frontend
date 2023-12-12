@@ -6,6 +6,7 @@ export const CHAIN_QUERY_NAME = {
   [ChainId.ETHEREUM]: 'ethereum',
   [ChainId.ARBITRUM]: 'arbitrum',
   [ChainId.BSC]: 'bsc',
+  [ChainId.POLYGON]: 'polygon',
 } satisfies Record<ChainId, string>
 
 const CHAIN_QUERY_NAME_TO_ID = invert(CHAIN_QUERY_NAME)

@@ -28,7 +28,7 @@ export function PageNetworkSupportModal() {
   const menuItems = useMenuItems()
   const { pathname, push } = useRouter()
 
-  const { title, image } = useMemo(() => {
+  const { title,  } = useMemo(() => {
     const activeMenuItem = getActiveMenuItem({ menuConfig: menuItems, pathname })
     const activeSubMenuItem = getActiveSubMenuItem({ menuItem: activeMenuItem, pathname })
 

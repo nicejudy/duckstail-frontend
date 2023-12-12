@@ -6,7 +6,7 @@ import { useTranslation } from '@pancakeswap/localization'
 import { clearAllTransactions } from 'state/transactions/actions'
 import isEmpty from 'lodash/isEmpty'
 import TransactionRow from './TransactionRow'
-import { chains } from '../../../utils/wagmi'
+// import { chains } from '../../../utils/wagmi'
 
 const TransactionsContainer = styled(Box)`
   max-height: 300px;
