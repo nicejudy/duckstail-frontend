@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import ProgressSteps from 'views/Swap/components/ProgressSteps'
 import { useAccount, useChainId } from 'wagmi'
 import ConnectWalletButton from 'components/ConnectWalletButton'
+import { useActiveChainId } from 'hooks/useActiveChainId'
 import { DeFi, LaunchpadFormView, Socials, TokenData } from '../types'
 import { FormHeader } from './FormHeader'
 import { FormContainer } from './FormContainer'
@@ -39,7 +40,7 @@ export function SocialsForm({
   setSocials: Dispatch<SetStateAction<Socials>>
 }) {
   const { t } = useTranslation()
-  const chainId = useChainId()
+  const {chainId} = useActiveChainId()
   const { address: account } = useAccount()
 
   const [presaleRateError, setPresaleRateError] = useState("");

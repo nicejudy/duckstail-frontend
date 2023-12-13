@@ -2,21 +2,27 @@ import { ChainId } from "@pancakeswap/sdk"
 import { ChainMap } from "config/constants/types"
 
 export const feeAddress = "0xC2321883b7b675efDa4647B567aBF983eFeC6dB0"
-export const fee = "0.01"
+
+export const fee: ChainMap<string> = {
+	[ChainId.ETHEREUM]: '0x106A5477f843fD0376582e45892537edDC6AD374',
+	[ChainId.ARBITRUM]: '0.001',
+	[ChainId.POLYGON]: '3',
+	[ChainId.BSC]: '0.01',
+}
 
 export const dividendTrackerAddresses: ChainMap<string> = {
 	[ChainId.ETHEREUM]: '0x106A5477f843fD0376582e45892537edDC6AD374',
 	[ChainId.ARBITRUM]: '0x106A5477f843fD0376582e45892537edDC6AD374',
-	[ChainId.POLYGON]: '0x106A5477f843fD0376582e45892537edDC6AD374',
-	[ChainId.BSC]: '0x8e268141DaF54aA1fcdB5574A72feB0eC2fC3970',
+	[ChainId.POLYGON]: '0x53CA349591328b47F3fCB8Cf8107aE441A62c0d6',
+	[ChainId.BSC]: '0xf303c178d74E726F3677e98EDC85Dc20969226bD',
 }
 
 
 export const feeReceivers: ChainMap<string> = {
 	[ChainId.ETHEREUM]: '0xD52c5455dFa0382C643eDb3D41c00799289A8a7f',
 	[ChainId.ARBITRUM]: '0xD52c5455dFa0382C643eDb3D41c00799289A8a7f',
-	[ChainId.POLYGON]: '0xD52c5455dFa0382C643eDb3D41c00799289A8a7f',
-	[ChainId.BSC]: '0xD52c5455dFa0382C643eDb3D41c00799289A8a7f',
+	[ChainId.POLYGON]: '0xCfE90951e5fe2a4a7aD2846DcA9507Fa238F0DB8',
+	[ChainId.BSC]: '0xD6C61A286A2D1A893Ee4E88996B8e8898C191B0b',
 }
 
 export const tokenABI = {

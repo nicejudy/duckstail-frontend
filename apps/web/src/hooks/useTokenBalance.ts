@@ -12,6 +12,7 @@ import { bscRpcProvider } from 'utils/providers'
 import { useWeb3React } from '@pancakeswap/wagmi'
 import { useTokenContract } from './useContract'
 import { useSWRContract } from './useSWRContract'
+import { useActiveChainId } from './useActiveChainId'
 
 const useTokenBalance = (tokenAddress: string, forceBSC?: boolean) => {
   const { address: account } = useAccount()
@@ -50,7 +51,7 @@ export const useGetBnbBalance = () => {
 }
 
 export const useGetCakeBalance = () => {
-  const { chainId } = useWeb3React()
+  const { chainId } = useActiveChainId()
   // if (chainId === ChainId.ETHEREUM)
   //   return { balance: undefined, fetchStatus: undefined}
   // const tokenAddress = chainId ? GTOKEN[chainId].address : GTOKEN[ChainId.ARBITRUM].address

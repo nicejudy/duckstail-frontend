@@ -4,6 +4,7 @@ import { ChainId } from '@pancakeswap/sdk'
 import { Text, Box, Message, Button, Input, Checkbox, Flex, MessageText } from '@pancakeswap/uikit'
 import { useAccount, useChainId } from 'wagmi'
 import ConnectWalletButton from 'components/ConnectWalletButton'
+import { useActiveChainId } from 'hooks/useActiveChainId'
 import ProgressSteps from 'views/Swap/components/ProgressSteps'
 import { DeFi, LaunchpadFormView, TokenData } from '../types'
 import { FormHeader } from './FormHeader'
@@ -21,7 +22,7 @@ export function InformationForm({
   setDefiData: Dispatch<SetStateAction<DeFi>>
 }) {
   const { t } = useTranslation()
-  const chainId = useChainId()
+  const {chainId} = useActiveChainId()
   const { address: account } = useAccount()
 
   const [presaleRate, setPresaleRate] = useState<string>(deFiData.presaleRate)

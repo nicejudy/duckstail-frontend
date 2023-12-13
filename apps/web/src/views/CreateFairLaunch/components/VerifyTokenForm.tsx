@@ -12,6 +12,7 @@ import { CommonBasesType } from 'components/SearchModal/types'
 import { CurrencyLogo } from 'components/Logo'
 import CurrencySearchModal from 'components/SearchModal/CurrencySearchModal'
 import ProgressSteps from 'views/CreateLaunchpad/components/ProgressSteps'
+import { useActiveChainId } from 'hooks/useActiveChainId'
 import { useToken } from 'hooks/Tokens'
 import { LaunchpadFormView, TokenData } from '../types'
 import { FormHeader } from './FormHeader'
@@ -36,7 +37,7 @@ export function VerifyTokenForm({
   setTokenData: Dispatch<SetStateAction<TokenData>>
 }) {
   const { t } = useTranslation()
-  const chainId = useChainId()
+  const {chainId} = useActiveChainId()
   const { address: account } = useAccount()
 
   const [currency, setCurrency] = useState<Currency | null>(() => tokenData.currency)

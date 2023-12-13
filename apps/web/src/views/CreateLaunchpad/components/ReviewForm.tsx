@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import { useAccount, useChainId } from 'wagmi'
 import addresses from 'config/constants/contracts'
 import ConnectWalletButton from 'components/ConnectWalletButton'
+import { useActiveChainId } from 'hooks/useActiveChainId'
 import { useToken } from 'hooks/Tokens'
 import { ApprovalState, useApproveCallback } from 'hooks/useApproveCallback'
 import useLaunchpadFee from 'hooks/useLaunchpadFee'
@@ -32,7 +33,7 @@ export function ReviewForm({
   setPresale: Dispatch<SetStateAction<FinishData>>
 }) {
   const { t } = useTranslation()
-  const chainId = useChainId()
+  const {chainId} = useActiveChainId()
   const { address: account } = useAccount()
 
   const {

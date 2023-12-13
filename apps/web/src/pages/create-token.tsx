@@ -5,6 +5,6 @@ const CreateTokenPage = () => {
   return <CreateToken />
 }
 
-CreateTokenPage.chains = [ChainId.ARBITRUM, ChainId.ETHEREUM]
+CreateTokenPage.chains = [ChainId.ARBITRUM, ChainId.BSC, ChainId.POLYGON]
 
 export default CreateTokenPage

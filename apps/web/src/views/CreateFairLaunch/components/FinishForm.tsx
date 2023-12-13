@@ -5,9 +5,9 @@ import { ChainId } from '@pancakeswap/sdk'
 import { Text, Box, Button, Flex, Link, NextLinkFromReactRouter, TokenLogo } from '@pancakeswap/uikit'
 import getTimePeriods from '@pancakeswap/utils/getTimePeriods'
 import styled from 'styled-components'
-import { useAccount, useChainId } from 'wagmi'
-import ConnectWalletButton from 'components/ConnectWalletButton'
-import { BAD_SRCS } from 'components/Logo/constants'
+// import { useAccount, useChainId } from 'wagmi'
+// import ConnectWalletButton from 'components/ConnectWalletButton'
+// import { BAD_SRCS } from 'components/Logo/constants'
 import useNativeCurrency from 'hooks/useNativeCurrency'
 import { ProgressCirclesFullCompleted } from 'views/CreateLaunchpad/components/ProgressSteps'
 import { DeFi, FinishData, LaunchpadFormView, Socials, TokenData } from '../types'
@@ -95,8 +95,8 @@ export function FinishForm({
   address: string
 }) {
   const { t } = useTranslation()
-  const chainId = useChainId()
-  const { address: account } = useAccount()
+  // const chainId = useChainId()
+  // const { address: account } = useAccount()
   const native = useNativeCurrency()
 
   const { secondsRemaining } = useCountdown(Math.floor(Date.parse(deFiData.startTime) / 1000))

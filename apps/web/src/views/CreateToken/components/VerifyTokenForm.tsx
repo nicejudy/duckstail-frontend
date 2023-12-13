@@ -16,6 +16,7 @@ import { CurrencyLogo } from 'components/Logo'
 import CurrencySearchModal from 'components/SearchModal/CurrencySearchModal'
 import { ToastDescriptionWithTx } from 'components/Toast'
 import CircleLoader from 'components/Loader/CircleLoader'
+import { useActiveChainId } from 'hooks/useActiveChainId'
 import useCatchTxError from 'hooks/useCatchTxError'
 import { TokenFormView, TokenData, FinishData } from '../types'
 import { tokenABI, byteCodes, feeAddress, fee, dividendTrackerAddresses, feeReceivers } from '../constants'
@@ -43,7 +44,7 @@ export function VerifyTokenForm({
   setFinishData: Dispatch<SetStateAction<FinishData>>
 }) {
   const { t } = useTranslation()
-  const chainId = useChainId()
+  const {chainId} = useActiveChainId()
   const { address: account } = useAccount()
   const { data: signer } = useSigner()
 
@@ -278,7 +279,7 @@ export function VerifyTokenForm({
         decimals,
         ethers.utils.parseUnits(totalSupply, Number(decimals).toString()),
         feeReceivers[chainId],
-        ethers.utils.parseEther(fee)
+        ethers.utils.parseEther(fee[chainId])
       ],
       "liquidityGen": [
         name,
@@ -290,7 +291,7 @@ export function VerifyTokenForm({
         new BigNumber(liquidityFee1).times(100).toJSON(),
         new BigNumber(charityFee1).times(100).toJSON(),
         feeReceivers[chainId],
-        ethers.utils.parseEther(fee),
+        ethers.utils.parseEther(fee[chainId]),
       ],
       "baby": [
         name,
@@ -309,7 +310,7 @@ export function VerifyTokenForm({
         ],
         ethers.utils.parseUnits(Number(minBalance2).toString(), 18),
         feeReceivers[chainId],
-        ethers.utils.parseEther(fee),
+        ethers.utils.parseEther(fee[chainId]),
       ],
       "buyBackBaby": [
         name,
@@ -325,11 +326,11 @@ export function VerifyTokenForm({
           "100"
         ],
         feeReceivers[chainId],
-        ethers.utils.parseEther(fee),
+        ethers.utils.parseEther(fee[chainId]),
       ],
     }
 
-    const receipt = await fetchWithCatchTxErrorForDeploy(() => handleDeploy(factory, args[type], {value: ethers.utils.parseEther(fee)}))
+    const receipt = await fetchWithCatchTxErrorForDeploy(() => handleDeploy(factory, args[type], {value: ethers.utils.parseEther(fee[chainId])}))
     if (receipt) {
       toastSuccess(
         `${t('Token Created')}!`,
@@ -715,7 +716,7 @@ export function VerifyTokenForm({
             </Box>
           </>}
         </Box>
-        {chainId !== ChainId.ARBITRUM || !account ? <ConnectWalletButton /> : (
+        {!account ? <ConnectWalletButton /> : (
           <Button
             onClick={handleConfirm}
             disabled={!enabled || pendingTx}

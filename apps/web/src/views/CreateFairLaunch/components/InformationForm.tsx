@@ -21,7 +21,7 @@ export function InformationForm({
   setDefiData: Dispatch<SetStateAction<DeFi>>
 }) {
   const { t } = useTranslation()
-  const chainId = useChainId()
+  // const chainId = useChainId()
   const { address: account } = useAccount()
 
   const [total, setTotal] = useState<string>(deFiData.total)
