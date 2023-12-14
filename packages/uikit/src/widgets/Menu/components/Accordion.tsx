@@ -91,7 +91,7 @@ const Accordion: React.FC<Props> = ({
           {label}
         </MenuItem>}
         {hasSubItems && (isOpen ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />)}
-        {href === "/tumbler" && <Box display={["none", null, "flex"]} style={{ alignItems: "center" }} ml="4px">
+        {href === "/tumbler" && <Box display="flex" style={{ alignItems: "center" }} ml="4px">
           <OpenNewIcon color="textSubtle" width="16px" />
         </Box>}
       </MenuEntry>
