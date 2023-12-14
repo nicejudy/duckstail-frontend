@@ -24,7 +24,24 @@ export const fetchLaunchpadsData = async (chainId: number, size: number, cursor:
 function launchpadsTransformer (chainId: number, launchpadsResult : any[]) {
   const [launchpads] = launchpadsResult
 
+  const now = Date.now() / 1000
+
   return launchpads[0].map((lp) => {
+    let status = ""
+
+    if (lp.refundable)
+      status = "canceled"
+    else if (lp.claimable)
+      status = "success"
+    else if (new BigNumber(lp.startTime._hex).toNumber() > now)
+      status = "upcoming"
+    else if (new BigNumber(lp.startTime._hex).toNumber() < now && new BigNumber(lp.endTime._hex).toNumber() > now)
+      status = "live"
+    else if (new BigNumber(lp.endTime._hex).toNumber() < now)
+      status = "ended"
+    else
+      status = ""
+
     return {
       chainId,
       presaleType: lp.presaleType,
@@ -46,6 +63,7 @@ function launchpadsTransformer (chainId: number, launchpadsResult : any[]) {
       claimable: lp.claimable,
       whitelist: lp.whitelist,
       whiteListEnableTime: new BigNumber(lp.whiteListEnableTime._hex).toNumber(),
+      status,
     }
   })
 }

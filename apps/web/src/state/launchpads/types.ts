@@ -21,6 +21,8 @@ export interface SerializedLaunchpadData {
   claimable: boolean
   whitelist: string
   whiteListEnableTime: number
+  owner: string
+  status: string
 }
 
 export interface SerializedLaunchpadsState {

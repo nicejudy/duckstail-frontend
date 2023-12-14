@@ -94,7 +94,8 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
                     {t('via')} {list.name}
                   </Tag>
                 ) : (
-                  <Tag variant="failure" outline scale="sm" startIcon={<ErrorIcon color="failure" />}>
+                  // <Tag variant="failure" outline scale="sm" startIcon={<ErrorIcon color="failure" />}>
+                  <Tag variant="failure" outline scale="sm">
                     {t('Unknown Source')}
                   </Tag>
                 )}

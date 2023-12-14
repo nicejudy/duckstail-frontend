@@ -7,6 +7,7 @@ import { useAccount, useChainId } from 'wagmi'
 import { BAD_SRCS } from 'components/Logo/constants'
 import Divider from 'components/Divider'
 import { ZERO_ADDRESS } from 'config/constants'
+import { CHAIN_QUERY_NAME } from 'config/chains'
 import useNativeCurrency from 'hooks/useNativeCurrency'
 import { useToken } from 'hooks/Tokens'
 import { SerializedLaunchpadData } from 'state/launchpads/types'
@@ -80,8 +81,8 @@ const ProgressBar = styled(Box)<{cap: number, pos: number}>`
 `
 
 const Badge = styled(Box)<{ status: string}>`
-  background: ${({theme, status}) => status === "upcoming" ? theme.colors.warning33 : status === "live" ? theme.colors.success19 : theme.colors.text33};
-  color: ${({theme, status}) => status === "upcoming" ? theme.colors.primary : status === "live" ? theme.colors.success : theme.colors.text};
+  background: ${({theme, status}) => status === "upcoming" ? theme.colors.warning33 : status === "live" || status === "success" ? theme.colors.success19 : theme.colors.text33};
+  color: ${({theme, status}) => status === "upcoming" ? theme.colors.primary : status === "live" || status === "success" ? theme.colors.success : theme.colors.text};
   font-size: 14px;
   border-radius: 8px;
   padding: 3px 15px;
@@ -191,7 +192,7 @@ export function LaunchpadCard({
                 mr="10px"
               >{t("WL")}</Button>
             </Link>}
-            <NextLinkFromReactRouter to={`/launchpad/${data.address}`}>
+            <NextLinkFromReactRouter to={`/launchpad/${data.address}?chain=${CHAIN_QUERY_NAME[data.chainId]}`}>
               <Button
                 width="100%"
                 variant="secondary"

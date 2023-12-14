@@ -53,8 +53,8 @@ const StyledLogo = styled(TokenLogo)<{ size: string }>`
 `
 
 const Badge = styled(Box)<{ status: string}>`
-  background: ${({theme, status}) => status === "upcoming" ? theme.colors.warning33 : status === "live" ? theme.colors.success19 : theme.colors.text33};
-  color: ${({theme, status}) => status === "upcoming" ? theme.colors.primary : status === "live" ? theme.colors.success : theme.colors.text};
+  background: ${({theme, status}) => status === "upcoming" ? theme.colors.warning33 : status === "live" || status === "success" ? theme.colors.success19 : theme.colors.text33};
+  color: ${({theme, status}) => status === "upcoming" ? theme.colors.primary : status === "live" || status === "success" ? theme.colors.success : theme.colors.text};
   font-size: 14px;
   border-radius: 8px;
   padding: 3px 15px;

@@ -4,6 +4,6 @@ import PoolFinder from 'views/PoolFinder'
 
 const PoolFinderPage = () => <PoolFinder />
 
-PoolFinderPage.chains = [ChainId.ARBITRUM]
+PoolFinderPage.chains = [ChainId.ARBITRUM, ChainId.BSC, ChainId.POLYGON, ChainId.ETHEREUM]
 
 export default PoolFinderPage

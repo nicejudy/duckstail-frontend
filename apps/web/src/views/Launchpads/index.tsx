@@ -9,6 +9,7 @@ import {
   ToggleView,
   Select,
   Box,
+  OptionProps,
 } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import Page from 'components/Layout/Page'
@@ -20,6 +21,7 @@ import { useRouter } from 'next/router'
 // import BondCard from './components/BondCard/BondCard'
 // import { filterBondsByQuery } from './filterBondsByQuery'
 import { useTranslation } from '@pancakeswap/localization'
+import { SerializedLaunchpadData } from 'state/launchpads/types'
 import { useLaunchpads, usePollLaunchpads } from 'state/launchpads/hooks'
 import { LaunchpadCard } from './components/LaunchpadCard'
 
@@ -29,7 +31,7 @@ const ControlContainer = styled.div`
   align-items: center;
   position: relative;
 
-  justify-content: space-between;
+  // justify-content: space-between;
   flex-direction: column;
   margin-bottom: 32px;
 
@@ -60,10 +62,10 @@ const FilterContainer = styled.div`
 `
 
 const ViewControls = styled.div`
-  flex-wrap: wrap;
-  justify-content: space-between;
-  display: flex;
-  align-items: center;
+  // flex-wrap: wrap;
+  // justify-content: space-between;
+  // display: flex;
+  // align-items: center;
   width: 100%;
 
   > div {
@@ -71,8 +73,9 @@ const ViewControls = styled.div`
   }
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    justify-content: flex-start;
+    // justify-content: flex-start;
     width: auto;
+    width: 100%;
 
     > div {
       padding: 0;
@@ -91,6 +94,9 @@ const Launchpads: React.FC<React.PropsWithChildren> = () => {
   const normalizedUrlSearch = useMemo(() => (typeof urlQuery?.search === 'string' ? urlQuery.search : ''), [urlQuery])
   const query = normalizedUrlSearch && !_query ? normalizedUrlSearch : _query
 
+  const [filterOption, setFilterOption] = useState('')
+  const [typeOption, setTypeOption] = useState('')
+
   const [viewMode, setViewMode] = useUserBondsViewMode()
   const { address: account } = useAccount()
 
@@ -107,8 +113,54 @@ const Launchpads: React.FC<React.PropsWithChildren> = () => {
 
   // const activeBonds = bondsList(bonds)
 
+  const chosenLaunchpads = useMemo(() => {
+    const sortPools = (pools: SerializedLaunchpadData[]): SerializedLaunchpadData[] => {
+      switch (filterOption) {
+        case 'upcoming':
+          return pools.filter((pool) => pool.status === "upcoming")
+        case 'live':
+          return pools.filter((pool) => pool.status === "live")
+        case 'success':
+          return pools.filter((pool) => pool.status === "success")
+        case 'ended':
+          return pools.filter((pool) => pool.status === "ended")
+        case 'canceled':
+          return pools.filter((pool) => pool.status === "canceled")
+        case 'whitelist':
+          return pools.filter((pool) => pool.whitelist !== "")
+        default:
+          return pools
+      }
+    }
+
+    return sortPools(data)
+  }, [data, filterOption])
+
+  const chosenLaunchpadsByType = useMemo(() => {
+    const sortPools = (pools: SerializedLaunchpadData[]): SerializedLaunchpadData[] => {
+      switch (typeOption) {
+        case 'standard':
+          return pools.filter((pool) => pool.presaleType === "standard")
+        case 'fair':
+          return pools.filter((pool) => pool.presaleType === "fair")
+        default:
+          return pools
+      }
+    }
+
+    return sortPools(chosenLaunchpads)
+  }, [chosenLaunchpads, typeOption])
+
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value)
+  }
+
+  const handleFilterOptionChange = (option: OptionProps): void => {
+    setFilterOption(option.value)
+  }
+
+  const handleSelectTypeChange = (option: OptionProps): void => {
+    setTypeOption(option.value)
   }
 
   return (
@@ -141,23 +193,23 @@ const Launchpads: React.FC<React.PropsWithChildren> = () => {
                   value: 'inprogress',
                 },
                 {
-                  label: t('Filled'),
-                  value: 'filled',
+                  label: t('Success'),
+                  value: 'success',
                 },
                 {
                   label: t('Ended'),
                   value: 'ended',
                 },
                 {
-                  label: t('Cancelled'),
-                  value: 'cancelled',
+                  label: t('Canceled'),
+                  value: 'canceled',
                 },
                 {
                   label: t('Whitelist'),
                   value: 'whitelist',
                 },
               ]}
-              // onOptionChange={handleSortOptionChange}
+              onOptionChange={handleFilterOptionChange}
             />
           </LabelWrapper>
           <LabelWrapper>
@@ -172,14 +224,14 @@ const Launchpads: React.FC<React.PropsWithChildren> = () => {
                 },
                 {
                   label: t('Presale'),
-                  value: 'presale',
+                  value: 'standard',
                 },
                 {
                   label: t('Fair Launch'),
-                  value: 'fairLaunch',
+                  value: 'fair',
                 },
               ]}
-              // onOptionChange={handleSortOptionChange}
+              onOptionChange={handleSelectTypeChange}
             />
           </LabelWrapper>
           {/* <LabelWrapper>
@@ -249,7 +301,7 @@ const Launchpads: React.FC<React.PropsWithChildren> = () => {
         </FilterContainer>
       </ControlContainer>
       <FlexLayout>
-        {data && data.length > 0 && data.map((launchpad) =>
+        {chosenLaunchpadsByType && chosenLaunchpadsByType.length > 0 && chosenLaunchpadsByType.map((launchpad) =>
           <LaunchpadCard
             key={launchpad.address}
             data={launchpad}

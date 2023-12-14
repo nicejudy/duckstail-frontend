@@ -15,7 +15,7 @@ const getOutlineStyles = ({ outline, theme, variant: variantKey = variants.PRIMA
 
     return `
       color: ${color};
-      background: ${theme.colors.background};
+      background: ${theme.colors.backgroundAlt};
       border: 2px solid ${color};
     `;
   }
@@ -25,7 +25,7 @@ const getOutlineStyles = ({ outline, theme, variant: variantKey = variants.PRIMA
 
 export const StyledTag = styled.div<ThemedProps>`
   align-items: center;
-  border-radius: 8px;
+  border-radius: 4px;
   color: #ffffff;
   display: inline-flex;
   font-weight: 400;
