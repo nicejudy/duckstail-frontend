@@ -213,6 +213,10 @@ export function VerifyTokenForm({
     }
   }, [liquidityFee3, buyBackFee3, reflectionFee3, charityFee3, type])
 
+  useEffect(() => {
+    setCurrency(WNATIVE[chainId])
+  }, [chainId])
+
   // const handleNext = async () => {
   //   setTokenData({
   //     tokenAddress: searchToken.address,
