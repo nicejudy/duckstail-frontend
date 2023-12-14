@@ -21,6 +21,7 @@ import {
   CapitalIcon,
   MultisenderIcon,
   LaunchPadIcon,
+  LanguageCurrencyIcon,
 } from '@pancakeswap/uikit'
 import { ContextApi } from '@pancakeswap/localization'
 // import { nftsBaseUrl } from 'views/Nft/market/constants'
@@ -237,6 +238,16 @@ const config: (
           label: t('Launchpad list'),
           href: '/launchpads',
         },
+      ].map((item) => addMenuItemSupported(item, chainId)),
+    },
+    {
+      label: t('Tumbler'),
+      href: '/tumbler',
+      icon: LanguageCurrencyIcon,
+      fillIcon: LanguageCurrencyIcon,
+      image: '/images/dko.png',
+      showItemsOnMobile: false,
+      items: [
       ].map((item) => addMenuItemSupported(item, chainId)),
     },
     // {

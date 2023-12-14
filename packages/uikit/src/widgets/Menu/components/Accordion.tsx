@@ -3,9 +3,10 @@ import styled from "styled-components";
 import { MENU_HEIGHT } from "../config";
 import { LinkLabel, MenuEntry } from "./MenuEntry";
 import { PushedProps } from "../types";
-import { ArrowDropDownIcon, ArrowDropUpIcon } from "../../../components/Svg";
+import { ArrowDropDownIcon, ArrowDropUpIcon, LanguageCurrencyIcon, OpenNewIcon } from "../../../components/Svg";
 import MenuItem from "../../../components/MenuItem";
 import { Colors } from "../../../theme";
+import { Box } from "../../../components";
 
 interface Props extends PushedProps {
   label: string;
@@ -87,7 +88,19 @@ const Accordion: React.FC<Props> = ({
           {label}
         </MenuItem>}
         {hasSubItems && (isOpen ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />)}
+        {href === "/tumbler" && <Box display={["none", null, "flex"]} style={{ alignItems: "center" }} ml="4px">
+          <OpenNewIcon color="textSubtle" />
+        </Box>}
       </MenuEntry>
+      {href === "tumbler" && <MenuEntry onClick={handleClick} className={className} isActive={isActive}>
+        <LanguageCurrencyIcon color={isActive ? "primary" : "primaryBright"} mr="20px" width="16px" />
+        <MenuItem href={href} variant="default" isActive={isActive} statusColor={statusColor} isDisabled={isDisabled}>
+          {label}
+        </MenuItem>
+        <Box display={["none", null, "flex"]} style={{ alignItems: "center" }} ml="4px">
+          <OpenNewIcon color="textSubtle" />
+        </Box>
+      </MenuEntry>}
       <AccordionContent
         isOpen={isOpen}
         isPushed={isPushed}
