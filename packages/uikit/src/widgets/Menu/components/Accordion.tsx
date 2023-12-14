@@ -73,6 +73,9 @@ const Accordion: React.FC<Props> = ({
     case '/launchpad':
       iconWidth = "16px"
       break
+    case '/tumbler':
+      iconWidth = "16px"
+      break
     default:
       iconWidth = "20px"
       break
@@ -89,18 +92,9 @@ const Accordion: React.FC<Props> = ({
         </MenuItem>}
         {hasSubItems && (isOpen ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />)}
         {href === "/tumbler" && <Box display={["none", null, "flex"]} style={{ alignItems: "center" }} ml="4px">
-          <OpenNewIcon color="textSubtle" />
+          <OpenNewIcon color="textSubtle" width="16px" />
         </Box>}
       </MenuEntry>
-      {href === "tumbler" && <MenuEntry onClick={handleClick} className={className} isActive={isActive}>
-        <LanguageCurrencyIcon color={isActive ? "primary" : "primaryBright"} mr="20px" width="16px" />
-        <MenuItem href={href} variant="default" isActive={isActive} statusColor={statusColor} isDisabled={isDisabled}>
-          {label}
-        </MenuItem>
-        <Box display={["none", null, "flex"]} style={{ alignItems: "center" }} ml="4px">
-          <OpenNewIcon color="textSubtle" width="16px" />
-        </Box>
-      </MenuEntry>}
       <AccordionContent
         isOpen={isOpen}
         isPushed={isPushed}
