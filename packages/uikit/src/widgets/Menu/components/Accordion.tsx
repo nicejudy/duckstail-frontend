@@ -62,29 +62,34 @@ const Accordion: React.FC<Props> = ({
   };
 
   let iconWidth = "20px"
+  let mRight = "20px"
 
   switch (href) {
     case '/capital':
       iconWidth = "16px"
+      mRight = "24px"
       break
     case '/multisender':
       iconWidth = "16px"
+      mRight = "24px"
       break
     case '/launchpad':
       iconWidth = "16px"
+      mRight = "24px"
       break
-    case '/tumbler':
-      iconWidth = "16px"
-      break
+    // case '/tumbler':
+    //   iconWidth = "16px"
+    //   break
     default:
       iconWidth = "20px"
+      mRight = "20px"
       break
   }
 
   return (
     <Container>
       <MenuEntry onClick={handleClick} className={className} isActive={isActive}>
-        {(icon && createElement(icon as any, { color: isActive ? "primary" : "primaryBright", marginRight: "20px", width: iconWidth }))}
+        {(icon && createElement(icon as any, { color: isActive ? "primary" : "primaryBright", marginRight: mRight, width: iconWidth }))}
         {hasSubItems ? <LinkLabel isActive={isActive}>{label}</LinkLabel>
          : 
          <MenuItem href={href} variant="default" isActive={isActive} statusColor={statusColor} isDisabled={isDisabled}>
