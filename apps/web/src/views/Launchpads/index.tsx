@@ -31,7 +31,7 @@ const ControlContainer = styled.div`
   align-items: center;
   position: relative;
 
-  // justify-content: space-between;
+  justify-content: space-between;
   flex-direction: column;
   margin-bottom: 32px;
 
@@ -62,10 +62,10 @@ const FilterContainer = styled.div`
 `
 
 const ViewControls = styled.div`
-  // flex-wrap: wrap;
-  // justify-content: space-between;
-  // display: flex;
-  // align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
   width: 100%;
 
   > div {
@@ -73,9 +73,8 @@ const ViewControls = styled.div`
   }
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    // justify-content: flex-start;
+    justify-content: flex-start;
     width: auto;
-    width: 100%;
 
     > div {
       padding: 0;
