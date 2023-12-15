@@ -400,7 +400,7 @@ const Launchpad = ({pool} : {pool: string}) => {
                   <Divider />
                   {isBuyTokenReady && isTokenReady ? <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
                     <Text small>{t("Tokens For Liquidity")}</Text>
-                    <Text small>{data.liquidity === 0 ? "Manual listing" : `${(((data?.hardCap * (1 - data?.mainFee / 1000)) * data?.liquidity/1000) * data?.listingRate / (10 ** (searchBuyToken.decimals + searchToken.decimals))).toLocaleString()} ${searchToken.symbol}`}</Text>
+                    <Text small>{data.liquidity === 0 ? "Manual listing" : `${((((data.presaleType === "standard" ? data?.hardCap : data?.softCap) * (1 - data?.mainFee / 1000)) * data?.liquidity/1000) * data?.listingRate / (10 ** (searchBuyToken.decimals + searchToken.decimals))).toLocaleString()} ${searchToken.symbol}`}</Text>
                   </Flex> : <Skeleton width="100%" height={40} />}
                   <Divider />
                   {isTokenReady && isBuyTokenReady ? <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
@@ -424,12 +424,14 @@ const Launchpad = ({pool} : {pool: string}) => {
                     <Skeleton width="100%" height={40} />
                   )}
                   <Divider />
-                  {isBuyTokenReady ? <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
-                    <Text small>{t("Hard Cap")}</Text>
-                    <Text small>{(data?.hardCap / (10**searchBuyToken.decimals)).toLocaleString()} {searchBuyToken.symbol}</Text>
-                  </Flex> : (
-                    <Skeleton width="100%" height={40} />
-                  )}
+                  {data.presaleType === "standard" && <>
+                    {isBuyTokenReady ? <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
+                      <Text small>{t("Hard Cap")}</Text>
+                      <Text small>{(data?.hardCap / (10**searchBuyToken.decimals)).toLocaleString()} {searchBuyToken.symbol}</Text>
+                    </Flex> : (
+                      <Skeleton width="100%" height={40} />
+                    )}
+                  </>}
                   <Divider />
                   {isDataReady ? <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
                     <Text small>{t("Refund Address")}</Text>

@@ -24,6 +24,7 @@ import { useTranslation } from '@pancakeswap/localization'
 import { SerializedLaunchpadData } from 'state/launchpads/types'
 import { useLaunchpads, usePollLaunchpads } from 'state/launchpads/hooks'
 import { LaunchpadCard } from './components/LaunchpadCard'
+import { filterPoolsByQuery } from './filterBondsByQuery'
 
 const ControlContainer = styled.div`
   display: flex;
@@ -99,18 +100,16 @@ const Launchpads: React.FC<React.PropsWithChildren> = () => {
   const [viewMode, setViewMode] = useUserBondsViewMode()
   const { address: account } = useAccount()
 
-  usePollLaunchpads(10, 6)
+  usePollLaunchpads(10, 0)
 
-  // const userDataReady = !account || (!!account && userDataLoaded)
+  const poolsList = useCallback(
+    (bondsToQuery: SerializedLaunchpadData[]): SerializedLaunchpadData[] => {
+      return filterPoolsByQuery(bondsToQuery, query)
+    },
+    [query],
+  )
 
-  // const bondsList = useCallback(
-  //   (bondsToQuery: SerializedBond[]): SerializedBond[] => {
-  //     return filterBondsByQuery(bondsToQuery, query)
-  //   },
-  //   [query],
-  // )
-
-  // const activeBonds = bondsList(bonds)
+  const activePools = poolsList(data)
 
   const chosenLaunchpads = useMemo(() => {
     const sortPools = (pools: SerializedLaunchpadData[]): SerializedLaunchpadData[] => {
@@ -132,8 +131,8 @@ const Launchpads: React.FC<React.PropsWithChildren> = () => {
       }
     }
 
-    return sortPools(data)
-  }, [data, filterOption])
+    return sortPools(activePools)
+  }, [activePools, filterOption])
 
   const chosenLaunchpadsByType = useMemo(() => {
     const sortPools = (pools: SerializedLaunchpadData[]): SerializedLaunchpadData[] => {
