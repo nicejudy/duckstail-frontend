@@ -10,9 +10,6 @@ export interface SerializedLaunchpadData {
   tokenName: string
   tokenSymbol: string
   tokenDecimals: number
-  buyTokenName: string
-  buyTokenSymbol: string
-  buyTokenDecimals: number
   total: number
   rate: number
   hardCap: number

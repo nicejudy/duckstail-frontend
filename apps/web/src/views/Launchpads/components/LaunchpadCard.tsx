@@ -6,6 +6,7 @@ import styled, { useTheme } from 'styled-components'
 import { useAccount, useChainId } from 'wagmi'
 import { BAD_SRCS } from 'components/Logo/constants'
 import Divider from 'components/Divider'
+import { ChainLogo } from 'components/Logo/ChainLogo'
 import { ZERO_ADDRESS } from 'config/constants'
 import { CHAIN_QUERY_NAME } from 'config/chains'
 import useNativeCurrency from 'hooks/useNativeCurrency'
@@ -26,6 +27,15 @@ const StyledLogo = styled(TokenLogo)<{ size: string }>`
   width: ${({ size }) => size};
   height: ${({ size }) => size};
   border-radius: 50%;
+`
+
+const StyledChainLogo = styled(Box)`
+  position: absolute;
+  background-color: ${({theme}) => theme.colors.invertedContrast}
+  padding: 8px;
+  border-radius: 8px;
+  top: 36px;
+  right: -8px;
 `
 
 const CircleBox = styled(Box)<{variant: string}>`
@@ -121,8 +131,14 @@ export function LaunchpadCard({
   const { t } = useTranslation()
   const native = useNativeCurrency()
 
-  const buyTokenSymbol = data.buyToken === ZERO_ADDRESS ? native.symbol : data.buyTokenSymbol
-  const buyTokenDecimals = data.buyToken === ZERO_ADDRESS ? native.decimals : data.buyTokenDecimals
+  // const debouncedQuery1 = useDebounce(data.token, 200)
+  const debouncedQuery = useDebounce(data.buyToken, 200)
+  // const searchToken = useToken(debouncedQuery1)
+  const _searchBuyToken = useToken(debouncedQuery)
+  const searchBuyToken = data.buyToken === ZERO_ADDRESS ? native : _searchBuyToken
+
+  // const buyTokenSymbol = data.buyToken === ZERO_ADDRESS ? native.symbol : data.buyTokenSymbol
+  // const buyTokenDecimals = data.buyToken === ZERO_ADDRESS ? native.decimals : data.buyTokenDecimals
 
   const [status, statusText, banText, countText] = getStatus(data.startTime, data?.endTime, data?.refundable, data?.claimable)
 
@@ -133,8 +149,11 @@ export function LaunchpadCard({
 		<StyledCard>
       <Box p="20px">
         <Flex justifyContent="space-between" mb="14px">
-          <Box>
+          <Box position="relative">
             <StyledLogo badSrcs={BAD_SRCS} size="56px" srcs={[data.logoUrl]} alt={data.token} />
+            <StyledChainLogo>
+              <ChainLogo chainId={data.chainId} />
+            </StyledChainLogo>
           </Box>
           <Flex flexDirection="column" alignItems="center" mr="20px">
             <Badge status={status}>
@@ -142,32 +161,32 @@ export function LaunchpadCard({
             </Badge>
           </Flex>
         </Flex>
-        {data.presaleType === "standard" && <Box mb="1rem">
+        {data.presaleType === "standard" && searchBuyToken && <Box mb="1rem">
           <Text bold fontSize="26px">{data.tokenName}</Text>
-          <Text>1 {buyTokenSymbol} = {(data.rate / (10 ** data.tokenDecimals)).toLocaleString()} {data.tokenSymbol}</Text>
+          <Text>1 {searchBuyToken.symbol} = {(data.rate / (10 ** data.tokenDecimals)).toLocaleString()} {data.tokenSymbol}</Text>
         </Box>}
-        {data.presaleType === "fair" && <Box mb="1rem">
+        {data.presaleType === "fair" && searchBuyToken && <Box mb="1rem">
           <Text bold fontSize="26px">{data.tokenName}</Text>
-          <Text>{t("Fair Launch -%symbol%", {symbol: data.maxBuy !== 0 ? ` Max Buy ${data.maxBuy} ${buyTokenSymbol}` : ""})}</Text>
+          <Text>{t("Fair Launch -%symbol%", {symbol: data.maxBuy !== 0 ? ` Max Buy ${data.maxBuy} ${searchBuyToken.symbol}` : ""})}</Text>
         </Box>}
-        {data.presaleType === "standard" && <Box mb="0.5rem">
+        {data.presaleType === "standard" && searchBuyToken && <Box mb="0.5rem">
           <Text color="primary" bold fontSize="12px">{t("Soft/Hard")}</Text>
-          <Text color="failure" bold fontSize="20px">{t("%amount1% %symbol% - %amount2% %symbol%", {symbol: buyTokenSymbol, amount1: (data.softCap / (10**buyTokenDecimals)).toLocaleString(), amount2: (data.hardCap / (10**buyTokenDecimals)).toLocaleString()})}</Text>
+          <Text color="failure" bold fontSize="20px">{t("%amount1% %symbol% - %amount2% %symbol%", {symbol: searchBuyToken.symbol, amount1: (data.softCap / (10**searchBuyToken.decimals)).toLocaleString(), amount2: (data.hardCap / (10**searchBuyToken.decimals)).toLocaleString()})}</Text>
         </Box>}
-        {data.presaleType === "fair" && <Box mb="0.5rem">
+        {data.presaleType === "fair" && searchBuyToken && <Box mb="0.5rem">
           <Text color="primary" bold fontSize="12px">{t("Soft")}</Text>
-          <Text color="failure" bold fontSize="20px">{t("%amount% %symbol%", {symbol: buyTokenSymbol, amount: (data.softCap / (10**buyTokenDecimals)).toLocaleString()})}</Text>
+          <Text color="failure" bold fontSize="20px">{t("%amount% %symbol%", {symbol: searchBuyToken.symbol, amount: (data.softCap / (10**searchBuyToken.decimals)).toLocaleString()})}</Text>
         </Box>}
-        <Box mb="0.5rem">
+        {searchBuyToken && <Box mb="0.5rem">
           <Text color="primary" bold fontSize="12px">{t("Progress")} {`(${(data.amount / (data.presaleType === "standard" ? data.hardCap : data.softCap) * 100).toLocaleString()}%)`}</Text>
           <ProgressBase cap={data.presaleType === "standard" ? data.hardCap : data.softCap} pos={data.amount}>
             <ProgressBar cap={data.presaleType === "standard" ? data.hardCap : data.softCap} pos={data.amount} />
           </ProgressBase>
           <Flex justifyContent="space-between">
-            <Text color="textDisabled" fontSize="16px" bold>{t("%amount% %symbol%", {symbol: buyTokenSymbol, amount: (data.amount / 10**buyTokenDecimals).toLocaleString()})}</Text>
-            <Text color="textDisabled" fontSize="16px" bold>{t("%amount% %symbol%", {symbol: buyTokenSymbol, amount: data.presaleType === "standard" ? (data.hardCap / 10**buyTokenDecimals).toLocaleString() : (data.softCap / 10**buyTokenDecimals).toLocaleString()})}</Text>
+            <Text color="textDisabled" fontSize="16px" bold>{t("%amount% %symbol%", {symbol: searchBuyToken.symbol, amount: (data.amount / 10**searchBuyToken.decimals).toLocaleString()})}</Text>
+            <Text color="textDisabled" fontSize="16px" bold>{t("%amount% %symbol%", {symbol: searchBuyToken.symbol, amount: data.presaleType === "standard" ? (data.hardCap / 10**searchBuyToken.decimals).toLocaleString() : (data.softCap / 10**searchBuyToken.decimals).toLocaleString()})}</Text>
           </Flex>
-        </Box>
+        </Box>}
         <Flex justifyContent="space-between">
           <Text color="primary" bold fontSize="16px">{t("Liquidity (%)")}</Text>
           <Text bold fontSize="16px">{t("%amount%", {amount: data.liquidity !== 0 ? data.liquidity / 10 : "Manual listing"})}</Text>

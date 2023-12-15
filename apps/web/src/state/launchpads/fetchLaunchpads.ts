@@ -1,10 +1,10 @@
 import BigNumber from 'bignumber.js'
 import launchpadFactoryAbi from 'config/abi/launchpadFactory.json'
 import erc20ABI from 'config/abi/erc20.json'
+import { ZERO_ADDRESS } from 'config/constants'
 import { multicallv2, multicallv3 } from 'utils/multicall'
 import { getLaunchpadFactoryAddress } from 'utils/addressHelpers'
 import { SerializedLaunchpadData } from './types'
-import { ZERO_ADDRESS } from 'config/constants'
 
 const calls = (chainId: number, size: number, cursor: number) => {
   const launchpadFactory = getLaunchpadFactoryAddress(chainId)
@@ -23,7 +23,7 @@ export const fetchLaunchpadsData = async (chainId: number, size: number, cursor:
   return launchpadsMultiCallResult
 }
 
-const token_calls = (token: string) => {
+const tokenCalls = (token: string) => {
   return [
     {
       address: token,
@@ -45,7 +45,40 @@ const launchpadsTransformer = async (chainId: number, launchpadsResult : any[]) 
 
   const now = Date.now() / 1000
 
-  let result = []
+  const names = await multicallv2({
+    abi: erc20ABI,
+    calls: launchpads[0].map((lp) => {
+      return {
+        address: lp.token,
+        name: "name",
+      }
+    }),
+    chainId,
+  })
+
+  const symbols = await multicallv2({
+    abi: erc20ABI,
+    calls: launchpads[0].map((lp) => {
+      return {
+        address: lp.token,
+        name: "symbol",
+      }
+    }),
+    chainId,
+  })
+
+  const decimals = await multicallv2({
+    abi: erc20ABI,
+    calls: launchpads[0].map((lp) => {
+      return {
+        address: lp.token,
+        name: "decimals",
+      }
+    }),
+    chainId,
+  })
+
+  const result = []
 
   for (let index = 0; index < launchpads[0].length; index++) {
     const lp = launchpads[0][index];
@@ -65,25 +98,6 @@ const launchpadsTransformer = async (chainId: number, launchpadsResult : any[]) 
     else
       status = ""
 
-    const [[name], [symbol], [decimals]] = await multicallv2({
-      abi: erc20ABI,
-      calls: token_calls(lp.token),
-      chainId,
-    })
-
-    let name1 = "", symbol1 = "", decimals1 = "0"
-
-    if (lp.buyToken !== ZERO_ADDRESS) {
-      const [[_name1], [_symbol1], [_decimals1]] = await multicallv2({
-        abi: erc20ABI,
-        calls: token_calls(lp.buyToken),
-        chainId,
-      })
-      name1 = _name1
-      symbol1 = _symbol1
-      decimals1 = _decimals1
-    }
-
     result.push({
       chainId,
       presaleType: lp.presaleType,
@@ -91,12 +105,9 @@ const launchpadsTransformer = async (chainId: number, launchpadsResult : any[]) 
       logoUrl: lp.logoUrl,
       token: lp.token,
       buyToken: lp.buyToken,
-      tokenName: name,
-      tokenSymbol: symbol,
-      tokenDecimals: Number(decimals),
-      buyTokenName: name1,
-      buyTokenSymbol: symbol1,
-      buyTokenDecimals: Number(decimals1),
+      tokenName: names[index][0],
+      tokenSymbol: symbols[index][0],
+      tokenDecimals: Number(decimals[index][0]),
       total: new BigNumber(lp.total._hex).toNumber(),
       rate: new BigNumber(lp.rate._hex).toNumber(),
       hardCap: new BigNumber(lp.hardCap._hex).toNumber(),

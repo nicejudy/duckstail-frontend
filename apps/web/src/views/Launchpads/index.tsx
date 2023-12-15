@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback} from 'react'
+import { useState, useMemo, useCallback, useEffect, useRef} from 'react'
 import { useAccount } from 'wagmi'
 import {
   Text,
@@ -14,6 +14,7 @@ import {
 import styled from 'styled-components'
 import Page from 'components/Layout/Page'
 import { SerializedBond } from '@pancakeswap/capital'
+import { useIntersectionObserver } from '@pancakeswap/hooks'
 import { useCapital, useDCPUSDTPrice, usePollBondsWithUserData } from 'state/capital/hooks'
 import { useUserBondsViewMode } from 'state/user/hooks'
 import { ViewMode } from 'state/user/actions'
@@ -83,12 +84,14 @@ const ViewControls = styled.div`
   }
 `
 
+const NUMBER_OF_FARMS_VISIBLE = 4
+
 const Launchpads: React.FC<React.PropsWithChildren> = () => {
   const { t } = useTranslation()
   const { query: urlQuery } = useRouter()
   const { data } = useLaunchpads()
 
-  const dcpPrice = useDCPUSDTPrice()
+  // const dcpPrice = useDCPUSDTPrice()
 
   const [_query, setQuery] = useState('')
   const normalizedUrlSearch = useMemo(() => (typeof urlQuery?.search === 'string' ? urlQuery.search : ''), [urlQuery])
@@ -97,10 +100,16 @@ const Launchpads: React.FC<React.PropsWithChildren> = () => {
   const [filterOption, setFilterOption] = useState('')
   const [typeOption, setTypeOption] = useState('')
 
-  const [viewMode, setViewMode] = useUserBondsViewMode()
+  // const [viewMode, setViewMode] = useUserBondsViewMode()
   const { address: account } = useAccount()
 
-  usePollLaunchpads(10, 0)
+  const { observerRef, isIntersecting } = useIntersectionObserver()
+  const chosenPoolsLength = useRef(0)
+
+  const [numberOfFarmsVisible, setNumberOfFarmsVisible] = useState(NUMBER_OF_FARMS_VISIBLE)
+
+  const [activeData, setActiveData] = useState<SerializedLaunchpadData[]>([])
+  const [position, setPosition] = useState(0)
 
   const poolsList = useCallback(
     (bondsToQuery: SerializedLaunchpadData[]): SerializedLaunchpadData[] => {
@@ -109,7 +118,7 @@ const Launchpads: React.FC<React.PropsWithChildren> = () => {
     [query],
   )
 
-  const activePools = poolsList(data)
+  const activePools = poolsList(activeData)
 
   const chosenLaunchpads = useMemo(() => {
     const sortPools = (pools: SerializedLaunchpadData[]): SerializedLaunchpadData[] => {
@@ -161,6 +170,37 @@ const Launchpads: React.FC<React.PropsWithChildren> = () => {
     setTypeOption(option.value)
   }
 
+  chosenPoolsLength.current = chosenLaunchpadsByType ? chosenLaunchpadsByType.length : 0
+
+  // useEffect(() => {
+  //   if (isIntersecting) {
+  //     setNumberOfFarmsVisible((farmsCurrentlyVisible) => {
+  //       if (farmsCurrentlyVisible <= chosenPoolsLength.current) {
+  //         return farmsCurrentlyVisible + NUMBER_OF_FARMS_VISIBLE
+  //       }
+  //       return farmsCurrentlyVisible
+  //     })
+  //   }
+  // }, [isIntersecting])
+
+  useEffect(() => {
+    if (isIntersecting) {
+      const newData = data.filter((lp) => {
+        const matchedData = activeData.filter((lp1) => lp1.address === lp.address && lp1.chainId === lp.chainId)
+        if (matchedData.length > 0)
+          return false
+        return true
+      })
+  
+      setActiveData([...activeData, ...newData])
+      setPosition(position + newData.length)
+    }
+  }, [isIntersecting, data])
+
+  usePollLaunchpads(NUMBER_OF_FARMS_VISIBLE, position)
+  console.log(data)
+  console.log(activeData)
+
   return (
     <Page>
       <ControlContainer>
@@ -188,7 +228,7 @@ const Launchpads: React.FC<React.PropsWithChildren> = () => {
                 },
                 {
                   label: t('Inprogress'),
-                  value: 'inprogress',
+                  value: 'live',
                 },
                 {
                   label: t('Success'),
@@ -311,6 +351,7 @@ const Launchpads: React.FC<React.PropsWithChildren> = () => {
           <Loading /> 
         </Flex>
       )} */}
+      {data && data.length > 0 && <div ref={observerRef} />}
     </Page>
   )
 }

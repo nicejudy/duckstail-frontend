@@ -11,8 +11,8 @@ import { SerializedLaunchpadData, SerializedLaunchpadsState, supportedChainId } 
 import fetchLaunchpads from './fetchLaunchpads'
 
 const initialState: SerializedLaunchpadsState = {
-  data: null,
-  chainId: null,
+  data: [],
+  chainId: 42161,
   loadingKeys: {},
 }
 
