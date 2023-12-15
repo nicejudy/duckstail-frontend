@@ -163,8 +163,8 @@ export function LaunchpadCard({
         </Box>}
         {searchBuyToken && <Box mb="0.5rem">
           <Text color="primary" bold fontSize="12px">{t("Progress")} {`(${(data.amount / (data.presaleType === "standard" ? data.hardCap : data.softCap) * 100).toLocaleString()}%)`}</Text>
-          <ProgressBase cap={data.hardCap} pos={data.amount}>
-            <ProgressBar cap={data.hardCap} pos={data.amount} />
+          <ProgressBase cap={data.presaleType === "standard" ? data.hardCap : data.softCap} pos={data.amount}>
+            <ProgressBar cap={data.presaleType === "standard" ? data.hardCap : data.softCap} pos={data.amount} />
           </ProgressBase>
           <Flex justifyContent="space-between">
             <Text color="textDisabled" fontSize="16px" bold>{t("%amount% %symbol%", {symbol: searchBuyToken.symbol, amount: (data.amount / 10**searchBuyToken.decimals).toLocaleString()})}</Text>

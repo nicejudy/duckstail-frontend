@@ -398,12 +398,19 @@ const Launchpad = ({pool} : {pool: string}) => {
                     <Text small>{data?.total / 10**searchToken.decimals} {searchToken.symbol}</Text>
                   </Flex>}
                   <Divider />
-                  {isBuyTokenReady && isTokenReady ? <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
+                  {isBuyTokenReady && isTokenReady && data.presaleType === "standard" && <>{isBuyTokenReady && isTokenReady ? <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
                     <Text small>{t("Tokens For Liquidity")}</Text>
-                    <Text small>{data.liquidity === 0 ? "Manual listing" : `${((((data.presaleType === "standard" ? data?.hardCap : data?.softCap) * (1 - data?.mainFee / 1000)) * data?.liquidity/1000) * data?.listingRate / (10 ** (searchBuyToken.decimals + searchToken.decimals))).toLocaleString()} ${searchToken.symbol}`}</Text>
+                    <Text small>{data.liquidity === 0 ? "Manual listing" : `${(((data?.hardCap * (1 - data?.mainFee / 1000)) * data?.liquidity/1000) * data?.listingRate / (10 ** (searchBuyToken.decimals + searchToken.decimals))).toLocaleString()} ${searchToken.symbol}`}</Text>
                   </Flex> : <Skeleton width="100%" height={40} />}
                   <Divider />
-                  {isTokenReady && isBuyTokenReady ? <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
+                  </>}
+                  {isBuyTokenReady && isTokenReady && data.presaleType === "fair" && <>{isBuyTokenReady && isTokenReady ? <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
+                    <Text small>{t("Tokens For Liquidity")}</Text>
+                    <Text small>{`${(((data?.softCap * (1 - data?.mainFee / 1000)) * data?.liquidity/1000) * data?.listingRate / (10 ** (searchBuyToken.decimals + searchToken.decimals))).toLocaleString()} ${searchToken.symbol}`}</Text>
+                  </Flex> : <Skeleton width="100%" height={40} />}
+                  <Divider />
+                  </>}
+                  {isDataReady && isBuyTokenReady && isTokenReady && data.presaleType === "standard" && <>{isTokenReady && isBuyTokenReady ? <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
                     <Text small>{t("Presale Rate")}</Text>
                     <Text small>1 {searchBuyToken.symbol} = {(data?.rate / (10 ** searchToken.decimals)).toLocaleString()} {searchToken.symbol}</Text>
                   </Flex> : (
@@ -417,6 +424,7 @@ const Launchpad = ({pool} : {pool: string}) => {
                     <Skeleton width="100%" height={40} />
                   )}
                   <Divider />
+                  </>}
                   {isBuyTokenReady ? <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
                     <Text small>{t("Soft Cap")}</Text>
                     <Text small>{(data?.softCap / (10**searchBuyToken.decimals)).toLocaleString()} {searchBuyToken.symbol}</Text>
@@ -424,16 +432,16 @@ const Launchpad = ({pool} : {pool: string}) => {
                     <Skeleton width="100%" height={40} />
                   )}
                   <Divider />
-                  {data.presaleType === "standard" && <>
+                  {isBuyTokenReady && data.presaleType === "standard" && <>
                     {isBuyTokenReady ? <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
                       <Text small>{t("Hard Cap")}</Text>
                       <Text small>{(data?.hardCap / (10**searchBuyToken.decimals)).toLocaleString()} {searchBuyToken.symbol}</Text>
                     </Flex> : (
                       <Skeleton width="100%" height={40} />
                     )}
+                    <Divider />
                   </>}
-                  <Divider />
-                  {isDataReady ? <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
+                  {isDataReady && data.presaleType === "standard" && <>{isDataReady ? <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
                     <Text small>{t("Refund Address")}</Text>
                     <Flex alignItems="center">
                       <LinkExternal href={getBlockExploreLink(data?.tokenBackAddress, 'address', chainId)}>
@@ -451,6 +459,7 @@ const Launchpad = ({pool} : {pool: string}) => {
                     <Skeleton width="100%" height={40} />
                   )}
                   <Divider />
+                  </>}
                   {isDataReady ? <Flex width="100%" justifyContent="space-between" px="5px" mb="10px">
                     <Text small>{t("Presale Start Time")}</Text>
                     <Text small>{new Date(data?.presaleStartTimestamp * 1000).toUTCString()}</Text>
